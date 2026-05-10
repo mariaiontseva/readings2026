@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yogasūtra 1.1–1.15 · exam</title>
+<style>
+  :root {
+    --bg: #fbfaf6;
+    --paper: #ffffff;
+    --ink: #000000;
+    --ink-2: #050505;
+    --ink-3: #1a1a1a;
+    --line: #c8c2af;
+    --line-2: #e0d9c5;
+    --hi: #f3ead0;
+    --accent: #5a0f1f;
+    --accent-soft: #f0d9dd;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --serif: "Iowan Old Style", "Charter", "Cambria", "Georgia", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.6;
+    font-size: 17px;
+    font-weight: 550;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 28px 120px;
+  }
+
+  /* Header */
+  .pgh {
+    margin-bottom: 28px;
+  }
+  .pgh h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+  .pgh .meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    margin-top: 6px;
+  }
+
+  /* Sticky toolbar */
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    margin: 0 -28px 24px;
+    padding: 10px 28px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .bar__btns { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: var(--paper); color: var(--ink); }
+  .btn.is-on { background: var(--ink); color: white; border-color: var(--ink); }
+  .nav { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 8px; }
+  .nav a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 3px 7px;
+    border-radius: 3px;
+  }
+  .nav a:hover { background: var(--accent-soft); color: var(--accent); }
+
+  /* Sūtra block */
+  .sutra { margin: 0 0 44px; }
+  .sutra:first-of-type { margin-top: 8px; }
+
+  .sec {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 10px;
+    color: var(--ink-3);
+  }
+  .sec .lbl {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .sec .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .sec .rule { flex: 1; height: 1px; background: var(--line); }
+
+  /* Item row */
+  .row {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 12px;
+    margin: 0 0 1px;
+  }
+  .row__num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    text-align: right;
+    padding-top: 10px;
+    user-select: none;
+    font-weight: 600;
+  }
+  .row.is-sutra .row__num { color: var(--accent); font-weight: 800; }
+  .row.is-intro .row__num { color: var(--ink-2); font-style: italic; }
+  .row__skt {
+    cursor: pointer;
+    padding: 9px 12px 9px 10px;
+    border-left: 2px solid transparent;
+    color: var(--ink);
+    font-size: 17.5px;
+    line-height: 1.5;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .row__skt:hover { border-left-color: var(--accent); background: var(--paper); }
+  .row.is-sutra .row__skt {
+    background: var(--hi);
+    border-left-color: var(--accent);
+    font-size: 19px;
+    font-weight: 500;
+    padding: 12px 14px;
+  }
+  .row.is-sutra .row__skt:hover { background: #f1e7ce; }
+  .desandhi {
+    display: block;
+    color: var(--ink-2);
+    font-style: italic;
+    font-size: 15px;
+    margin-top: 3px;
+  }
+
+  /* Gloss panel */
+  .gl {
+    grid-column: 2;
+    display: none;
+    padding: 4px 12px 16px 10px;
+    border-left: 2px solid var(--line);
+    margin-bottom: 6px;
+  }
+  .gl.is-open { display: block; }
+
+  .gl section { margin-top: 12px; }
+  .gl section:first-child { margin-top: 6px; }
+
+  .gl__lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* Translation (English) */
+  .gl .tr {
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.55;
+    font-weight: 550;
+  }
+  .gl .tr b { color: var(--accent); font-weight: 700; }
+  .gl .tr .src {
+    display: inline-block;
+    min-width: 60px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    vertical-align: 1px;
+    margin-right: 8px;
+  }
+  .gl .tr .ln { display: block; margin-top: 6px; }
+  .gl .tr .ln:first-child { margin-top: 0; }
+
+  /* Leggett continuous bhāṣya row */
+  .row.is-leggett .row__num {
+    font-style: italic;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .row.is-leggett .row__skt {
+    color: var(--ink);
+    font-style: italic;
+    font-size: 15.5px;
+    font-weight: 500;
+    background: transparent;
+  }
+  .row.is-leggett .row__skt:hover { background: var(--accent-soft); }
+
+  /* Lexicon — compact 2-col grid */
+  .gl .lex {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 14px;
+    row-gap: 6px;
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+  .gl .lex dt {
+    color: var(--ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .gl .lex dt .gram {
+    display: inline-block;
+    margin-left: 6px;
+    color: var(--accent);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    vertical-align: 1px;
+  }
+  .gl .lex dd {
+    color: var(--ink);
+    font-weight: 550;
+  }
+  .gl .lex dd em { color: var(--ink-2); font-style: italic; font-weight: 600; }
+
+  /* Notes / explanation */
+  .gl .note {
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.6;
+    font-weight: 550;
+  }
+  .gl .note b, .gl .note strong { color: var(--ink); font-weight: 800; }
+  .gl .note em { color: var(--accent); font-style: italic; font-weight: 600; }
+  .gl .note p { margin-bottom: 8px; }
+  .gl .note p:last-child { margin-bottom: 0; }
+  .gl .note ol { margin: 6px 0 8px 18px; }
+  .gl .note li { margin: 3px 0; }
+
+  /* Mini-table */
+  table.mini {
+    border-collapse: collapse;
+    margin: 8px 0 0;
+    font-size: 12px;
+    font-family: var(--sans);
+  }
+  table.mini th, table.mini td {
+    border: 1px solid var(--line);
+    padding: 3px 8px;
+    text-align: left;
+  }
+  table.mini th {
+    background: var(--line-2);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  @media (max-width: 580px) {
+    .wrap { padding: 24px 16px 80px; }
+    .bar { margin: 0 -16px 18px; padding: 8px 16px 10px; }
+    .row { grid-template-columns: 20px 1fr; column-gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="pgh">
+  <h1>Pātañjalayogaśāstram</h1>
+  <div class="meta">Sūtra 1.1 — 1.15 · with Vyāsabhāṣya · exam prep</div>
+</header>
+
+<div class="bar">
+  <div class="bar__btns">
+    <button class="btn is-on" id="b-hide" onclick="setAll(false)">Hide all</button>
+    <button class="btn" id="b-show" onclick="setAll(true)">Show all</button>
+  </div>
+  <nav class="nav" id="nav"></nav>
+</div>
+
+<!-- ===== 1.1 ===== -->
+<article class="sutra" id="ys-1-1">
+  <div class="sec"><span class="num">1.1</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">atha yogānuśāsanam ‖ YS 1.1 ‖<span class="desandhi">atha yoga-anuśāsanam ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>Now (<b>atha</b>), the teaching (<b>anuśāsanam</b>) of yoga (<b>yoga</b>).</span><span class="ln"><span class="src">Leggett</span>Now the exposition of yoga.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span>
+        <dl class="lex">
+          <dt>atha <span class="gram">indecl.</span></dt><dd>«теперь, здесь начинается»; благоприятная частица, открывающая śāstra; означает <em>adhikāra</em> — формальное приступание к теме</dd>
+          <dt>yoga <span class="gram">stem</span></dt><dd>здесь = <em>samādhi</em> (так глоссит Вьяса)</dd>
+          <dt>anuśāsanam <span class="gram">n. nom. sg.</span></dt><dd>«преподание» (anu + √śās = «учить вслед за традицией»); не изобретение, а систематическое изложение</dd>
+        </dl>
+      </section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><em>Atha</em> сигнализирует: ученик выполнил <em>adhikāra</em> и готов получить наставление. <em>Anuśāsanam</em> = «пере-преподание»: йога не изобретается, а кодифицируется. Тип компаунда: ṣaṣṭhī-tatpuruṣa («преподание <em>чего</em>: йоги»). Назывное предложение без глагола, функция — заголовок.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">The word <b>Now</b> means here a beginning, and the topic now begun is understood to be an exposition of yoga. <b>Yoga is samādhi.</b> It is a quality (dharma) of the mind in all the five mental states: impulsive, dull, changeable, one-pointed, inhibited. In the changeable state of the mind, the samādhi is subject to this changeability, and is not classed as yoga. But the samādhi in the one-pointed mind makes clear the object as it is, destroys the taints, loosens the karma-bonds, and brings the state of inhibition into view; it is called <b>cognitive</b>. It follows on meditations with verbal associations (vitarka), with subtle associations (vicāra), accompanied with joy, and accompanied with I-am-ness; we shall speak of it later. But the <b>ultra-cognitive</b> (samādhi) is when there is inhibition of all mental processes.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">athety ayam adhikārārthaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The word <em>atha</em> here has the sense of <b>adhikāra</b> (commencement of a subject).</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>atha iti <span class="gram">indecl. + quot.</span></dt><dd>«слово <em>atha</em>» (iti — кавычки)</dd><dt>adhikāra-arthaḥ <span class="gram">m. nom. sg.</span></dt><dd>«имеющий смысл приступания»</dd></dl></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">yogānuśāsanaṃ śāstram adhikṛtaṃ veditavyam.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The śāstra on yoga-instruction is what has been commenced and is to be understood.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>śāstram <span class="gram">n. nom. sg.</span></dt><dd>обучающий текст</dd><dt>adhikṛtam <span class="gram">n. nom. sg., PPP</span></dt><dd>«приступленное» (PPP adhi + √kṛ)</dd><dt>veditavyam <span class="gram">n. nom. sg., FPP</span></dt><dd>«то, что должно быть понято» (FPP √vid)</dd></dl></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">yogaḥ samādhiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Yoga is samādhi.</b></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>samādhiḥ <span class="gram">m. nom. sg.</span></dt><dd>концентрация, поглощение (sam + ā + √dhā = «полностью соединять»)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Самое <b>значимое отождествление во всей бхашье</b>. Вьяса прямо приравнивает йогу к самадхи — не к этике, асане, пранаяме, а к когнитивному состоянию поглощения. Всё остальное в системе работает на это.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">sa ca sārvabhaumaś cittasya dharmaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And that [samādhi] is a <b>universal property</b> of the mind.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>sārvabhaumaḥ <span class="gram">m. nom. sg.</span></dt><dd>«всеземной, относящийся ко всем уровням» (sarva-bhūmi + -a)</dd><dt>dharmaḥ <span class="gram">m. nom. sg.</span></dt><dd>свойство, атрибут</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Самадхи присуще не только продвинутым йогинам — это врождённое свойство ума на каждом уровне. Вопрос лишь в качестве и объекте поглощения.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">5</div>
+    <div class="row__skt" onclick="t(this)">kṣiptaṃ mūḍhaṃ vikṣiptam ekāgraṃ niruddham iti cittabhūmayaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Scattered (kṣipta), stupefied (mūḍha), distracted (vikṣipta), one-pointed (ekāgra), and restrained (niruddha)</b> — these are the levels of the mind.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>kṣiptam <span class="gram">n. nom. sg., PPP</span></dt><dd>рассеянное, возбуждённое (PPP √kṣip)</dd>
+        <dt>mūḍham <span class="gram">n. nom. sg., PPP</span></dt><dd>отуплённое (PPP √muh)</dd>
+        <dt>vikṣiptam <span class="gram">n. nom. sg., PPP</span></dt><dd>отвлечённое, прерывисто фокусированное</dd>
+        <dt>ekāgram <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>однонаправленное (eka «один» + agra «остриё»)</dd>
+        <dt>niruddham <span class="gram">n. nom. sg., PPP</span></dt><dd>полностью остановленное (PPP ni + √rudh)</dd>
+        <dt>citta-bhūmayaḥ <span class="gram">f. nom. pl.</span></dt><dd>уровни (bhūmi) ума</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>5 cittabhūmi</b> — иерархия от раджасической ажитации (kṣipta) через тамасический ступор (mūḍha) к смешанному (vikṣipta) и далее к саттвической однонаправленности (ekāgra) и полному прекращению (niruddha). <b>Только последние два — собственно йога.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">tatra vikṣipte cetasi vikṣepopasarjanībhūtaḥ samādhir na yogapakṣe vartate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In the case of the distracted mind, samādhi that has become subordinate to distraction does not belong to the domain of yoga.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>vikṣepa-upasarjanī-bhūtaḥ <span class="gram">m. nom. sg.</span></dt><dd>«ставший подчинённым отвлечению»</dd><dt>yoga-pakṣe <span class="gram">m. loc. sg.</span></dt><dd>«в категории йоги» (pakṣa — сторона, разряд)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Даже отвлечённый ум переживает моменты сосредоточения. Случайное самадхи, где концентрация — служанка господствующего отвлечения, не йога. <b>Сосредоточение должно быть основным.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">yas tv ekāgre cetasi sadbhūtam arthaṃ pradyotayati kṣiṇoti ca kleśān karmabandhanāni ślathayati nirodham abhimukhaṃ karoti sa saṃprajñāto yoga ity ākhyāyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">But that [samādhi] which, in the one-pointed mind, <b>illuminates a real object, diminishes the afflictions, loosens the bonds of karma, and turns towards cessation</b> — that is called <b>saṃprajñāta yoga</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>sat-bhūtam artham <span class="gram">m. acc. sg.</span></dt><dd>реальный объект</dd>
+        <dt>pradyotayati <span class="gram">3sg pres. caus.</span></dt><dd>освещает (caus. pra + √dyut)</dd>
+        <dt>kṣiṇoti <span class="gram">3sg pres.</span></dt><dd>истощает (√kṣi)</dd>
+        <dt>kleśān <span class="gram">m. acc. pl.</span></dt><dd>клеши (avidyā, asmitā, rāga, dveṣa, abhiniveśa)</dd>
+        <dt>karma-bandhanāni <span class="gram">n. acc. pl.</span></dt><dd>оковы кармы</dd>
+        <dt>ślathayati <span class="gram">3sg pres. caus.</span></dt><dd>ослабляет</dd>
+        <dt>saṃprajñātaḥ <span class="gram">m. nom. sg., PPP</span></dt><dd>«с полным знанием» (PPP sam + pra + √jñā)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>4-частное функциональное определение</b> сампраджнята-йоги: освещает, истощает, ослабляет, обращает к ниродхе. Это йога как <b>самоликвидирующийся процесс</b>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">sa ca vitarkānugato vicārānugata ānandānugato 'smitānugata ity upariṣṭān nivedayiṣyāmaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And that [saṃprajñāta yoga] is accompanied by <b>vitarka, vicāra, ānanda, asmitā</b> — to be explained further on.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>vitarka <span class="gram">m. stem</span></dt><dd>грубое размышление</dd>
+        <dt>vicāra <span class="gram">m. stem</span></dt><dd>тонкая рефлексия</dd>
+        <dt>ānanda <span class="gram">m. stem</span></dt><dd>блаженство</dd>
+        <dt>asmitā <span class="gram">f. stem</span></dt><dd>чистая «я-естность»</dd>
+        <dt>-anugata <span class="gram">PPP suffix</span></dt><dd>«сопровождаемый» (PPP anu + √gam)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">4 стадии прогрессирующего утончения объекта. Каждая оставляет позади более грубое вовлечение предыдущей. Отсылка к YS 1.17.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">9</div>
+    <div class="row__skt" onclick="t(this)">sarvavṛttinirodhe tv asaṃprajñātaḥ samādhiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">But when <b>all mental modifications cease</b>, that is <b>asaṃprajñāta samādhi</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>sarva-vṛtti-nirodhe <span class="gram">m. loc. sg.</span></dt><dd>«при прекращении всех вритти» (loc.)</dd><dt>asaṃprajñātaḥ <span class="gram">m. nom. sg.</span></dt><dd>«без полного знания» (a + sam + pra + √jñā)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Цель всей системы.</b> Когда даже тонкие объекты сампраджняты отпущены и все вритти прекращены — асампраджнята: без объекта, без содержания. Прямая глосса YS 1.2.</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.2 ===== -->
+<article class="sutra" id="ys-1-2">
+  <div class="sec"><span class="num">1.2</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-intro"><div class="row__num">→</div>
+    <div class="row__skt" onclick="t(this)">tasya lakṣaṇābhidhitsayedaṃ sūtraṃ pravavṛte —<span class="desandhi">tasya lakṣaṇa-abhidhitsayā idam sūtram pravavṛte —</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">With the desire to state (<b>abhidhitsayā</b>) the definition (<b>lakṣaṇa</b>) of that [yoga], this sūtra has been set forth.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>abhidhitsayā <span class="gram">f. instr. sg., desid.</span></dt><dd>desiderative от abhi + √dhā («желая высказать»)</dd><dt>pravavṛte <span class="gram">3sg perf. ātm.</span></dt><dd>perfect ātm. от pra + √vṛt («сама себя установила»)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Вьяса: 1.1 ввела предмет (йогу), 1.2 даёт <em>lakṣaṇa</em> — формальное определение.</div></section>
+    </div>
+  </div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">yogaś cittavṛttinirodhaḥ ‖ YS 1.2 ‖<span class="desandhi">yogaḥ citta-vṛtti-nirodhaḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>Yoga (<b>yogaḥ</b>) is the cessation (<b>nirodhaḥ</b>) of the modifications (<b>vṛtti</b>) of the mind (<b>citta</b>).</span><span class="ln"><span class="src">Leggett</span>Yoga is inhibition of the mental processes.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>citta <span class="gram">n. stem</span></dt><dd>ум, поле сознания (буддхи + ахамкара + манас); √cit «воспринимать»</dd>
+        <dt>vṛtti <span class="gram">f. stem</span></dt><dd>колебание, поворот (√vṛt «вращаться»)</dd>
+        <dt>nirodhaḥ <span class="gram">m. nom. sg.</span></dt><dd>прекращение, обуздание; <em>полное</em> блокирование (ni + √rudh)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Самое знаменитое определение во всей литературе йоги.</b> Йога — не практика, не поза, не философия, а <em>состояние</em>: когда обычные колебания ума прекратились. Compound — ṣaṣṭhī-tatpuruṣa: nirodha <em>чего</em> = vṛttis <em>чего</em> = citta. <b>Ключ:</b> отсутствие слова <em>sarva</em> («все») означает, что определение охватывает <b>и частичное</b> (saṃprajñāta), <b>и полное</b> (asaṃprajñāta) прекращение.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">The omission of the word <b>All</b> shows that the cognitive (samādhi) too is yoga. Now mind always tends towards illumination, activity, or stasis (sthiti); so it consists of the <b>three guṇa-s</b>. For mind-sattva is by nature illumination. Mingled with rajas and tamas, mind is drawn towards power and possessions. Pervaded by tamas, it becomes subject to a-dharma, Ignorance, attachment and helplessness. That same mind, when the covering of illusion (moha) has dwindled, pervaded by a measure of rajas, is endowed with dharma, knowledge (jñāna), detachment and power. When the last trace of the stain of rajas is removed, the mind is grounded in its own nature, becoming simply the <b>Knowledge (khyāti) that sattva and Puruṣa are different</b>, endowed with the <b>Rain-cloud of Dharma</b>, which the meditators call the highest prasaṃkhyāna. The power-of-consciousness (citi-śakti) is unchangeable, does not engage with objects, has the objects shown to it, is pure and infinite. Opposed to it is the Knowledge-of-the-difference (viveka-khyāti), whose nature is sattva-guṇa. Therefore the mind, turning away from even that Knowledge, inhibits it. In this state what remains is saṃskāra-s, and it is the <b>seedless (nirbīja) samādhi</b>. There is no cognition of anything in it, so it is <b>ultra-cognitive</b>.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">sarvaśabdāgrahaṇāt saṃprajñāto 'pi yoga ity ākhyāyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Because the word "all" is not used, even saṃprajñāta is called yoga.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>sarva-śabda-agrahaṇāt <span class="gram">n. abl. sg.</span></dt><dd>«из-за неиспользования слова <em>sarva</em>» (abl. of reason)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Если бы было <em>sarva-citta-vṛtti-nirodhaḥ</em>, только асампраджнята квалифицировалась бы. <b>Намеренное отсутствие <em>sarva</em></b> = даже частичное прекращение уже йога. Вьяса читает молчание Патанджали как смысловой ход.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">cittaṃ hi prakhyāpravṛttisthitiśīlatvāt triguṇam.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">For the mind is constituted by the <b>three guṇas</b>, because its nature is <b>illumination, activity, and stability</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>prakhyā <span class="gram">f. stem</span></dt><dd>= саттва (освещение)</dd><dt>pravṛtti <span class="gram">f. stem</span></dt><dd>= раджас (активность)</dd><dt>sthiti <span class="gram">f. stem</span></dt><dd>= тамас (устойчивость, инерция)</dd><dt>śīlatvāt <span class="gram">n. abl. sg.</span></dt><dd>«по природе» (abl.)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Метафизика Санкхьи. Ум — продукт пракрити, состоит из <b>трёх гун в разных пропорциях</b>. Дальше — 4-стадийный анализ.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">prakhyārūpaṃ hi cittasattvaṃ rajastamobhyāṃ saṃsṛṣṭam aiśvaryaviṣayapriyaṃ bhavati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Stage 1.</b> The sattva of the mind, <b>whose form is illumination</b> (<i>prakhyā-rūpam</i>), when mixed with rajas and tamas, becomes <b>fond of sovereignty and sense-objects</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>prakhyā-rūpam <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>«у кого форма — освещение» (prakhyā «свет, ясность» + rūpa «форма»); описание саттвы</dd>
+        <dt>citta-sattvam <span class="gram">n. nom. sg.</span></dt><dd>саттва-аспект ума</dd>
+        <dt>rajas-tamobhyām <span class="gram">n. instr. dual</span></dt><dd>«раджасом и тамасом» (оба вместе)</dd>
+        <dt>saṃsṛṣṭam <span class="gram">n. nom. sg., PPP</span></dt><dd>смешанный (sam + √sṛj)</dd>
+        <dt>aiśvarya-viṣaya-priyam <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>«любящий власть и чувственные объекты» (aiśvarya — мощь, сиддхи; viṣaya — чувственный объект; priya — любящий)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><em>Vikṣipta</em>-уровень. Саттва ума <em>по природе светоносна</em> (prakhyā-rūpa) — но смешана и с раджасом, и с тамасом, равновесие нарушено. Результат: светимость есть, но направлена наружу — ум ищет <em>aiśvarya</em> (мирскую власть, сиддхи) и <em>viṣaya</em> (чувственное удовольствие).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">tad eva tamasānuviddham adharmājñānāvairāgyānaiśvaryopagaṃ bhavati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Stage 2.</b> The same [sattva], <b>pervaded by tamas</b>, becomes inclined towards <b>adharma, ajñāna, avairāgya, anaiśvarya</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>anuviddham <span class="gram">n. nom. sg., PPP</span></dt><dd>пронизанный (PPP anu + √vyadh = «прошитый»)</dd><dt>upagam <span class="gram">adj. suffix</span></dt><dd>склонный к</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Тамас доминирует — четырёхкратная инверсия: dharma → adharma; jñāna → ajñāna; vairāgya → avairāgya; aiśvarya → anaiśvarya.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">5</div>
+    <div class="row__skt" onclick="t(this)">tad eva prakṣīṇamohāvaraṇaṃ sarvataḥ pradyotamānam anuviddhaṃ rajomātrayā dharmajñānavairāgyaiśvaryopagaṃ bhavati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Stage 3.</b> The same [sattva], whose veil of delusion is destroyed, shining forth, pervaded by <em>a mere trace</em> of rajas, becomes inclined towards <b>dharma, jñāna, vairāgya, aiśvarya</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>prakṣīṇa-moha-āvaraṇam <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>«у кого завеса заблуждения уничтожена»</dd><dt>rajaḥ-mātrayā <span class="gram">f. instr. sg.</span></dt><dd>«лишь чуточкой раджаса»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><em>Ekāgra</em> bhūmi: однонаправленный, светящийся, ориентирован на 4 положительных качества. = <b>сампраджнята-самадхи</b>. 4 качества — классические «плоды» йогической практики.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">tad eva rajoleśamalāpetaṃ svarūpapratiṣṭhaṃ sattvapuruṣānyatākhyātimātraṃ dharmameghadhyānopagaṃ bhavati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Stage 4 (peak).</b> The same [sattva], free from <em>even a trace</em> of rajas, established in its own nature, <b>consisting merely of the discernment of the otherness between sattva and puruṣa</b>, becomes inclined towards <b>dharmamegha meditation</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>rajaḥ-leśa-mala-apetam <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>«свободная от пятна следа раджаса»</dd>
+        <dt>sattva-puruṣa-anyatā-khyāti-mātram <span class="gram">n. nom. sg.</span></dt><dd>«состоящая только из различения иности саттвы и пуруши»</dd>
+        <dt>dharma-megha <span class="gram">m. stem</span></dt><dd>«облако дхармы» (см. YS 4.29)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Пик 4 стадий. Каждый след раджаса ушёл. Ум так прозрачен, что его единственная функция — <em>видеть различие между собой и пурушей</em> = <b>vivekakhyāti</b>. <b>Критично:</b> даже это утончённое состояние ещё принадлежит пракрити и должно быть превзойдено.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">tat paraṃ prasaṃkhyānam ity ācakṣate dhyāyinaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Meditators call that <b>the supreme prasaṃkhyāna</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>prasaṃkhyānam <span class="gram">n. nom./acc. sg.</span></dt><dd>медитативное различение (pra + sam + √khyā = «полностью просчитать»)</dd></dl></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">citiśaktir apariṇāminy apratisaṃkramā darśitaviṣayā śuddhā cānantā ca sattvaguṇātmikā ceyam ato viparītā vivekakhyātir iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Citiśakti is <b>unchanging, non-transitive, [merely] has objects shown to it, pure, infinite</b>. But this discriminative discernment, being of sattva-guṇa, is <b>the opposite (viparītā)</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>citi-śaktiḥ <span class="gram">f. nom. sg.</span></dt><dd>сила чистого сознания = пуруша</dd>
+        <dt>apariṇāminī <span class="gram">f. nom. sg.</span></dt><dd>не-изменяющаяся</dd>
+        <dt>apratisaṃkramā <span class="gram">f. nom. sg.</span></dt><dd>не-переходящая (к объектам)</dd>
+        <dt>darśita-viṣayā <span class="gram">f. nom. sg., bahuvrīhi</span></dt><dd>«та, кому объекты показываются»</dd>
+        <dt>viparītā <span class="gram">f. nom. sg.</span></dt><dd>противоположный</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Поворотный контраст. <b>5 атрибутов citiśakti = пуруши:</b> неизменная, не-переходящая, пассивно принимает объекты, чистая, бесконечная. Vivekakhyāti — <em>viparītā</em>, ибо принадлежит саттва-гуне = пракрити = изменяющееся, активное, ограниченное. <b>Даже самая светящаяся буддхи всё ещё не пуруша.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">9</div>
+    <div class="row__skt" onclick="t(this)">atas tasyāṃ viraktaṃ cittaṃ tām api khyātiṃ niruṇaddhi.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Therefore, the mind, having become <b>dispassionate towards that [discernment]</b>, restrains <b>even that discernment</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>viraktam <span class="gram">n. nom. sg., PPP</span></dt><dd>равнодушный, без-страстный (PPP vi + √rañj = «обесцветившийся»)</dd><dt>niruṇaddhi <span class="gram">3sg pres.</span></dt><dd>останавливает (тот же корень ni + √rudh, что и <em>nirodha</em>)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Высший парадокс системы йоги.</b> Доведя vivekakhyāti до пика, ум должен стать равнодушным <em>к самому этому различению</em> и остановить <em>даже его</em>. Инструмент, приведший к порогу освобождения, должен быть отпущен. = <b>paravairāgya</b> (YS 1.16).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">10</div>
+    <div class="row__skt" onclick="t(this)">tadavasthaṃ saṃskāropagaṃ bhavati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In that state, [the mind] becomes inclined towards [residual] <b>saṃskāras only</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Когда даже vivekakhyāti прекращается, ум не исчезает — оседает в свой санскарический субстрат. Самскары ниродхи перезаписывают все другие (см. YS 1.50).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">11</div>
+    <div class="row__skt" onclick="t(this)">sa nirbījaḥ samādhiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That is <b>seedless samādhi</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>nir-bījaḥ <span class="gram">m. nom. sg.</span></dt><dd>«без семени»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Контраст: <em>sabīja</em> samādhi (YS 1.46) — ещё работают утончённые самскары; <em>nirbīja</em> — никакой латентной причины не остаётся.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">12</div>
+    <div class="row__skt" onclick="t(this)">na tatra kiṃcit saṃprajñāyata ity asaṃprajñātaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Nothing whatsoever is cognised there</b> — therefore [it is called] asaṃprajñāta.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Этимологическая глосса. asaṃprajñāta = «то, в чём ничего не <em>saṃprajñāta</em> (полностью познаётся)». <b>Не бессознательность</b>, а сознание <em>без</em> объекта.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">13</div>
+    <div class="row__skt" onclick="t(this)">dvividhaḥ sa yogaś cittavṛttinirodha iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That yoga, the cessation of mental modifications, is <b>twofold</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Замыкает круг: yoga = cittavṛttinirodha; nirodha двоичен — saṃprajñāta (с утончённой когницией) и asaṃprajñāta (без когниции). <b>Эта двойная схема организует всю первую паду.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.3 ===== -->
+<article class="sutra" id="ys-1-3">
+  <div class="sec"><span class="num">1.3</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-intro"><div class="row__num">→</div>
+    <div class="row__skt" onclick="t(this)">tadavasthe cetasi viṣayābhāvād buddhibodhātmā puruṣaḥ kiṃsvabhāva iti —<span class="desandhi">tad-avasthe cetasi viṣaya-abhāvāt buddhi-bodha-ātmā puruṣaḥ kim-svabhāvaḥ iti —</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">When the mind is in that state [of nirodha], in the absence of objects, what is the nature of puruṣa, whose essence is the awareness of buddhi?</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>tad-avasthe cetasi <span class="gram">n. loc. abs.</span></dt><dd>locative absolute («когда ум в этом состоянии»)</dd>
+        <dt>buddhi-bodha-ātmā <span class="gram">m. nom. sg., bahuvrīhi</span></dt><dd>«у кого <em>я</em> есть осознавание буддхи» (bahuvrīhi)</dd>
+        <dt>kim-svabhāvaḥ <span class="gram">m. nom. sg., bahuvrīhi</span></dt><dd>«какой природы?»</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Если опыт пуруши всегда опосредован осознаванием буддхи, что с пурушей, когда у буддхи нет объектов? Не становится ли он «ничем»? Compound <em>buddhibodhātmā</em> провизорно описывает пурушу через ту самую идентификацию, которую йога стремится распустить.</div></section>
+    </div>
+  </div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">tadā draṣṭuḥ svarūpe 'vasthānam ‖ YS 1.3 ‖<span class="desandhi">tadā draṣṭuḥ sva-rūpe avasthānam ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>Then (<b>tadā</b>), [there is] <b>the abiding</b> (<b>avasthānam</b>) of the seer (<b>draṣṭuḥ</b>) in [its] own form (<b>sva-rūpe</b>).</span><span class="ln"><span class="src">Leggett</span>Then the Seer is established in his own nature.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>tadā <span class="gram">indecl.</span></dt><dd>«тогда» (коррелятив к 1.2: когда ниродха обретена)</dd>
+        <dt>draṣṭṛ <span class="gram">m. agentive stem</span></dt><dd>«видящий» (агентив. сущ. от √dṛś); техническое имя пуруши</dd>
+        <dt>sva-rūpe <span class="gram">n. loc. sg.</span></dt><dd>в своей собственной форме (loc.)</dd>
+        <dt>avasthānam <span class="gram">n. nom. sg.</span></dt><dd>пребывание, утверждение (ava + √sthā)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Когда ниродха достигнута, пуруша не становится ничем — <em>он пребывает в собственной форме</em>. <b>Svarūpe</b> — критично: пуруша имеет собственную природу, независимую от любого ментального содержания. <em>Avasthānam</em> — не достижение, а <b>оседание-обратно в то, что всегда уже было</b>.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">Then the power-of-consciousness rests in its own nature, <b>as in the state of release</b>. But when the mind is extraverted, though it is so, it is not so. <i>(What is Puruṣa, the cognizer of buddhi, in that state when there is no object for him?)</i></div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">svarūpapratiṣṭhā tadānīṃ citiśaktir yathā kaivalye.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">At that time, the power of consciousness is established in its own form, <b>just as in kaivalya</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>citi-śaktiḥ <span class="gram">f. nom. sg.</span></dt><dd>сила сознания = пуруша</dd><dt>kaivalya <span class="gram">n. stem</span></dt><dd>окончательное освобождение пуруши от пракрити (от kevala — «один»)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Ниродха-самадхи <b>экспериментально идентично кайвалье</b>. Различие — онтологическое: в ниродхе семена самскар ещё есть; в кайвалье разделение постоянно. Йогин в ниродхе получает <em>предпросмотр</em> финального освобождения.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">vyutthānacitte tu sati tathāpi bhavantī na tathā.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">But when the mind is in the state of emergence, <b>even though [citiśakti] exists in that way, it is not [experienced as] in that way</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>vyutthāna <span class="gram">n. stem</span></dt><dd>«вышед-стояние», обычное состояние ума (vi + ud + √sthā)</dd><dt>vyutthāna-citte sati <span class="gram">n. loc. abs.</span></dt><dd>locative absolute</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Одно из самых философски значимых предложений в бхашье.</b> Природа пуруши <em>никогда не меняется</em>. Даже в обычном опыте citiśakti <em>есть</em> в собственной форме — она <b>всегда</b>. Различие <em>эпистемическое</em>, не онтологическое: в vyutthāna пуруша не <em>переживается как</em> пребывающий в собственной форме. <b>Ниродха не <em>создаёт</em> само-пребывание пуруши — она <em>раскрывает</em> то, что всегда уже было.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.4 ===== -->
+<article class="sutra" id="ys-1-4">
+  <div class="sec"><span class="num">1.4</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-intro"><div class="row__num">→</div>
+    <div class="row__skt" onclick="t(this)">kathaṃ tarhi, darśitaviṣayatvāt —<span class="desandhi">katham tarhi, darśita-viṣayatvāt —</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">How then [is it not experienced as such]? Because [citiśakti] has the nature of <b>having objects shown to it</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>darśita-viṣayatvāt <span class="gram">n. abl. sg.</span></dt><dd>«из-за состояния показываемости-объектов» (abl.); darśita — caus. PPP √dṛś = «показанный»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Почему в vyutthāna пуруша не переживает свою природу? Потому что <em>объекты постоянно ему показываются</em> умом. Пассив важен: пуруша не тянется к объектам — буддхи их выставляет.</div></section>
+    </div>
+  </div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">vṛttisārūpyam itaratra ‖ YS 1.4 ‖<span class="desandhi">vṛtti-sārūpyam itaratra ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>At other times (<b>itaratra</b>), [there is] <b>conformity with the modifications</b> (<b>vṛtti-sārūpyam</b>).</span><span class="ln"><span class="src">Leggett</span>Otherwise, it conforms itself to the mental process.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>sārūpyam <span class="gram">n. nom. sg.</span></dt><dd>«однообразность, конформность» (sa + rūpa + -ya = «состояние одной формы с»)</dd><dt>itaratra <span class="gram">indecl.</span></dt><dd>«в иное время, в другом случае»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Зеркало 1.3. <b>Дополняющая пара.</b> <em>Sārūpya</em>: пуруша не <em>становится</em> вритти, а <em>кажется</em> имеющим их форму = avidyā в действии. <em>Itaratra</em> — vṛttisārūpya есть <b>дефолт</b>; svarūpe'vasthānam — исключение, делаемое возможным йогой.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">In the extraverted state, whatever the process in the mind, Puruṣa has a process not distinguished from it. As a sūtra says: <b>There is only one sight, and the sight is knowledge alone.</b> Mind is like a <b>magnet</b>, serving by mere proximity, by the fact of being seen. It is the property of its owner, Puruṣa. There is a <b>beginningless relation</b>, and this is the cause of Puruṣa's awareness of the mental processes.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">vyutthāne yāś cittavṛttayas tadaviśiṣṭavṛttiḥ puruṣaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In the state of emergence, whatever the modifications of the mind, puruṣa [appears to have] a modification <b>indistinguishable</b> from them.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>tad-aviśiṣṭa-vṛttiḥ <span class="gram">m. nom. sg., bahuvrīhi</span></dt><dd>«имеющий вритти, неотличимую от них» (bahuvrīhi)</dd><dt>aviśiṣṭa <span class="gram">PPP, adj. stem</span></dt><dd>«не-различённый»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Ум думает «я зол» — пуруша кажется злым. <em>Aviśiṣṭa</em> точно: не «пуруша <em>имеет</em> ту же вритти», а <em>кажется неотличимым</em> от неё. Это различие — основа всей сотериологии йоги.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">tathā ca sūtram ekam eva darśanaṃ khyātir eva darśanam iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And thus the sūtra [states]: "<b>Seeing is one indeed; discernment itself is seeing.</b>"</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Цитата из утраченной (?) сутры. Две тезиса: (a) видение единично — есть только один видящий, пуруша; (b) <em>khyātir eva darśanam</em> — то, что мы зовём «видением», есть различение буддхи, отражаемое в осознавании пуруши. Предвосхищает YS 4.22.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">cittam ayaskāntamaṇikalpaṃ saṃnidhimātropakāri dṛśyatvena svaṃ bhavati puruṣasya svāminaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The mind, <b>like a lodestone</b>, serving [puruṣa] by its <b>mere proximity</b>, becomes the property of puruṣa, the master, by virtue of being an object of seeing.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>ayaskānta-maṇi-kalpam <span class="gram">n. nom. sg.</span></dt><dd>«подобный магниту-камню» (ayaskānta = магнит, букв. «любящий железо»)</dd>
+        <dt>saṃnidhi-mātra-upakāri <span class="gram">n. nom. sg.</span></dt><dd>«служащий лишь близостью»</dd>
+        <dt>dṛśyatvena <span class="gram">n. instr. sg.</span></dt><dd>«через видимость» (instr. of reason)</dd>
+        <dt>svāminaḥ <span class="gram">m. gen. sg.</span></dt><dd>владельца, господина</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Магнит притягивает железо <em>без действия — одной близостью</em>. Так и ум служит пуруше — не через действие пуруши, а просто <em>потому что пуруша рядом</em>. Юридическая метафора svāmin/sva: отношение онтологическое, не волевое.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">tasmāc cittavṛttibodhe puruṣasyānādiḥ saṃbandho hetuḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Therefore, the <b>beginningless connection</b> of puruṣa is the cause of the awareness of the mind's modifications.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>anādiḥ <span class="gram">m. nom. sg.</span></dt><dd>без-начальный (an + ādi)</dd><dt>saṃbandhaḥ <span class="gram">m. nom. sg.</span></dt><dd>связь, отношение</dd><dt>hetuḥ <span class="gram">m. nom. sg.</span></dt><dd>причина</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Anādi saṃbandha</b> — концепт огромного веса. Связь пуруша-читта без-начальна. Не временное утверждение о бесконечном прошлом, а <em>структурное</em>: отношение видящего и видимого фундаментально для космоса. <b>Только устойчивая практика ниродхи может распутать.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.5 ===== -->
+<article class="sutra" id="ys-1-5">
+  <div class="sec"><span class="num">1.5</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-intro"><div class="row__num">→</div>
+    <div class="row__skt" onclick="t(this)">tāḥ punar niroddhavyā bahutve sati cittasya —<span class="desandhi">tāḥ punaḥ niroddhavyāḥ bahutve sati cittasya —</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Those [modifications], moreover, <b>are to be restrained</b> — the mind being manifold —</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>niroddhavyāḥ <span class="gram">f. nom. pl., FPP</span></dt><dd>герундив (FPP) «должны быть остановлены»</dd><dt>bahutve sati <span class="gram">n. loc. abs.</span></dt><dd>locative absolute</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Переход от описания к предписанию. Множественность ума — причина для классификации: нельзя обуздать то, что не идентифицировано.</div></section>
+    </div>
+  </div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">vṛttayaḥ pañcatayyaḥ kliṣṭākliṣṭāḥ ‖ YS 1.5 ‖<span class="desandhi">vṛttayaḥ pañcatayyaḥ kliṣṭa-akliṣṭāḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>The modifications are <b>fivefold</b>, <b>afflicted and non-afflicted</b>.</span><span class="ln"><span class="src">Leggett</span>The mental processes are of five kinds; they are tainted or pure.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>pañcatayyaḥ <span class="gram">f. nom. pl.</span></dt><dd>пятеричный (pañca + -taya = «образующий группу из»)</dd><dt>kliṣṭa <span class="gram">PPP, adj. stem</span></dt><dd>омрачённый клешами (PPP √kliś «мучить»)</dd><dt>akliṣṭāḥ <span class="gram">f. nom. pl.</span></dt><dd>неомрачённые</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Две классификации одновременно. Количественная: 5 типов вритти (1.6). Качественная: каждая — kliṣṭa или akliṣṭa. <b>Матрица 5×2 = 10 возможных вритти-состояний.</b></div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">The <b>tainted</b> are caused by the five taints (kleśa); they become the seed-bed for the growth of the accumulated karma seed-stock. The others are <b>pure</b> and are the field of Knowledge. They oppose involvement in the guṇa-s. They remain pure even if they occur in a stream of tainted ones. <b>In gaps between tainted ones, there are pure ones; in gaps between pure ones, tainted ones.</b> It is only by mental processes that saṃskāra-s corresponding to them are produced, and by saṃskāra-s are produced new mental processes. Thus the <b>wheel of mental process and saṃskāra revolves</b>. Such is the mind. But when it gives up its involvement, it abides in the likeness of self (ātman) or else dissolves.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">kleśahetukāḥ karmāśayapracaye kṣetrībhūtāḥ kliṣṭāḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Those [vṛttis] which have the kleśas as their cause and which serve as the field for the accumulation of the karmic deposit — these are <b>kliṣṭa</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>kleśa-hetukāḥ <span class="gram">f. nom. pl., bahuvrīhi</span></dt><dd>«имеющие клеши причиной»</dd><dt>karma-āśaya-pracaye <span class="gram">m. loc. sg.</span></dt><dd>«при накоплении кармашаи (хранилища кармы)»</dd><dt>kṣetrī-bhūtāḥ <span class="gram">f. nom. pl.</span></dt><dd>«ставшие полем»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Два критерия kliṣṭa: (a) <em>вызваны</em> клешами, (b) <em>служат полем</em> для накопления кармы. И плод прошлых клеш, и семя будущей — <b>самовоспроизводящийся цикл</b>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">khyātiviṣayā guṇādhikāravirodhinyo 'kliṣṭāḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Those [vṛttis] whose <b>object is discernment</b>, which <b>oppose the dominion of the guṇas</b> — these are <b>akliṣṭa</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>khyāti-viṣayāḥ <span class="gram">f. nom. pl., bahuvrīhi</span></dt><dd>«имеющие различение объектом»</dd><dt>guṇa-adhikāra-virodhinyaḥ <span class="gram">f. nom. pl.</span></dt><dd>«противостоящие власти (adhikāra) гун»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Зеркало kliṣṭa. Ориентация на khyāti (различение) вместо корня в клешах. <em>Virodhinī</em> — сильное: akliṣṭa <b>активно сопротивляются</b> гунам.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">kliṣṭapravāhapatitā apy akliṣṭāḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Even [those vṛttis] fallen into the <b>stream</b> of kliṣṭa [vṛttis] are [still] akliṣṭa.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Akliṣṭa-вритти не теряет природу в потоке омрачённых мыслей. Момент различения остаётся akliṣṭa, даже возникнув в омрачённом уме. <b>Классификация присуща самой вритти, а не контексту.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4–5</div>
+    <div class="row__skt" onclick="t(this)">kliṣṭacchidreṣv apy akliṣṭā bhavanti. akliṣṭacchidreṣu kliṣṭā iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In the <b>gaps</b> of the kliṣṭa [vṛttis], akliṣṭa [vṛttis] arise. [And] in the gaps of the akliṣṭa [vṛttis], kliṣṭa [vṛttis] [arise].</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>chidra <span class="gram">n. stem</span></dt><dd>щель, отверстие, промежуток</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Феноменология ума как переплетение. Реалистическая картина: даже самый отвлечённый ум имеет моменты ясности; даже самый сосредоточенный — моменты возмущения. <b>Задача йогина — увеличить долю akliṣṭa.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6–7</div>
+    <div class="row__skt" onclick="t(this)">tathājātīyakāḥ saṃskārā vṛttibhir eva kriyante. saṃskāraiś ca vṛttaya iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Saṃskāras of that same kind</b> are produced by the vṛttis themselves. And by the saṃskāras, vṛttis [are produced].</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Двигатель самсары.</b> Вритти производят самскары того же типа (<em>tathājātīyaka</em>), самскары — новые вритти. Каждый поток <em>самоусиливающийся</em>: и плохие привычки, и хорошие практики углубляются.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">evaṃ vṛttisaṃskāracakram aniśam āvartate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Thus the <b>wheel of vṛttis and saṃskāras</b> revolves <b>without cease</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>aniśam <span class="gram">indecl.</span></dt><dd>без перерыва (a + niśa = «без ночи/передышки»)</dd><dt>āvartate <span class="gram">3sg pres. ātm.</span></dt><dd>вращается (тот же √vṛt!)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Образ <em>cakra</em>. Цикл круговой, самоподдерживающийся. <em>Āvartate</em> и <em>vṛtti</em> — один корень: «повороты» ума «поворачивают» колесо. <b>Только nirodha может разорвать.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">9</div>
+    <div class="row__skt" onclick="t(this)">tad evaṃbhūtaṃ cittam avasitādhikāram ātmakalpena vyavatiṣṭhate pralayaṃ vā gacchatīti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That mind, when its function is concluded, either <b>subsists as if it were the self</b>, or <b>goes to dissolution</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>avasita-adhikāram <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>«у кого функция завершена»</dd><dt>ātma-kalpena <span class="gram">m. instr. sg.</span></dt><dd>«подобно атману» (instr. сравнения)</dd><dt>pralaya <span class="gram">m. stem</span></dt><dd>космический распад (pra + √lī)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Два исхода: (a) <b>кайвалья</b> — буддхи, выполнив цель, стоит «как пуруша»; (b) <b>пралая</b> — поглощение в пракрити в космическом распаде. <em>Ātmakalpena</em>: ум <em>напоминает</em> Я, но не <em>становится</em> им; дуализм Санкхья-Йоги сохранён.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">10</div>
+    <div class="row__skt" onclick="t(this)">tāḥ kliṣṭāś cākliṣṭāś ca pañcadhā vṛttayaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Those vṛttis, both kliṣṭa and akliṣṭa, are <b>fivefold</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Резюме и переход к 1.6. <em>Ca…ca</em>: kliṣṭa/akliṣṭa-классификация <b>пересекает все пять типов</b>.</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.6 ===== -->
+<article class="sutra" id="ys-1-6">
+  <div class="sec"><span class="num">1.6</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">pramāṇaviparyayavikalpanidrāsmṛtayaḥ ‖ YS 1.6 ‖<span class="desandhi">pramāṇa-viparyaya-vikalpa-nidrā-smṛtayaḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>[They are:] <b>valid cognition (pramāṇa), error (viparyaya), conceptual construction (vikalpa), sleep (nidrā), and memory (smṛti)</b>.</span><span class="ln"><span class="src">Leggett</span>Right knowledge, illusion, logical construction, sleep, memory.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>pramāṇa <span class="gram">n. stem</span></dt><dd>верное познание (pra + √mā = «измерять верно»; 3 типа в 1.7)</dd>
+        <dt>viparyaya <span class="gram">m. stem</span></dt><dd>заблуждение (vi + pari + √i = «идти криво»; 1.8)</dd>
+        <dt>vikalpa <span class="gram">m. stem</span></dt><dd>концептуальная конструкция (vi + √kḷp; 1.9)</dd>
+        <dt>nidrā <span class="gram">f. stem</span></dt><dd>сон (ni + √drā; 1.10)</dd>
+        <dt>smṛti <span class="gram">f. stem</span></dt><dd>память (√smṛ; 1.11)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Оглавление для 1.7–1.11. Любая возможная ментальная операция попадает в одну из 5. <b>Шестой категории нет.</b> Грамматика: dvandva. Окончание -ayaḥ на последнем члене несёт число для всего компаунда. <em>Бхашьи к 1.6 нет</em>.</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.7 ===== -->
+<article class="sutra" id="ys-1-7">
+  <div class="sec"><span class="num">1.7</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">pratyakṣānumānāgamāḥ pramāṇāni ‖ YS 1.7 ‖<span class="desandhi">pratyakṣa-anumāna-āgamāḥ pramāṇāni ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span><b>Direct perception (pratyakṣa), inference (anumāna), and testimony (āgama)</b> are the valid means of knowledge.</span><span class="ln"><span class="src">Leggett</span>Right knowledge is either direct perception, inference, or authority.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>pratyakṣa <span class="gram">n. stem</span></dt><dd>прямое восприятие (prati + akṣa = «перед глазами»)</dd>
+        <dt>anumāna <span class="gram">n. stem</span></dt><dd>вывод (anu + √mā = «измерять вслед»)</dd>
+        <dt>āgama <span class="gram">m. stem</span></dt><dd>свидетельство (ā + √gam = «то, что пришло»)</dd>
+        <dt>pramāṇāni <span class="gram">n. nom. pl.</span></dt><dd>средства верного познания</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">3 праманы Санкхья-Йоги (промежуточная позиция: буддисты — 2, найяика — 4 с upamāna). Включая <em>āgama</em>, Патанджали даёт писаниям статус валидного знания — критично для традиции, передающей опыт, недоступный обычному восприятию.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">The right knowledge called <b>direct perception</b> is the process when the mind is coloured by an external thing through a sense-channel, and takes as its field the determination mainly of the particular nature of the thing, which has however also the nature of a universal. The result is an awareness by Puruṣa of the mental process, not distinguished from it. (We shall describe later under II.17 how Puruṣa is the witness, pratisaṃvedin.) <b>Inference</b> is the mental process which has as its field the relation of inclusion of what is to be inferred among things of a like class, and exclusion from those of a different class. It is mainly concerned with determining a universal. As <b>having motion is inferred in the moon and stars</b>, from their getting to another place, as with the man Caitra. The Vindhya range has no movement because it does not get anywhere. <b>Authority (āgama)</b>: when someone competent communicates by word something seen or inferred by him, with the intention of conveying his own knowledge, the mental process whose object is the meaning obtained from the word is authority for the hearer. When a speaker says questionable things, neither seen nor inferred by himself, this is fallacious authority. But if an <b>original speaker</b> has seen or inferred it, the authority is not suspect.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">indriyapraṇālikayā cittasya bāhyavastūparāgāt tadviṣayā sāmānyaviśeṣātmano 'rthasya viśeṣāvadhāraṇapradhānā vṛttiḥ pratyakṣaṃ pramāṇam.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The vṛtti which arises through the <b>channel of the senses</b> from the mind's being <b>coloured</b> by an external object, having that object as its domain, and which is <b>chiefly the ascertainment of the particular</b> in an object whose nature is both universal and particular — that is pratyakṣa.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>indriya-praṇālikā <span class="gram">f. instr. sg.</span></dt><dd>«канал чувств» (praṇālikā — трубка, проводник)</dd>
+        <dt>uparāga <span class="gram">m. stem</span></dt><dd>«окрашивание» (upa + √rañj)</dd>
+        <dt>sāmānya / viśeṣa <span class="gram">m./n. stems</span></dt><dd>общее (универсальное) / частное (конкретное)</dd>
+        <dt>viśeṣa-avadhāraṇa-pradhānā <span class="gram">f. nom. sg.</span></dt><dd>«преимущественно установление частного»</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Эпистемологический ключ.</b> Каждый объект двусторонен: <em>sāmānya</em> (универсальное — «коровость») и <em>viśeṣa</em> (частное — эта корова). Пратьякша по Вьясе — <b>преимущественно о частном</b>; контраст с anumāna — об общем. Чувства дают конкретное; вывод абстрагирует общее. Механизм через <em>uparāga</em>: объект буквально окрашивает ум через канал чувств.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">phalam aviśiṣṭaḥ pauruṣeyaś cittavṛttibodhaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The <b>fruit</b> [of perception] is puruṣa's awareness of the mind's modification, [which is] <b>indistinguishable</b> [from the modification itself].</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Связка с sārūpya 1.4. Плод восприятия — не сама вритти, а <em>осознавание</em> её пурушей. Это осознавание <em>aviśiṣṭa</em> — кажется идентичным вритти. Так работает механизм связанности.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">pratisaṃvedī puruṣa ity upariṣṭād upapādayiṣyāmaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That puruṣa is the <b>experiencer</b> — this we shall establish further on.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>pratisaṃvedī <span class="gram">m. nom. sg.</span></dt><dd>«отзывно-сознающий» (prati + sam + √vid). Префикс <em>prati-</em>: пуруша не активно воспринимает, а «отзывается»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Откладывает доказательство до позднее (вероятно YS 2.20: <em>draṣṭā dṛśimātraḥ</em>).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">anumeyasya tulyajātīyeṣv anuvṛtto bhinnajātīyebhyo vyāvṛttaḥ saṃbandho yas tadviṣayā sāmānyāvadhāraṇapradhānā vṛttir anumānam.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That connection which <b>persists</b> in things of the same class as the inferable and is <b>excluded</b> from things of a different class — the vṛtti whose domain is that connection and which is <b>chiefly the ascertainment of the universal</b> — that is anumāna.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>tulya-jātīya <span class="gram">adj. stem</span></dt><dd>однородные (того же класса)</dd>
+        <dt>bhinna-jātīya <span class="gram">adj. stem</span></dt><dd>разнородные</dd>
+        <dt>anuvṛtta <span class="gram">PPP</span></dt><dd>«сопутствующий» (anvaya)</dd>
+        <dt>vyāvṛtta <span class="gram">PPP</span></dt><dd>«исключённый» (vyatireka)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Anvaya–vyatireka</b> — классическая индийская логическая пара: (a) положительное сопутствие — где есть дым, там огонь; (b) отрицательное — где нет огня, нет дыма. Симметрия с пратьякшей: <b>пратьякша — частное; анумана — общее</b>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">5</div>
+    <div class="row__skt" onclick="t(this)">yathā deśāntaraprāpter gatimac candratārakaṃ caitravat, vindhyaś cāprāptir agatiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">For example: from arrival at another place, the <b>moon and stars have motion, like Caitra</b>; the <b>Vindhya</b>, [from] non-arrival, is <b>without motion</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Anvaya:</b> «Всё, что приходит в иное место, обладает движением.» Луна и звёзды перемещаются — значит, движутся, как Чайтра. <b>Vyatireka:</b> «Что не приходит — не движется.» Виндхья стоит — неподвижен. Берёт ненаблюдаемое (природу движения небесных тел) и выводит через наблюдаемый признак.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">āptena dṛṣṭo 'numito vārthaḥ paratra svabodhasaṃkrāntaye śabdenopadiśyate, śabdāt tadarthaviṣayā vṛttiḥ śrotur āgamaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">An object seen or inferred by a <b>trustworthy person (āpta)</b> is communicated through words for the <b>transference of their own knowledge</b> to another; the vṛtti of the hearer, arising from that word and having that object as its content — that is <b>āgama</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>āpta <span class="gram">PPP, m. stem</span></dt><dd>достоверный, надёжный (PPP ā + √āp = «достигший истины»)</dd>
+        <dt>sva-bodha-saṃkrāntaye <span class="gram">f. dat. sg.</span></dt><dd>«ради передачи собственного знания» (dat. of purpose)</dd>
+        <dt>śrotuḥ <span class="gram">m. gen. sg.</span></dt><dd>слушающего (gen. от śrotṛ)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Структура: (a) <em>āpta</em> воспринял или вывел нечто; (b) сообщает через слова ради передачи; (c) у слушающего возникает вритти. <b>Важно:</b> агама — не «кто-то что-то сказал», а <em>передача реального знания</em> от достоверного источника. Прамана возникает <em>у слушающего</em>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">yasyāśraddheyārtho vaktā na dṛṣṭānumitārthaḥ sa āgamaḥ plavate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That āgama whose speaker has untrustworthy content — neither seen nor inferred — that āgama <b>falters</b> (plavate).</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>plavate <span class="gram">3sg pres. ātm.</span></dt><dd>плывёт, дрейфует (√plu); метафор. — нестабилен, без якоря</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Образ: ненадёжное свидетельство дрейфует, как лодка без якоря. Без перцепции/вывода в основе — у свидетельства <b>нет эпистемологического якоря</b>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">mūlavaktari tu dṛṣṭānumitārthe nirviplavaḥ syāt.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">But when the <b>original speaker</b> has seen or inferred the content, [that āgama] would be <b>unwavering</b> (nirviplava).</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>nirviplavaḥ <span class="gram">m. nom. sg.</span></dt><dd>«без качки» (niḥ + vi + √plu — тот же корень, что в plavate, отрицаемый)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Симметрия: ненадёжная агама <em>plavate</em>; надёжная <em>nirviplava</em>. <em>Mūlavaktṛ</em>: свидетельство может пройти через многих передающих, но критично — был ли <b>корневой источник</b> прямым воспринимателем. Если исток надёжен, традиция стоит.</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.8 ===== -->
+<article class="sutra" id="ys-1-8">
+  <div class="sec"><span class="num">1.8</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">viparyayo mithyājñānam atadrūpapratiṣṭham ‖ YS 1.8 ‖<span class="desandhi">viparyayaḥ mithyā-jñānam a-tad-rūpa-pratiṣṭham ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span><b>Error</b> (viparyayaḥ) is <b>false knowledge</b> (mithyā-jñānam), <b>established in a form that is not that</b> [of the real object] (a-tad-rūpa-pratiṣṭham).</span><span class="ln"><span class="src">Leggett</span>Illusion is false knowledge based on an untrue form.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>viparyayaḥ <span class="gram">m. nom. sg.</span></dt><dd>заблуждение (vi + pari + √i = «идти вокруг криво»)</dd>
+        <dt>mithyā <span class="gram">indecl.</span></dt><dd>ложно (indecl., в начале компаунда)</dd>
+        <dt>a-tad-rūpa-pratiṣṭham <span class="gram">n. nom. sg., bahuvrīhi</span></dt><dd>«утверждённое в форме, что не есть та [объекта]»</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Вторая из пяти вритти.</b> Знание <em>с содержанием</em> — оно схватывает <em>что-то</em> — но это содержание не соответствует реальности. Классика: видим верёвку — познаём змею. <b>Випарьяя — не отсутствие знания, а <em>положительное</em> приписывание</b>: ум активно конструирует ложную форму и проецирует на реальность.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">Why is it not right knowledge? Because it is <b>negated by right knowledge</b>. The object of right knowledge is a thing as it is, and the fact of not being right knowledge is shown by the fact that right knowledge cancels it. For instance, <b>seeing the moon as double is negated by seeing that it is in fact a single moon</b>. And this is the <b>Five-fold Ignorance</b> (avidyā), namely the taints (kleśa): Ignorance, I-am-ness, passion, hate, clinging to life. These have technical names: <b>darkening, delusion, great-delusion, darkness, blind darkness</b>. They will be discussed later, under defilements of the mind.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1–2</div>
+    <div class="row__skt" onclick="t(this)">sa kasmān na pramāṇam. yataḥ pramāṇena bādhyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Why is it [viparyaya] not a pramāṇa? <b>Because it is sublated by pramāṇa.</b></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>bādhyate <span class="gram">3sg pres. pass.</span></dt><dd>пасс. от √bādh; технич. эпист. термин: когда позднейшая верная когниция показывает раннюю ложной</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Випарьяя — форма знания, почему не валидное? <em>Bādhana</em> (отмена). Верная когниция может перечеркнуть випарьяю; випарьяя никогда не перечеркнёт прамана. <b>Эта асимметрия отличает истину от ошибки.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">bhūtārthaviṣayatvāt pramāṇasya.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Because pramāṇa has a <b>real object</b> as its content.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Критерий истины: прамана имеет <em>bhūtārtha</em>. Заблуждение — <em>atadrūpa</em>. <b>Истина якорится в реальности; ошибка нет.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4–5</div>
+    <div class="row__skt" onclick="t(this)">tatra pramāṇena bādhanam apramāṇasya dṛṣṭam. tadyathā dvicandradarśanaṃ sadviṣayeṇaikacandradarśanena bādhyata iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In this regard, the sublation of the non-valid by valid knowledge is observed. For example, <b>the seeing of two moons is sublated by the seeing of one moon</b>, which has a real object.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Классический пример. При нарушении зрения видим две луны = випарьяя. Норма — одна = прамана, и она <em>bādhyate</em> ложное. Признак истины: <em>sadviṣaya</em>. Одна луна реальна. Две — нет.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">seyaṃ pañcaparvā bhavaty avidyā.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">This [viparyaya] is <b>avidyā</b>, having <b>five segments</b> (pañca-parvā).</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>parvan <span class="gram">n. stem</span></dt><dd>узел, сочленение (как у бамбукового стебля)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Поворотный момент бхашьи.</b> Випарьяя = avidyā. Не просто «заблуждение», а <b>корневая клеша с пятью сочленениями</b>. Образ — бамбук с пятью узлами. Каждый узел — одна из 5 клеш.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">avidyāsmitārāgadveṣābhiniveśāḥ kleśā iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Ignorance, egoism, attachment, aversion, and clinging to life</b> — these are the kleśas.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>avidyā <span class="gram">f. stem</span></dt><dd>невежество</dd>
+        <dt>asmitā <span class="gram">f. stem</span></dt><dd>эгоизм, «я-есть-ность» (asmi + -tā)</dd>
+        <dt>rāga <span class="gram">m. stem</span></dt><dd>привязанность (√rañj «окрашивать»)</dd>
+        <dt>dveṣa <span class="gram">m. stem</span></dt><dd>отвращение (√dviṣ)</dd>
+        <dt>abhiniveśa <span class="gram">m. stem</span></dt><dd>цепляние за жизнь, страх смерти</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">5 клеш — критические для всей Йогасутры (полное опр. в YS 2.3–2.9). Все клеши — формы невежества. <em>Asmitā</em>: буддхи за пурушу. <em>Rāga</em>: мимолётное удовольствие за стоящее. <em>Dveṣa</em>: страдание присуще объекту. <em>Abhiniveśa</em>: тело за «я».</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">eta eva svasaṃjñābhis tamo moho mahāmohas tāmisro 'ndhatāmisra iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">These very [kleśas], by their own [Sāṃkhya] names: <b>darkness, delusion, great delusion, gloom, blind darkness</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Альтернативная номенклатура из Санкхьи (ср. Sāṃkhyakārikā 48):
+        <table class="mini">
+          <tr><th>Yogasūtra</th><th>Sāṃkhya</th><th>Значение</th></tr>
+          <tr><td>avidyā</td><td>tamas</td><td>тьма</td></tr>
+          <tr><td>asmitā</td><td>moha</td><td>наваждение</td></tr>
+          <tr><td>rāga</td><td>mahāmoha</td><td>великое наваждение</td></tr>
+          <tr><td>dveṣa</td><td>tāmisra</td><td>мрак</td></tr>
+          <tr><td>abhiniveśa</td><td>andhatāmisra</td><td>слепая тьма</td></tr>
+        </table>
+      </div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">9</div>
+    <div class="row__skt" onclick="t(this)">ete cittamalaprasaṅgenābhidhāsyante.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">These will be discussed in connection with the <b>impurities of the mind</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Откладывает полное обсуждение клеш до Sādhanapāda (YS 2.3–2.9).</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.9 ===== -->
+<article class="sutra" id="ys-1-9">
+  <div class="sec"><span class="num">1.9</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">śabdajñānānupātī vastuśūnyo vikalpaḥ ‖ YS 1.9 ‖<span class="desandhi">śabda-jñāna-anupātī vastu-śūnyaḥ vikalpaḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span><b>Vikalpa</b> is [that vṛtti which] <b>follows upon verbal knowledge</b> (śabda-jñāna-anupātī) and is <b>devoid of a [corresponding] object</b> (vastu-śūnyaḥ).</span><span class="ln"><span class="src">Leggett</span>Logical construction is something that follows verbal knowledge but has no real object.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>śabda-jñāna-anupātī <span class="gram">m. nom. sg.</span></dt><dd>«следующий за вербальным знанием» (anu + √pat = «падать вслед»)</dd>
+        <dt>vastu-śūnyaḥ <span class="gram">m. nom. sg., bahuvrīhi</span></dt><dd>«пуст от вещи» (vastu — реальная сущность)</dd>
+        <dt>vikalpaḥ <span class="gram">m. nom. sg.</span></dt><dd>концептуальная конструкция (vi + √kḷp)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Третья вритти.</b> Отлична и от праманы, и от випарьяи. Vikalpa <em>не имеет</em> объекта — она <em>vastuśūnya</em>. «Рога зайца», «сын бесплодной» — мы понимаем, вритти возникает, но соответствия в реальности нет. <b>Чистая концептуальная фабрикация из комбинаторной силы языка.</b></div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">This (vikalpa) does not amount to right knowledge. Nor does it amount to illusion. Though its object is non-existent, it is by the <b>prestige of verbal knowledge</b> that worldly life is upheld. As for example when it is said "<b>consciousness is the nature of Puruṣa</b>", since Puruṣa is consciousness alone, what is being described here, and by what? Yet an idea does arise by way of description, as in "<b>Caitra's cow</b>". When it is said "the arrow stops" or "the arrow has stopped", we understand cessation of movement. So "Puruṣa does not come to have properties" means simply the absence of properties coming to be for him; (such expressions, on which) the life of the world goes on, are <b>imagined logical constructs</b>.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1–2</div>
+    <div class="row__skt" onclick="t(this)">sa na pramāṇopārohī. na viparyayopārohī ca.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">It [vikalpa] does not <b>ride upon</b> pramāṇa. Nor does it ride upon viparyaya.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>upārohī <span class="gram">m. nom. sg.</span></dt><dd>«всадник», «оседлавший» (upa + ā + √ruh)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Категориальная самостоятельность vikalpa. Не подвид праманы (нет объекта), не подвид випарьяи (не приписывает ложную форму).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">vastuśūnyatve 'pi śabdajñānamāhātmyanibandhano vyavahāro dṛśyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Even though devoid of a corresponding object, <b>practical usage grounded in the power of verbal knowledge is observed</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>māhātmya <span class="gram">n. stem</span></dt><dd>величие, мощь</dd><dt>nibandhana <span class="gram">n. stem</span></dt><dd>укоренение</dd><dt>vyavahāra <span class="gram">m. stem</span></dt><dd>практ. использование, повседневный дискурс</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Вещи нет (<em>vastuśūnya</em>), но <em>vyavahāra</em> есть. <b>Язык обладает māhātmya</b> — собственной силой. Слова порождают значимые ментальные содержания даже без онтологического референта.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4–5</div>
+    <div class="row__skt" onclick="t(this)">tad yathā caitanyaṃ puruṣasya svarūpam iti. yadā citir eva puruṣas tadā kim atra kena vyapadiśyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">For example: "Consciousness is the own-nature of puruṣa." If <b>consciousness itself IS puruṣa</b>, then <b>what is being designated here by what?</b></div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Утверждение «сознание есть собственная природа пуруши» осмысленно — мы понимаем. Но если citi = пуруша, фраза «сознание <em>принадлежит</em> пуруше» предполагает различие, которого нет. Высказывание создаёт иллюзию отношения там, где есть тождество. Чистая vikalpa.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">bhavati ca vyapadeśe vṛttiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And in the [act of] designation, <b>a vṛtti arises</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Сам акт именования порождает вритти. <b>Назвать = помыслить.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">yathā caitrasya gaur iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Like [the statement] <b>"Caitra's cow."</b></div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Корова реальна, Чайтра реален, но <em>отношение «его корова»</em> — не физическая вещь, а вербальная конструкция.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">tathā pratiṣiddhavastudharmo niṣkriyaḥ puruṣaḥ, tiṣṭhati bāṇaḥ sthāsyati sthita iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Likewise: "<b>Puruṣa is actionless</b>" — where the property of the real thing is negated. [Or:] "<b>The arrow stands, will stand, has stood</b>."</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><em>Niṣkriyaḥ</em> звучит как описание свойства, но это <em>отрицание</em> деятельности. Стрела «стоит» — глагол √sthā описывает <em>отсутствие движения</em>. Языковая форма создаёт впечатление действия, но содержание пусто.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">9</div>
+    <div class="row__skt" onclick="t(this)">gatinivṛttau dhātvarthamātraṃ gamyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In the cessation of motion, <b>only the bare meaning of the verbal root</b> is understood.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Когда стрела «стоит» — никакого действия нет. Понимаем «голый» смысл корня √sthā («пребывание»), не реальное событие.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">10</div>
+    <div class="row__skt" onclick="t(this)">tathānutpattidharmā puruṣa iti, utpattidharmasyābhāvamātram avagamyate na puruṣānvayī dharmaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Likewise [in] "puruṣa has the property of non-origination" — <b>only the absence of the property of origination is understood</b>, not a positive property that inheres in puruṣa.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">«Пуруша не рождается» грамматически приписывает свойство. Но понимаем лишь <em>abhāvamātra</em> — простое отсутствие. <b>Отрицание не создаёт реального атрибута, а создаёт vikalpita-dharma — сконструированное свойство, существующее только в языке.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">11</div>
+    <div class="row__skt" onclick="t(this)">tasmād vikalpitaḥ sa dharmas tena cāsti vyavahāra iti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Therefore that property is <b>conceptually constructed</b>, and by it practical usage exists.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Свойство <em>vikalpita</em>, но vyavahāra от этого не страдает. <b>Содержание <em>vastuśūnya</em>.</b> Это и есть викальпа: язык, создающий значение без онтологического основания.</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.10 ===== -->
+<article class="sutra" id="ys-1-10">
+  <div class="sec"><span class="num">1.10</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">abhāvapratyayālambanā vṛttir nidrā ‖ YS 1.10 ‖<span class="desandhi">abhāva-pratyaya-ālambanā vṛttiḥ nidrā ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span><b>Sleep</b> (nidrā) is a <b>fluctuation</b> (vṛttiḥ) whose <b>support</b> (ālambanā) is a <b>cognition of absence</b> (abhāva-pratyaya).</span><span class="ln"><span class="src">Leggett</span>The mental process which rests on the notion of non-existence is sleep.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>abhāva <span class="gram">m. stem</span></dt><dd>отсутствие, не-бытие</dd>
+        <dt>pratyaya <span class="gram">m. stem</span></dt><dd>познание, ментальное содержание</dd>
+        <dt>ālambana <span class="gram">n. stem</span></dt><dd>опора, субстрат</dd>
+        <dt>nidrā <span class="gram">f. stem</span></dt><dd>сон (ni + √drā = «втягивающее внутрь»)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Четвёртая вритти.</b> Nidrā — <em>не</em> простое отсутствие умственной деятельности, а <b>положительная вритти</b>. Объект — само <em>отсутствие</em>. Поэтому сон оставляет след (saṃskāra): пробудившись, можно сказать «хорошо/плохо спал».</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">This is a <b>special notion</b> arising from the recollection on waking in the form of "<b>I slept well; my mind is calm and has cleared up my understanding</b>", or "<b>I slept badly, my mind is dull and wanders aimlessly</b>", or "<b>I slept sunk in stupor; my limbs seem heavy and my mind is limp and faint, as if some force had seized control of it</b>". There would be no recollection on waking unless caused by an experience; without an experience there would be no memories based on it and corresponding to it. Therefore <b>sleep is a particular notion</b>, and like all the others it is to be inhibited in samādhi.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">sā ca saṃprabodhe pratyavamarśāt pratyayaviśeṣaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And that [sleep] is a <b>specific cognition</b> — [known] from the <b>retrospective awareness</b> upon awakening.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>saṃprabodhe <span class="gram">m. loc. sg.</span></dt><dd>при пробуждении (sam + pra + √budh)</dd><dt>pratyavamarśa <span class="gram">m. stem</span></dt><dd>ретроспективное осознавание (prati + ava + √mṛś = «ощупывание назад»)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Доказательство, что сон — вритти. Откуда знаем? Из <em>pratyavamarśa</em>. Если бы во сне не было содержания, откуда бы воспоминания?</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">katham, sukham aham asvāpsam. prasannaṃ me manaḥ. prajñāṃ me viśāradīkaroti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">How? "<b>I slept happily. My mind is clear. It makes my understanding sharp.</b>"</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Первый протокол — саттвический сон.</b> <em>Asvāpsam</em> — редкий аорист от √svap. Ум <em>prasanna</em>, понимание обострено. Доказательство: во сне было <em>качество</em> ментального содержания.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">duḥkham aham asvāpsam. styānaṃ me mano bhramaty anavasthitam.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">"<b>I slept badly. My mind is sluggish, it wanders, it is unsettled.</b>"</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Второй протокол — раджасический сон.</b> Ум <em>styāna</em>, <em>bhramati</em>, <em>anavasthita</em>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">gāḍhaṃ mūḍho 'ham asvāpsam. gurūṇi me gātrāṇi. klāntaṃ me cittam. alasaṃ muṣitam iva tiṣṭhatīti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">"<b>I slept deeply and dully. My limbs are heavy. My mind is exhausted. It remains as if lazy and robbed.</b>"</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>muṣita <span class="gram">PPP</span></dt><dd>украденный (PPP √muṣ); muṣitam iva tiṣṭhati = «стоит, как обворованный»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Третий протокол — тамасический сон.</b> Самый тяжёлый. Тело <em>guru</em>, ум <em>klānta</em>, всё <em>muṣita</em> (обворовано). 3 протокола = 3 гуны.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">5</div>
+    <div class="row__skt" onclick="t(this)">sa khalv ayaṃ prabuddhasya pratyavamarśo na syād asati pratyayānubhave.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Certainly, this retrospective awareness <b>would not exist in the absence of the experience of a cognition</b> [during sleep].</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Ядро аргумента.</b> Если бы во сне не было содержания, не было бы и pratyavamarśa. Но оно есть — значит, и содержание было.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">tadāśritāḥ smṛtayaś ca tadviṣayā na syuḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And the <b>memories</b> that depend on that [experience] would not exist [either].</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Второй уровень аргумента: смрити о качестве сна <em>зависят</em> от опыта во сне.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">tasmāt pratyayaviśeṣo nidrā.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Therefore <b>sleep is a specific cognition</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Заключение. Nidrā — не «ничто», а pratyayaviśeṣa, чьё содержание = <em>abhāva</em>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">sā ca samādhāv itarapratyayavan niroddhavyeti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And [sleep], <b>like other cognitions, must be suppressed in samādhi</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>itara-pratyaya-vat <span class="gram">indecl. ("like")</span></dt><dd>«как другие познания»</dd><dt>niroddhavyā <span class="gram">f. nom. sg., FPP</span></dt><dd>герундив «должна быть подавлена»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Nidrā — вритти, и подлежит ниродхе. <b>Никакого особого статуса нет.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.11 ===== -->
+<article class="sutra" id="ys-1-11">
+  <div class="sec"><span class="num">1.11</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">anubhūtaviṣayāsaṃpramoṣaḥ smṛtiḥ ‖ YS 1.11 ‖<span class="desandhi">anubhūta-viṣaya-asaṃpramoṣaḥ smṛtiḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span><b>Memory</b> (smṛtiḥ) is the <b>non-theft</b> (a-saṃpramoṣaḥ) of an <b>experienced object</b> (anubhūta-viṣaya).</span><span class="ln"><span class="src">Leggett</span>Memory is not letting slip away an object experienced.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>anubhūta <span class="gram">PPP</span></dt><dd>пережитый (PPP anu + √bhū)</dd>
+        <dt>a-saṃ-pramoṣa <span class="gram">m. stem</span></dt><dd>«не-у-кр-ад-ение» (a + sam + pra + √muṣ — тот же √muṣ, что в muṣitam в 1.10!)</dd>
+        <dt>smṛti <span class="gram">f. stem</span></dt><dd>память (√smṛ)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Пятая, последняя вритти.</b> Определение через via negativa. Корень √muṣ связывает с 1.10 (тамасический сон оставляет ум <em>muṣitam iva</em>). <b>Сон крадёт; память отказывается быть украденной.</b></div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">Is it the object, or the thought of it, that the mind remembers? The thought, <b>coloured by the thing known</b>, shines out in the forms both of the thing and the knowledge of it, and sets up a <b>saṃskāra of the same kind</b>. That manifests in accordance with its manifesting cause. The saṃskāra gives rise to a memory: cognition has primarily the form of the knowing experience; <b>memory has primarily the form of the thing known</b>. The latter is of two kinds: where the things remembered are actualized, and where they are not. <b>In dream the things remembered become actual, but at the time of waking such things are not actualized.</b> All memories arise from experience of right knowledge, illusion, logical construction, sleep, or other memories, and all these are essentially <b>pleasure, pain and delusion</b>. Pleasure, pain and delusion are to be explained as taints: Desire is the consequence of pleasure (II.7), Hate is the consequence of pain (II.8), Delusion is Ignorance (II.5). All these mental processes are to be inhibited. When they are inhibited there is either cognitive or ultra-cognitive samādhi.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">kiṃ pratyayasya cittaṃ smaraty āhosvid viṣayasyeti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Does the mind remember the cognition or [does it remember] the object?</b></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>āhosvit <span class="gram">indecl.</span></dt><dd>«или, может быть?» (классическая дизъюнктивная частица)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Фундаментальный эпист. вопрос: что помнит ум — pratyaya или viṣaya?</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">grāhyoparaktaḥ pratyayo grāhyagrahaṇobhayākāranirbhāsas tajjātīyakaṃ saṃskāram ārabhate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The cognition, <b>coloured by the graspable</b>, <b>shining forth in the dual form of both the graspable and the grasping</b>, initiates a <b>latent impression of the same kind</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>grāhya <span class="gram">FPP, n. stem</span></dt><dd>схватываемое (FPP √grah) = объект</dd>
+        <dt>grahaṇa <span class="gram">n. stem</span></dt><dd>схватывание = когнитивный акт</dd>
+        <dt>ubhaya-ākāra <span class="gram">m. stem</span></dt><dd>двойная форма</dd>
+        <dt>uparakta <span class="gram">PPP</span></dt><dd>окрашенный (upa + √rañj)</dd>
+        <dt>tad-jātīyaka <span class="gram">adj. stem</span></dt><dd>того же типа</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Ответ: и то, и другое. Каждый pratyaya <em>двуформен</em>: содержит и форму объекта (<em>grāhya</em>), и форму процесса познания (<em>grahaṇa</em>). <b>Познание всегда несёт и объектную, и субъектную сторону. Самскара сохраняет обе.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">sa saṃskāraḥ svavyañjakāñjanas tadākārām eva grāhyagrahaṇobhayātmikāṃ smṛtiṃ janayati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That latent impression, <b>anointed with its own manifesting [agent]</b>, generates memory that has <b>precisely that form</b> — consisting of both the graspable and the grasping.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>svavyañjakāñjana <span class="gram">m. nom. sg., bahuvrīhi</span></dt><dd>«помазанный своим проявляющим» (vyañjaka — проявитель; añjana — мазь)</dd><dt>janayati <span class="gram">3sg pres. caus.</span></dt><dd>порождает (caus. √jan)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Цепочка: <b>pratyaya → saṃskāra → smṛti</b>. Самскара порождает смрити, воспроизводящую <em>ту же</em> двойную форму. <b>Память — не бледная копия, а точное воспроизведение двойной структуры.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">tatra grahaṇākārapūrvā buddhiḥ. grāhyākārapūrvā smṛtiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In this regard, <b>cognition has the form of grasping as primary</b>. <b>Memory has the form of the graspable as primary</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Тончайшее различие. <b>В прямом познании первичен <em>grahaṇa</em> (акт «я вижу»); в памяти — <em>grāhya</em> (объект «то, что я видел»).</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">5</div>
+    <div class="row__skt" onclick="t(this)">sā ca dvayī — bhāvitasmartavyā cābhāvitasmartavyā ca.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And [memory] is <b>twofold</b> — [one] in which the object has been <b>cultivated</b> (bhāvita), and [one] in which it has <b>not been cultivated</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>bhāvita <span class="gram">PPP, caus.</span></dt><dd>культивированный, обработанный (caus. PPP √bhū)</dd><dt>smartavya <span class="gram">FPP</span></dt><dd>то, что должно быть припомнено (FPP √smṛ)</dd></dl></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">6</div>
+    <div class="row__skt" onclick="t(this)">svapne bhāvitasmartavyā. jāgratsamaye tv abhāvitasmartavyeti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>In dream</b> [memory has] cultivated [object]. <b>In waking</b>, however, [it has] not-cultivated [object].</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Парадоксально. Во сне — память bhāvita: содержание <em>целиком произведено</em> умом из самскар. При бодрствовании — abhāvita: всплывает непроизвольно.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">7</div>
+    <div class="row__skt" onclick="t(this)">sarvāḥ smṛtayaḥ pramāṇaviparyayavikalpanidrāsmṛtīnām anubhavāt prabhavanti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">All memories arise from the experience of the [five]: <b>valid cognition, error, verbal construction, sleep, and memory [itself]</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Замыкание круга: смрити возникает из <em>любой</em> вритти — <b>включая саму смрити</b>. Система рекурсивна.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">8</div>
+    <div class="row__skt" onclick="t(this)">sarvāś caitā vṛttayaḥ sukhaduḥkhamohātmikāḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And all these fluctuations have the nature of <b>pleasure, pain, and delusion</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Заключение блока 1.5–1.11. <b>Все 5 вритти окрашены 3 качествами:</b> sukha (саттва), duḥkha (раджас), moha (тамас).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">9</div>
+    <div class="row__skt" onclick="t(this)">sukhaduḥkhamohāś ca kleśeṣu vyākhyeyāḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">And pleasure, pain, and delusion are to be explained in [the section on] <b>the afflictions</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Перекрёстная ссылка на Sādhanapāda (YS 2.3+).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">10</div>
+    <div class="row__skt" onclick="t(this)">sukhānuśayī rāgaḥ. duḥkhānuśayī dveṣaḥ. mohaḥ punar avidyeti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Attachment</b> clings to pleasure. <b>Aversion</b> clings to pain. And <b>delusion is ignorance</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>anuśayin <span class="gram">m. agent. stem</span></dt><dd>«лежащий рядом» (anu + √śī = «спать вместе с»); подспудная склонность</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><em>Rāga</em> — подспудная склонность, «спящая» в самскарах. <b>3 гуны → 3 переживания → 3 клеши:</b> саттва → sukha → rāga; раджас → duḥkha → dveṣa; тамас → moha → avidyā.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">11</div>
+    <div class="row__skt" onclick="t(this)">etāḥ sarvā vṛttayo niroddhavyāḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">All these fluctuations <b>must be suppressed</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Окончательное подтверждение YS 1.2: <em>yogaś cittavṛttinirodhaḥ</em>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">12</div>
+    <div class="row__skt" onclick="t(this)">āsāṃ nirodhe saṃprajñāto vā samādhir bhavaty asaṃprajñāto veti.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">In their suppression, there arises <b>either saṃprajñāta samādhi or asaṃprajñāta</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Замыкание блока 1.5–1.11: 1.1 → 1.2 → 1.5–1.11 → возврат к двум самадхи. <b>Первый блок Самадхипады завершён.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.12 ===== -->
+<article class="sutra" id="ys-1-12">
+  <div class="sec"><span class="num">1.12</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-intro"><div class="row__num">→</div>
+    <div class="row__skt" onclick="t(this)">athāsāṃ nirodhe ka upāya iti —<span class="desandhi">atha āsām nirodhe kaḥ upāyaḥ iti —</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Now, what is the <b>means</b> (upāya) for the suppression of these [fluctuations]?</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Открывает второй блок Самадхипады. 1.5–1.11 — <em>что</em> такое вритти; теперь — <em>как</em> их остановить.</div></section>
+    </div>
+  </div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">abhyāsavairāgyābhyāṃ tannirodhaḥ ‖ YS 1.12 ‖<span class="desandhi">abhyāsa-vairāgyābhyām tat-nirodhaḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>The suppression of that (<b>tat-nirodhaḥ</b>) [is achieved] <b>by practice</b> (abhyāsa) <b>and dispassion</b> (vairāgya) <b>[taken together]</b> (-ābhyām, instr. dual).</span><span class="ln"><span class="src">Leggett</span>Their inhibition is by practice and detachment.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>abhyāsa <span class="gram">m. stem</span></dt><dd>практика (abhi + √as = «бросаться [на нечто] повторно»)</dd>
+        <dt>vairāgya <span class="gram">n. stem</span></dt><dd>беспристрастие (vi + rāga + -ya = «состояние без окрашивания»)</dd>
+        <dt>-ābhyām <span class="gram">instr./dat./abl. dual ending</span></dt><dd>instr. dual: оба вместе!</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Двойной ответ: 2 инструмента, 1 результат. <b>Abhyāsa</b> — позитивное усилие. <b>Vairāgya</b> — негативное очищение. <b>Двойственное число (-ābhyām) синтаксически значимо</b>: оба нужны одновременно, как два крыла.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">Flowing both ways, the so-called <b>stream of the mind</b> flows to good or flows to evil. When it is borne on to release, down into the field of discrimination, that is the flow towards good; when it is borne on to saṃsāra, down into the field of failure to discriminate, that is the evil flow. <b>By detachment the current towards objects is dammed</b>, and <b>by practice of discriminating vision the auspicious current of discrimination is made to flow</b>. Thus inhibition of the mental process <b>depends on both</b>.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">cittanadī nāmobhayatovāhinī vahati kalyāṇāya vahati pāpāya ca.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The <b>river of the mind</b> (citta-nadī), <b>flowing in both directions</b>, flows <b>towards the good</b> and <b>towards evil</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Знаменитая метафора Вьясы. Ум — <em>одна</em> река с <em>двумя</em> возможными руслами. <em>Nāma</em>: «ум — это, так сказать, река».</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">yā tu kaivalyaprāgbhārā vivekaviṣayanimnā sā kalyāṇavahā.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">That [current] which <b>leans forward towards liberation</b>, <b>slopes downhill towards the object of discrimination</b> — <b>carries the good</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>prāgbhāra <span class="gram">m. stem</span></dt><dd>наклонённый вперёд (prāk + bhāra = «груз вперёд»)</dd><dt>nimnā <span class="gram">adj. (sloping)</span></dt><dd>склонённый вниз</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Когда ум настроен на различение, движение к освобождению становится <b>естественным, как течение реки под уклон</b>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">saṃsāraprāgbhārāvivekaviṣayaniṃnā pāpavahā.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">[That current which] leans towards <b>saṃsāra</b>, slopes towards <b>aviveka</b> — <b>carries evil</b>.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Зеркальная структура. Симметрия: kaivalya↔saṃsāra; viveka↔aviveka.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">4</div>
+    <div class="row__skt" onclick="t(this)">tatra vairāgyeṇa viṣayasrotaḥ khilīkriyate.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Of those [two], <b>by dispassion the stream towards objects is dammed up</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>khila <span class="gram">n. stem</span></dt><dd>целина, заброшенное поле</dd><dt>khilī-kriyate <span class="gram">3sg pres. pass.</span></dt><dd>«делается заброшенным руслом»</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Функция вайрагьи: <em>перекрыть</em> русло к объектам. <b>Вайрагья не уничтожает реку — перекрывает одно из русел.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">5</div>
+    <div class="row__skt" onclick="t(this)">vivekadarśanābhyāsena vivekasrota udghāṭyata ity ubhayādhīnaś cittavṛttinirodhaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">By the <b>practice of the vision of discrimination</b>, the stream of discrimination is <b>opened up</b>. Thus the suppression of mental fluctuations <b>depends on both</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>udghāṭyate <span class="gram">3sg pres. pass.</span></dt><dd>распахивается (ud + √ghaṭ = «отпирать»); противоположно khilīkriyate</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Функция абхьясы: <em>открыть</em> русло различения. <b>Одно перекрывается, другое распахивается.</b> Ниродха <em>ubhayādhīna</em>. <b>Нужны оба одновременно.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.13 ===== -->
+<article class="sutra" id="ys-1-13">
+  <div class="sec"><span class="num">1.13</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">tatra sthitau yatno 'bhyāsaḥ ‖ YS 1.13 ‖<span class="desandhi">tatra sthitau yatnaḥ abhyāsaḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>Of those two, <b>practice</b> is the <b>effort directed towards steadiness</b>.</span><span class="ln"><span class="src">Leggett</span>Practice is the effort at steadiness in it.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>tatra <span class="gram">indecl.</span></dt><dd>из этих двух (abhyāsa + vairāgya)</dd><dt>sthitau <span class="gram">f. loc. sg.</span></dt><dd>loc. направления цели</dd><dt>yatnaḥ <span class="gram">m. nom. sg.</span></dt><dd>усилие (√yat)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Абхьяса = усилие, нацеленное на стабильность. <em>Sthiti</em> = <em>praśāntavāhitā</em> (мирное течение).</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr"><b>Steadiness is the tranquil flow of the mind without mental processes.</b> Practice is the effort thereto, the vigour, the enthusiasm, in undertaking the discipline to that end.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">cittasyāvṛttikasya praśāntavāhitā sthitiḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><b>Steadiness</b> is the <b>peaceful flow</b> of the mind that is <b>free from fluctuations</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>praśānta-vāhitā <span class="gram">f. nom. sg.</span></dt><dd>«состояние мирного протекания» (praśānta «успокоенный» + vāhitā «течение»)</dd><dt>a-vṛttika <span class="gram">adj.</span></dt><dd>без вритти</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Не окаменелость — <em>мирное течение</em>. <b>Стабильность — не остановка воды, а её ровное, невозмущённое течение.</b></div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">tadarthaḥ prayatno vīryam utsāhaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>For the sake of that, [there is] <b>effort, vigour, enthusiasm</b>.</span><span class="ln"><span class="src">Leggett</span>Practice is the effort thereto, the vigour, the enthusiasm, in undertaking the discipline to that end.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>tad-arthaḥ <span class="gram">m. nom. sg.</span></dt><dd>«ради того», «имеющий то целью» (m. nom., согласовано с prayatna)</dd><dt>prayatna <span class="gram">m. stem</span></dt><dd>усилие (m. nom.)</dd><dt>vīrya <span class="gram">n. stem</span></dt><dd>мощь, героическая энергия (n. nom.)</dd><dt>utsāha <span class="gram">m. stem</span></dt><dd>рвение, воодушевление (m. nom.; ud + √sah = «нести вверх»)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Тройной синоним = три грани одного: дисциплина (<em>prayatna</em>), сила (<em>vīrya</em>), внутренний огонь (<em>utsāha</em>).</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">tatsaṃpipādayiṣayā tatsādhanānuṣṭhānam abhyāsaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Practice is the <b>performance of the means</b> for that, <b>driven by the desire to accomplish that</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>saṃpipādayiṣā <span class="gram">f. desid. abstract</span></dt><dd>«желание привести к успеху» (десидератив каузатива от sam + pra + √pad)</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Абхьяса — <em>не</em> механическое повторение, а <b>целенаправленная практика</b>, движимая осознанным стремлением (saṃpipādayiṣā) и воплощённая в выполнении (anuṣṭhāna) средств (sādhana).</div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.14 ===== -->
+<article class="sutra" id="ys-1-14">
+  <div class="sec"><span class="num">1.14</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">sa tu dīrghakālanairantaryasatkārāsevito dṛḍhabhūmiḥ ‖ YS 1.14 ‖<span class="desandhi">saḥ tu dīrgha-kāla-nairantarya-satkāra-āsevitaḥ dṛḍha-bhūmiḥ ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span>But that [practice], when <b>cultivated</b> for a <b>long time</b>, <b>without interruption</b>, and <b>with devotion</b>, becomes <b>firmly grounded</b>.</span><span class="ln"><span class="src">Leggett</span>But practised for a long time, uninterruptedly and with reverence, it becomes firmly grounded.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>dīrgha-kāla <span class="gram">m. stem</span></dt><dd>длительное время</dd>
+        <dt>nairantarya <span class="gram">n. stem</span></dt><dd>непрерывность (nir + antara + -ya = «без промежутков»)</dd>
+        <dt>satkāra <span class="gram">m. stem</span></dt><dd>преданность, серьёзность (sat + √kṛ)</dd>
+        <dt>āsevita <span class="gram">PPP</span></dt><dd>культивированный (PPP ā + √sev)</dd>
+        <dt>dṛḍha-bhūmi <span class="gram">f. bahuvrīhi stem</span></dt><dd>твёрдо-почвенный (bahuvrīhi)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>Тройное условие — время, непрерывность, преданность.</b> Только тогда практика становится <em>dṛḍhabhūmi</em>, недоступной откату.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">Practised for a long time, practised uninterruptedly, practised with reverence — <b>carried through with austerity, with brahmacarya, with knowledge and with faith</b>, in reverence, it becomes firmly grounded. The meaning is that the purpose is <b>not suddenly overwhelmed by an extravertive saṃskāra</b>.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">dīrghakālāsevito nirantarāsevitaḥ satkārāsevitaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Cultivated for a long time, cultivated without interruption, cultivated with devotion.</div></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Вьяса разбивает компаунд на <b>три самостоятельных условия</b>. Каждое повторяет <em>āsevita</em>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">2</div>
+    <div class="row__skt" onclick="t(this)">tapasā brahmacaryeṇa vidyayā śraddhayā ca saṃpāditaḥ satkāravān dṛḍhabhūmir bhavati.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">Accomplished through <b>austerity, celibacy, knowledge, and faith</b> — that which has devotion becomes firmly grounded.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>tapas <span class="gram">n. stem</span></dt><dd>аскеза, жар (√tap «гореть»)</dd>
+        <dt>brahmacarya <span class="gram">n. stem</span></dt><dd>целомудрие, дисциплина жизни</dd>
+        <dt>vidyā <span class="gram">f. stem</span></dt><dd>знание</dd>
+        <dt>śraddhā <span class="gram">f. stem</span></dt><dd>вера (śrat + √dhā = «помещение сердца»)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Содержание sat-kāra через <b>4 опоры</b>. Когда практика подкреплена этими четырьмя — она становится <em>satkāravat</em> и <em>dṛḍhabhūmi</em>.</div></section>
+    </div>
+  </div>
+
+  <div class="row"><div class="row__num">3</div>
+    <div class="row__skt" onclick="t(this)">vyutthānasaṃskāreṇa drāg ity evānabhibhūtaviṣaya ity arthaḥ.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">The meaning is: [it becomes] one whose domain is <b>not quickly overwhelmed</b> by the <b>latent impressions of emergence</b>.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex"><dt>vyutthāna-saṃskāra <span class="gram">m. stem</span></dt><dd>латентный след «выхода» в обычное сознание</dd><dt>drāk <span class="gram">indecl.</span></dt><dd>быстро</dd></dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">Vyutthāna-самскары не могут <em>быстро</em> разрушить укоренённую практику. Они не исчезают полностью — но не могут мгновенно подавить. <b>Укоренённая практика сопротивляется откату.</b></div></section>
+    </div>
+  </div>
+</article>
+
+<!-- ===== 1.15 ===== -->
+<article class="sutra" id="ys-1-15">
+  <div class="sec"><span class="num">1.15</span><span class="lbl">Sūtra</span><span class="rule"></span></div>
+
+  <div class="row is-sutra"><div class="row__num">§</div>
+    <div class="row__skt" onclick="t(this)">dṛṣṭānuśravikaviṣayavitṛṣṇasya vaśīkārasaṃjñā vairāgyam ‖ YS 1.15 ‖<span class="desandhi">dṛṣṭa-ānuśravika-viṣaya-vitṛṣṇasya vaśīkāra-saṃjñā vairāgyam ‖</span></div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr"><span class="ln"><span class="src">literal</span><b>Dispassion</b> is the <b>consciousness of mastery</b> (vaśīkāra-saṃjñā) of one who is <b>free from thirst</b> (vitṛṣṇasya) for objects <b>seen</b> (dṛṣṭa) and <b>heard-of [in scripture]</b> (ānuśravika).</span><span class="ln"><span class="src">Leggett</span>Detachment is consciousness of self-mastery, of one who has no thirst for any seen or scriptural object.</span></div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>dṛṣṭa <span class="gram">PPP</span></dt><dd>увиденный, прямо воспринятый (PPP √dṛś)</dd>
+        <dt>ānuśravika <span class="gram">adj.</span></dt><dd>переданный через слух (anu + √śru + -ika), описанный в Ведах</dd>
+        <dt>vi-tṛṣṇa <span class="gram">adj. (without thirst)</span></dt><dd>без жажды (vi + tṛṣṇā «жажда» от √tṛṣ)</dd>
+        <dt>vaśī-kāra <span class="gram">m. stem</span></dt><dd>мастерство, подчинение (vaśa + √kṛ)</dd>
+        <dt>saṃjñā <span class="gram">f. stem</span></dt><dd>сознавание, имя</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note"><b>(1)</b> Покрывает <em>и</em> мирские объекты (dṛṣṭa), <em>и</em> обещания писаний (ānuśravika). <b>(2)</b> Не подавление, а <em>vaśīkārasaṃjñā</em> — <b>положительное состояние сознательного мастерства</b>. Ум <em>знает</em>, что свободен.</div></section>
+    </div>
+  </div>
+
+  <div class="sec"><span class="lbl">Vyāsabhāṣya</span><span class="rule"></span></div>
+
+  <div class="row is-leggett"><div class="row__num">L</div>
+    <div class="row__skt" onclick="t(this)">Leggett's continuous translation ▾</div>
+    <div class="gl"><section><div class="tr">Detachment is the consciousness of self-mastery of one who has no thirst for any object either seen or heard about. It is that consciousness in one who is unmoved by <b>visible objects like women, food and drink, or power</b>, who is without thirst for objects heard about such as <b>attainment of heaven or the state of the gods or of those absorbed into prakṛti</b>, who is inwardly aware of the defects in them by the power [of discriminative meditation], <b>which has nothing to avoid and nothing to accept</b> — that is detachment.</div></section></div>
+  </div>
+
+  <div class="row"><div class="row__num">1</div>
+    <div class="row__skt" onclick="t(this)">striyo 'nnapānam aiśvaryam iti dṛṣṭaviṣaye vitṛṣṇasya svargavaidehyaprakṛtilayatvaprāptāv ānuśravikaviṣaye vitṛṣṇasya divyādivyaviṣayasaṃprayoge 'pi cittasya viṣayadoṣadarśinaḥ prasaṃkhyānabalād anābhogātmikā heyopādeyaśūnyā vaśīkārasaṃjñā vairāgyam.</div>
+    <div class="gl">
+      <section><span class="gl__lbl">Translation</span><div class="tr">For one <b>free from thirst regarding the seen objects</b> — namely <b>women, food-and-drink, power</b> — and <b>free from thirst regarding the revealed objects</b> — <b>heaven, the bodiless state, absorption into prakṛti</b> — for one whose mind, even in contact with objects divine and non-divine, <b>sees the fault in objects</b> — by the <b>strength of discriminative meditation</b>, the <b>consciousness of mastery</b> that is <b>without inclination</b>, <b>devoid of "to be rejected" and "to be acquired"</b> — that is dispassion.</div></section>
+      <section><span class="gl__lbl">Словарь</span><dl class="lex">
+        <dt>striyaḥ, anna-pānam, aiśvaryam <span class="gram">f. nom. pl.; n. nom. sg.; n. nom. sg.</span></dt><dd>женщины, еда-питьё, власть (видимые цели)</dd>
+        <dt>svarga, vaideha, prakṛti-layatva <span class="gram">m./adj./n. stems</span></dt><dd>небеса, бестелесность, растворение в пракрити (цели из писаний)</dd>
+        <dt>divya-adivya <span class="gram">adj. stem</span></dt><dd>божественные и не-божественные</dd>
+        <dt>saṃprayoga <span class="gram">m. stem</span></dt><dd>контакт (sam + pra + √yuj)</dd>
+        <dt>viṣaya-doṣa-darśin <span class="gram">m. agent. stem</span></dt><dd>видящий изъян в объектах</dd>
+        <dt>prasaṃkhyāna <span class="gram">n. stem</span></dt><dd>различающая медитация (pra + sam + √khyā)</dd>
+        <dt>anābhoga <span class="gram">m. stem</span></dt><dd>без склонности (an + ā + √bhuj)</dd>
+        <dt>heya / upādeya <span class="gram">FPP / FPP</span></dt><dd>то, что должно быть отвергнуто / принято (FPP)</dd>
+      </dl></section>
+      <section><span class="gl__lbl">Объяснение</span><div class="note">
+        <p><b>Два уровня отречения:</b></p>
+        <ol>
+          <li><em>Dṛṣṭaviṣaya</em> — мирские: <b>женщины, еда, власть</b>.</li>
+          <li><em>Ānuśravikaviṣaya</em> — из писаний: <b>небеса, бестелесность, растворение в пракрити</b> (духовные обещания Вед).</li>
+        </ol>
+        <p>Йогин свободен от жажды к <b>обоим</b>.</p>
+        <p><b>Механизм:</b> ум <em>видит изъян</em> (viṣaya-doṣa-darśin). Не слепое подавление, а <em>видение</em> дефекта.</p>
+        <p><b>Источник:</b> <em>prasaṃkhyāna-bala</em>. <b>Результат:</b> ум <em>anābhoga</em> и <em>heyopādeyaśūnya</em>. <b>Высшая форма: не «я не хочу», а полное отсутствие самих категорий желания и отвержения.</b></p>
+      </div></section>
+    </div>
+  </div>
+</article>
+
+</div>
+
+<script>
+  function t(el) {
+    const gl = el.nextElementSibling;
+    if (gl && gl.classList.contains('gl')) gl.classList.toggle('is-open');
+  }
+  function setAll(open) {
+    document.querySelectorAll('.gl').forEach(g => g.classList.toggle('is-open', open));
+    document.getElementById('b-hide').classList.toggle('is-on', !open);
+    document.getElementById('b-show').classList.toggle('is-on', open);
+  }
+  const nav = document.getElementById('nav');
+  for (let i = 1; i <= 15; i++) {
+    const a = document.createElement('a');
+    a.href = '#ys-1-' + i;
+    a.textContent = '1.' + i;
+    nav.appendChild(a);
+  }
+</script>
+</body>
+</html>
