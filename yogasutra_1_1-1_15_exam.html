@@ -309,6 +309,47 @@
     .row { grid-template-columns: 20px 1fr; column-gap: 8px; }
   }
 
+  /* Mobile v3 */
+  /* Mobile v3: minimal, safe */
+  html, body { overflow-x: hidden; }
+  .row__skt, .gl .tr, .gl .lex, .gl .note, .gl .lex dt, .gl .lex dd, .desandhi {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 80px; }
+    body { font-size: 16px; }
+    .pgh h1 { font-size: 21px; }
+    .bar { margin: 0 -14px 18px; padding: 8px 14px 10px; }
+
+    .row { grid-template-columns: 20px 1fr; column-gap: 6px; }
+    .row__num { font-size: 11px; padding-top: 9px; }
+    .row__skt { font-size: 15.5px; padding: 8px 8px; }
+    .row.is-sutra .row__skt, .row.is-mula .row__skt { font-size: 17px; padding: 10px 10px; }
+
+    .gl { padding: 4px 8px 14px 6px; }
+    .gl .tr { font-size: 15px; }
+    .gl .note { font-size: 15px; }
+
+    /* Stack the lexicon: term, then definition below */
+    .gl .lex {
+      grid-template-columns: 1fr;
+      row-gap: 4px;
+    }
+    .gl .lex dt { margin-top: 8px; font-weight: 700; }
+    .gl .lex dt:first-of-type { margin-top: 0; }
+    .gl .lex dd { margin: 0 0 2px 0; }
+    .gl .lex dt .gram { font-size: 10px; margin-left: 4px; }
+
+    /* Tables: scrollable internal */
+    table, table.gunatable, table.mini {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 12px;
+    }
+  }
 </style>
 </head>
 <body>
