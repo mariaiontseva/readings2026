@@ -7,39 +7,19 @@
 <link rel="icon" type="image/svg+xml" href="favicon-mrig.svg">
 <style>
   :root {
-    --bg: #fbfaf6;
-    --paper: #ffffff;
-    --ink: #000000;
-    --ink-2: #050505;
-    --ink-3: #1a1a1a;
-    --line: #c8c2af;
-    --line-2: #e0d9c5;
-    --hi: #f3ead0;
-    --accent: #5a0f1f;
-    --accent-soft: #f0d9dd;
+    --bg: #fbfaf6; --paper: #ffffff; --ink: #000000; --ink-2: #050505; --ink-3: #1a1a1a;
+    --line: #c8c2af; --line-2: #e0d9c5; --hi: #f3ead0; --accent: #5a0f1f; --accent-soft: #f0d9dd;
     --mono: ui-monospace, "SF Mono", Menlo, monospace;
     --serif: "Iowan Old Style", "Charter", "Cambria", "Georgia", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--serif);
-    line-height: 1.6;
-    font-size: 17px;
-    font-weight: 550;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    font-feature-settings: "kern", "liga", "onum";
-  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); line-height: 1.6; font-size: 17px; font-weight: 550; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-feature-settings: "kern", "liga", "onum"; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 32px 28px 120px; }
-
   .pgh { margin-bottom: 28px; }
   .pgh h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; }
   .pgh .meta { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); margin-top: 6px; }
-
   .bar { position: sticky; top: 0; z-index: 10; background: var(--bg); margin: 0 -28px 24px; padding: 10px 28px 12px; border-bottom: 1px solid var(--line); }
   .bar__btns { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   .btn { font-family: var(--sans); font-size: 12px; background: transparent; border: 1px solid var(--line); color: var(--ink-2); padding: 5px 10px; border-radius: 3px; cursor: pointer; letter-spacing: 0.02em; }
@@ -48,104 +28,53 @@
   .nav { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 8px; }
   .nav a { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-decoration: none; padding: 3px 7px; border-radius: 3px; }
   .nav a:hover { background: var(--accent-soft); color: var(--accent); }
-
-  .sutra { margin: 0 0 44px; }
-  .sutra:first-of-type { margin-top: 8px; }
-
+  .sutra { margin: 0 0 44px; } .sutra:first-of-type { margin-top: 8px; }
   .sec { display: flex; align-items: baseline; gap: 10px; margin: 0 0 10px; color: var(--ink-3); }
   .sec .lbl { font-family: var(--sans); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; }
   .sec .num { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 600; }
   .sec .rule { flex: 1; height: 1px; background: var(--line); }
-
   .row { display: grid; grid-template-columns: 28px 1fr; column-gap: 12px; margin: 0 0 1px; }
   .row__num { font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-align: right; padding-top: 10px; user-select: none; font-weight: 600; }
   .row.is-mula .row__num { color: var(--accent); font-weight: 800; }
   .row.is-vrtti .row__num { color: var(--ink-3); font-style: italic; }
-
-  .row__skt {
-    cursor: pointer;
-    padding: 9px 12px 9px 10px;
-    border-left: 2px solid transparent;
-    color: var(--ink);
-    font-size: 17.5px;
-    line-height: 1.5;
-    transition: border-color 0.12s, background 0.12s;
-  }
+  .row__skt { cursor: pointer; padding: 9px 12px 9px 10px; border-left: 2px solid transparent; color: var(--ink); font-size: 17.5px; line-height: 1.5; transition: border-color 0.12s, background 0.12s; }
   .row__skt:hover { border-left-color: var(--accent); background: var(--paper); }
   .row.is-mula .row__skt { background: var(--hi); border-left-color: var(--accent); font-size: 19px; font-weight: 600; padding: 12px 14px; }
   .row.is-mula .row__skt:hover { background: #f1e7ce; }
-  .desandhi { display: block; color: var(--ink-2); font-style: italic; font-size: 15px; margin-top: 3px; }
-
   .gl { grid-column: 2; display: none; padding: 4px 12px 16px 10px; border-left: 2px solid var(--line); margin-bottom: 6px; }
   .gl.is-open { display: block; }
-  .gl section { margin-top: 12px; }
-  .gl section:first-child { margin-top: 6px; }
-
+  .gl section { margin-top: 12px; } .gl section:first-child { margin-top: 6px; }
   .gl__lbl { font-family: var(--sans); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink); margin-bottom: 6px; display: block; }
-
   .gl .tr { font-size: 17px; color: var(--ink); line-height: 1.55; font-weight: 550; }
-  .gl .tr b { color: var(--accent); font-weight: 700; }
-  .gl .tr i { color: var(--ink-2); font-style: italic; }
+  .gl .tr b { color: var(--accent); font-weight: 700; } .gl .tr i { color: var(--ink-2); font-style: italic; }
   .gl .tr.cl { margin-top: 8px; font-style: italic; color: var(--ink-2); }
-
   .gl .lex { font-size: 15.5px; line-height: 1.55; color: var(--ink); font-weight: 550; }
   .gl .lex b { color: var(--accent); font-weight: 700; }
-
   .gl .note { font-size: 16px; color: var(--ink); line-height: 1.6; font-weight: 550; }
   .gl .note b, .gl .note strong { color: var(--ink); font-weight: 800; }
   .gl .note i, .gl .note em { color: var(--accent); font-style: italic; font-weight: 600; }
-
   /* Mobile v3 */
-  /* Mobile v3: minimal, safe */
   html, body { overflow-x: hidden; }
-  .row__skt, .gl .tr, .gl .lex, .gl .note, .gl .lex dt, .gl .lex dd, .desandhi {
-    overflow-wrap: anywhere;
-  }
-
+  .row__skt, .gl .tr, .gl .lex, .gl .note { overflow-wrap: anywhere; }
   @media (max-width: 600px) {
     .wrap { padding: 20px 14px 80px; }
     body { font-size: 16px; }
     .pgh h1 { font-size: 21px; }
     .bar { margin: 0 -14px 18px; padding: 8px 14px 10px; }
-
     .row { grid-template-columns: 20px 1fr; column-gap: 6px; }
     .row__num { font-size: 11px; padding-top: 9px; }
     .row__skt { font-size: 15.5px; padding: 8px 8px; }
-    .row.is-sutra .row__skt, .row.is-mula .row__skt { font-size: 17px; padding: 10px 10px; }
-
+    .row.is-mula .row__skt { font-size: 17px; padding: 10px 10px; }
     .gl { padding: 4px 8px 14px 6px; }
     .gl .tr { font-size: 15px; }
     .gl .note { font-size: 15px; }
-
-    /* Stack the lexicon: term, then definition below */
-    .gl .lex {
-      grid-template-columns: 1fr;
-      row-gap: 4px;
-    }
-    .gl .lex dt { margin-top: 8px; font-weight: 700; }
-    .gl .lex dt:first-of-type { margin-top: 0; }
-    .gl .lex dd { margin: 0 0 2px 0; }
-    .gl .lex dt .gram { font-size: 10px; margin-left: 4px; }
-
-    /* Tables: scrollable internal */
-    table, table.gunatable, table.mini {
-      display: block;
-      max-width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      font-size: 12px;
-    }
+    .gl .lex { font-size: 14.5px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-
-<header class="pgh">
-  <h1>Mṛgendratantra · Yogapāda</h1>
-  <div class="meta">With Bhaṭṭa Nārāyaṇakaṇṭha's Vṛtti · exam prep</div>
-</header>
-
+<header class="pgh"><h1>Mṛgendratantra · Yogapāda</h1><div class="meta">With Bhaṭṭa Nārāyaṇakaṇṭha's Vṛtti · exam prep</div></header>
 <div class="bar">
   <div class="bar__btns">
     <button class="btn is-on" id="b-hide" onclick="setAll(false)">Hide all</button>
@@ -153,7 +82,6 @@
   </div>
   <nav class="nav" id="nav"></nav>
 </div>
-
 <article class="sutra" id="sec-ma-gala-loka" data-short="Maṅgala">
 <div class="sec"><span class="num">1</span><span class="lbl">Maṅgalaśloka</span><span class="rule"></span></div>
 <div class="row is-mula"><div class="row__num">§</div><div class="row__skt" onclick="t(this)">prabhavati yataḥ sarvajñatvaṃ yato 'khilakartṛtā prasarati tathā kārye cāsau parā pratibhā yataḥ | nirupadhi paraṃ śāntaṃ dhāma smarāmi tad īśituḥ svayam api vibhor vāgīśvaryā girāṃ yad agocaraḥ ||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">From whom (<b>yataḥ</b>) omniscience (<b>sarvajñatvam</b>) arises (<b>prabhavati</b>), from whom (<b>yataḥ</b>) universal agency (<b>akhila-kartṛtā</b>) extends forth (<b>prasarati</b>), and likewise (<b>tathā</b>) from whom (<b>yataḥ</b>) that (<b>asau</b>) supreme (<b>parā</b>) intuition (<b>pratibhā</b>) [arises] in [every] action (<b>kārye</b>) — I meditate upon (<b>smarāmi</b>) that (<b>tat</b>) unconditioned (<b>nirupadhi</b>), supreme (<b>param</b>), peaceful (<b>śāntam</b>) abode (<b>dhāma</b>) of the Lord (<b>īśituḥ</b>), of the all-pervading one (<b>vibhoḥ</b>) who himself (<b>svayam api</b>) is beyond the reach (<b>agocaraḥ</b>) of the words (<b>girām</b>) even of Vāgīśvarī (<b>vāgīśvaryāḥ</b>).</div><div class="tr cl">I meditate upon that unconditioned, supreme, peaceful abode of the Lord — of the all-pervading one who himself is beyond the reach of the words even of Vāgīśvarī.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex"><b>prabhavati</b> pra-√bhū — arises, originates<br/>
@@ -377,6 +305,7 @@ pratyāhāro vidhātavyaḥ sarvato vinivartanam || 5 ||</div><div class="gl"><s
 <b>cetas</b> n. — mind, consciousness<br/>
 <b>vidhātavya</b> gdv. vi-√dhā — to be prescribed, to be practised<br/>
 <b>vinivartana</b> n. — withdrawal, turning back (vi-ni-√vṛt)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><b>Синтаксис.</b> <i>Tataḥ</i> — «затем» (после прāнāямы). <i>Pratyāhāraḥ vidhātavyaḥ</i> — «пратьяхāра должна быть осуществлена» (герундив). Определение: <i>sarvataḥ vinivartanam</i> — «полное отвлечение» (именное сказуемое к <i>pratyāhāraḥ</i>). Генитив <i>cetasaḥ</i> — «ума» (чьё отвлечение?). <i>Vṛttasya</i> — причастие PPP gen. sg., согласованное с <i>cetasaḥ</i>: «занятого/погружённого». В чём погружённого? — локатив <i>sukha-lava-āsvāde</i> — «в дегустации капель удовольствия». Генитив <i>teṣām</i> — «тех [чувств]» — уточняет, чьи капли удовольствия.</div></section></div></div>
+<div class="row is-vrtti"><div class="row__num">V</div><div class="row__skt" onclick="t(this)">Vṛtti: Tataḥ prāṇāyāmābhyāsād anantaraṃ pratyāhāraḥ kāryaḥ | kiṃrūpo 'sāv ity āha — teṣām iti teṣām indriyāṇāṃ sambandhī vaiṣayiko yaḥ sukhalava ānandaleśas tadāsvāde vṛttasya tatparasya cetasaḥ sarvebhya evendriyārthebhyaḥ pratyāharaṇaṃ pratyāhāraḥ vidheyaḥ || 5 ||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Then (<b>tataḥ</b>), immediately after the practice of prāṇāyāma (<b>prāṇāyāma-abhyāsāt anantaram</b>), pratyāhāra (<b>pratyāhāraḥ</b>) <b>is to be performed</b> (<b>kāryaḥ</b>). What is its form (<b>kim-rūpaḥ asau</b>)? — he says (<b>iti āha</b>): the word "<b>teṣām</b>" [in the sūtra] (<b>teṣām iti</b>) means "<b>of those senses</b>" (<b>teṣām indriyāṇām</b>); [the pratyāhāra is] the <b>withdrawal</b> (<b>pratyāharaṇam</b>) <b>from all sense-objects</b> (<b>sarvebhyaḥ eva indriya-arthebhyaḥ</b>) <b>of the mind</b> (<b>cetasaḥ</b>) <b>engaged</b> (<b>vṛttasya</b>) <b>and devoted</b> (<b>tat-parasya</b>) <b>to the tasting</b> (<b>tat-āsvāde</b>) <b>of that drop of pleasure</b> (<b>yaḥ sukha-lavaḥ</b>) — <b>that fragment of bliss</b> (<b>ānanda-leśaḥ</b>) <b>connected with those</b> [senses] (<b>sambandhī</b>) <b>and pertaining to sense-objects</b> (<b>vaiṣayikaḥ</b>) — that (<b>pratyāhāraḥ</b>) <b>is what should be undertaken</b> (<b>vidheyaḥ</b>).</div><div class="tr cl">Then, right after the practice of prāṇāyāma, pratyāhāra is to be performed. What is it? — he says: the word "of those" [in the sūtra] refers to those senses; pratyāhāra is the withdrawal — from all sense-objects — of the mind which is engaged in, and devoted to, the tasting of that drop of pleasure (the fragment of bliss connected with those senses and pertaining to their objects).</div></section><section><span class="gl__lbl">Словарь</span><div class="lex"><b>prāṇāyāma-abhyāsāt</b> abl. — from/after the practice of prāṇāyāma<br/><b>anantaram</b> ind. — immediately after<br/><b>kāryaḥ</b> mfn. FPP √kṛ — to be done<br/><b>kiṃ-rūpaḥ asau</b> — "what is its form?" (interrogative)<br/><b>vaiṣayika</b> mfn. — pertaining to objects (viṣaya + -ika)<br/><b>sukha-lava</b> m. — drop/fragment of pleasure<br/><b>ānanda-leśa</b> m. — fragment/morsel of bliss<br/><b>āsvāda</b> m. — tasting, savouring (ā-√svad)<br/><b>tat-para</b> mfn. — devoted to that<br/><b>pratyāharaṇa</b> n. — withdrawal (prati-ā-√hṛ + -ana)<br/><b>vidheya</b> mfn. FPP vi-√dhā — to be undertaken</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><b>Синтаксис.</b> Развёрнутая Vṛtti к стиху 5. Открывается порядком: <i>tataḥ</i> = «после прāнāямы». Подлежащее <i>pratyāhāraḥ</i> + герундив <i>kāryaḥ</i> = «должна быть совершена». Дальше идёт <b>экзегеза слова <i>teṣām</i></b> из сутры: «<i>teṣām</i> относится к <i>indriyāṇām</i>» — то есть «капли удовольствия» — это удовольствия чувств. Длинная цепочка определений к подразумеваемому «уму»: <i>cetasaḥ</i> (gen.) — какого ума? — <i>vṛttasya</i> («занятого»), <i>tat-parasya</i> («тому преданного»), в чём занятого — <i>tat-āsvāde</i> («в дегустации того»). Финал: <i>pratyāharaṇaṃ pratyāhāraḥ vidheyaḥ</i> — «отвлечение [= пратьяхāра] должно быть осуществлено».</div></section></div></div>
 </article>
 
 <article class="sutra" id="sec-verse-6-dh-ra" data-short="V6">
@@ -390,6 +319,7 @@ dhāraṇāyogyatām eti pade svecchāprakalpite || 6 ||</div><div class="gl"><s
 <b>yogyatā</b> f. — fitness, suitability<br/>
 <b>pada</b> n. — place, locus, object [of meditation]<br/>
 <b>svecchā-prakalpita</b> mfn. — imagined according to one's own will (sva-icchā + pra-√kḷp PPP)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><b>Синтаксис.</b> Инструменталь <i>tena</i> — «благодаря тому [= пратьяхāре]». Аблатив причины <i>vinivṛtteḥ</i> — «вследствие прекращения». Генитив <i>citaḥ</i> — «сознания» (чьё прекращение контакта). Составной компаунд <i>indriya-artha-saṃsarga</i> — «контакта с объектами чувств». Подлежащее — <i>matiḥ</i> — «мысль/ум». Сказуемое — <i>eti</i> (√i) — «достигает» + acc. <i>dhāraṇā-yogyatām</i> — «пригодности для дхāраны». Локатив <i>pade svecchā-prakalpite</i> — «в месте/точке, вообразённой по собственной воле».</div></section></div></div>
+<div class="row is-vrtti"><div class="row__num">V</div><div class="row__skt" onclick="t(this)">Vṛtti: Tena pratyāhāreṇa citaś cittasyendriyārthasaṃyogāt pratyāhṛtatvāt yā vinivṛttiḥ svavyāpāraviratis tasyā hetubhūtāyāḥ svecchāprakalpite pade vakṣyamāṇadhāraṇāyogyatāṃ matir abhyeti |</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By that pratyāhāra (<b>tena pratyāhāreṇa</b>), <b>because the mind has been withdrawn</b> (<b>cittasya pratyāhṛtatvāt</b>) <b>from contact with sense-objects</b> (<b>indriya-artha-saṃyogāt</b>), there arises a <b>cessation</b> (<b>vinivṛttiḥ</b>) — [namely] <b>the ceasing of [the mind's] own activity</b> (<b>sva-vyāpāra-viratiḥ</b>); this [cessation] being <b>the cause</b> (<b>tasyāḥ hetu-bhūtāyāḥ</b>), the <b>matiḥ</b> (<b>matiḥ</b>) <b>attains</b> (<b>abhyeti</b>) <b>fitness for the dhāraṇā that will be described</b> (<b>vakṣyamāṇa-dhāraṇā-yogyatām</b>), [directed] <b>at a locus imagined by one's own will</b> (<b>sva-icchā-prakalpite pade</b>).</div><div class="tr cl">By that pratyāhāra, because the mind has been withdrawn from contact with sense-objects, there arises a cessation — the ceasing of the mind's own activity. That cessation being the cause, the mind reaches fitness for the dhāraṇā [yet] to be described, [directed] to a locus chosen by one's own will.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex"><b>tena pratyāhāreṇa</b> instr. — by that pratyāhāra<br/><b>citaḥ cittasya</b> — of the consciousness, [namely] of the mind (gen.)<br/><b>indriya-artha-saṃyoga</b> m. — contact/union with sense-objects (abl. -āt)<br/><b>pratyāhṛtatva</b> n. — state of having been withdrawn (PPP + -tva, abl. -āt)<br/><b>vinivṛtti</b> f. — cessation<br/><b>sva-vyāpāra-virati</b> f. — cessation of own activity<br/><b>hetu-bhūta</b> mfn. — being the cause<br/><b>sva-icchā-prakalpita</b> mfn. — imagined/chosen by one's own will<br/><b>vakṣyamāṇa</b> mfn. — about to be described (fut. pass. part.)<br/><b>yogyatā</b> f. — fitness, suitability<br/><b>abhyeti</b> 3sg pres. abhi-√i — approaches, attains</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><b>Синтаксис.</b> Раскрытие сутры 6. Цепочка причинности: (1) <i>pratyāhāra</i> отрывает ум от sense-объектов; (2) возникает <i>vinivṛtti</i> — прекращение деятельности ума; (3) это служит <i>hetu</i> (причиной) для следующего шага; (4) ум <i>abhyeti</i> (достигает) <i>yogyatā</i> — пригодности для dhāraṇā. Локатив <i>svecchā-prakalpite pade</i> — «в точке/локусе, выбранной собственной волей» — означает, что йогин САМ выбирает объект концентрации.</div></section></div></div>
 <div class="row is-vrtti"><div class="row__num">V</div><div class="row__skt" onclick="t(this)">na cātra matir buddhiḥ api tu mananaṃ matiḥ saṅkalpākhyaś cetaso vyāpāraḥ, tasyaiva dhāraṇāśravaṇāt |</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">And (<b>ca</b>) here (<b>atra</b>) "mati" (<b>matiḥ</b>) does not (<b>na</b>) mean intellect (<b>buddhiḥ</b>); but rather (<b>api tu</b>) mati means reflection (<b>mananam</b>), i.e. the activity (<b>vyāpāraḥ</b>) of the mind (<b>cetasaḥ</b>) called (<b>ākhyaḥ</b>) saṅkalpa; because dhāraṇā is heard [as pertaining] to that alone (<b>tasya eva dhāraṇā-śravaṇāt</b>).</div><div class="tr cl">And here "mati" does not mean intellect; but rather mati means reflection — the activity of the mind called saṅkalpa — because dhāraṇā pertains to that alone.</div></section></div></div>
 <div class="row is-vrtti"><div class="row__num">V</div><div class="row__skt" onclick="t(this)">yad āha patañjaliḥ "deśabandhaś cittasya dhāraṇā" iti | tathā "dhāraṇāsu yogyatā manasaḥ" iti ||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">As (<b>yat</b>) Patañjali says (<b>āha</b>): "Dhāraṇā is the binding (<b>bandhaḥ</b>) of the mind (<b>cittasya</b>) to a place (<b>deśa</b>)" — thus (<b>iti</b>). Likewise (<b>tathā</b>): "Fitness (<b>yogyatā</b>) of the mind (<b>manasaḥ</b>) for dhāraṇās (<b>dhāraṇāsu</b>)."</div><div class="tr cl">As Patañjali says: "Dhāraṇā is the binding of the mind to a place." Likewise: "Fitness of the mind for dhāraṇās."</div></section><section><span class="gl__lbl">Словарь</span><div class="lex"><b>deśa</b> m. — place, spot, locus<br/>
 <b>bandha</b> m. — binding, fixing (√bandh)<br/>
@@ -448,26 +378,12 @@ dhāraṇāyogyatām eti pade svecchāprakalpite || 6 ||</div><div class="gl"><s
 <div class="row"><div class="row__num">4</div><div class="row__skt" onclick="t(this)">tatkurvann ucyate prāṇa ity anena vidyāpāde prāṇākhyasya vāyos saukṣmyāc ca takṣyann udann ūhan yad uktaṃ tathā ca śrīmatsvāyambhuve tad anūhaḥ pravartate | iti |</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By [the phrase] "performing that, [he] is called prāṇa" (<b>tat kurvan ucyate prāṇaḥ iti anena</b>) in the Vidyāpāda (<b>vidyā-pāde</b>), and due to the subtlety (<b>saukṣmyāt</b>) of the vāyu named prāṇa (<b>prāṇa-ākhyasya vāyoḥ</b>), [the participles] <i>takṣyan</i> (cutting), <i>udan</i> (rising), <i>ūhan</i> (reasoning) — what has been stated [in such terms] (<b>yat uktam</b>) — and likewise in the Śrīmat-Svāyambhuva [Tantra] (<b>śrīmat-svāyambhuve</b>): "thereupon ūha proceeds" (<b>tat anūhaḥ pravartate iti</b>).</div><div class="tr cl">Through the phrase "performing that, he is called prāṇa" in the Vidyāpāda, and because of the subtlety of the vāyu named prāṇa, [we have] the participles takṣyan, udan, ūhan — as has been said; and likewise the Śrīmat-Svāyambhuva states: "thereupon ūha proceeds".</div></section><section><span class="gl__lbl">Словарь</span><div class="lex"><b>tat kurvan</b> — performing that (pres. part. m.)<br/><b>ucyate</b> 3sg pres. pass. √vac — is called<br/><b>prāṇa-ākhya</b> mfn. — named "prāṇa"<br/><b>saukṣmya</b> n. — subtlety (from sūkṣma)<br/><b>takṣyan, udan, ūhan</b> — pres. participles (m. nom. sg.) of √takṣ "to fashion", ud-√i "to rise", √ūh "to reason"<br/><b>śrīmat-svāyambhuva</b> n. — Śrīmat-Svāyambhuva-tantra (a Śaiva text)<br/><b>tad anu / tat-anu</b> ind. — thereupon, after that<br/><b>pravartate</b> 3sg pres. ātm. pra-√vṛt — proceeds, sets in motion</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><b>Синтаксис.</b> Этимологический и сравнительный экскурс. Нараянакантха показывает: (1) В <b>Vidyāpāda</b> прāна определяется как «делающий то, [он] зовётся прāна» — отсылка к более раннему разделу самой Мригендратантры. (2) В <b>Śrīmat-Svāyambhuva-tantra</b> есть похожая формулировка: «затем ūха разворачивается» (<i>tad anu ūhaḥ pravartate</i>). Связь: <i>ūha</i> возникает через тонкую функцию прāны-вāю. Грамматически фрагмент содержит цепочку причастий <i>takṣyan udan ūhan</i> — «режущий, восходящий, размышляющий» — игра корней.</div></section></div></div>
 <div class="row"><div class="row__num">5</div><div class="row__skt" onclick="t(this)">sa ūho vīkṣaṇātmakaḥ tattadbhūmikāvāptito labdhe vastuni asantoṣakṛtād vikalpāt samanantaram udita udbhūto jñeyaḥ || 8 ||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">That (<b>saḥ</b>) ūha (<b>ūhaḥ</b>), <b>whose nature is vīkṣaṇa (contemplation)</b> (<b>vīkṣaṇa-ātmakaḥ</b>), should be known (<b>jñeyaḥ</b>) as <b>arisen, emerged</b> (<b>uditaḥ udbhūtaḥ</b>) <b>immediately</b> (<b>samanantaram</b>) from a <b>vikalpa caused by dissatisfaction</b> (<b>asantoṣa-kṛtāt vikalpāt</b>) <b>with the thing obtained</b> (<b>labdhe vastuni</b>) <b>through reaching the various stages</b> [of practice] (<b>tat-tat-bhūmikā-avāpti-taḥ</b>).</div><div class="tr cl">That ūha, whose nature is contemplation, should be known as arisen immediately from a vikalpa born of dissatisfaction with the thing obtained through reaching the various stages of practice.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex"><b>vīkṣaṇa</b> n. — looking-at, contemplation (vi-√īkṣ + -ana)<br/><b>vīkṣaṇa-ātmaka</b> mfn. — whose nature is contemplation<br/><b>tat-tat-bhūmikā</b> f. — the various respective stages<br/><b>avāpti-taḥ</b> abl. — from attainment (avāpti + suffix -taḥ = abl. force)<br/><b>labdha</b> mfn. PPP √labh — obtained<br/><b>vastu</b> n. — thing, reality (loc. vastuni)<br/><b>asantoṣa-kṛta</b> mfn. — caused by dissatisfaction<br/><b>vikalpa</b> m. — conceptual construction, discursive thought<br/><b>samanantaram</b> ind. — immediately after<br/><b>udita, udbhūta</b> PPP — risen, emerged<br/><b>jñeya</b> mfn. FPP √jñā — to be known</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><b>Синтаксис.</b> <b>Окончательное определение ūha.</b> Структура: подлежащее <i>saḥ ūhaḥ</i> + длинная цепочка определений + сказуемое <i>jñeyaḥ</i> (герундив — «должен быть понят как...»). Bahuvrīhi <i>vīkṣaṇa-ātmakaḥ</i> — «природы созерцания». Аблатив источника <i>vikalpāt</i> — «из vikalpa», уточнённой через <i>asantoṣa-kṛtāt</i> — «вызванной неудовлетворённостью». Локатив <i>labdhe vastuni</i> — «при обретённой вещи [на той или иной стадии]». Двойной PPP <i>uditaḥ udbhūtaḥ</i> — «возникший, появившийся» (синонимы, усиление). 🎯 Йогин достигает определённой стадии (bhūmikā), получает некое vastu (объект знания), но <b>не удовлетворён</b> — возникает vikalpa, и сразу после неё рождается <b>ūha</b> — интуитивный прорыв к более тонкой реальности.</div></section></div></div>
 </article>
-
 </div>
 <script>
-  function t(el) {
-    const gl = el.nextElementSibling;
-    if (gl && gl.classList.contains('gl')) gl.classList.toggle('is-open');
-  }
-  function setAll(open) {
-    document.querySelectorAll('.gl').forEach(g => g.classList.toggle('is-open', open));
-    document.getElementById('b-hide').classList.toggle('is-on', !open);
-    document.getElementById('b-show').classList.toggle('is-on', open);
-  }
-  // Build nav from section ids
+  function t(el) { const gl = el.nextElementSibling; if (gl && gl.classList.contains('gl')) gl.classList.toggle('is-open'); }
+  function setAll(open) { document.querySelectorAll('.gl').forEach(g => g.classList.toggle('is-open', open)); document.getElementById('b-hide').classList.toggle('is-on', !open); document.getElementById('b-show').classList.toggle('is-on', open); }
   const nav = document.getElementById('nav');
-  document.querySelectorAll('.sutra').forEach(s => {
-    const a = document.createElement('a');
-    a.href = '#' + s.id;
-    a.textContent = s.dataset.short || s.id;
-    nav.appendChild(a);
-  });
+  document.querySelectorAll('.sutra').forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.textContent = s.dataset.short || s.id; nav.appendChild(a); });
 </script>
 </body>
 </html>
