@@ -309,54 +309,6 @@
     .row { grid-template-columns: 20px 1fr; column-gap: 8px; }
   }
 
-  /* Mobile: prevent horizontal scroll, break long Sanskrit compounds */
-  html, body { overflow-x: hidden; max-width: 100%; }
-  .row__skt, .gl .tr, .gl .lex, .gl .note { overflow-wrap: anywhere; word-break: normal; }
-
-  @media (max-width: 600px) {
-    .wrap { padding: 20px 14px 80px; }
-    body { font-size: 16px; }
-    .pgh h1 { font-size: 21px; }
-    .bar { margin: 0 -14px 18px; padding: 8px 14px 10px; }
-    .row { grid-template-columns: 22px 1fr; column-gap: 8px; }
-    .row__num { font-size: 11px; padding-top: 9px; }
-    .row__skt { font-size: 15.5px; padding: 8px 10px; }
-    .row.is-mula .row__skt, .row.is-sutra .row__skt { font-size: 17px; padding: 10px 10px; }
-    .gl { padding: 4px 10px 14px 8px; }
-    .gl .tr { font-size: 15.5px; }
-    .gl .lex { font-size: 14.5px; }
-    .gl .note { font-size: 14.5px; }
-    .gl__lbl { font-size: 10px; }
-  }
-  /* Mobile overflow fix v2 */
-  /* Allow grid children to shrink (prevent overflow from long words) */
-  .row, .row > *, .gl, .gl section, .gl section > * { min-width: 0; max-width: 100%; }
-
-  @media (max-width: 600px) {
-    /* Stack the lexicon vertically — term above, definition below */
-    .gl .lex {
-      grid-template-columns: 1fr;
-      row-gap: 8px;
-      column-gap: 0;
-    }
-    .gl .lex dt {
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .gl .lex dd {
-      margin-bottom: 6px;
-    }
-    /* Make tables fit and not overflow */
-    table, table.gunatable, table.mini {
-      width: 100%;
-      font-size: 11.5px;
-      display: block;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    /* Compress gram-tags a bit on mobile */
-    .gl .lex dt .gram { font-size: 10px; margin-left: 4px; }
-  }
 </style>
 </head>
 <body>
