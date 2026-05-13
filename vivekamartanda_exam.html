@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vivekamārtaṇḍa · exam</title>
+<link rel="icon" type="image/svg+xml" href="favicon-viv.svg">
+<style>
+  :root {
+    --bg: #fbfaf6; --paper: #ffffff; --ink: #000000; --ink-2: #050505; --ink-3: #1a1a1a;
+    --line: #c8c2af; --line-2: #e0d9c5; --hi: #f3ead0; --accent: #5a0f1f; --accent-soft: #f0d9dd;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --serif: "Iowan Old Style", "Charter", "Cambria", "Georgia", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); line-height: 1.6; font-size: 17px; font-weight: 550; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-feature-settings: "kern", "liga", "onum"; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 28px 120px; }
+  .pgh { margin-bottom: 28px; }
+  .pgh h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; }
+  .pgh .meta { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); margin-top: 6px; }
+  .bar { position: sticky; top: 0; z-index: 10; background: var(--bg); margin: 0 -28px 24px; padding: 10px 28px 12px; border-bottom: 1px solid var(--line); }
+  .bar__btns { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .btn { font-family: var(--sans); font-size: 12px; background: transparent; border: 1px solid var(--line); color: var(--ink-2); padding: 5px 10px; border-radius: 3px; cursor: pointer; letter-spacing: 0.02em; }
+  .btn:hover { background: var(--paper); color: var(--ink); }
+  .btn.is-on { background: var(--ink); color: white; border-color: var(--ink); }
+  .nav { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 8px; }
+  .nav a { font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-decoration: none; padding: 3px 7px; border-radius: 3px; }
+  .nav a:hover { background: var(--accent-soft); color: var(--accent); }
+  .sutra { margin: 0 0 44px; } .sutra:first-of-type { margin-top: 8px; }
+  .sec { display: flex; align-items: baseline; gap: 10px; margin: 0 0 10px; color: var(--ink-3); }
+  .sec .lbl { font-family: var(--sans); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; }
+  .sec .num { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 600; }
+  .sec .rule { flex: 1; height: 1px; background: var(--line); }
+  .row { display: grid; grid-template-columns: 38px 1fr; column-gap: 12px; margin: 0 0 1px; }
+  .row__num { font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-align: right; padding-top: 10px; user-select: none; font-weight: 600; }
+  .row.is-mula .row__num { color: var(--accent); font-weight: 800; }
+  .row__skt { cursor: pointer; padding: 11px 14px; border-left: 2px solid var(--accent); color: var(--ink); font-size: 18px; line-height: 1.55; transition: background 0.12s; background: var(--hi); font-weight: 600; }
+  .row__skt:hover { background: #f1e7ce; }
+  .gl { grid-column: 2; display: none; padding: 4px 12px 16px 10px; border-left: 2px solid var(--line); margin-bottom: 6px; }
+  .gl.is-open { display: block; }
+  .gl section { margin-top: 12px; } .gl section:first-child { margin-top: 6px; }
+  .gl__lbl { font-family: var(--sans); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink); margin-bottom: 6px; display: block; }
+  .gl .tr { font-size: 17px; color: var(--ink); line-height: 1.55; font-weight: 550; }
+  .gl .tr strong, .gl .tr b { color: var(--accent); font-weight: 700; }
+  .gl .tr.cl { margin-top: 8px; font-style: italic; color: var(--ink-2); }
+  .gl .lex { font-size: 15.5px; line-height: 1.55; color: var(--ink); font-weight: 550; }
+  .gl .lex strong, .gl .lex b { color: var(--accent); font-weight: 700; }
+  .gl .note { font-size: 16px; color: var(--ink); line-height: 1.6; font-weight: 550; }
+  .gl .note strong, .gl .note b { color: var(--ink); font-weight: 800; }
+  .gl .note em, .gl .note i { color: var(--accent); font-style: italic; font-weight: 600; }
+  html, body { overflow-x: hidden; }
+  .row__skt, .gl .tr, .gl .lex, .gl .note { overflow-wrap: anywhere; }
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 80px; }
+    body { font-size: 16px; }
+    .pgh h1 { font-size: 21px; }
+    .bar { margin: 0 -14px 18px; padding: 8px 14px 10px; }
+    .row { grid-template-columns: 32px 1fr; column-gap: 6px; }
+    .row__num { font-size: 11px; padding-top: 9px; }
+    .row__skt { font-size: 16px; padding: 9px 10px; }
+    .gl { padding: 4px 8px 14px 6px; }
+    .gl .tr { font-size: 15px; }
+    .gl .note { font-size: 15px; }
+    .gl .lex { font-size: 14.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="pgh"><h1>Vivekamārtaṇḍa / Gorakṣaśataka</h1><div class="meta">With Jim Mallinson's translation · invocation + verses 1–85</div></header>
+<div class="bar">
+  <div class="bar__btns">
+    <button class="btn is-on" id="b-hide" onclick="setAll(false)">Hide all</button>
+    <button class="btn" id="b-show" onclick="setAll(true)">Show all</button>
+  </div>
+  <nav class="nav" id="nav"></nav>
+</div>
+<article class="sutra" id="sec-invocatory-verses" data-short="Invocatory Verses">
+<div class="sec"><span class="num">1</span><span class="lbl">Invocatory Verses</span><span class="rule"></span></div>
+<div class="row is-mula"><div class="row__num">Inv1</div><div class="row__skt" onclick="t(this)">śrīguruṃ paramānandaṃ vande svānandavigraham |<br/>
+yasya sānnidhyamātreṇa cidānandāyate tanuḥ ||1||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">I bow <strong>(vande)</strong> to the blessed guru <strong>(śrīgurum)</strong>, supreme bliss <strong>(paramānandam)</strong>, embodiment of own-bliss <strong>(svānandavigraham)</strong>, by whose <strong>(yasya)</strong> mere presence <strong>(sānnidhyamātreṇa)</strong> the body <strong>(tanuḥ)</strong> becomes consciousness-bliss <strong>(cidānandāyate)</strong>.</div><div class="tr cl">I venerate the glorious guru, who is supreme bliss, who is the manifestation of his own bliss, merely by being in whose presence one's body becomes consciousness and bliss.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">śrī-gurum = blessed guru (acc.)<br/>
+parama-ānandam = supreme bliss (acc.)<br/>
+vande = I bow (1st sg.)<br/>
+sva-ānanda-vigraham = embodiment of self-bliss (acc.)<br/>
+yasya = whose (gen.)<br/>
+sānnidhya-mātreṇa = by mere presence (inst.)<br/>
+cit-ānanda-āyate = becomes consciousness-bliss (3rd sg.)<br/>
+tanuḥ = body (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Salutation to the guru</strong><br/>
+[√vand - to honor, √ā-yam - to become]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">Inv2</div><div class="row__skt" onclick="t(this)">antar-niścalita-ātma-dīpa-kalikā-svādhāra-bandhādibhir<br/>
+yo yogī yuga-kalpa-kāla-kalanāt tattvam ca jegīyate |<br/>
+jñāna-āmoda-mahodadhiḥ samabhavad yatrādināthaḥ svayaṃ<br/>
+vyakta-avyakta-guṇa-adhikaṃ tamaniśaṃ śrīmīnanāthaṃ bhaje ||2||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The yogi <strong>(yaḥ yogī)</strong> by locking own base etc. <strong>(svādhārabandhādibhiḥ)</strong> in the flame of the soul-lamp steadied within <strong>(antarniścalitātmadīpakalikā)</strong>, through understanding <strong>(kalanāt)</strong> of yugas, kalpas, and time <strong>(yugakalpakāla)</strong>, by whom reality <strong>(tattvam)</strong> is thoroughly proclaimed <strong>(jegīyate)</strong>, who became <strong>(samabhavat)</strong> [that state] where <strong>(yatra)</strong> Ādinātha himself <strong>(Ādināṭhaḥ svayam)</strong> [appeared as] a great ocean of knowledge-bliss <strong>(jñānāmodamahodadhiḥ)</strong>, [who is] greater than manifest and unmanifest qualities <strong>(vyaktāvyaktaguṇādhikam)</strong>—him <strong>(tam)</strong>, the glorious Matsyendranātha <strong>(śrīmīnanātham)</strong>, I constantly <strong>(aniśam)</strong> worship <strong>(bhaje)</strong>.</div><div class="tr cl">The yogi who, by means of locking the base and so forth in the buds (flames, kalikās) of the internally stilled lamp of the self, is extolled as (extols?) the essence of creating the yugas, kalpas and time (?), in whom Ādinātha himself appeared, the great ocean of knowledge and pleasure; him do I constantly worship as the glorious Mīnanātha, who abounds in the manifest and unmanifest qualities (?).</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">antaḥ-niścalita-ātma-dīpa-kalikā = in flame of soul-lamp steadied within<br/>
+sva-ādhāra-bandha-ādibhiḥ = by locking own base etc. (inst.)<br/>
+yaḥ yogī = which yogi (nom.)<br/>
+yuga-kalpa-kāla-kalanāt = through understanding yugas, kalpas, time<br/>
+tattvam = reality (acc.)<br/>
+jegīyate = is thoroughly proclaimed<br/>
+jñāna-āmoda-mahā-udadhiḥ = great ocean of knowledge-bliss (nom.)<br/>
+samabhavat = became/occurred (3rd sg. past)<br/>
+yatra = where (rel. adv.)<br/>
+Ādināṭhaḥ = Ādinātha (nom.)<br/>
+svayam = himself<br/>
+vyakta-avyakta-guṇa-adhikam = greater than manifest-unmanifest qualities (acc.)<br/>
+tam = him (acc.)<br/>
+aniśam = constantly<br/>
+Mīnanātham = Matsyendranātha (acc.)<br/>
+bhaje = I worship (1st sg.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Praise of Matsyendranātha as embodiment of Ādinātha</strong><br/>
+[√bhaj - to worship, √jñā - to know, √bhū - to become]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">Inv3</div><div class="row__skt" onclick="t(this)">namaskṛtya guruṃ bhaktyā gorakṣo jñānamuttamam |<br/>
+abhīṣṭaṃ yogināṃ brūte paramānandakārakam ||3||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having saluted <strong>(namaskṛtya)</strong> the guru <strong>(gurum)</strong> with devotion <strong>(bhaktyā)</strong>, Gorakṣa <strong>(Gorakṣaḥ)</strong> speaks <strong>(brūte)</strong> supreme knowledge <strong>(jñānam uttamam)</strong>, desired <strong>(abhīṣṭam)</strong> of yogis <strong>(yoginām)</strong>, causing supreme bliss <strong>(paramānandakārakam)</strong>.</div><div class="tr cl">Having devotedly made obeisance to [him, his] guru, Gorakṣa teaches the highest knowledge, which is longed for by yogis and brings about supreme bliss.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">namaskṛtya = having saluted (abs.)<br/>
+gurum = guru (acc.)<br/>
+bhaktyā = with devotion (inst.)<br/>
+Gorakṣaḥ = Gorakṣa (nom.)<br/>
+jñānam uttamam = supreme knowledge (acc.)<br/>
+abhīṣṭam = desired (acc.)<br/>
+yoginām = of yogis (gen.)<br/>
+brūte = speaks (3rd sg.)<br/>
+parama-ānanda-kārakam = causing supreme bliss (acc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Gorakṣa's teaching of supreme knowledge</strong><br/>
+[√kṛ - to do, √brū - to speak]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">Inv4</div><div class="row__skt" onclick="t(this)">gorakṣaśatakaṃ vakti yogināṃ hitakāmyayā |<br/>
+dhruvaṃ yasyāvabodhena jāyate paramaṃ padam ||4||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">He speaks <strong>(vakti)</strong> the hundred verses of Gorakṣa <strong>(gorakṣaśatakam)</strong> with desire for the welfare <strong>(hitakāmyayā)</strong> of yogis <strong>(yoginām)</strong>, by understanding <strong>(avabodhena)</strong> of which <strong>(yasya)</strong> certainly <strong>(dhruvam)</strong> arises <strong>(jāyate)</strong> the supreme state <strong>(paramaṃ padam)</strong>.</div><div class="tr cl">Out of a desire for the good of yogis, he teaches the hundred [verses] of Gorakṣa, understanding of which is sure to bring about the supreme state.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">gorakṣa-śatakam = hundred verses of Gorakṣa (acc.)<br/>
+vakti = speaks (3rd sg.)<br/>
+yoginām = of yogis (gen.)<br/>
+hita-kāmyayā = with desire for welfare (inst.)<br/>
+dhruvam = certainly (ind.)<br/>
+yasya = of which (gen.)<br/>
+avabodhena = by understanding (inst.)<br/>
+jāyate = arises (3rd sg.)<br/>
+paramam padam = supreme state (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Purpose of the Gorakṣaśataka</strong><br/>
+[√vac - to speak, √jan - to arise]</div></section></div></div>
+</article>
+
+<article class="sutra" id="sec-main-text-verses-1-85" data-short="MAIN TEXT">
+<div class="sec"><span class="num">2</span><span class="lbl">MAIN TEXT (VERSES 1–85)</span><span class="rule"></span></div>
+<div class="row is-mula"><div class="row__num">1</div><div class="row__skt" onclick="t(this)">etat vimukti-sopānam etat kālasya vañcanam |<br/>
+yad vyāvṛttaṃ mano bhogād āsaktaṃ paramātmani ||1||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">This <strong>(etat)</strong> is the ladder to liberation <strong>(vimuktisopānam)</strong>, this is deceiving death <strong>(kālasya vañcanam)</strong>—when <strong>(yad)</strong> the mind <strong>(manaḥ)</strong> is turned away <strong>(vyāvṛttam)</strong> from worldly enjoyment <strong>(bhogāt)</strong> and attached <strong>(āsaktam)</strong> to the supreme Self <strong>(paramātmani)</strong>.</div><div class="tr cl">This is the stairway to complete liberation, this is the cheating of death, by which the mind is turned away from worldly enjoyment and fixed in the supreme self.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vimukti-sopānam = ladder to liberation (TP, nom.)<br/>
+kālasya = of time/death (gen.)<br/>
+vañcanam = deceiving (nom.)<br/>
+yad = when/because (rel.)<br/>
+vyā-āvṛttam = turned away (PPP, nom.)<br/>
+manaḥ = mind (nom.)<br/>
+bhogāt = from enjoyment (abl.)<br/>
+āsaktam = attached (PPP, nom.)<br/>
+parama-ātmani = in supreme Self (loc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Mind turned from enjoyment to Supreme Self</strong><br/>
+[√vṛt - to turn, √sañj - to attach, √vañc - to deceive]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">2</div><div class="row__skt" onclick="t(this)">dvija-sevita-śākhasya śruti-kalpa-taroḥ phalam |<br/>
+śamanaṃ bhava-tāpasya yogaṃ bhajeta sattamāḥ ||2||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">O best of people <strong>(sattamāḥ)</strong>, partake of <strong>(bhajeta)</strong> yoga <strong>(yogam)</strong>, the fruit <strong>(phalam)</strong> of the wish-fulfilling tree of Vedic revelation <strong>(śrutikalpa-taroḥ)</strong> whose branches are frequented by the twice-born <strong>(dvijasevitaśākhasya)</strong>, which soothes <strong>(śamanam)</strong> the torment of existence <strong>(bhavatāpasya)</strong>.</div><div class="tr cl">O excellent people, partake of yoga, the reward of the wish-fulfilling tree of revelation frequented by the twice-born, which soothes the torment of existence.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">dvija-sevita-śākhasya = whose branches served by twice-born (BV, gen.)<br/>
+śruti-kalpa-taroḥ = of wish-fulfilling tree of Vedas (gen.)<br/>
+phalam = fruit (nom.)<br/>
+śamanam = destroyer (nom.)<br/>
+bhava-tāpasya = of pain of worldly existence (gen.)<br/>
+yogam = yoga (acc.)<br/>
+bhajeta = should resort to (opt.)<br/>
+sat-tamāḥ = best persons (nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Yoga as fruit of Vedic wisdom</strong><br/>
+[√bhaj - to partake, √śam - to soothe]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">3</div><div class="row__skt" onclick="t(this)">āsanaṃ prāṇa-saṃrodhaḥ pratyāhāraś ca dhāraṇā |<br/>
+dhyānaṃ samādhir etāni yogāṅgāni bhavanti ṣaṭ ||3||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Posture <strong>(āsanam)</strong>, breath restraint <strong>(prāṇasaṃrodhaḥ)</strong>, withdrawal <strong>(pratyāhāraḥ)</strong>, concentration <strong>(dhāraṇā)</strong>, meditation <strong>(dhyānam)</strong>, and absorption <strong>(samādhiḥ)</strong>—these <strong>(etāni)</strong> are the six <strong>(ṣaṭ)</strong> limbs of Yoga <strong>(yogāṅgāni)</strong>.</div><div class="tr cl">Posture, breath restraint (prāṇasaṃrodha), withdrawal, fixation, meditation and samādhi: these are the six auxiliaries of yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">āsanam = posture (nom.)<br/>
+prāṇa-saṃrodhaḥ = breath restraint (TP, nom.)<br/>
+pratyāhāraḥ = withdrawal (nom.)<br/>
+dhāraṇā = concentration (nom.)<br/>
+dhyānam = meditation (nom.)<br/>
+samādhiḥ = absorption (nom.)<br/>
+etāni = these (nom. pl.)<br/>
+yoga-aṅgāni = limbs of Yoga (TP, nom. pl.)<br/>
+bhavanti = are (3rd pl.)<br/>
+ṣaṭ = six</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Six limbs of yoga enumerated</strong><br/>
+[√bhū - to be, √rudh - to restrain]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">4</div><div class="row__skt" onclick="t(this)">āsanāni ca tāvanti yāvantyo jīva-jātayaḥ |<br/>
+eteṣām akhilān bhedān vijānāti maheśvaraḥ ||4||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">There are as many <strong>(tāvanti)</strong> postures <strong>(āsanāni)</strong> as there are <strong>(yāvantyaḥ)</strong> species of living beings <strong>(jīvajātayaḥ)</strong>. Maheśvara <strong>(maheśvaraḥ)</strong> knows <strong>(vijānāti)</strong> all <strong>(akhilān)</strong> their variations <strong>(bhedān)</strong>.</div><div class="tr cl">There are as many postures as there are types of living being. Maheśvara knows all their varieties.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">āsanāni = postures (nom. pl.)<br/>
+tāvanti = so many (nom. pl.)<br/>
+yāvantyaḥ = as many as (nom. pl. f.)<br/>
+jīva-jātayaḥ = species of living beings (TP, nom. pl.)<br/>
+eteṣām = of these (gen.)<br/>
+akhilān = all (acc. pl.)<br/>
+bhedān = variations (acc. pl.)<br/>
+vijānāti = knows (3rd sg.)<br/>
+maheśvaraḥ = the great Lord, Shiva (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>As many postures as living beings</strong><br/>
+[√jñā - to know]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">5</div><div class="row__skt" onclick="t(this)">catur-āśīti-lakṣāṇām ekaikaṃ samudāhṛtam |<br/>
+ataḥ śivena pīṭhānāṃ ṣoḍaśonaṃ śataṃ kṛtam ||5||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">From the 8,400,000 <strong>(caturaśītilakṣāṇām)</strong>, one each <strong>(ekaikam)</strong> was selected <strong>(samudāhṛtam)</strong>; therefore <strong>(ataḥ)</strong> Śiva <strong>(śivena)</strong> made <strong>(kṛtam)</strong> a hundred diminished by sixteen <strong>(ṣoḍaśonaṃ śatam)</strong> postures <strong>(pīṭhānām)</strong>.</div><div class="tr cl">Śiva taught the 84 lakh positions one by one, then made them 84.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">catuḥ-aśīti-lakṣāṇām = of 84 hundred-thousands (gen. pl.)<br/>
+ekaikam = one each (nom.)<br/>
+sam-ud-āhṛtam = was selected (PPP, nom.)<br/>
+ataḥ = therefore<br/>
+śivena = by Shiva (inst.)<br/>
+pīṭhānām = of postures (gen. pl.)<br/>
+ṣoḍaśa-ūnam = diminished by sixteen<br/>
+śatam = hundred (nom.)<br/>
+kṛtam = was made (PPP, nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>84 primary postures selected</strong><br/>
+[√kṛ - to make, √ūn - to lack/lessen]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">6</div><div class="row__skt" onclick="t(this)">āsanebhyaḥ samastebhyo dvayam etad udāhṛtam |<br/>
+ekaṃ siddhāsanaṃ proktaṃ dvitīyaṃ kamalāsanam ||6||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">From all <strong>(samastebhyaḥ)</strong> the postures <strong>(āsanebhyaḥ)</strong>, this pair <strong>(dvayam etad)</strong> is selected <strong>(udāhṛtam)</strong>: the first <strong>(ekam)</strong> is called <strong>(proktam)</strong> the perfect posture <strong>(siddhāsanam)</strong>, the second <strong>(dvitīyam)</strong> the lotus posture <strong>(kamalāsanam)</strong>.</div><div class="tr cl">From all the postures this pair is taught: one called siddhāsana, "the adept's posture", the other kamalāsana, "the lotus posture".</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">āsanebhyaḥ = from the postures (abl. pl.)<br/>
+samastebhyaḥ = from all (abl. pl.)<br/>
+dvayam = pair (nom.)<br/>
+etad = this (nom.)<br/>
+ud-āhṛtam = is selected/mentioned (PPP, nom.)<br/>
+ekam = first (nom.)<br/>
+siddha-āsanam = perfect posture (TP, nom.)<br/>
+proktam = is called (PPP, nom.)<br/>
+dvitīyam = second (nom.)<br/>
+kamala-āsanam = lotus posture (TP, nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Two chief postures: Siddha and Padma</strong><br/>
+[√sidh - to accomplish, √pad - to go/be]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">7</div><div class="row__skt" onclick="t(this)">yoni-sthānakam āṅghri-mūla-ghaṭitaṃ kṛtvā dṛḍhaṃ vinyasen<br/>
+meḍhre pādam athaikam eva hṛdaye dhṛtvā hanuṃ su-sthiram |<br/>
+sthāṇuḥ saṃyamitendriyoacala-dṛśā paśyed bhruvor antaraṃ<br/>
+hy etan mokṣa-kapāṭa-bheda-janakaṃ siddhāsanaṃ procyate ||7||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having firmly <strong>(dṛḍham kṛtvā)</strong> placed the root of the heel <strong>(āṅghrimūlaghaṭitam)</strong> at the perineum <strong>(yonisthānakam)</strong>, one should place <strong>(vinyaset)</strong> the other foot <strong>(pādam ekam eva)</strong> on the genitals <strong>(meḍhre)</strong>. Having held <strong>(dhṛtvā)</strong> the chin <strong>(hanum)</strong> very firmly <strong>(su-sthiram)</strong> at the heart <strong>(hṛdaye)</strong>, motionless <strong>(sthāṇuḥ)</strong>, with controlled senses <strong>(saṃyamitendriyaḥ)</strong> and steady gaze <strong>(acaladṛśā)</strong>, one should look <strong>(paśyet)</strong> between the eyebrows <strong>(bhruvoḥ antaram)</strong>. This <strong>(etat)</strong> is called <strong>(procyate)</strong> the perfect posture <strong>(siddhāsanam)</strong>, which breaks open the door to liberation <strong>(mokṣakapāṭabhedajanakam)</strong>.</div><div class="tr cl">[The yogi] should place the root of the heel at the perineum and firmly place the other foot on the penis. He should hold his jaw very steadily on his chest and, motionless, with his sense-organs restrained, stare with fixed gaze at the space between the eyebrows. This is called the adept's posture. It opens the doorway to liberation.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yoni-sthānakam = perineum (acc.)<br/>
+āṅghri-mūla-ghaṭitam = connected with heel (acc.)<br/>
+kṛtvā = having made (abs.)<br/>
+dṛḍham = firmly (adv.)<br/>
+vinyaset = should place (opt.)<br/>
+meḍhre = on genitals (loc.)<br/>
+pādam = foot (acc.)<br/>
+atha = then<br/>
+ekam eva = one only<br/>
+hṛdaye = at heart (loc.)<br/>
+dhṛtvā = having held (abs.)<br/>
+hanum = chin (acc.)<br/>
+su-sthiram = very firmly<br/>
+sthāṇuḥ = motionless (nom.)<br/>
+saṃyamita-indriyaḥ = with controlled senses (BV, nom.)<br/>
+acala-dṛśā = with steady gaze (inst.)<br/>
+paśyet = should look (opt.)<br/>
+bhruvoḥ = of eyebrows (gen. dual)<br/>
+antaram = between (acc.)<br/>
+mokṣa-kapāṭa-bheda-janakam = causing breaking of door to liberation (BV, nom.)<br/>
+siddha-āsanam = perfect posture (nom.)<br/>
+procyate = is called (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Siddhasana description and benefits</strong><br/>
+[√kṛ - to make, √dhṛ - to hold, √paś - to see, √bhid - to break]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">8</div><div class="row__skt" onclick="t(this)">vāmorūpari dakṣiṇaṃ ca caraṇaṃ saṃsthāpya vāmaṃ tathā<br/>
+yāmyorūpari paścimena vidhinā dhṛtvā karābhyāṃ dṛḍham |<br/>
+aṅguṣṭhe hṛdaye nidhāya cibukam nāsāgramālokayet<br/>
+etad dhādhivikārahāri yamināṃ padmāsanaṃ procyate ||8||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having placed <strong>(saṃsthāpya)</strong> the right foot <strong>(dakṣiṇaṃ caraṇam)</strong> on the left thigh <strong>(vāmorūpari)</strong>, and likewise <strong>(tathā)</strong> the left <strong>(vāmam)</strong> on the right thigh <strong>(yāmyorūpari)</strong>, and having firmly held <strong>(dhṛtvā dṛḍham)</strong> the big toes <strong>(aṅguṣṭhe)</strong> with both hands <strong>(karābhyām)</strong> by the back method <strong>(paścimena vidhinā)</strong>, placing <strong>(nidhāya)</strong> the chin <strong>(cibukam)</strong> at the heart <strong>(hṛdaye)</strong>, one should gaze <strong>(ālokayet)</strong> at the tip of the nose <strong>(nāsāgram)</strong>. This <strong>(etat)</strong> is called <strong>(procyate)</strong> the lotus posture <strong>(padmāsanam)</strong> of the self-restrained <strong>(yaminām)</strong>, which removes disease and disorder <strong>(vyādhivikārahāri)</strong>.</div><div class="tr cl">[The yogi] should place his right foot on his left thigh and his left foot on his right thigh, with his hands going behind his back hold firmly on to his big toes, place his chin on his chest and look at the tip of his nose. This is called the lotus posture. It removes sicknesses and diseases from those who restrain themselves.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vāma-ūru-upari = upon left thigh<br/>
+dakṣiṇam = right (acc.)<br/>
+caraṇam = foot (acc.)<br/>
+saṃsthāpya = having placed (abs.)<br/>
+vāmam = left (acc.)<br/>
+tathā = likewise<br/>
+yāmya-ūru-upari = upon right thigh<br/>
+paścimena vidhinā = by back method (inst.)<br/>
+dhṛtvā = having held (abs.)<br/>
+karābhyām = with both hands (inst. du.)<br/>
+dṛḍham = firmly (adv.)<br/>
+aṅguṣṭhe = big toes (loc.)<br/>
+hṛdaye = at heart (loc.)<br/>
+nidhāya = placing (abs.)<br/>
+cibukam = chin (acc.)<br/>
+nāsā-agram = tip of nose (acc.)<br/>
+ālokayet = should gaze (opt.)<br/>
+vyādhi-vikāra-hāri = remover of disease-disorder (BV)<br/>
+yaminām = of self-restrained (gen. pl.)<br/>
+padma-āsanam = lotus-posture (nom.)<br/>
+procyate = is called (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Padmasana description and benefits</strong><br/>
+[√sthā - to place, √dhṛ - to hold, √lok - to gaze, √hṛ - to remove]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">9</div><div class="row__skt" onclick="t(this)">ṣaṭcakraṃ ṣoḍaśādhāraṃ trailokyaṃ vyomapañcakam |<br/>
+svadehe ye na jānanti kathaṃ sidhyanti yoginaḥ ||9||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Those who <strong>(ye)</strong> do not know <strong>(na jānanti)</strong> in their own bodies <strong>(svadehe)</strong> the six chakras <strong>(ṣaṭcakram)</strong>, sixteen supports <strong>(ṣoḍaśādhāram)</strong>, three worlds <strong>(trailokyam)</strong>, and five voids <strong>(vyomapañcakam)</strong>—how <strong>(katham)</strong> can yogis <strong>(yoginaḥ)</strong> attain perfection <strong>(sidhyanti)</strong>?</div><div class="tr cl">Those who do not recognise the six cakras, sixteen supports, three worlds [and] five voids in their own bodies, how can they become perfected yogis?</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ṣaṭ-cakram = six chakras (acc.)<br/>
+ṣoḍaśa-ādhāram = sixteen supports (acc.)<br/>
+trai-lokyam = three worlds (acc.)<br/>
+vyoma-pañcakam = five voids (acc.)<br/>
+sva-dehe = in own body (loc.)<br/>
+ye = who (nom. pl.)<br/>
+jānanti = know (3rd pl.)<br/>
+katham = how<br/>
+sidhyanti = attain perfection (3rd pl.)<br/>
+yoginaḥ = yogis (nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Knowledge of six chakras essential for perfection</strong><br/>
+[√jñā - to know, √sidh - to perfect]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">10</div><div class="row__skt" onclick="t(this)">ekastambhaṃ navadvāraṃ triśūnyaṃ pañcadaivatam |<br/>
+svadehe ye na jānanti kathaṃ sidhyanti yoginaḥ ||10||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Those who <strong>(ye)</strong> do not know <strong>(na jānanti)</strong> in their own bodies <strong>(svadehe)</strong> the single pillar <strong>(ekastambham)</strong>, nine gates <strong>(navadvāram)</strong>, three voids <strong>(triśūnyam)</strong>, and five deities <strong>(pañcadaivatam)</strong>—how <strong>(katham)</strong> can yogis <strong>(yoginaḥ)</strong> attain perfection <strong>(sidhyanti)</strong>?</div><div class="tr cl">Those who do not recognise the single column, the nine doors, the three voids [and] the five deities in their own bodies, how can they become perfected yogis?</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">eka-stambham = one pillar (acc.)<br/>
+nava-dvāram = nine gates (acc.)<br/>
+tri-śūnyam = three voids (acc.)<br/>
+pañca-daivatam = five deities (acc.)<br/>
+sva-dehe = in own body (loc.)<br/>
+ye = who (nom. pl.)<br/>
+jānanti = know (3rd pl.)<br/>
+katham = how<br/>
+sidhyanti = attain perfection (3rd pl.)<br/>
+yoginaḥ = yogis (nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Knowledge of body's pillars and gates essential</strong><br/>
+[√jñā - to know, √sidh - to perfect]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">11</div><div class="row__skt" onclick="t(this)">caturdalaṃ syād ādhāraṃ svādhiṣṭhānaṃ ca ṣaḍdalam |<br/>
+nābhau daśadalaṃ padmaṃ sūryasaṅkhyādalaṃ hṛdi ||11||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The Base <strong>(ādhāram)</strong> is <strong>(syāt)</strong> four-petaled <strong>(caturdalam)</strong>, the Svādhiṣṭhāna <strong>(svādhiṣṭhānam)</strong> is six-petaled <strong>(ṣaḍdalam)</strong>. At the navel <strong>(nābhau)</strong> is a ten-petaled <strong>(daśadalam)</strong> lotus <strong>(padmam)</strong>, and at the heart <strong>(hṛdi)</strong> one with the number of the sun's petals <strong>(sūryasaṅkhyādalam, i.e., twelve)</strong>.</div><div class="tr cl">The Base (ādhāra) had four petals and the Svādhiṣṭhāna has six petals. In the navel there is a lotus with ten petals [and the lotus] in the heart has twelve petals.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">catuḥ-dalam = four-petaled (nom.)<br/>
+syāt = is (opt.)<br/>
+ādhāram = ādhāra/mūlādhāra (nom.)<br/>
+svādhiṣṭhānam = svādhiṣṭhāna (nom.)<br/>
+ṣaṭ-dalam = six-petaled (nom.)<br/>
+nābhau = at navel (loc.)<br/>
+daśa-dalam = ten-petaled (nom.)<br/>
+padmam = lotus (nom.)<br/>
+sūrya-saṅkhyā-dalam = sun-number-petaled (nom.)<br/>
+hṛdi = at heart (loc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Four lower chakras with petal counts</strong><br/>
+[√as - to be (syāt)]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">12</div><div class="row__skt" onclick="t(this)">kaṇṭhe syāt ṣoḍaśadalaṃ bhrumadhye dvidalaṃ tathā |<br/>
+sahasradalam ākhyātam brahmarandhre mahāpathe ||12||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">In the throat <strong>(kaṇṭhe)</strong> is <strong>(syāt)</strong> a sixteen-petaled <strong>(ṣoḍaśadalam)</strong> [lotus], and likewise <strong>(tathā)</strong> between the eyebrows <strong>(bhrumadhye)</strong> a two-petaled one <strong>(dvidalam)</strong>. The thousand-petaled <strong>(sahasradalam)</strong> [lotus] is said <strong>(ākhyātam)</strong> to be at the brahmarandhra <strong>(brahmarandhre)</strong>, on the great path <strong>(mahāpathe)</strong>.</div><div class="tr cl">In the throat is [a lotus] with sixteen petals and between the eyebrows [a lotus] with two petals. [The lotus] that is taught to have a thousand petals is in the great pathway at the aperture of Brahman.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kaṇṭhe = in throat (loc.)<br/>
+syāt = is (opt.)<br/>
+ṣoḍaśa-dalam = sixteen-petaled (nom.)<br/>
+bhru-madhye = between eyebrows (loc.)<br/>
+dvi-dalam = two-petaled (nom.)<br/>
+tathā = likewise<br/>
+sahasra-dalam = thousand-petaled (nom.)<br/>
+ākhyātam = called (PPP, nom.)<br/>
+brahma-randhre = at brahmarandhra (loc.)<br/>
+mahā-pathe = on great path (loc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three upper chakras with petal counts</strong><br/>
+[√as - to be (syāt), √khyā - to call]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">13</div><div class="row__skt" onclick="t(this)">ādhāraṃ prathamaṃ cakraṃ svādhiṣṭhānaṃ dvitīyakam |<br/>
+yonisthānaṃ tayoḥ madhye kāmarūpam pracakṣate ||13||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The Base <strong>(ādhāram)</strong> is the first <strong>(prathamam)</strong> chakra <strong>(cakram)</strong>, Svādhiṣṭhāna <strong>(svādhiṣṭhānam)</strong> is the second <strong>(dvitīyakam)</strong>. The perineal region <strong>(yonisthānam)</strong> in the middle <strong>(madhye)</strong> of those two <strong>(tayoḥ)</strong> is called <strong>(pracakṣate)</strong> Kāmarūpa <strong>(kāmarūpam)</strong>.</div><div class="tr cl">The Base (ādhāram) is the first cakra, Svādhiṣṭhāna is second. The perineal region (yonisthānam) between them is called Kāmarūpa.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ādhāram = ādhāra/mūlādhāra (nom.)<br/>
+prathamam = first (nom.)<br/>
+cakram = cakra (nom.)<br/>
+svādhiṣṭhānam = svādhiṣṭhāna (nom.)<br/>
+dvitīyakam = second (nom.)<br/>
+yoni-sthānam = yonisthāna/perineal region (acc.)<br/>
+tayoḥ = of those two (gen. dual)<br/>
+madhye = in middle (loc.)<br/>
+kāma-rūpam = kāmarūpa (acc.)<br/>
+pracakṣate = they call (3rd pl. mid.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Location of Kāmarūpa between two chakras</strong><br/>
+[√cakṣ - to call/see]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">14</div><div class="row__skt" onclick="t(this)">adhomukhaṃ gudasthāne paṅkajam yaccaturdalam |<br/>
+tanmadhye procyate yoniḥ kāmākhyā siddhavanditā ||14||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The downward-facing <strong>(adhomukham)</strong> four-petaled <strong>(yaccaturdalam)</strong> lotus <strong>(paṅkajam)</strong> at the location of the anus <strong>(gudasthāne)</strong>—in its middle <strong>(tanmadhye)</strong> is proclaimed <strong>(procyate)</strong> the yoni <strong>(yoniḥ)</strong>, called Kāmākhyā <strong>(kāmākhyā)</strong>, worshipped by the Siddhas <strong>(siddhavanditā)</strong>.</div><div class="tr cl">The lotus with four petals at the location of the anus faces downwards. The yoni in its middle is called Kāmā and is worshipped by adepts.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">adhaḥ-mukham = downward-facing (nom.)<br/>
+guda-sthāne = at place of anus (loc.)<br/>
+paṅkajam = lotus (nom.)<br/>
+yat = which (rel. pron.)<br/>
+catuḥ-dalam = four-petaled (nom.)<br/>
+tat-madhye = in middle of that (loc.)<br/>
+procyate = is proclaimed (pass.)<br/>
+yoniḥ = yoni/source (nom.)<br/>
+kāmākhyā = called Kāmākhyā (nom.)<br/>
+siddha-vanditā = by-Siddhas-worshipped (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Mūlādhāra lotus with yoni Kāmākhyā</strong><br/>
+[√vand - to worship]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">15</div><div class="row__skt" onclick="t(this)">yonimadhye mahāliṅgam paścimābhimukhaṃ sthitam |<br/>
+mastake maṇivad bhinnam yo jānāti sa yogavit ||15||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">In the middle of the yoni <strong>(yonimadhye)</strong> is situated <strong>(sthitam)</strong> the great liṅga <strong>(mahāliṅgam)</strong> facing rearward <strong>(paścimābhimukham)</strong>, split <strong>(bhinnam)</strong> at the top <strong>(mastake)</strong> like a jewel <strong>(maṇivat)</strong>. He who <strong>(yo)</strong> knows <strong>(jānāti)</strong> this is <strong>(sa)</strong> a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">In the middle of the yoni is situated a great liṅga facing rearwards. He who knows the blown [lotus] in the head that is like a jewel knows yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yoni-madhye = in middle of yoni (loc.)<br/>
+mahā-liṅgam = great liṅga (nom.)<br/>
+paścima-abhimukham = facing westward (nom.)<br/>
+sthitam = situated (PPP, nom.)<br/>
+mastake = at top (loc.)<br/>
+maṇi-vat = like jewel (adv.)<br/>
+bhinnam = split (PPP, nom.)<br/>
+yaḥ = who (rel. pron.)<br/>
+jānāti = knows (3rd sg.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Great liṅga in yoni facing rearward</strong><br/>
+[√jñā - to know, √sthā - to stand, √bhid - to split]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">16</div><div class="row__skt" onclick="t(this)">taptacāmīkarābhāsam taḍillekheva visphurat |<br/>
+caturasram puram vahner adho meḍhāt pratiṣṭitam ||16||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Below <strong>(adhaḥ)</strong> the penis <strong>(meḍhāt)</strong> is situated <strong>(pratiṣṭhitam)</strong> the four-cornered <strong>(caturasram)</strong> city <strong>(puram)</strong> of Fire <strong>(vahneḥ)</strong>, shining <strong>(ābhāsam)</strong> like heated gold <strong>(taptacāmīkara)</strong>, flashing <strong>(visphurat)</strong> like a streak of lightning <strong>(taḍillekheva)</strong>.</div><div class="tr cl">Below the penis is situated the four-sided abode of fire, looking like burnished gold, glittering like a streak of lightning.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">tapta-cāmīkara-ābhāsam = heated-gold-shining (nom.)<br/>
+taḍit-lekhā iva = like lightning-streak<br/>
+visphurat = flashing (pres. part.)<br/>
+catuḥ-asram = four-cornered/square (nom.)<br/>
+puram = city (nom.)<br/>
+vahneḥ = of Fire (gen.)<br/>
+adhaḥ = below<br/>
+meḍhāt = from penis (abl.)<br/>
+pratiṣṭhitam = situated (PPP, nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Fire element chakra below genitals</strong><br/>
+[√sphur - to flash/sparkle, √pra-sthā - to be established]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">17</div><div class="row__skt" onclick="t(this)">yat samādhau paraṃ jyotir anantam viśvatomukham |<br/>
+tasmin dṛṣṭe mahāyoge yātāyātam na vidyate ||17||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">That <strong>(yat)</strong> supreme <strong>(param)</strong> light <strong>(jyotir)</strong> in samādhi <strong>(samādhau)</strong>, infinite <strong>(anantam)</strong> and facing all directions <strong>(viśvatomukham)</strong>—when that <strong>(tasmin)</strong> is seen <strong>(dṛṣṭe)</strong> in the great yoga <strong>(mahāyoge)</strong>, there is <strong>(vidyate)</strong> no <strong>(na)</strong> more coming and going <strong>(yātāyātam)</strong>.</div><div class="tr cl">When in absorption the supreme boundless light [shining] in all directions is seen [and] the great yoga has arisen, then there is no [more] coming and going [for the yogi].</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yat = which (rel. pron.)<br/>
+samādhau = in samādhi (loc.)<br/>
+param = supreme (nom.)<br/>
+jyotiḥ = light (nom.)<br/>
+anantam = infinite (nom.)<br/>
+viśvataḥ-mukham = all-directions-facing (nom.)<br/>
+tasmin = in that (loc.)<br/>
+dṛṣṭe = when seen (PPP, loc.)<br/>
+mahā-yoge = in great yoga (loc.)<br/>
+yāta-āyātam = going-coming (nom.)<br/>
+vidyate = is found (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Supreme light ends rebirth cycle</strong><br/>
+[√dṛś - to see, √yā - to go, √ā-yā - to come, √vid - to find]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">18</div><div class="row__skt" onclick="t(this)">svaśabdena bhavet prāṇaḥ adhiṣṭhānam ca tadāśrayaḥ |<br/>
+svādhiṣṭhānam ataḥ cakram meḍhram eva nigadyate ||18||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By the syllable 'sva' <strong>(svaśabdena)</strong> prāṇa <strong>(prāṇaḥ)</strong> is indicated <strong>(bhavet)</strong>, the foundation <strong>(adhiṣṭhānam)</strong> and that which rests upon it <strong>(tadāśrayaḥ)</strong>. Therefore <strong>(ataḥ)</strong> the chakra <strong>(cakram)</strong> at the genital region <strong>(meḍhram eva)</strong> is called <strong>(nigadyate)</strong> Svādhiṣṭhāna <strong>(svādhiṣṭhānam)</strong>.</div><div class="tr cl">Prāṇa arises with the word sva and the adhiṣṭhāna (base??) is its support. Because of this the penis is called the Svādhiṣṭhāna cakra.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">sva-śabdena = by syllable 'sva' (inst.)<br/>
+bhavet = becomes (opt.)<br/>
+prāṇaḥ = prāṇa (nom.)<br/>
+adhiṣṭhānam = foundation (nom.)<br/>
+tat-āśrayaḥ = that-as-support (nom.)<br/>
+sva-adhiṣṭhānam = svādhiṣṭhāna (nom.)<br/>
+ataḥ = therefore<br/>
+cakram = chakra (nom.)<br/>
+meḍhram = genital region (acc.)<br/>
+eva = exactly<br/>
+nigadyate = is called (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Svādhiṣṭhāna chakra etymology</strong><br/>
+[√bhū - to become, √ā-śri - to support/rest upon]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">19</div><div class="row__skt" onclick="t(this)">maṇivat tantunā yatra vāyunā pūryate vapuḥ |<br/>
+tan nābhimaṇḍalaṃ cakram procyate maṇipūrakam ||19||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Where <strong>(yatra)</strong> the body <strong>(vapuḥ)</strong> is filled <strong>(pūryate)</strong> by breath <strong>(vāyunā)</strong> like jewels <strong>(maṇivat)</strong> on a thread <strong>(tantunā)</strong>, that <strong>(tan)</strong> navel region <strong>(nābhimaṇḍalam)</strong> chakra <strong>(cakram)</strong> is called <strong>(procyate)</strong> Maṇipūraka <strong>(maṇipūrakam)</strong>.</div><div class="tr cl">The navel region (nābhimaṇḍalam), where the body is filled with breath like a jewel by a thread, that navel region is called the Maṇipūraka cakra.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">maṇi-vat = like jewel (adv.)<br/>
+tantunā = by thread (inst.)<br/>
+yatra = where (rel. adv.)<br/>
+vāyunā = by air/breath (inst.)<br/>
+pūryate = is filled (pass.)<br/>
+vapuḥ = body (nom.)<br/>
+nābhi-maṇḍalam = navel-region (nom.)<br/>
+cakram = chakra (nom.)<br/>
+procyate = is called (pass.)<br/>
+maṇi-pūrakam = jewel-city (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Maṇipūraka chakra at navel</strong><br/>
+[√pṝ - to fill, √vac - to call/speak]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">20</div><div class="row__skt" onclick="t(this)">dvādaśāre mahācakre puṇyapāpaniyantritaḥ |<br/>
+tāvat jīvo bhramati eva yāvat tattvam na vindati ||20||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">In the twelve-spoked <strong>(dvādaśāre)</strong> great chakra <strong>(mahācakre)</strong>, controlled by merit and sin <strong>(puṇyapāpaniyantritaḥ)</strong>, the soul <strong>(jīvaḥ)</strong> wanders <strong>(bhramati)</strong> for as long <strong>(tāvat eva)</strong> as <strong>(yāvat)</strong> it does not find <strong>(na vindati)</strong> reality <strong>(tattvam)</strong>.</div><div class="tr cl">Bound by its good and bad deeds, the vital principle (jīvaḥ) wanders in the great cakra (anāhata?) with twelve spokes until it finds the ultimate reality (tattvam).</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">dvādaśa-āre = in twelve-spoked (loc.)<br/>
+mahā-cakre = in great chakra (loc.)<br/>
+puṇya-pāpa-niyantritaḥ = merit-sin-controlled (nom.)<br/>
+tāvat = so long (correlative adv.)<br/>
+jīvaḥ = soul (nom.)<br/>
+bhramati = wanders (pres.)<br/>
+eva = indeed<br/>
+yāvat = as long as (correlative adv.)<br/>
+tattvam = essence/reality (acc.)<br/>
+vindati = finds/realizes (pres.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Twelve-spoked chakra and karma</strong><br/>
+[√bhram - to wander, √vid - to know/find]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">21</div><div class="row__skt" onclick="t(this)">ūrdhvam meḍhrād adho nābheḥ kando yoniḥ khagāṇḍavat |<br/>
+tatra nāḍyaḥ samutpannāḥ sahasrāṇi dvisaptatiḥ ||21||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Above the genitals <strong>(meḍhrāt)</strong> and below the navel <strong>(nābheḥ)</strong> is the bulb <strong>(kandaḥ)</strong>, the source <strong>(yoniḥ)</strong>, like a bird's egg <strong>(khagāṇḍavat)</strong>. Therein <strong>(tatra)</strong> have arisen <strong>(samutpannāḥ)</strong> 72,000 <strong>(dvisaptatiḥ sahasrāṇi)</strong> channels <strong>(nāḍyaḥ)</strong>.</div><div class="tr cl">Above the penis and below the navel is a bulb, a yoni like a bird's egg. In it arise the 72,000 channels.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ūrdhvam = above<br/>
+meḍhrāt = from genitals (abl.)<br/>
+adhaḥ = below<br/>
+nābheḥ = from navel (abl.)<br/>
+kandaḥ = bulb/knot (nom.)<br/>
+yoniḥ = source (nom.)<br/>
+khaga-āṇḍa-vat = bird-egg-like<br/>
+tatra = therein<br/>
+nāḍyaḥ = channels (nom. pl.)<br/>
+samutpannāḥ = have arisen (PPP, nom. pl.)<br/>
+sahasrāṇi = thousands (nom. pl.)<br/>
+dvi-saptatiḥ = two-seventy/seventy-two (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>72,000 nāḍīs from kanda bulb</strong><br/>
+[√ut-pad - to arise, √sthā - to be situated]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">22</div><div class="row__skt" onclick="t(this)">teṣu nāḍīsahasreṣu dvisaptatiḥ udāhṛtāḥ |<br/>
+pradhānāḥ prāṇavāhinyo bhūyaḥ tatra daśa smṛtāḥ ||22||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Among those thousands of channels <strong>(nāḍīsahasreṣu)</strong>, 72 <strong>(dvisaptatiḥ)</strong> are declared <strong>(udāhṛtāḥ)</strong> to be principal <strong>(pradhānāḥ)</strong>, carrying prāṇa <strong>(prāṇavāhinyaḥ)</strong>; moreover <strong>(bhūyaḥ)</strong>, among them <strong>(tatra)</strong>, ten <strong>(daśa)</strong> are remembered <strong>(smṛtāḥ)</strong>.</div><div class="tr cl">Among those thousands of channels, 72 important ones are said to carry prāṇa; additionally, of those ten are taught.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">teṣu = among them (loc. pl.)<br/>
+nāḍī-sahasreṣu = in thousands of channels (loc. pl.)<br/>
+dvi-saptatiḥ = seventy-two (nom.)<br/>
+udāhṛtāḥ = are declared (PPP, nom. pl.)<br/>
+pradhānāḥ = principal (nom. pl.)<br/>
+prāṇa-vāhinyaḥ = carrying life-force (nom. pl. fem.)<br/>
+bhūyaḥ = again/moreover<br/>
+tatra = among them<br/>
+daśa = ten<br/>
+smṛtāḥ = are remembered (PPP, nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>72 principal nāḍīs, 10 most important</strong><br/>
+[√vah - to carry, √smṛ - to remember]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">23</div><div class="row__skt" onclick="t(this)">iḍā ca piṅgalā ca eva suṣumṇā ca tṛtīyakā |<br/>
+gāndhārī hastijihvā ca pūṣā ca eva yaśasvinī ||23||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Iḍā <strong>(iḍā)</strong> and Piṅgalā <strong>(piṅgalā)</strong>, and indeed <strong>(eva)</strong> Suṣumṇā <strong>(suṣumṇā)</strong> the third one <strong>(tṛtīyakā)</strong>; Gāndhārī <strong>(gāndhārī)</strong>, Hastijihvā <strong>(hastijihvā)</strong>, and Pūṣā <strong>(pūṣā)</strong>, and indeed <strong>(eva)</strong> Yaśasvinī <strong>(yaśasvinī)</strong>.</div><div class="tr cl">Iḍā and Piṅgalā and Suṣumṇā the third; Gāndhārī and Hastijihvā and Pūṣā and Yaśasvinī;</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">iḍā = Iḍā (nom.)<br/>
+piṅgalā = Piṅgalā (nom.)<br/>
+eva = indeed<br/>
+suṣumṇā = Suṣumṇā (nom.)<br/>
+tṛtīyakā = third one (nom. fem.)<br/>
+gāndhārī = Gāndhārī (nom.)<br/>
+hastijihvā = Hastijihvā (nom.)<br/>
+pūṣā = Pūṣā (nom.)<br/>
+yaśasvinī = Yaśasvinī (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Names of ten nāḍīs (part 1 of 2)</strong><br/>
+[List: Iḍā, Piṅgalā, Suṣumṇā, Gāndhārī, Hastijihvā, Pūṣā, Yaśasvinī]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">24</div><div class="row__skt" onclick="t(this)">alambuṣā kuhūś ca eva śaṅkhinī daśamī smṛtā |<br/>
+evaṃ nāḍīmayaṃ cakraṃ jñātavyaṃ yogibhiḥ sadā ||24||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Alambuṣā <strong>(alambuṣā)</strong>, Kuhū <strong>(kuhūḥ)</strong>, and indeed <strong>(eva)</strong> Śaṅkhinī <strong>(śaṅkhinī)</strong> is remembered <strong>(smṛtā)</strong> as the tenth <strong>(daśamī)</strong>. Thus <strong>(evam)</strong> this wheel-system <strong>(cakram)</strong> made of nāḍīs <strong>(nāḍīmayam)</strong> should always be known <strong>(jñātavyam sadā)</strong> by yogis <strong>(yogibhiḥ)</strong>.</div><div class="tr cl">Alambuṣā and Kuhū; Śaṅkhinī is taught as the tenth. Yogis should always recognise the system of the channels to be thus.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">alambuṣā = Alambuṣā (nom.)<br/>
+kuhūḥ = Kuhū (nom.)<br/>
+eva = indeed<br/>
+śaṅkhinī = Śaṅkhinī (nom.)<br/>
+daśamī = tenth (nom. fem.)<br/>
+smṛtā = remembered (PPP, nom. fem.)<br/>
+evam = thus<br/>
+nāḍī-mayam = made of nāḍīs (nom.)<br/>
+cakram = wheel/system (nom.)<br/>
+jñātavyam = should be known (gerundive, nom.)<br/>
+yogibhiḥ = by yogis (inst. pl.)<br/>
+sadā = always</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Names of ten nāḍīs (part 2 of 2)</strong><br/>
+[√jñā - to know, √smṛ - to remember; List: Alambuṣā, Kuhū, Śaṅkhinī]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">25</div><div class="row__skt" onclick="t(this)">iḍā vāme sthitā bhāge piṅgalā dakṣiṇe sthitā |<br/>
+suṣumṇā madhyadeśe tu gāndhārī vāmacakṣuṣi ||25||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Iḍā <strong>(iḍā)</strong> is situated <strong>(sthitā)</strong> on the left side <strong>(vāme bhāge)</strong>, Piṅgalā <strong>(piṅgalā)</strong> is situated on the right <strong>(dakṣiṇe sthitā)</strong>; Suṣumṇā <strong>(suṣumṇā)</strong> is in the middle region <strong>(madhyadeśe)</strong>, Gāndhārī <strong>(gāndhārī)</strong> in the left eye <strong>(vāmacakṣuṣi)</strong>.</div><div class="tr cl">Iḍā is situated on the left side, Piṅgalā on the right. Suṣumṇā is in the central region, Gāndhārī in the left eye.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">iḍā = Iḍā (nom.)<br/>
+vāme = on left (loc.)<br/>
+sthitā = situated (PPP, nom. fem.)<br/>
+bhāge = side (loc.)<br/>
+piṅgalā = Piṅgalā (nom.)<br/>
+dakṣiṇe = on right (loc.)<br/>
+suṣumṇā = Suṣumṇā (nom.)<br/>
+madhya-deśe = in middle region (loc.)<br/>
+gāndhārī = Gāndhārī (nom.)<br/>
+vāma-cakṣuṣi = in left eye (loc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Location of main nāḍīs in body</strong><br/>
+[√sthā - to stand/be situated]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">26</div><div class="row__skt" onclick="t(this)">dakṣiṇe hastijihvā ca pūṣā karṇe ca dakṣiṇe |<br/>
+yaśasvinī vāmakarṇe hy ānane cāpy alambuṣā ||26||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Hastijihvā <strong>(hastijihvā)</strong> is in the right [eye] <strong>(dakṣiṇe)</strong>, and Pūṣā <strong>(pūṣā)</strong> in the right ear <strong>(karṇe dakṣiṇe)</strong>. Yaśasvinī <strong>(yaśasvinī)</strong> is in the left ear <strong>(vāmakarṇe)</strong>, and also <strong>(api)</strong> Alambuṣā <strong>(alambuṣā)</strong> in the mouth <strong>(ānane)</strong>.</div><div class="tr cl">In the right [eye] is Hastijihvā and Pūṣā is in the right ear. Yaśasvinī is in the left ear and Alambuṣā is in the mouth.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">dakṣiṇe = in right [eye] (loc.)<br/>
+hastijihvā = Hastijihvā (nom.)<br/>
+pūṣā = Pūṣā (nom.)<br/>
+karṇe = in ear (loc.)<br/>
+dakṣiṇe = in right (loc.)<br/>
+yaśasvinī = Yaśasvinī (nom.)<br/>
+vāma-karṇe = in left ear (loc.)<br/>
+ānane = in mouth (loc.)<br/>
+alambuṣā = Alambuṣā (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Location of nāḍīs in sense organs</strong><br/>
+[√sthā - to be situated (implied)]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">27</div><div class="row__skt" onclick="t(this)">kuhūḥ ca liṅgadehe tu mūlasthāne śaṅkhinī |<br/>
+evaṃ dvāram samāśritya tiṣṭhanti daśa nāḍikāḥ ||27||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Kuhū <strong>(kuhūḥ)</strong> is in the genital area <strong>(liṅgadehe)</strong>, and Śaṅkhinī <strong>(śaṅkhinī)</strong> at the root-place <strong>(mūlasthāne)</strong>. Thus <strong>(evam)</strong>, having been placed <strong>(samāśritya)</strong> at doors <strong>(dvāram)</strong>, the ten nāḍīs <strong>(daśa nāḍikāḥ)</strong> remain <strong>(tiṣṭhanti)</strong>.</div><div class="tr cl">Kuhū is in the region of the penis and Śaṅkhini is at the bottom. The ten channels are thus [each] situated at an orifice.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kuhūḥ = Kuhū (nom.)<br/>
+liṅga-dehe = in genital area (loc.)<br/>
+mūla-sthāne = in root-place (loc.)<br/>
+śaṅkhinī = Śaṅkhinī (nom.)<br/>
+evam = thus/so<br/>
+dvāram = door (acc.)<br/>
+samāśritya = having been placed (abs.)<br/>
+tiṣṭhanti = stay (3rd pl.)<br/>
+daśa = ten<br/>
+nāḍikāḥ = nāḍīs (nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Final locations: ten nāḍīs at body gates</strong><br/>
+[√ā-śri - to take shelter/rest, √sthā - to stand]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">28</div><div class="row__skt" onclick="t(this)">satatam prāṇavāhinyaḥ tisro nāḍyaḥ prakīrtitāḥ |<br/>
+iḍāpiṅgalāsuṣumṇāḥ soma-sūrya-agni-devatāḥ ||28||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Three channels <strong>(tisraḥ nāḍyaḥ)</strong> constantly <strong>(satatam)</strong> carrying prāṇa <strong>(prāṇavāhinyaḥ)</strong> are proclaimed <strong>(prakīrtitāḥ)</strong>: Iḍā, Piṅgalā and Suṣumṇā <strong>(iḍāpiṅgalāsuṣumṇāḥ)</strong>, having Soma, Sūrya and Agni as their deities <strong>(somasūryāgnidevatāḥ)</strong>.</div><div class="tr cl">The three channels Iḍā, Piṅgalā and Suṣumṇā are said to be constantly conveying prāṇa and have Soma, Sūrya and Agni as their deities.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">satatam = always/constantly (adv.)<br/>
+prāṇa-vāhinyaḥ = carrying life-force (nom. pl. fem.)<br/>
+tisraḥ = three (nom. pl. fem.)<br/>
+nāḍyaḥ = channels (nom. pl. fem.)<br/>
+prakīrtitāḥ = are proclaimed (PPP, nom. pl. fem.)<br/>
+iḍā-piṅgalā-suṣumṇāḥ = Iḍā, Piṅgalā and Suṣumṇā (dvandva, nom. pl. fem.)<br/>
+soma-sūrya-agni-devatāḥ = having Soma, Sūrya and Agni as deities (BV, nom. pl. fem.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three main nāḍīs with lunar/solar/fire deities</strong><br/>
+[√vah - to carry, √kīrt - to proclaim]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">29</div><div class="row__skt" onclick="t(this)">iḍā vāme sthitā bhāge piṅgalā dakṣiṇe sthitā |<br/>
+suṣumṇā madhyadeśe tu prāṇamārgāśrayāḥ smṛtāḥ ||29||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Iḍā <strong>(iḍā)</strong> is situated <strong>(sthitā)</strong> on the left side <strong>(vāme bhāge)</strong>, Piṅgalā <strong>(piṅgalā)</strong> on the right <strong>(dakṣiṇe sthitā)</strong>, and Suṣumṇā <strong>(suṣumṇā)</strong> in the middle region <strong>(madhyadeśe)</strong>—they are remembered <strong>(smṛtāḥ)</strong> as the foundation <strong>(āśrayāḥ)</strong> of the path of prāṇa <strong>(prāṇamārgāḥ)</strong>.</div><div class="tr cl">Iḍā is situated on the left side, Piṅgalā on the right, Suṣumṇā in the central region. They are said to be the loci of the pathways of prāṇa.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">iḍā = Iḍā (nom.)<br/>
+vāme = on left (loc.)<br/>
+sthitā = situated (PPP, nom. fem.)<br/>
+bhāge = side (loc.)<br/>
+piṅgalā = Piṅgalā (nom.)<br/>
+dakṣiṇe = on right (loc.)<br/>
+suṣumṇā = Suṣumṇā (nom.)<br/>
+madhya-deśe = in middle region (loc.)<br/>
+prāṇa-mārga-āśrayāḥ = source/base of path of prāṇa (nom. pl.)<br/>
+smṛtāḥ = known/remembered (PPP, nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three nāḍīs as foundation of prāṇa pathways</strong><br/>
+[√sthā - to stand, √smṛ - to remember, √ā-śri - to support]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">30</div><div class="row__skt" onclick="t(this)">prāṇo apānaḥ samānaś ca udāno vyāna eva ca |<br/>
+nāgaḥ kūrmaḥ kṛkaraḥ ca devadatto dhanañjayaḥ ||30||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Prāṇa <strong>(prāṇaḥ)</strong>, Apāna <strong>(apānaḥ)</strong>, and Samāna <strong>(samānaḥ)</strong>; Udāna <strong>(udānaḥ)</strong> and indeed <strong>(eva)</strong> Vyāna <strong>(vyānaḥ)</strong>; Nāga <strong>(nāgaḥ)</strong>, Kūrma <strong>(kūrmaḥ)</strong>, and Kṛkara <strong>(kṛkaraḥ)</strong>; Devadatta <strong>(devadattaḥ)</strong> and Dhanañjaya <strong>(dhanañjayaḥ)</strong>.</div><div class="tr cl">Prāṇa, Apāna and Samāna; Udāna and Vyāna; Nāga, Kūrma and Kṛkara; Devadatta [and] Dhanañjaya.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prāṇaḥ = Prāṇa (nom.)<br/>
+apānaḥ = Apāna (nom.)<br/>
+samānaḥ = Samāna (nom.)<br/>
+udānaḥ = Udāna (nom.)<br/>
+vyānaḥ = Vyāna (nom.)<br/>
+eva = indeed<br/>
+nāgaḥ = Nāga (nom.)<br/>
+kūrmaḥ = Kūrma (nom.)<br/>
+kṛkaraḥ = Kṛkara (nom.)<br/>
+devadattaḥ = Devadatta (nom.)<br/>
+dhanañjayaḥ = Dhanañjaya (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Names of ten vital airs (vāyus)</strong><br/>
+[List: Prāṇa, Apāna, Samāna, Udāna, Vyāna, Nāga, Kūrma, Kṛkara, Devadatta, Dhanañjaya]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">31</div><div class="row__skt" onclick="t(this)">hṛdi prāṇo vasen nityam apāno gudamaṇḍale |<br/>
+samāno nābhideśe tu udānaḥ kaṇṭhamadhyagaḥ ||31||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Prāṇa <strong>(prāṇaḥ)</strong> always dwells <strong>(vaset nityam)</strong> in the heart <strong>(hṛdi)</strong>, Apāna <strong>(apānaḥ)</strong> in the anal region <strong>(gudamaṇḍale)</strong>, Samāna <strong>(samānaḥ)</strong> in the navel region <strong>(nābhideśe)</strong>, and Udāna <strong>(udānaḥ)</strong> is located in the middle of the throat <strong>(kaṇṭhamadhyagaḥ)</strong>.</div><div class="tr cl">Prāṇa always dwells in the chest, Apāna in the region of the anus, Samāna in the region of the navel and Udāna in the throat.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">hṛdi = in heart (loc.)<br/>
+prāṇaḥ = Prāṇa (nom.)<br/>
+vaset = dwells (opt.)<br/>
+nityam = always<br/>
+apānaḥ = Apāna (nom.)<br/>
+guda-maṇḍale = in anus-region (loc.)<br/>
+samānaḥ = Samāna (nom.)<br/>
+nābhi-deśe = in navel-region (loc.)<br/>
+udānaḥ = Udāna (nom.)<br/>
+kaṇṭha-madhya-gaḥ = located in middle of throat</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Location of four main vāyus in body</strong><br/>
+[√vas - to dwell, √gam - to go]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">32</div><div class="row__skt" onclick="t(this)">vyāno vyāpī śarīreṣu pradhānāḥ pañca vāyavaḥ |<br/>
+prāṇādhyāḥ pañca vikhyātā nāgādhyāḥ pañca vāyavaḥ ||32||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Vyāna <strong>(vyānaḥ)</strong> is all-pervading <strong>(vyāpī)</strong> in the body <strong>(śarīreṣu)</strong>—these are the five principal <strong>(pañca pradhānāḥ)</strong> vital airs <strong>(vāyavaḥ)</strong>. Five <strong>(pañca)</strong> well-known <strong>(vikhyātāḥ)</strong> beginning with Prāṇa <strong>(prāṇādhyāḥ)</strong>, and five <strong>(pañca)</strong> vital airs <strong>(vāyavaḥ)</strong> beginning with Nāga <strong>(nāgādhyāḥ)</strong>.</div><div class="tr cl">Vyāna pervades bodies. The five chief winds [are]: Five breaths beginning with Prāṇa are taught [and] five beginning with Nāga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vyānaḥ = Vyāna (nom.)<br/>
+vyāpī = pervading (nom.)<br/>
+śarīreṣu = bodies (loc. pl.)<br/>
+pradhānāḥ = principal (nom. pl.)<br/>
+pañca = five<br/>
+vāyavaḥ = vital airs (nom. pl.)<br/>
+prāṇa-ādhyāḥ = beginning with Prāṇa (nom. pl.)<br/>
+pañca = five<br/>
+vikhyātāḥ = well-known (PPP, nom. pl.)<br/>
+nāga-ādhyāḥ = beginning with Nāga (nom. pl.)<br/>
+pañca = five<br/>
+vāyavaḥ = vital airs (nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Vyāna pervades; 5+5 classification of vāyus</strong><br/>
+[√vi-āp - to pervade, √khyā - to be known]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">33</div><div class="row__skt" onclick="t(this)">udgāre nāga ākhyātaḥ kūrma unmīlane smṛtaḥ |<br/>
+kṛkaraḥ kṣutkṛj jñeyo devadatto vijṛmbhaṇe ||33||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Nāga <strong>(nāgaḥ)</strong> is called <strong>(ākhyātaḥ)</strong> the one in belching <strong>(udgāre)</strong>, Kūrma <strong>(kūrmaḥ)</strong> is remembered <strong>(smṛtaḥ)</strong> in opening the eyes <strong>(unmīlane)</strong>. Kṛkara <strong>(kṛkaraḥ)</strong> should be known <strong>(jñeyaḥ)</strong> as causing hunger <strong>(kṣutkṛt)</strong>, and Devadatta <strong>(devadattaḥ)</strong> in yawning <strong>(vijṛmbhaṇe)</strong>.</div><div class="tr cl">Nāga is taught [to be active] when belching, Kūrma when blinking. Kṛkara should be known to create thirst. Devadatta is operational when yawning.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">udgāre = in belching (loc.)<br/>
+nāgaḥ = Nāga (nom.)<br/>
+ākhyātaḥ = is called (PPP, nom.)<br/>
+kūrmaḥ = Kūrma (nom.)<br/>
+unmīlane = in opening eyes (loc.)<br/>
+smṛtaḥ = is remembered (PPP, nom.)<br/>
+kṛkaraḥ = Kṛkara (nom.)<br/>
+kṣut-kṛt = causing hunger<br/>
+jñeyaḥ = should be known<br/>
+devadattaḥ = Devadatta (nom.)<br/>
+vijṛmbhaṇe = in yawning (loc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Functions of subsidiary vāyus</strong><br/>
+[√khyā - to call/declare, √smṛ - to remember, √jñā - to know]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">34</div><div class="row__skt" onclick="t(this)">na jahāti mṛtaṃ cāpi sarvavyāpī dhanañjayaḥ |<br/>
+ete nāḍīsahasreṣu vartante jīvarūpiṇaḥ ||34||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The all-pervading <strong>(sarvavyāpī)</strong> Dhanañjaya <strong>(dhanañjayaḥ)</strong> does not leave <strong>(na jahāti)</strong> even <strong>(api)</strong> the dead body <strong>(mṛtam)</strong>. These [ten vāyus] <strong>(ete)</strong> exist <strong>(vartante)</strong> in the thousands of nāḍīs <strong>(nāḍīsahasreṣu)</strong>, having the form of the vital principle <strong>(jīvarūpiṇaḥ)</strong>.</div><div class="tr cl">Dhanañjaya is all-pervasive and does not leave even a dead [body]. These [breaths] exist in the thousands of channels in the form of the vital principle (jīva).</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">na = not<br/>
+jahāti = leaves (3rd sg.)<br/>
+mṛtam = dead [body] (acc.)<br/>
+sarva-vyāpī = all-pervading (nom.)<br/>
+dhanañjayaḥ = Dhanañjaya (nom.)<br/>
+ete = these (nom. pl.)<br/>
+nāḍī-sahasreṣu = in thousands of nāḍīs (loc. pl.)<br/>
+vartante = exist (3rd pl. mid.)<br/>
+jīva-rūpiṇaḥ = having form of life (nom. pl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Dhanañjaya remains even after death</strong><br/>
+[√hā - to leave, √vṛt - to exist/dwell]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">35</div><div class="row__skt" onclick="t(this)">prāṇāpānavaśo jīvo adhaś ca ūrdhvaṃ pradhāvati |<br/>
+vāmadakṣiṇamārgeṇa cañcalatvāt na dṛśyate ||35||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The vital principle <strong>(jīvaḥ)</strong>, under the control of prāṇa and apāna <strong>(prāṇāpānavaśaḥ)</strong>, rushes <strong>(pradhāvati)</strong> downward and upward <strong>(adhaḥ ca ūrdhvam)</strong> through the left and right paths <strong>(vāmadakṣiṇamārgeṇa)</strong>. Due to its restlessness <strong>(cañcalatvāt)</strong>, it is not seen <strong>(na dṛśyate)</strong>.</div><div class="tr cl">Under the control of prāṇa and apāna the vital principle rushes up and down through the left and right paths. It is so restless that it is imperceptible.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prāṇa-apāna-vaśaḥ = under control of prāṇa and apāna (nom.)<br/>
+jīvaḥ = vital principle (nom.)<br/>
+adhaḥ = down<br/>
+ūrdhvam = up<br/>
+pradhāvati = rushes (3rd sg.)<br/>
+vāma-dakṣiṇa-mārgeṇa = through left and right paths (inst.)<br/>
+cañcalatvāt = due to restlessness (abl.)<br/>
+dṛśyate = is seen (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Jīva rushes up and down via prāṇa-apāna</strong><br/>
+[√dhāv - to rush/run, √dṛś - to see]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">36</div><div class="row__skt" onclick="t(this)">ākṣipto bhujadaṇḍena yathoccalati kandukaḥ |<br/>
+prāṇāpānasamākṣiptaḥ tadvaj jīvo na viśramet ||36||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Just as <strong>(yathā)</strong> a ball <strong>(kandukaḥ)</strong> tossed <strong>(ākṣiptaḥ)</strong> by a stick <strong>(bhujadaṇḍena)</strong> jumps up <strong>(uccalati)</strong>, likewise <strong>(tadvat)</strong> the vital principle <strong>(jīvaḥ)</strong>, tossed about by prāṇa and apāna <strong>(prāṇāpānasamākṣiptaḥ)</strong>, does not rest <strong>(na viśramet)</strong>.</div><div class="tr cl">In the same way that a ball jumps when hit by a stick, so the vital principle, tossed about by prāṇa and apāna, does not rest.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ākṣiptaḥ = tossed (PPP, nom.)<br/>
+bhuja-daṇḍena = by arm/stick (inst.)<br/>
+yathā = as/like<br/>
+uccalati = jumps (3rd sg.)<br/>
+kandukaḥ = ball (nom.)<br/>
+prāṇa-apāna-samākṣiptaḥ = tossed about by prāṇa and apāna (PPP, nom.)<br/>
+tadvat = likewise<br/>
+jīvaḥ = vital principle (nom.)<br/>
+viśramet = rests (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Ball analogy: jīva tossed by prāṇa-apāna</strong><br/>
+[√kṣip - to throw/toss, √ut-cal - to jump, √vi-śram - to rest]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">37</div><div class="row__skt" onclick="t(this)">rajjubaddho yathā śyeno gato api ākṛṣyate punaḥ |<br/>
+guṇabaddhaḥ tathā jīvaḥ prāṇāpānena kṛṣyate ||37||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Just as <strong>(yathā)</strong> a hawk <strong>(śyenaḥ)</strong> bound by a rope <strong>(rajjubaddhaḥ)</strong>, even though it has flown away <strong>(gataḥ api)</strong>, is pulled back <strong>(ākṛṣyate punaḥ)</strong>, likewise <strong>(tathā)</strong> the vital principle <strong>(jīvaḥ)</strong>, bound by the guṇas <strong>(guṇabaddhaḥ)</strong>, is pulled <strong>(kṛṣyate)</strong> by prāṇa and apāna <strong>(prāṇāpānena)</strong>.</div><div class="tr cl">In the same way that a hawk tied by a rope is pulled back when it moves, so the vital principle bound by the guṇas is pulled by prāṇa and apāna.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">rajju-baddhaḥ = tied by rope (BV, nom.)<br/>
+yathā = as/like<br/>
+śyenaḥ = hawk (nom.)<br/>
+gataḥ = moved (PPP, nom.)<br/>
+ākṛṣyate = is pulled back (pass.)<br/>
+punaḥ = again<br/>
+guṇa-baddhaḥ = bound by guṇas (BV, nom.)<br/>
+tathā = likewise<br/>
+jīvaḥ = vital principle (nom.)<br/>
+prāṇa-apānena = by prāṇa and apāna (inst.)<br/>
+kṛṣyate = is pulled (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Hawk analogy: jīva bound by guṇas</strong><br/>
+[√bandh - to bind, √gam - to go, √kṛṣ - to pull/draw]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">38</div><div class="row__skt" onclick="t(this)">apānaḥ karṣati prāṇam prāṇaḥ apānam ca karṣati |<br/>
+khagarajjuvad iti etau yaḥ jānāti sa yogavit ||38||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Apāna <strong>(apānaḥ)</strong> pulls <strong>(karṣati)</strong> Prāṇa <strong>(prāṇam)</strong>, and Prāṇa <strong>(prāṇaḥ)</strong> pulls <strong>(karṣati)</strong> Apāna <strong>(apānam)</strong>. Thus <strong>(iti)</strong> these two <strong>(etau)</strong> are like a bird and rope <strong>(khagarajjuvat)</strong> — he who <strong>(yaḥ)</strong> knows <strong>(jānāti)</strong> this, he <strong>(sa)</strong> is a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">Apāna pulls prāṇa and prāṇa pulls apāna. He who knows these two to be like a bird and a rope knows yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">apānaḥ = Apāna (nom.)<br/>
+karṣati = pulls (3rd sg.)<br/>
+prāṇam = Prāṇa (acc.)<br/>
+prāṇaḥ = Prāṇa (nom.)<br/>
+apānam = Apāna (acc.)<br/>
+ca = and<br/>
+khaga-rajju-vat = like bird-rope (simile)<br/>
+iti = thus<br/>
+etau = these two (nom. du.)<br/>
+yaḥ = who (rel. pron.)<br/>
+jānāti = knows (3rd sg.)<br/>
+sa = he (nom.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Prāṇa-apāna mutual relationship (bird-rope simile)</strong><br/>
+[√kṛṣ - to pull, √jñā - to know]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">39</div><div class="row__skt" onclick="t(this)">hakāreṇa bahiryāti sakāreṇa viśetpunaḥ |<br/>
+haṃsa haṃsa iti amum mantraṃ jīvaḥ japati sarvadā ||39||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By the syllable 'ha' <strong>(hakāreṇa)</strong> it goes out <strong>(bahiryāti)</strong>, by the syllable 'sa' <strong>(sakāreṇa)</strong> it enters <strong>(viśet)</strong> again <strong>(punaḥ)</strong>. "Haṃsa haṃsa" <strong>(haṃsa haṃsa)</strong> — thus <strong>(iti)</strong> this <strong>(amum)</strong> mantra <strong>(mantram)</strong> the vital principle <strong>(jīvaḥ)</strong> repeats <strong>(japati)</strong> constantly <strong>(sarvadā)</strong>.</div><div class="tr cl">The vital principle goes out with the syllable ha [and] goes in and down with the syllable sa; it constantly repeats this mantra, haṃsa haṃsa.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ha-kāreṇa = with syllable 'ha' (inst.)<br/>
+bahiḥ = out<br/>
+yāti = goes (3rd sg.)<br/>
+sa-kāreṇa = with syllable 'sa' (inst.)<br/>
+viśet = enters (opt.)<br/>
+punaḥ = again<br/>
+haṃsa haṃsa = haṃsa haṃsa<br/>
+iti = thus<br/>
+amum = this (acc.)<br/>
+mantram = mantra (acc.)<br/>
+jīvaḥ = vital principle (nom.)<br/>
+japati = repeats (3rd sg.)<br/>
+sarvadā = always</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Haṃsa mantra of breath</strong><br/>
+[√yā - to go, √viś - to enter, √jap - to repeat]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">40</div><div class="row__skt" onclick="t(this)">ṣaṭśatāni divā rātrau sahasrāṇi ekaviṃśatiḥ |<br/>
+etat saṅkhyānvitam mantram jīvaḥ japati sarvadā ||40||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Twenty-one <strong>(ekaviṃśatiḥ)</strong> thousand <strong>(sahasrāṇi)</strong> six hundred <strong>(ṣaṭśatāni)</strong> [times] by day and by night <strong>(divā rātrau)</strong> — this <strong>(etat)</strong> mantra <strong>(mantram)</strong> accompanied by [its] number <strong>(saṅkhyānvitam)</strong> the vital principle <strong>(jīvaḥ)</strong> constantly repeats <strong>(japati sarvadā)</strong>.</div><div class="tr cl">The vital principle always repeats this mantra 21,600 times in a day and a night.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ṣaṭ-śatāni = six hundreds (nom. pl.)<br/>
+divā = by day<br/>
+rātrau = by night (loc.)<br/>
+sahasrāṇi = thousands (nom. pl.)<br/>
+eka-viṃśatiḥ = twenty-one (nom.)<br/>
+etat = this (acc.)<br/>
+saṅkhyā-anvitam = accompanied by number (acc.)<br/>
+mantram = mantra (acc.)<br/>
+jīvaḥ = vital principle (nom.)<br/>
+japati = repeats (3rd sg.)<br/>
+sarvadā = always</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>21,600 daily breaths</strong><br/>
+[√jap - to repeat, √i - to go (anvitam)]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">41</div><div class="row__skt" onclick="t(this)">ajapā nāma gāyatrī yoginām mokṣadāyinī |<br/>
+asyāḥ saṅkalpamātreṇa naraḥ pāpād vimucyate ||41||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The Gāyatrī <strong>(gāyatrī)</strong> named <strong>(nāma)</strong> Ajapā <strong>(ajapā)</strong> is liberation-bestowing <strong>(mokṣadāyinī)</strong> for yogis <strong>(yoginām)</strong>. By mere intention <strong>(saṅkalpamātreṇa)</strong> regarding this <strong>(asyāḥ)</strong>, a person <strong>(naraḥ)</strong> is released <strong>(vimucyate)</strong> from sin <strong>(pāpāt)</strong>.</div><div class="tr cl">[This], the Gāyatrī called Ajapā, bestows liberation upon yogis. Merely by thinking of it a man is freed from sin.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ajapā = Ajapā (nom.)<br/>
+nāma = named<br/>
+gāyatrī = Gāyatrī (nom.)<br/>
+yoginām = of yogis (gen. pl.)<br/>
+mokṣa-dāyinī = bestowing liberation (nom. fem.)<br/>
+asyāḥ = of this (gen. fem.)<br/>
+saṅkalpa-mātreṇa = by mere thought (inst.)<br/>
+naraḥ = man (nom.)<br/>
+pāpāt = from sin (abl.)<br/>
+vimucyate = is freed (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Ajapā Gāyatrī liberates</strong><br/>
+[√dā - to give, √muc - to release]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">42</div><div class="row__skt" onclick="t(this)">ajapāsadṛśī vidyā ajapāsadṛśaṃ tapaḥ |<br/>
+ajapāsadṛśaṃ puṇyam na bhūtam na bhaviṣyati ||42||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">A knowledge <strong>(vidyā)</strong> similar to Ajapā <strong>(ajapāsadṛśī)</strong>, an austerity <strong>(tapaḥ)</strong> similar to Ajapā <strong>(ajapāsadṛśam)</strong>, a merit <strong>(puṇyam)</strong> similar to Ajapā <strong>(ajapāsadṛśam)</strong> — has not existed <strong>(na bhūtam)</strong> and will not exist <strong>(na bhaviṣyati)</strong>.</div><div class="tr cl">There never has been nor never will be a mantra like Ajapā, an austerity like Ajapā or a meritorious action like Ajapā.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ajapā-sadṛśī = like Ajapā (nom. fem.)<br/>
+vidyā = knowledge (nom.)<br/>
+ajapā-sadṛśam = like Ajapā (nom. n.)<br/>
+tapaḥ = austerity (nom.)<br/>
+puṇyam = merit (nom.)<br/>
+na = not<br/>
+bhūtam = has been (PPP)<br/>
+na = not<br/>
+bhaviṣyati = will be (fut.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Supremacy of Ajapā</strong><br/>
+[√bhū - to be, √bhū (bhaviṣyati) - to become]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">43</div><div class="row__skt" onclick="t(this)">kuṇḍalinyāḥ samudbhūtā gāyatrī prāṇadhāriṇī |<br/>
+praṇavādyā tathā vidyā yas tām vetti sa yogavit ||43||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Gāyatrī <strong>(gāyatrī)</strong>, having arisen <strong>(samudbhūtā)</strong> from Kuṇḍalinī <strong>(kuṇḍalinyāḥ)</strong>, is prāṇa-bearing <strong>(prāṇadhāriṇī)</strong>; and likewise <strong>(tathā)</strong> the knowledge <strong>(vidyā)</strong> beginning with Praṇava [Om] <strong>(praṇavādyā)</strong> — whoever <strong>(yaḥ)</strong> knows <strong>(vetti)</strong> her <strong>(tām)</strong>, that one <strong>(sa)</strong> is a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">And Gāyatrī, the mantra (vidyā) starting with Om, which bears Prāṇa, arises from Kuṇḍalinī. Who knows her knows yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kuṇḍalinyāḥ = from Kuṇḍalinī (abl. fem.)<br/>
+samudbhūtā = arisen (PPP, nom. fem.)<br/>
+gāyatrī = Gāyatrī (nom.)<br/>
+prāṇa-dhāriṇī = bearing prāṇa (nom. fem.)<br/>
+praṇava-ādyā = beginning with Om (nom. fem.)<br/>
+tathā = likewise<br/>
+vidyā = knowledge/mantra (nom.)<br/>
+yaḥ = who (rel. pron.)<br/>
+tām = her (acc.)<br/>
+vetti = knows (3rd sg.)<br/>
+sa = he (nom.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Gāyatrī from Kuṇḍalinī</strong><br/>
+[√bhū - to arise, √vid - to know, √dhṛ - to hold]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">44</div><div class="row__skt" onclick="t(this)">kandordhvaṃ kuṇḍalī śaktir aṣṭadhā kuṭilikṛtā |<br/>
+brahmadvāramukhaṃ nityaṃ sukhena āvṛtya tiṣṭhati ||44||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Above the bulb <strong>(kandordhvam)</strong>, the power <strong>(śaktiḥ)</strong> Kuṇḍalinī <strong>(kuṇḍalī)</strong>, made coiled eightfold <strong>(aṣṭadhā kuṭilikṛtā)</strong>, dwells <strong>(tiṣṭhati)</strong> constantly <strong>(nityam)</strong>, having covered <strong>(āvṛtya)</strong> the opening of Brahman's door <strong>(brahmadvāramukham)</strong> comfortably <strong>(sukhena)</strong>.</div><div class="tr cl">Above the Bulb is the Śakti Kuṇḍalinī which is coiled eight times and constantly dwells at ease covering the opening of the doorway of Brahman.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kanda-ūrdhvam = above the bulb<br/>
+kuṇḍalī = Kuṇḍalinī (nom.)<br/>
+śaktiḥ = power (nom.)<br/>
+aṣṭa-dhā = eightfold<br/>
+kuṭilī-kṛtā = made coiled (PPP)<br/>
+brahma-dvāra-mukham = mouth of Brahman's door (acc.)<br/>
+nityam = constantly<br/>
+sukhena = with ease (inst.)<br/>
+āvṛtya = covering (abs.)<br/>
+tiṣṭhati = dwells (3rd sg.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Kuṇḍalinī location and posture</strong><br/>
+[√sthā - to stand/dwell, √vṛ - to cover]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">45</div><div class="row__skt" onclick="t(this)">yena margeṇa gantavyaṃ brahmasthānam nirāmayam |<br/>
+mukhenā āchādya tad dvāraṃ prasupta parameśvarī ||45||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By which <strong>(yena)</strong> path <strong>(margeṇa)</strong> one should go to <strong>(gantavyam)</strong> the disease-free <strong>(nirāmayam)</strong> abode of Brahman <strong>(brahmasthānam)</strong>, that <strong>(tat)</strong> door <strong>(dvāram)</strong> the supreme goddess <strong>(parameśvarī)</strong>, sleeping <strong>(prasupta)</strong>, covers <strong>(āchādya)</strong> with her mouth <strong>(mukhena)</strong>.</div><div class="tr cl">The sleeping supreme goddess covers with her mouth the opening of the path by which the disease-free place of Brahman is to be reached.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yena = by which (inst.)<br/>
+margeṇa = by path (inst.)<br/>
+gantavyam = to be gone (gerundive)<br/>
+brahma-sthānam = place of Brahman (nom.)<br/>
+nir-āmayam = disease-free (nom.)<br/>
+mukhena = with mouth (inst.)<br/>
+āchādya = covering (abs.)<br/>
+tat = that (acc.)<br/>
+dvāram = door (acc.)<br/>
+prasupta = sleeping (PPP, nom. fem.)<br/>
+parama-īśvarī = supreme goddess (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Sleeping goddess guards door to Brahman</strong><br/>
+[√gam - to go, √chād - to cover, √svap - to sleep]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">46</div><div class="row__skt" onclick="t(this)">prabuddhā vahniyogena manasā marutā saha |<br/>
+śucīvad guṇam ādāya vrajaty ūrdhvaṃ suṣumṇayā ||46||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">When awakened <strong>(prabuddhā)</strong> by union with fire <strong>(vahniyogena)</strong>, together with <strong>(saha)</strong> the mind <strong>(manasā)</strong> and the breath <strong>(marutā)</strong>, like a needle <strong>(śucīvat)</strong> taking <strong>(ādāya)</strong> a thread <strong>(guṇam)</strong>, she goes <strong>(vrajati)</strong> upward <strong>(ūrdhvam)</strong> through Suṣumṇā <strong>(suṣumṇayā)</strong>.</div><div class="tr cl">Awakened by the application of fire, together with the mind [and] the breath, she goes upwards along the Suṣumṇā like a needle taking a thread.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prabuddhā = awakened (PPP, nom. fem.)<br/>
+vahni-yogena = by application of fire (inst.)<br/>
+manasā = with mind (inst.)<br/>
+marutā = with breath (inst.)<br/>
+saha = together<br/>
+śucī-vat = like a needle<br/>
+guṇam = thread (acc.)<br/>
+ādāya = taking (abs.)<br/>
+vrajati = goes (3rd sg.)<br/>
+ūrdhvam = upward<br/>
+suṣumṇayā = by Suṣumṇā (inst.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Awakening Kuṇḍalinī (needle-thread simile)</strong><br/>
+[√budh - to awaken, √vraj - to go, √ā-dā - to take]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">47</div><div class="row__skt" onclick="t(this)">prasphuradbhujagākārā padmatantunubhā śubhā |<br/>
+prabuddhā vahniyogena vrajaty ūrdhvam suṣumṇayā ||47||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having the appearance <strong>(ākārā)</strong> of a shimmering <strong>(prasphurat)</strong> serpent <strong>(bhujaga)</strong>, resembling <strong>(nibhā)</strong> a lotus filament <strong>(padmatantu)</strong>, the auspicious one <strong>(śubhā)</strong>, awakened <strong>(prabuddhā)</strong> by union with fire <strong>(vahniyogena)</strong>, travels <strong>(vrajati)</strong> upward <strong>(ūrdhvam)</strong> through Suṣumṇā <strong>(suṣumṇayā)</strong>.</div><div class="tr cl">Having the form of a glistening snake [and] resembling a lotus thread, the goodly [Kuṇḍalinī], awakened by the application of fire, goes upwards along the Suṣumṇā.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prasphurat-bhujaga-ākārā = having form of glistening snake (nom. fem.)<br/>
+padma-tantu-nibhā = resembling lotus thread (nom. fem.)<br/>
+śubhā = goodly/auspicious (nom. fem.)<br/>
+prabuddhā = awakened (PPP, nom. fem.)<br/>
+vahni-yogena = by application of fire (inst.)<br/>
+vrajati = goes (3rd sg.)<br/>
+ūrdhvam = upward<br/>
+suṣumṇayā = by Suṣumṇā (inst.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Kuṇḍalinī appearance</strong><br/>
+[√sphur - to shimmer, √vraj - to go, √budh - to awaken]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">48</div><div class="row__skt" onclick="t(this)">uddhaṭayet kapāṭaṃ tu yathā kuñcikayā haṭhāt |<br/>
+kuṇḍalinyā tathā mokṣadvāram vibhedayet ||48||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Just as <strong>(yathā)</strong> one might forcibly open <strong>(uddhaṭayet haṭhāt)</strong> a bolt <strong>(kapāṭam)</strong> with a key <strong>(kuñcikayā)</strong>, similarly <strong>(tathā)</strong> one should pierce open <strong>(vibhedayet)</strong> the door of liberation <strong>(mokṣadvāram)</strong> with Kuṇḍalinī <strong>(kuṇḍalinyā)</strong>.</div><div class="tr cl">In the same way that one might compel a door to open using a key, so does the yogi break open the doorway to liberation using Kuṇḍalinī.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">uddhaṭayet = one might open (opt.)<br/>
+kapāṭam = door (acc.)<br/>
+tu = indeed<br/>
+yathā = as/just as<br/>
+kuñcikayā = with key (inst.)<br/>
+haṭhāt = by force<br/>
+kuṇḍalinyā = with Kuṇḍalinī (inst.)<br/>
+tathā = so/likewise<br/>
+mokṣa-dvāram = door to liberation (acc.)<br/>
+vibhedayet = should break open (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Opening liberation's door (key analogy)</strong><br/>
+[√haṭ - to open forcibly, √bhid - to pierce/break]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">49</div><div class="row__skt" onclick="t(this)">kandordhvaṃ kuṇḍalī śaktiḥ suptā mokṣāya yoginām |<br/>
+bandhanāya ca mūḍhānāṃ yas tāṃ vetti sa yogavit ||49||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Above the bulb <strong>(kandordhvam)</strong>, the power <strong>(śaktiḥ)</strong> Kuṇḍalinī <strong>(kuṇḍalī)</strong>, sleeping <strong>(suptā)</strong>, [exists] for the liberation <strong>(mokṣāya)</strong> of yogis <strong>(yoginām)</strong>, and <strong>(ca)</strong> for the bondage <strong>(bandhanāya)</strong> of the confused <strong>(mūḍhānām)</strong>. Whoever <strong>(yaḥ)</strong> knows <strong>(vetti)</strong> her <strong>(tām)</strong>, that one <strong>(sa)</strong> is a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">The Śakti Kuṇḍalinī who sleeps above the Bulb leads to liberation for yogis and bondage for fools. Who knows her knows yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kanda-ūrdhvam = above the bulb<br/>
+kuṇḍalī = Kuṇḍalinī (nom.)<br/>
+śaktiḥ = power (nom.)<br/>
+suptā = sleeping (PPP, nom. fem.)<br/>
+mokṣāya = for liberation (dat.)<br/>
+yoginām = of yogis (gen. pl.)<br/>
+bandhanāya = for bondage (dat.)<br/>
+ca = and<br/>
+mūḍhānām = of fools (gen. pl.)<br/>
+yaḥ = who (rel. pron.)<br/>
+tām = her (acc.)<br/>
+vetti = knows (3rd sg.)<br/>
+sa = he (nom.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Kuṇḍalinī for liberation or bondage</strong><br/>
+[√svap - to sleep, √vid - to know, √bandh - to bind]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">50</div><div class="row__skt" onclick="t(this)">kṛtvā sampuṭitau karau dṛḍhataraṃ baddhvā atha padmāsanam<br/>
+gāḍhaṃ vakṣasi sannidhāya cibukaṃ dhyāyaṃś ca tad cetasi |<br/>
+vāraṃ vāram apānam ūrdhvam anilaṃ proccālayan pūritam<br/>
+muñcan prāṇam upaiti bodham atulam śaktiprabhāvān naraḥ ||50||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having made <strong>(kṛtvā)</strong> the two hands <strong>(karau)</strong> joined together <strong>(sampuṭitau)</strong>, having very firmly bound <strong>(dṛḍhataram baddhvā)</strong> the lotus posture <strong>(padmāsanam)</strong>, firmly <strong>(gāḍham)</strong> placing <strong>(sannidhāya)</strong> the chin <strong>(cibukam)</strong> on the chest <strong>(vakṣasi)</strong>, and meditating <strong>(dhyāyan)</strong> on that <strong>(tat)</strong> in the heart <strong>(cetasi)</strong>, repeatedly <strong>(vāraṃ vāram)</strong> driving upward <strong>(proccālayan ūrdhvam)</strong> Apāna <strong>(apānam)</strong> — the vital air <strong>(anilam)</strong> being filled <strong>(pūritam)</strong> — releasing <strong>(muñcan)</strong> Prāṇa <strong>(prāṇam)</strong>, a person <strong>(naraḥ)</strong> attains <strong>(upaiti)</strong> incomparable <strong>(atulam)</strong> awakening <strong>(bodham)</strong> from the power of Śakti <strong>(śaktiprabhāvāt)</strong>.</div><div class="tr cl">Having cupped the hands together and bound the lotus posture very firmly, firmly placing the chin on the chest and meditating on that in the mind, again and again raising Apāna upward, the breath filled, releasing Prāṇa, a man attains incomparable knowledge from the power of Śakti.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kṛtvā = having made (abs.)<br/>
+sampuṭitau = cupped together (acc. du.)<br/>
+karau = hands (acc. du.)<br/>
+dṛḍha-taram = very firmly (adv.)<br/>
+baddhvā = having bound (abs.)<br/>
+atha = then<br/>
+padma-āsanam = lotus posture (acc.)<br/>
+gāḍham = firmly<br/>
+vakṣasi = on chest (loc.)<br/>
+sannidhāya = placing (abs.)<br/>
+cibukam = chin (acc.)<br/>
+dhyāyan = meditating (pres. part.)<br/>
+tat = on that<br/>
+cetasi = in mind (loc.)<br/>
+vāram vāram = again and again<br/>
+apānam = Apāna (acc.)<br/>
+ūrdhvam = upward<br/>
+anilam = breath (acc.)<br/>
+proccālayan = raising up (causative pres. part.)<br/>
+pūritam = filled (PPP, acc.)<br/>
+muñcan = releasing (pres. part.)<br/>
+prāṇam = Prāṇa (acc.)<br/>
+upaiti = attains (3rd sg.)<br/>
+bodham = knowledge (acc.)<br/>
+atulam = incomparable (acc.)<br/>
+śakti-prabhāvāt = from power of Śakti (abl.)<br/>
+naraḥ = man (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Mahāmudrā technique</strong><br/>
+[√kṛ - to do, √bandh - to bind, √dhyai - to meditate, √muc - to release, √i - to attain]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">51</div><div class="row__skt" onclick="t(this)">aṅgānāṃ mardanaṃ kṛtvā śramasaṃjātavāriṇā |<br/>
+kaṭvāmlalavaṇatyāgī bhūtvā bhojanam ācaret ||51||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">After having rubbed <strong>(mardanam kṛtvā)</strong> the limbs <strong>(aṅgānām)</strong> with sweat—water produced from exertion <strong>(śramasaṃjātavāriṇā)</strong>—and having become <strong>(bhūtvā)</strong> one who rejects <strong>(tyāgī)</strong> the pungent, sour, and salty <strong>(kaṭvāmlalavaṇa)</strong>, one should consume <strong>(ācaret)</strong> food <strong>(bhojanam)</strong>.</div><div class="tr cl">Having massaged the limbs with water born of exertion [sweat], having abandoned pungent, sour and salty [foods], one should take food.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">aṅgānām = of limbs (gen. pl.)<br/>
+mardanam = rubbing/massage (acc.)<br/>
+kṛtvā = having done (abs.)<br/>
+śrama-saṃjāta-vāriṇā = with water born of exertion (inst.)<br/>
+kaṭu-āmla-lavaṇa-tyāgī = abandoning pungent, sour, salty (nom.)<br/>
+bhūtvā = having become (abs.)<br/>
+bhojanam = food (acc.)<br/>
+ācaret = should take (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Post-practice care and diet</strong><br/>
+[√mṛd - to rub/massage, √kṛ - to do, √tyaj - to abandon, √car - to practice]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">52</div><div class="row__skt" onclick="t(this)">brahmacārī mitāhārī yogī yogaparāyaṇaḥ |<br/>
+abdād ūrdhvaṃ bhavet siddho nātra kāryā vicāraṇā ||52||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The yogi <strong>(yogī)</strong> who practices celibacy <strong>(brahmacārī)</strong>, eats moderately <strong>(mitāhārī)</strong>, and is completely devoted to yoga <strong>(yogaparāyaṇaḥ)</strong> will become <strong>(bhavet)</strong> accomplished <strong>(siddhaḥ)</strong> within a year <strong>(abdād ūrdhvam)</strong>. Here <strong>(atra)</strong>, no <strong>(na)</strong> further deliberation <strong>(vicāraṇā)</strong> need be undertaken <strong>(kāryā)</strong>.</div><div class="tr cl">A celibate, moderate eater, yogi devoted to yoga becomes perfected after a year — no inquiry should be made about this.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">brahmacārī = celibate (nom.)<br/>
+mita-āhārī = moderate eater (nom.)<br/>
+yogī = yogi (nom.)<br/>
+yoga-parāyaṇaḥ = devoted to yoga (nom.)<br/>
+abdāt = from year (abl.)<br/>
+ūrdhvam = after<br/>
+bhavet = becomes (opt.)<br/>
+siddhaḥ = perfected (nom.)<br/>
+na = not<br/>
+atra = here<br/>
+kāryā = to be done<br/>
+vicāraṇā = inquiry (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Brahmacarī practices: perfection in one year</strong><br/>
+[√bhū - to become, √sidh - to accomplish]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">53</div><div class="row__skt" onclick="t(this)">susnigdhaṃ madhurāhāram caturthāmśavivarjitam<br/>
+bhuñhate surasamprītyai mitāhārī sa ucyate</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">He who eats <strong>(bhuñhate)</strong> very unctuous <strong>(susnigdham)</strong>, sweet food <strong>(madhurāhāram)</strong>, leaving aside the fourth part <strong>(caturthāmśavivarjitam)</strong>, in order to please <strong>(samprītyai)</strong> the gods <strong>(sura)</strong>—he <strong>(saḥ)</strong> is called <strong>(ucyate)</strong> a moderate eater <strong>(mitāhārī)</strong>.</div><div class="tr cl">He who, in order to please the gods, eats unctuous, sweet food leaving aside a quarter of it is said to be one who has a restricted diet.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">su-snigdham = very unctuous/pleasant (acc. sg. n.)<br/>
+madhura-āhāram = sweet food (acc. sg.)<br/>
+caturtha-aṃśa-vivarjitam = leaving fourth part aside (acc. sg.)<br/>
+bhuñhate = eats (3rd sg. mid.)<br/>
+sura-samprītyai = for gods' satisfaction (dat.)<br/>
+mita-āhārī = moderate eater (nom. sg.)<br/>
+saḥ = he (nom.)<br/>
+ucyate = is called (3rd sg. pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Definition of mitāhāra (moderate eating)</strong><br/>
+[√bhuj - to eat, √vac - to call, √vṛj - to abandon]<br/>
+Eating pleasant food while leaving 1/4 of stomach empty.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">54</div><div class="row__skt" onclick="t(this)">kandordhaṃ kuṇḍalī śakriḥ suptā mokṣāya yoginām<br/>
+banshanāya ca mūḍānām yastāṃ vetti sa yogavit</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Above the kanda-bulb <strong>(kandordhvam)</strong> the coiled <strong>(kuṇḍalī)</strong> Śakti <strong>(śakriḥ)</strong> lies sleeping <strong>(suptā)</strong>, for the liberation <strong>(mokṣāya)</strong> of yogis <strong>(yoginām)</strong> and <strong>(ca)</strong> for the bondage <strong>(banshanāya)</strong> of fools <strong>(mūḍānām)</strong>. Who <strong>(yaḥ)</strong> knows <strong>(vetti)</strong> her <strong>(tām)</strong>, he <strong>(saḥ)</strong> [is] a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">The coiled goddess sleeps above the bulb for the liberation of yogis. Because it binds bondage it is called a lock.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kanda-ūrdhvam = above the bulb (adv.)<br/>
+kuṇḍalī = coiled (nom. sg. f.)<br/>
+śakriḥ = Śakti/power (nom. sg.)<br/>
+suptā = sleeping (nom. sg. f.)<br/>
+mokṣāya = for liberation (dat.)<br/>
+yoginām = of yogis (gen. pl.)<br/>
+banshanāya = for bondage (dat.)<br/>
+ca = and<br/>
+mūḍānām = of fools (gen. pl.)<br/>
+yaḥ = who (nom.)<br/>
+tām = her (acc.)<br/>
+vetti = knows (3rd sg.)<br/>
+saḥ = he (nom.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Kuṇḍalinī: liberation or bondage</strong><br/>
+[√vid - to know]<br/>
+The coiled Śakti brings liberation to yogis who know her, bondage to fools who don't.</div></section></div></div>
+</article>
+
+<article class="sutra" id="sec-mudr-bandh-seals-and-locks" data-short="MUDRĀBANDHĀḤ">
+<div class="sec"><span class="num">3</span><span class="lbl">MUDRĀBANDHĀḤ (SEALS AND LOCKS)</span><span class="rule"></span></div>
+<div class="row is-mula"><div class="row__num">55</div><div class="row__skt" onclick="t(this)">mahāmudṛām nabhomudrāmuddīyāṇam jalandharam<br/>
+mūlabandhaṃ ca yo vetti sa yogī muktibhājanam</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Whoever <strong>(yaḥ)</strong> knows <strong>(vetti)</strong> mahāmudrā <strong>(mahāmudrām)</strong>, nabhomudrā <strong>(nabhomudrām)</strong>, uḍḍīyāṇa <strong>(uḍḍīyāṇam)</strong>, jālandhara <strong>(jalandharam)</strong>, and <strong>(ca)</strong> mūlabandha <strong>(mūlabandham)</strong>—that <strong>(saḥ)</strong> yogi <strong>(yogī)</strong> [is] a vessel of liberation <strong>(muktibhājanam)</strong>.</div><div class="tr cl">The yogi who knows Mahāmudrā, Nabhomudrā, Uḍḍīyāna, Jālandhara and Mūlabandha is worthy of liberation.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">mahā-mudrām = great seal (acc. sg. f.)<br/>
+nabha-mudrām = sky seal (acc. sg. f.)<br/>
+uḍḍīyāṇam = uḍḍīyāṇa (acc. sg. n.)<br/>
+jalandharam = jālandhara (acc. sg. n.)<br/>
+mūla-bandham = root lock (acc.)<br/>
+ca = and<br/>
+yaḥ = who (nom.)<br/>
+vetti = knows (3rd sg.)<br/>
+saḥ = he (nom.)<br/>
+yogī = yogi (nom.)<br/>
+mukti-bhājanam = vessel/receptacle of liberation (nom. sg. n.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>List of the five main mudrās/bandhas</strong><br/>
+[√vid - to know, √bhaj - to partake/share]<br/>
+Enumeration of the essential practices. The yogi becomes a receptacle/vessel (bhājana) for liberation.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">56</div><div class="row__skt" onclick="t(this)">apānaprāṇayoraikyam kṣayo mūtrapurīṣayoḥ<br/>
+yuvā bhvati vṛddho api satatam mūlabandhanāt</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Unity <strong>(aikyam)</strong> of apāna and prāṇa <strong>(apānaprāṇayoḥ)</strong>, reduction <strong>(kṣayaḥ)</strong> of urine and feces <strong>(mūtrapurīṣayoḥ)</strong>—even <strong>(api)</strong> an old person <strong>(vṛddhaḥ)</strong> becomes <strong>(bhavati)</strong> youthful <strong>(yuvā)</strong> by constant <strong>(satatam)</strong> [practice of] mūlabandha <strong>(mūlabandhanāt)</strong>.</div><div class="tr cl">The union of Prāṇa and Apāna, reduction of urine and faeces, even an old man becoming young: [these arise] from the continuous application of Mūlabandha.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">apāna-prāṇayoḥ = of apāna and prāṇa (gen. dual)<br/>
+aikyam = unity (nom. sg.)<br/>
+kṣayaḥ = decrease (nom.)<br/>
+mūtra-purīṣayoḥ = of urine and feces (gen. dual)<br/>
+yuvā = youth (nom.)<br/>
+bhavati = becomes (3rd sg.)<br/>
+vṛddhaḥ = old man (nom.)<br/>
+api = even<br/>
+satatam = constantly (adv.)<br/>
+mūla-bandhanāt = from root lock (abl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Benefits of mūlabandha</strong><br/>
+[√bhū - to become, √kṣi - to diminish]<br/>
+Uniting the two main breaths and rejuvenation.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">57</div><div class="row__skt" onclick="t(this)">pārṣṇibhāgena sampīḍya yonimākuṇcyed gudam<br/>
+apānamūrdhvamākṛṣya mulabandho ayamucyate</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having pressed <strong>(sampīḍya)</strong> the perineum <strong>(yonim)</strong> with the heel-part <strong>(pārṣṇibhāgena)</strong>, one should contract <strong>(ākuñcyet)</strong> the anus <strong>(gudam)</strong>, drawing <strong>(ākṛṣya)</strong> apāna <strong>(apānam)</strong> upward <strong>(ūrdhvam)</strong>. This <strong>(ayam)</strong> is called <strong>(ucyate)</strong> 'mūlabandha' <strong>(mūlabandhaḥ)</strong>.</div><div class="tr cl">Press the perineum with the side of the heel and clench the anus. When Apāna is drawn up this is called Mūlabandha, the Root Lock.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">pārṣṇi-bhāgena = with heel part (inst.)<br/>
+sampīḍya = pressing (abs.)<br/>
+yonim = perineum (acc.)<br/>
+ākuñcyet = should contract (3rd sg. opt.)<br/>
+gudam = anus (acc.)<br/>
+apānam = apāna breath (acc.)<br/>
+ūrdhvam = upward (adv.)<br/>
+ākṛṣya = drawing (abs.)<br/>
+mūla-bandhaḥ = root lock (nom.)<br/>
+ayam = this (nom.)<br/>
+ucyate = is called (3rd sg. pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Technique of mūlabandha</strong><br/>
+[√pīḍ - to press, √kuñc - to contract, √kṛṣ - to draw, √vac - to call]<br/>
+Press perineum with heel, contract anus, draw apāna upward.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">58</div><div class="row__skt" onclick="t(this)">uddīṇam kurute yasmād aviśrāntaṃ mahākhagaḥ<br/>
+uddiyānaṃ tadeva syātttra bandho vidhīyate</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Because <strong>(yasmāt)</strong> the great bird <strong>(mahākhagaḥ)</strong> performs <strong>(kurute)</strong> upward flight <strong>(uḍḍīyanam)</strong> unceasingly <strong>(aviśrāntam)</strong>, that <strong>(tat)</strong> indeed <strong>(eva)</strong> would be <strong>(syāt)</strong> 'uḍḍīyāna' <strong>(uḍḍiyānam)</strong>. There <strong>(tatra)</strong> the bandha <strong>(bandhaḥ)</strong> is prescribed <strong>(vidhīyate)</strong>.</div><div class="tr cl">Because the great bird tirelessly flies up, it is that which is Uḍḍiyāna... ?</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">uḍḍīyanam = upward flight (acc.)<br/>
+kurute = makes/does (3rd sg. mid.)<br/>
+yasmāt = because (abl.)<br/>
+aviśrāntam = unceasingly, without rest (adv.)<br/>
+mahā-khagaḥ = great bird (nom.)<br/>
+uḍḍiyānam = uḍḍīyāna (nom.)<br/>
+tat = that (nom. n.)<br/>
+eva = indeed<br/>
+syāt = should be (3rd sg. opt.)<br/>
+tatra = there<br/>
+bandhaḥ = lock (nom.)<br/>
+vidhīyate = is prescribed (3rd sg. pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Etymology of uḍḍīyāna</strong><br/>
+[√kṛ - to make, √as - to be, √vidhā - to prescribe]<br/>
+Named after the great bird (khaga) that flies upward without ceasing.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">59</div><div class="row__skt" onclick="t(this)">udare paścime tāṇam nābherūrdhvaṃ ca kārayet<br/>
+uddiyāno hyasau bandho mṛtyumātaṇgakesarī</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">One should cause <strong>(kārayet)</strong> stretching <strong>(tāṇam)</strong> of the belly <strong>(udare)</strong> backwards <strong>(paścime)</strong> and <strong>(ca)</strong> upwards <strong>(ūrdhvam)</strong> from the navel <strong>(nābheḥ)</strong>. That <strong>(asau)</strong> uḍḍīyāna-bandha <strong>(uḍḍiyānaḥ bandhaḥ)</strong> indeed <strong>(hi)</strong> [is] a lion <strong>(kesarī)</strong> to the elephant <strong>(mātaṇga)</strong> of death <strong>(mṛtyu)</strong>.</div><div class="tr cl">[The yogi] should stretch the abdomen backwards and above the navel. That is the Uḍḍīyāna Lock, a lion to the elephant of death.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">udare = in belly (loc.)<br/>
+paścime = posterior (loc.)<br/>
+tāṇam = stretching (acc.)<br/>
+nābheḥ = of navel (gen.)<br/>
+ūrdhvam = upward (adv.)<br/>
+ca = and<br/>
+kārayet = should make (3rd sg. caus. opt.)<br/>
+uḍḍiyānaḥ = uḍḍīyāna (nom.)<br/>
+hi = indeed<br/>
+asau = that (nom.)<br/>
+bandhaḥ = lock (nom.)<br/>
+mṛtyu-mātaṇga-kesarī = lion to the elephant of death (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Technique and metaphor of uḍḍīyāna</strong><br/>
+[√kṛ - to make]<br/>
+Drawing the belly back and up; like a lion killing the elephant of death.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">60</div><div class="row__skt" onclick="t(this)">badhnāti hi śirājālamadhogāminabhojalam<br/>
+tataḥ jālandharo bandhḥ kaṇṭhaduḥkhaudhanāśanaḥ</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Indeed <strong>(hi)</strong> it binds <strong>(badhnāti)</strong> the network of channels <strong>(śirājālam)</strong>, the downward-flowing <strong>(adhogāmi)</strong> sky-nectar <strong>(nabhojalam)</strong>. Therefore <strong>(tataḥ)</strong> jālandhara-bandha <strong>(jālandharaḥ bandhaḥ)</strong> [is] the destroyer <strong>(nāśanaḥ)</strong> of throat-suffering <strong>(kaṇṭhaduḥkha)</strong>.</div><div class="tr cl">It binds all the channels and the fluid flowing down from the void. That is why it is the Jālandhara Lock, which gets rid of all problems in the throat.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">badhnāti = binds (3rd sg.)<br/>
+hi = indeed<br/>
+śirā-jālam = network of channels (acc.)<br/>
+adhaḥ-gāmi = going downward (acc.)<br/>
+nabhaḥ-jalam = sky-water/nectar (acc.)<br/>
+tataḥ = therefore<br/>
+jālandharaḥ = jālandhara (nom.)<br/>
+bandhaḥ = lock (nom.)<br/>
+kaṇṭha-duḥkha-udha-nāśanaḥ = destroyer of throat suffering (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Function and benefit of jālandhara</strong><br/>
+[√bandh - to bind, √naś - to destroy]<br/>
+Binds the downward flow of nectar; removes throat pain.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">61</div><div class="row__skt" onclick="t(this)">jālandhare kṛte bandhe kaṇṭhasaṃkocalakṣaṇe<br/>
+na pīyūṣaṃ pataryagnau na ca vāyuḥ pradhāvati</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">When jālandhara-bandha <strong>(jālandhare bandhe)</strong> is made <strong>(kṛte)</strong>, characterized by throat-contraction <strong>(kaṇṭhasaṃkocalakṣaṇe)</strong>, the nectar <strong>(pīyūṣam)</strong> does not <strong>(na)</strong> fall <strong>(patati)</strong> into the fire <strong>(agnau)</strong>, and <strong>(ca)</strong> the vāyu <strong>(vāyuḥ)</strong> does not run forth <strong>(pradhāvati)</strong>.</div><div class="tr cl">When the Jālandhara Lock is performed, its defining feature being the constriction of the throat, nectar does not fall in the fire and the breath does not rush forth.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">jālandhare = jālandhara (loc.)<br/>
+kṛte = done (loc.)<br/>
+bandhe = lock (loc.)<br/>
+kaṇṭha-saṃkoca-lakṣaṇe = characterized by throat contraction (loc.)<br/>
+na = not<br/>
+pīyūṣam = nectar (nom.)<br/>
+patati = falls (3rd sg.)<br/>
+agnau = in fire (loc.)<br/>
+na ca = and not<br/>
+vāyuḥ = breath (nom.)<br/>
+pradhāvati = runs forth (3rd sg.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Effects of jālandhara</strong><br/>
+[√kṛ - to do, √pat - to fall, √dhāv - to run]<br/>
+Preserves the nectar from falling into fire; restrains breath.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">62</div><div class="row__skt" onclick="t(this)">kapālakuhare jihvā praviṣṭā viparītagā<br/>
+bhruvorantargatā dṛṣṭirmudrābhavati khecarī</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The tongue <strong>(jihvā)</strong> having entered <strong>(praviṣṭā)</strong> the skull-cavity <strong>(kapālakuhare)</strong>, gone backwards <strong>(viparītagā)</strong>, the gaze <strong>(dṛṣṭiḥ)</strong> gone <strong>(gatā)</strong> between the eyebrows <strong>(bhruvorantara)</strong>—the mudrā <strong>(mudrā)</strong> becomes <strong>(bhavati)</strong> khecarī <strong>(khecarī)</strong>.</div><div class="tr cl">The tongue turned back and into the hollow of the skull, the gaze between the brows: this is khecarīmudrā.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kapāla-kuhare = in skull cavity (loc.)<br/>
+jihvā = tongue (nom.)<br/>
+praviṣṭā = entered (nom. f.)<br/>
+viparīta-gā = gone backwards (nom. f.)<br/>
+bhruvoḥ-antara-gatā = gone between eyebrows (nom. f.)<br/>
+dṛṣṭiḥ = gaze (nom.)<br/>
+mudrā = seal (nom.)<br/>
+bhavati = becomes (3rd sg.)<br/>
+khecarī = sky-moving (nom. f.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Description of khecarī mudrā</strong><br/>
+[√viś - to enter, √gam - to go, √bhū - to become]<br/>
+Tongue turned back into skull with upward gaze.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">63</div><div class="row__skt" onclick="t(this)">na rogo maraṇaṃ tandrā na nidrā na kṣudhā tṛṣā<br/>
+na ca mūrcchā bhavettasya yo mudrāṃ vetti khecarīm</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Neither disease <strong>(rogaḥ)</strong>, death <strong>(maraṇam)</strong>, torpor <strong>(tandrā)</strong>, nor <strong>(na)</strong> sleep <strong>(nidrā)</strong>, nor hunger <strong>(kṣudhā)</strong>, thirst <strong>(tṛṣā)</strong>, and nor <strong>(na ca)</strong> fainting <strong>(mūrcchā)</strong> would occur <strong>(bhavet)</strong> for him <strong>(tasya)</strong> who <strong>(yaḥ)</strong> knows <strong>(vetti)</strong> the khecarī mudrā <strong>(khecarīm mudrām)</strong>.</div><div class="tr cl">Neither disease, nor death, nor fatigue, nor sleep, nor hunger, nor fainting arise for he who knows khecarī.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">na = not<br/>
+rogaḥ = disease (nom.)<br/>
+maraṇam = death (nom.)<br/>
+tandrā = torpor (nom.)<br/>
+na nidrā = not sleep (nom.)<br/>
+na kṣudhā = not hunger (nom.)<br/>
+tṛṣā = thirst (nom.)<br/>
+na ca mūrcchā = and not fainting (nom.)<br/>
+bhavet = occurs (3rd sg. opt.)<br/>
+tasya = of him (gen.)<br/>
+yaḥ = who (nom.)<br/>
+mudrām = seal (acc.)<br/>
+vetti = knows (3rd sg.)<br/>
+khecarīm = sky-moving (acc. f.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Benefits of khecarī mudrā (1)</strong><br/>
+[√bhū - to be/become]<br/>
+Freedom from disease, death, and bodily needs.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">64</div><div class="row__skt" onclick="t(this)">pīḍyate na sarogeṇa lipyate na ca karmaṇā<br/>
+bādhyate na sa kālena yo mudrāṃ vetti khecarim</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">He <strong>(sa)</strong> is not <strong>(na)</strong> afflicted <strong>(pīḍyate)</strong> by disease <strong>(rogeṇa)</strong>, not <strong>(na)</strong> stained <strong>(lipyate)</strong> by karma <strong>(karmaṇā)</strong>, and <strong>(ca)</strong> not oppressed <strong>(bādhyate)</strong> by time <strong>(kālena)</strong>—who <strong>(yaḥ)</strong> knows <strong>(vetti)</strong> the khecarī mudrā <strong>(khecarim mudrām)</strong>.</div><div class="tr cl">He who knows khecarī is not afflicted by disease or tainted by karma or troubled by death.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">pīḍyate = is afflicted (3rd sg. pass.)<br/>
+na sa = not he<br/>
+rogeṇa = by disease (inst.)<br/>
+lipyate = is stained (3rd sg. pass.)<br/>
+na ca = and not<br/>
+karmaṇā = by karma (inst.)<br/>
+bādhyate = is troubled (3rd sg. pass.)<br/>
+na sa = not he<br/>
+kālena = by time (inst.)<br/>
+yaḥ = who (nom.)<br/>
+mudrām = seal (acc.)<br/>
+vetti = knows (3rd sg.)<br/>
+khecarim = sky-moving (acc. f.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Benefits of khecarī mudrā (2)</strong><br/>
+[√pīḍ - to afflict, √lip - to smear, √bādh - to trouble]<br/>
+Transcending disease, karma, and time.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">65</div><div class="row__skt" onclick="t(this)">cittam carati khe yasmājjihvā carati khe gatā<br/>
+tenaiṣā khecarī nāma mudrā siddhairnamaskṛta</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Because <strong>(yasmāt)</strong> the mind <strong>(cittam)</strong> moves <strong>(carati)</strong> in space <strong>(khe)</strong> and the tongue <strong>(jihvā)</strong>, having gone <strong>(gatā)</strong>, moves <strong>(carati)</strong> in space <strong>(khe)</strong>, therefore <strong>(tena)</strong> this <strong>(eṣā)</strong> mudrā <strong>(mudrā)</strong> is honored <strong>(namaskṛta)</strong> by the siddhas <strong>(siddhaiḥ)</strong> with the name <strong>(nāma)</strong> 'khecarī' <strong>(khecarī)</strong>.</div><div class="tr cl">The mind moves (carati) in space (khe), because the tongue moves in space. This is the mudrā called khecarī, honoured by the adepts.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">cittam = mind (nom.)<br/>
+carati = moves (3rd sg.)<br/>
+khe = in space (loc.)<br/>
+yasmāt = because (abl.)<br/>
+jihvā = tongue (nom.)<br/>
+carati = moves (3rd sg.)<br/>
+khe = in space (loc.)<br/>
+gatā = gone (nom. f.)<br/>
+tena = therefore (inst.)<br/>
+eṣā = this (nom. f.)<br/>
+khecarī = space-moving (nom.)<br/>
+nāma = by name<br/>
+mudrā = seal (nom.)<br/>
+siddhaiḥ = by perfected ones (inst. pl.)<br/>
+namaskṛta = honored/saluted (nom. f.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Etymology of khecarī</strong><br/>
+[√car - to move, √gam - to go, √namas - to honor]<br/>
+Both mind and tongue move in the space (kha) of consciousness.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">66</div><div class="row__skt" onclick="t(this)">bindumūlaṃ śariram tu sirāstatra pratiṣṭhitāḥ<br/>
+plāvayanti śarirem yā āpādatalamastakam</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The body <strong>(śarīram)</strong> indeed <strong>(tu)</strong> has bindu as its root <strong>(bindumūlam)</strong>. There <strong>(tatra)</strong> the channels <strong>(sirāḥ)</strong> are established <strong>(pratiṣṭhitāḥ)</strong>, which <strong>(yāḥ)</strong> fill <strong>(plāvayanti)</strong> the body <strong>(śarīram)</strong> from the sole of the foot to the head <strong>(āpādatalamastakam)</strong>.</div><div class="tr cl">The body is founded on Bindu. In it are found channels which flood the body from the soles of the feet to the head.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">bindu-mūlam = root in bindu (nom. n.)<br/>
+śarīram = body (nom.)<br/>
+tu = but/indeed<br/>
+sirāḥ = channels (nom. pl.)<br/>
+tatra = there<br/>
+pratiṣṭhitāḥ = established (nom. pl. f.)<br/>
+plāvayanti = cause to float/fill (3rd pl.)<br/>
+śarīram = body (acc.)<br/>
+yāḥ = which (nom. pl. f.)<br/>
+ā-pāda-tala-mastakam = from sole of foot to head (acc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Bindu as foundation and channels</strong><br/>
+[√sthā - to stand, √plu - to float]<br/>
+Body rooted in bindu; channels established there fill the entire body.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">67</div><div class="row__skt" onclick="t(this)">khecaryā mudrāṃ yena vivaram lambhikordhvataḥ<br/>
+na tasya kṣarate binduḥ kāminyāliṅgitasya ca</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By the khecarīmudrā <strong>(khecaryā mudrām)</strong>, through which <strong>(yena)</strong> [the tongue reaches] the opening <strong>(vivaram)</strong> above <strong>(ūrdhvataḥ)</strong> the uvula <strong>(lambhikā)</strong>, of him <strong>(tasya)</strong> bindu <strong>(binduḥ)</strong> does not <strong>(na)</strong> drip <strong>(kṣarate)</strong>, even <strong>(ca)</strong> when embraced <strong>(āliṅgitasya)</strong> by a woman <strong>(kāminyā)</strong>.</div><div class="tr cl">The bindu of he who has sealed the opening above the uvula with khecarī does not fall, even if he is embraced by a passionate woman.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">khecaryā = by khecarī (inst.)<br/>
+mudrām = seal (acc.)<br/>
+yena = by which (inst.)<br/>
+vivaram = opening/cavity (acc.)<br/>
+lambhikā = uvula (nom.)<br/>
+ūrdhvataḥ = from above<br/>
+na = not<br/>
+tasya = of him (gen.)<br/>
+kṣarate = flows/drips (3rd sg.)<br/>
+binduḥ = drop (nom.)<br/>
+kāminyā = by woman (inst.)<br/>
+āliṅgitasya = of embraced one (gen.)<br/>
+ca = and</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Khecarī preserves bindu even in passion</strong><br/>
+[√kṣar - to flow/drip, √liṅg - to embrace]<br/>
+Tongue reaching cavity above uvula prevents loss of vital essence.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">52</div><div class="row__skt" onclick="t(this)">yāvadbinduḥ sthito dehe tāvanmṛtyubhayaṃ kutaḥ |<br/>
+yāvadbaddhā nabhomudrā tāvadbindurna gacchati ||52||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">As long as <strong>(yāvat)</strong> bindu <strong>(binduḥ)</strong> remains <strong>(sthitaḥ)</strong> in the body <strong>(dehe)</strong>, so long <strong>(tāvat)</strong> whence <strong>(kutaḥ)</strong> fear of death <strong>(mṛtyubhayam)</strong>? As long as <strong>(yāvat)</strong> the nabho-mudrā <strong>(nabhomudrā)</strong> is applied <strong>(baddhā)</strong>, so long <strong>(tāvat)</strong> bindu <strong>(binduḥ)</strong> does not go <strong>(na gacchati)</strong>.</div><div class="tr cl">When bindu is steady in the body then there is no fear of death. When the sky mudrā (nabho-mudrā) is applied, then bindu does not move.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yāvat = as long as<br/>
+binduḥ = drop/semen (nom.)<br/>
+sthitaḥ = steady/remaining (PPP, nom.)<br/>
+dehe = in body (loc.)<br/>
+tāvat = so long<br/>
+mṛtyu-bhayam = fear of death (nom.)<br/>
+kutaḥ = whence/how?<br/>
+baddhā = bound/applied (PPP, nom. f.)<br/>
+nabhaḥ-mudrā = sky-seal (nom.)<br/>
+na gacchati = does not go (3rd sg.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Bindu retention prevents death</strong><br/>
+[√sthā - to stand, √gam - to go, √bandh - to bind]<br/>
+Nabhomudrā: tongue turned upward into nasal cavity.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">53</div><div class="row__skt" onclick="t(this)">calito'pi yadā binduḥ samprāptaśca hutāśanam |<br/>
+gacchatyūrdhvaṃ hataḥ śaktyā nibasṭho yonimudrāyā ||53||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">When <strong>(yadā)</strong> bindu <strong>(binduḥ)</strong>, even <strong>(api)</strong> having moved <strong>(calitaḥ)</strong> and <strong>(ca)</strong> having reached <strong>(samprāptaḥ)</strong> the fire <strong>(hutāśanam)</strong>, goes <strong>(gacchati)</strong> upward <strong>(ūrdhvam)</strong>, struck <strong>(hataḥ)</strong> by śakti <strong>(śaktyā)</strong>, bound <strong>(nibaddhaḥ)</strong> by the yoni-mudrā <strong>(yonimudrāyā)</strong>.</div><div class="tr cl">When bindu has moved and reached the fire it goes upwards on being checked by the yoni-mudrā and struck by the goddess (śakti).</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">calitaḥ = moved (PPP, nom.)<br/>
+api = even<br/>
+yadā = when<br/>
+binduḥ = drop (nom.)<br/>
+samprāptaḥ = having reached (PPP, nom.)<br/>
+ca = and<br/>
+hutāśanam = fire (acc.)<br/>
+gacchati = goes (3rd sg.)<br/>
+ūrdhvam = upward<br/>
+hataḥ = struck (PPP, nom.)<br/>
+śaktyā = by śakti (inst.)<br/>
+nibaddhaḥ = bound (PPP, nom.)<br/>
+yoni-mudrāyā = by yoni-mudrā (inst.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Yonimudrā reverses bindu's descent</strong><br/>
+[√cal - to move, √gam - to go, √han - to strike, √bandh - to bind]<br/>
+Even when bindu descends toward fire (genital region), yonimudrā reverses it.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">54</div><div class="row__skt" onclick="t(this)">sa eva dvividho binduḥ pāṇḍuro lohitastathā |<br/>
+pāṇḍuraṃ śukramityāhurlohitaṃ tad rajaḥ mahārajaḥ ||54||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">That <strong>(saḥ)</strong> bindu <strong>(binduḥ)</strong> is indeed <strong>(eva)</strong> of two kinds <strong>(dvividhaḥ)</strong>: white <strong>(pāṇḍuraḥ)</strong> and <strong>(tathā)</strong> red <strong>(lohitaḥ)</strong>. They call <strong>(āhuḥ)</strong> the white <strong>(pāṇḍuram)</strong> semen <strong>(śukram)</strong>, thus <strong>(iti)</strong>, [and] that <strong>(tat)</strong> red <strong>(lohitam)</strong> [is] rajas <strong>(rajaḥ)</strong>, the great rajas <strong>(mahārajaḥ)</strong>.</div><div class="tr cl">Bindu is [in fact] of two kinds: white and red. White is bindu and red is the great rajas (female generative fluid).</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">saḥ = that (nom.)<br/>
+eva = indeed<br/>
+dvi-vidhaḥ = of two kinds (nom.)<br/>
+binduḥ = drop (nom.)<br/>
+pāṇḍuraḥ = white (nom.)<br/>
+lohitaḥ = red (nom.)<br/>
+tathā = and<br/>
+pāṇḍuram = white (acc.)<br/>
+śukram = semen (acc.)<br/>
+iti āhuḥ = thus they call (3rd pl.)<br/>
+lohitam = red (acc.)<br/>
+tat = that<br/>
+rajaḥ = rajas (acc.)<br/>
+mahā-rajaḥ = great rajas (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>White bindu (śukra) and red rajas</strong><br/>
+[√ah - to say]<br/>
+Two essences: male (white/lunar) and female (red/solar).</div></section></div></div>
+<div class="row is-mula"><div class="row__num">55</div><div class="row__skt" onclick="t(this)">vidrumadravasamkāśaṃ yonisthāne sthitaṃ rajaḥ |<br/>
+śaśisthāne vasedbindurdvayoraikyaṃ sudurlabham ||55||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Rajas <strong>(rajaḥ)</strong>, resembling liquid coral <strong>(vidrumadravasamkāśam)</strong>, is situated <strong>(sthitam)</strong> in the perineal region <strong>(yonisthāne)</strong>. Bindu <strong>(binduḥ)</strong> dwells <strong>(vaset)</strong> in the moon's place <strong>(śaśisthāne)</strong>. The unity <strong>(aikyam)</strong> of the two <strong>(dvayoḥ)</strong> is very difficult to achieve <strong>(sudurlabham)</strong>.</div><div class="tr cl">Looking like liquid coral, rajas is situated in the perineal region. Bindu resides in the moon. Joining the two is very difficult.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vidruma-drava-saṃkāśam = resembling liquid coral (acc.)<br/>
+yoni-sthāne = in perineal region (loc.)<br/>
+sthitam = situated (PPP, nom.)<br/>
+rajaḥ = rajas (nom.)<br/>
+śaśi-sthāne = in moon's place (loc.)<br/>
+vaset = would dwell (3rd sg. opt.)<br/>
+binduḥ = bindu (nom.)<br/>
+dvayoḥ = of both (gen. dual)<br/>
+aikyam = unity (nom.)<br/>
+su-durlabham = very difficult to attain (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Locations of rajas and bindu</strong><br/>
+[√sthā - to stand, √vas - to dwell]<br/>
+Rajas at base; bindu at cranial moon; union is rare.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">56</div><div class="row__skt" onclick="t(this)">binduḥ śivo rajaḥ śaktirbindurindū rajo raviḥ |<br/>
+ubhayoḥ saṃgamādeva prāpyate paramaṃ padam ||56||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Bindu <strong>(binduḥ)</strong> is Śiva <strong>(śivaḥ)</strong>, rajas <strong>(rajaḥ)</strong> is Śakti <strong>(śaktiḥ)</strong>. Bindu <strong>(binduḥ)</strong> is the moon <strong>(induḥ)</strong>, rajas <strong>(rajaḥ)</strong> is the sun <strong>(raviḥ)</strong>. Only <strong>(eva)</strong> from the union <strong>(saṃgamāt)</strong> of both <strong>(ubhayoḥ)</strong> is the supreme state <strong>(paramaṃ padam)</strong> attained <strong>(prāpyate)</strong>.</div><div class="tr cl">Bindu is Śiva. Rajas is Śakti. Bindu is the moon. Rajas is the sun. Only by joining the two is the highest condition attained.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">binduḥ = bindu (nom.)<br/>
+śivaḥ = Śiva (nom.)<br/>
+rajaḥ = rajas (nom.)<br/>
+śaktiḥ = Śakti (nom.)<br/>
+induḥ = moon (nom.)<br/>
+raviḥ = sun (nom.)<br/>
+ubhayoḥ = of both (gen. dual)<br/>
+saṃgamāt = from union (abl.)<br/>
+eva = indeed<br/>
+prāpyate = is attained (pass. 3rd sg.)<br/>
+paramam padam = supreme state (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Cosmic correspondence of bindu-rajas</strong><br/>
+[√gam - to go, √āp - to attain]<br/>
+Bindu = Śiva = Moon; Rajas = Śakti = Sun; union = liberation.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">57</div><div class="row__skt" onclick="t(this)">vāyunā śakticālena preritaṃ khe yadā rajaḥ |<br/>
+bindorekatvamāyāti yo jānāti sa yogavit ||57||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">When <strong>(yadā)</strong> rajas <strong>(rajaḥ)</strong>, propelled <strong>(preritam)</strong> by breath <strong>(vāyunā)</strong> through moving śakti <strong>(śakticālena)</strong>, attains <strong>(āyāti)</strong> oneness <strong>(ekatvam)</strong> with bindu <strong>(bindoḥ)</strong> in space <strong>(khe)</strong>—he who <strong>(yaḥ)</strong> knows <strong>(jānāti)</strong> [this], he <strong>(saḥ)</strong> is a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">When rajas is propelled by moving the goddess by means of the breath it joins with bindu. He who knows this knows yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vāyunā = by breath (inst.)<br/>
+śakti-cālena = by moving śakti (inst.)<br/>
+preritam = propelled (PPP, nom.)<br/>
+khe = in space (loc.)<br/>
+yadā = when<br/>
+rajaḥ = rajas (nom.)<br/>
+bindoḥ = with bindu (gen.)<br/>
+ekatvam = oneness (acc.)<br/>
+āyāti = attains (3rd sg.)<br/>
+yaḥ = who (nom.)<br/>
+jānāti = knows (3rd sg.)<br/>
+saḥ = he (nom.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Union through breath and śakti</strong><br/>
+[√cal - to move, √pra-īr - to propel, √jñā - to know]<br/>
+Rajas rises to unite with bindu through prāṇāyāma.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">76</div><div class="row__skt" onclick="t(this)">śukraṃ candreṇa saṃyuktaṃ rajaḥ sūryeṇa saṃyutam |<br/>
+tayoḥ samarasaikatvam yo jānāti sa yogavit ||76||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Semen <strong>(śukram)</strong> is united <strong>(saṃyuktam)</strong> with the moon <strong>(candreṇa)</strong>, rajas <strong>(rajaḥ)</strong> is united <strong>(saṃyutam)</strong> with the sun <strong>(sūryeṇa)</strong>. He who <strong>(yaḥ)</strong> knows <strong>(jānāti)</strong> the oneness of equal essence <strong>(samarasaikatvam)</strong> of those two <strong>(tayoḥ)</strong>, he <strong>(saḥ)</strong> is a knower of yoga <strong>(yogavit)</strong>.</div><div class="tr cl">Semen (śukram) is associated with the moon, rajas with the sun. He who knows how to make them one knows yoga.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">śukram = semen (nom.)<br/>
+candreṇa = with moon (inst.)<br/>
+saṃyuktam = united (PPP, nom.)<br/>
+rajaḥ = rajas (nom.)<br/>
+sūryeṇa = with sun (inst.)<br/>
+saṃyutam = united (PPP, nom.)<br/>
+tayoḥ = of those two (gen. dual)<br/>
+sama-rasa-ekatvam = oneness of equal essence (acc.)<br/>
+yaḥ = who (nom.)<br/>
+jānāti = knows (3rd sg.)<br/>
+saḥ = he (nom.)<br/>
+yoga-vit = knower of yoga (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Samarasa: union of solar and lunar</strong><br/>
+[√yuj - to unite, √jñā - to know]<br/>
+Samarasa = equal essence/flavor; haṭhayoga goal.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">58</div><div class="row__skt" onclick="t(this)">śodhanaṃ nāḍījālasya ghaṭanaṃ candrasūryayoḥ |<br/>
+rasānāṃ śoṣaṇaṃ samyak mahāmudrābhidhīyate ||58||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Purification <strong>(śodhanam)</strong> of the network of channels <strong>(nāḍījālasya)</strong>, union <strong>(ghaṭanam)</strong> of moon and sun <strong>(candrasūryayoḥ)</strong>, and drying up <strong>(śoṣaṇam)</strong> of the [bodily] fluids <strong>(rasānām)</strong> correctly <strong>(samyak)</strong>—[when this happens] it is called <strong>(abhidhīyate)</strong> mahāmudrā <strong>(mahāmudrā)</strong>.</div><div class="tr cl">Purification of all the channels, union of the sun and moon and the drying up of the bodily fluids: [when this happens] correctly, it is called Mahāmudrā.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">śodhanam = purification (nom.)<br/>
+nāḍī-jālasya = of network of channels (gen.)<br/>
+ghaṭanam = union/joining (nom.)<br/>
+candra-sūryayoḥ = of moon and sun (gen. dual)<br/>
+rasānām = of fluids (gen. pl.)<br/>
+śoṣaṇam = drying up (nom.)<br/>
+samyak = correctly/properly<br/>
+mahā-mudrā = great seal (nom.)<br/>
+abhidhīyate = is called (pass. 3rd sg.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three effects of Mahāmudrā</strong><br/>
+[√śudh - to purify, √ghaṭ - to join, √śuṣ - to dry, √dhā - to name]<br/>
+Nāḍī purification + sun-moon union + fluid desiccation.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">59</div><div class="row__skt" onclick="t(this)">vakṣonyastahanuḥ nipīḍya suciraṃ yoniṃ ca vāmāṅghriṇā<br/>
+hastābhyāmapi dhārayetpravitataṃ pādaṃ tathā dakṣiṇam |<br/>
+āpūrya śvasanena kukṣiyugalaṃ baddhvā śanairrecayed<br/>
+eṣā pātakanāśinī khalu mahāmudrā nṛṇāṃ procyate ||59||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">With the chin <strong>(hanuḥ)</strong> placed <strong>(nyasta)</strong> on the chest <strong>(vakṣasi)</strong>, having pressed <strong>(nipīḍya)</strong> the perineum <strong>(yonim)</strong> for a very long time <strong>(suciram)</strong> with the left heel <strong>(vāmāṅghriṇā)</strong>, one should hold <strong>(dhārayet)</strong> with both hands <strong>(hastābhyām)</strong> the extended <strong>(pravitatam)</strong> right foot <strong>(pādaṃ dakṣiṇam)</strong>. Having filled <strong>(āpūrya)</strong> both lungs <strong>(kukṣiyugalam)</strong> with breath <strong>(śvasanena)</strong>, having held <strong>(baddhvā)</strong> [it], one should slowly <strong>(śanaiḥ)</strong> exhale <strong>(recayet)</strong>. This <strong>(eṣā)</strong> is indeed <strong>(khalu)</strong> taught <strong>(procyate)</strong> to be the great seal <strong>(mahāmudrā)</strong>, destroyer of sins <strong>(pātakanāśinī)</strong>, for people <strong>(nṛṇām)</strong>.</div><div class="tr cl">With the jaw placed on the chest, the yogi should, for a very long time, press the perineum with the left heel and hold the extended right foot with both hands. He should fill both lungs with breath, hold it and slowly exhale. This is taught to be the Great Seal, which destroys people's sins.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vakṣasi = on chest (loc.)<br/>
+nyasta-hanuḥ = with chin placed (BV, nom.)<br/>
+nipīḍya = having pressed (abs.)<br/>
+suciram = for very long<br/>
+yonim = perineum (acc.)<br/>
+ca = and<br/>
+vāma-aṅghriṇā = with left heel (inst.)<br/>
+hastābhyām = with both hands (inst. dual)<br/>
+api = also<br/>
+dhārayet = should hold (opt.)<br/>
+pravitatam = extended (acc.)<br/>
+pādam = foot (acc.)<br/>
+dakṣiṇam = right (acc.)<br/>
+āpūrya = having filled (abs.)<br/>
+śvasanena = with breath (inst.)<br/>
+kukṣi-yugalam = both lungs (acc.)<br/>
+baddhvā = having held (abs.)<br/>
+śanaiḥ = slowly<br/>
+recayet = should exhale (opt.)<br/>
+eṣā = this (nom. f.)<br/>
+pātaka-nāśinī = destroyer of sins (nom. f.)<br/>
+khalu = indeed<br/>
+mahā-mudrā = great seal (nom.)<br/>
+nṛṇām = of people (gen. pl.)<br/>
+procyate = is taught (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Mahāmudrā technique</strong><br/>
+[√as - to place, √pīḍ - to press, √dhṛ - to hold, √pūr - to fill, √ric - to empty]<br/>
+Combines jālandhara-bandha, mūla-bandha with leg position and kumbhaka.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">60</div><div class="row__skt" onclick="t(this)">candrāṅge tu samabhyasya sūryāṅge punarabhyaset |<br/>
+yāvattulyā bhavetsaṅkhyā tato mudrāṃ visarjayet ||60||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having practiced <strong>(samabhyasya)</strong> on the lunar side <strong>(candrāṅge)</strong>, one should again <strong>(punaḥ)</strong> practice <strong>(abhyaset)</strong> on the solar side <strong>(sūryāṅge)</strong>. When <strong>(yāvat)</strong> the number <strong>(saṅkhyā)</strong> becomes <strong>(bhavet)</strong> equal <strong>(tulyā)</strong>, then <strong>(tataḥ)</strong> one should release <strong>(visarjayet)</strong> the mudrā <strong>(mudrām)</strong>.</div><div class="tr cl">After practising this on the lunar [side of the] body, one should again practise it on the solar [side of the] body. When the number [of rounds on each side] is equal, then [the yogi] should stop the [Mahā]mudrā.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">candra-aṅge = on lunar side (loc.)<br/>
+tu = indeed<br/>
+samabhyasya = having practiced (abs.)<br/>
+sūrya-aṅge = on solar side (loc.)<br/>
+punaḥ = again<br/>
+abhyaset = should practice (opt.)<br/>
+yāvat = until<br/>
+tulyā = equal (nom. f.)<br/>
+bhavet = becomes (opt.)<br/>
+saṅkhyā = number (nom.)<br/>
+tataḥ = then<br/>
+mudrām = seal (acc.)<br/>
+visarjayet = should release (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Equal practice on both sides</strong><br/>
+[√bhyas - to practice, √sṛj - to release]<br/>
+Lunar = left/iḍā; Solar = right/piṅgalā; balance required.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">61</div><div class="row__skt" onclick="t(this)">na hi pathyamapathyaṃ vā rasāḥ sarve'pi nīrasāḥ |<br/>
+api bhuktaṃ viṣaṃ ghoraṃ pīyūṣamiva jīryati ||61||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Indeed <strong>(hi)</strong> [for him there is] neither <strong>(na)</strong> wholesome <strong>(pathyam)</strong> nor <strong>(vā)</strong> unwholesome food <strong>(apathyam)</strong>, and all <strong>(sarve)</strong> tastes <strong>(rasāḥ)</strong> are even <strong>(api)</strong> tasteless <strong>(nīrasāḥ)</strong>. Even <strong>(api)</strong> terrible <strong>(ghoram)</strong> poison <strong>(viṣam)</strong> when eaten <strong>(bhuktam)</strong> is digested <strong>(jīryati)</strong> like <strong>(iva)</strong> nectar <strong>(pīyūṣam)</strong>.</div><div class="tr cl">[To him] food is neither good nor bad, and all flavours are flavourless. Even terrible poison when consumed is digested like nectar.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">na = not<br/>
+hi = indeed<br/>
+pathyam = wholesome (nom.)<br/>
+apathyam = unwholesome (nom.)<br/>
+vā = or<br/>
+rasāḥ = tastes (nom. pl.)<br/>
+sarve = all (nom. pl.)<br/>
+api = even<br/>
+nīrasāḥ = tasteless (nom. pl.)<br/>
+bhuktam = eaten (PPP, nom.)<br/>
+viṣam = poison (nom.)<br/>
+ghoram = terrible (nom.)<br/>
+pīyūṣam = nectar (nom.)<br/>
+iva = like<br/>
+jīryati = is digested (3rd sg.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Transcendence of food distinctions</strong><br/>
+[√jṝ - to digest, √bhuj - to eat]<br/>
+Mahāmudrā practitioner beyond dietary rules; poison becomes amṛta.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">62</div><div class="row__skt" onclick="t(this)">kṣayakuṣṭhagudāvartagulmājīrṇajvaravyathāḥ |<br/>
+tasya doṣāḥ kṣayaṃ yānti mahāmudrāṃ tu yo'bhyaset ||62||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Consumption <strong>(kṣaya)</strong>, skin disease <strong>(kuṣṭha)</strong>, constipation <strong>(gudāvarta)</strong>, splenitis <strong>(gulma)</strong>, indigestion <strong>(ajīrṇa)</strong>, fever <strong>(jvara)</strong>, and anxieties <strong>(vyathāḥ)</strong>—these disorders <strong>(doṣāḥ)</strong> of him <strong>(tasya)</strong> go <strong>(yānti)</strong> to destruction <strong>(kṣayam)</strong>, who <strong>(yaḥ)</strong> practices <strong>(abhyaset)</strong> the mahāmudrā <strong>(mahāmudrām)</strong>.</div><div class="tr cl">Consumption, skin disease, constipation, splenitis, indigestion, fever and anxiety: [these] diseases end in him who practises Mahāmudrā.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kṣaya = consumption (m.)<br/>
+kuṣṭha = skin disease (n.)<br/>
+guda-āvarta = constipation (m.)<br/>
+gulma = splenitis/tumor (m.)<br/>
+ajīrṇa = indigestion (n.)<br/>
+jvara = fever (m.)<br/>
+vyathāḥ = anxieties/pains (nom. pl.)<br/>
+tasya = of him (gen.)<br/>
+doṣāḥ = disorders (nom. pl.)<br/>
+kṣayam = destruction (acc.)<br/>
+yānti = go (3rd pl.)<br/>
+mahā-mudrām = great seal (acc.)<br/>
+tu = indeed<br/>
+yaḥ = who (nom.)<br/>
+abhyaset = should practice (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Seven diseases cured by Mahāmudrā</strong><br/>
+[√yā - to go, √bhyas - to practice]<br/>
+DV compound listing seven ailments destroyed by practice.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">63</div><div class="row__skt" onclick="t(this)">kathiteyaṃ mahāmudrā mahāsiddhikarī nṛṇām |<br/>
+gopanīyā prayatnena na deyā yasya kasya cit ||63||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">This <strong>(iyam)</strong> mahāmudrā <strong>(mahāmudrā)</strong> has been taught <strong>(kathitā)</strong>, which causes great perfection <strong>(mahāsiddhikarī)</strong> for men <strong>(nṛṇām)</strong>. It is to be guarded <strong>(gopanīyā)</strong> with effort <strong>(prayatnena)</strong>, not <strong>(na)</strong> to be given <strong>(deyā)</strong> to anyone whatsoever <strong>(yasya kasya cit)</strong>.</div><div class="tr cl">The Mahāmudrā thus taught brings great success (mahāsiddhi°) to men; it should be guarded carefully, not given to all and sundry.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">kathitā = told (PPP, nom. f.)<br/>
+iyam = this (nom. f.)<br/>
+mahā-mudrā = great seal (nom.)<br/>
+mahā-siddhi-karī = causing great perfection (nom. f.)<br/>
+nṛṇām = of men (gen. pl.)<br/>
+gopanīyā = to be guarded (ger. nom. f.)<br/>
+prayatnena = with effort (inst.)<br/>
+na = not<br/>
+deyā = to be given (ger. nom. f.)<br/>
+yasya kasya cit = to anyone whatsoever (gen.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Secrecy of Mahāmudrā teaching</strong><br/>
+[√kath - to tell, √gup - to guard, √dā - to give]<br/>
+Gerundives (gopanīyā, deyā) express obligation; esoteric restriction.</div></section></div></div>
+</article>
+
+<article class="sutra" id="sec-pra-avajapa-meditation-on-om" data-short="PRAṆAVAJAPAḤ - MED">
+<div class="sec"><span class="num">4</span><span class="lbl">PRAṆAVAJAPAḤ - MEDITATION ON OM</span><span class="rule"></span></div>
+<div class="row is-mula"><div class="row__num">64</div><div class="row__skt" onclick="t(this)">muktāsanam samāruhya samakāyaśirodharaḥ |<br/>
+nāsāgradṛṣṭirekākī japedomkāramavyayam ||64||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having mounted <strong>(samāruhya)</strong> the liberated posture <strong>(muktāsanam)</strong>, holding <strong>(dharaḥ)</strong> body and head <strong>(kāyaśiraḥ)</strong> straight <strong>(sama)</strong>, with gaze <strong>(dṛṣṭiḥ)</strong> on the nose-tip <strong>(nāsāgra)</strong>, alone <strong>(ekākī)</strong> one should recite <strong>(japet)</strong> the imperishable <strong>(avyayam)</strong> Om <strong>(omkāram)</strong>.</div><div class="tr cl">Sitting in the pose of the liberated (muktāsana), holding the body and head straight, the gaze on the tip of the nose, alone, [the yogi] should repeat the imperishable om.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">muktāsanam = liberated posture (acc.)<br/>
+samāruhya = having mounted (abs.)<br/>
+sama-kāya-śiraḥ-dharaḥ = holding body and head straight (nom.)<br/>
+nāsāgra-dṛṣṭiḥ = gaze on nose-tip (nom.)<br/>
+ekākī = alone (nom.)<br/>
+japet = should recite (opt.)<br/>
+omkāram = Om (acc.)<br/>
+avyayam = imperishable (acc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Physical preparation for Om recitation</strong><br/>
+[√ruh - to mount, √dhṛ - to hold, √jap - to recite]<br/>
+Muktāsana + nāsāgra-dṛṣṭi for praṇava practice.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">65</div><div class="row__skt" onclick="t(this)">bhūrbhva.ˍsvaṛime lokāścandrasūryāgnidevatāḥ |<br/>
+yasya mātrāsu tuṣṭhanti tatparam jyotiromiti ||65||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">These <strong>(ime)</strong> worlds <strong>(lokāḥ)</strong> - Bhūḥ <strong>(bhūḥ)</strong>, Bhuvaḥ <strong>(bhuvaḥ)</strong>, Svaḥ <strong>(svaḥ)</strong> - and moon-sun-fire deities <strong>(candrasūryāgnidevatāḥ)</strong>, in whose <strong>(yasya)</strong> measures <strong>(mātrāsu)</strong> they are satisfied <strong>(tuṣṭhanti)</strong>, that <strong>(tat)</strong> is the supreme <strong>(param)</strong> light <strong>(jyotiḥ)</strong> - Om <strong>(om)</strong>, thus <strong>(iti)</strong>.</div><div class="tr cl">In whose letters are found the worlds (the earth, the atmosphere and the heavens) and the gods (the moon, sun and fire), that is the great light, om.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">bhūḥ = earth (nom.)<br/>
+bhuvaḥ = atmosphere (nom.)<br/>
+svaḥ = heaven (nom.)<br/>
+ime = these (nom. pl.)<br/>
+lokāḥ = worlds (nom. pl.)<br/>
+candra-sūrya-agni-devatāḥ = moon-sun-fire deities (nom. pl.)<br/>
+yasya = whose (gen.)<br/>
+mātrāsu = in measures (loc. pl.)<br/>
+tuṣṭhanti = are satisfied (3rd pl.)<br/>
+tat = that (nom.)<br/>
+param = supreme (nom.)<br/>
+jyotiḥ = light (nom.)<br/>
+om = Om<br/>
+iti = thus</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three worlds in Om's syllables</strong><br/>
+[√tuṣ - to be satisfied]<br/>
+Bhūr-bhuvaḥ-svaḥ correspond to A-U-M.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">66</div><div class="row__skt" onclick="t(this)">trayaḥ kālāstrayo lokāstrayo devastrayoḥ svaraḥ |<br/>
+trayo vedāḥ sthitā yatra tatparam jyotiromiti ||66||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Three <strong>(trayaḥ)</strong> times <strong>(kālāḥ)</strong>, three <strong>(trayaḥ)</strong> worlds <strong>(lokāḥ)</strong>, three <strong>(trayaḥ)</strong> gods <strong>(devāḥ)</strong>, three <strong>(trayaḥ)</strong> sounds <strong>(svarāḥ)</strong>, three <strong>(trayaḥ)</strong> Vedas <strong>(vedāḥ)</strong> are established <strong>(sthitāḥ)</strong> - where <strong>(yatra)</strong> that <strong>(tat)</strong> is the supreme <strong>(param)</strong> light <strong>(jyotiḥ)</strong> - Om <strong>(om)</strong>, thus <strong>(iti)</strong>.</div><div class="tr cl">That in which are found the three times, the three worlds, the three gods, the three accents [and] the three Vedas, that is the great light, om.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">trayaḥ = three (nom. pl.)<br/>
+kālāḥ = times (nom. pl.)<br/>
+trayaḥ = three (nom. pl.)<br/>
+lokāḥ = worlds (nom. pl.)<br/>
+trayaḥ = three (nom. pl.)<br/>
+devāḥ = gods (nom. pl.)<br/>
+trayaḥ = three (nom. pl.)<br/>
+svarāḥ = sounds/tones (nom. pl.)<br/>
+trayaḥ = three (nom. pl.)<br/>
+vedāḥ = Vedas (nom. pl.)<br/>
+sthitāḥ = established (nom. pl.)<br/>
+yatra = where (rel.)<br/>
+tat = that (nom.)<br/>
+param = supreme (nom.)<br/>
+jyotiḥ = light (nom.)<br/>
+om = Om<br/>
+iti = thus</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Threefold cosmic structure in Om</strong><br/>
+[√sthā - to stand]<br/>
+All trinities contained within praṇava.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">67</div><div class="row__skt" onclick="t(this)">akāraśca ukāraśca makāro bindusamjñakaḥ |<br/>
+tridhā mātrāḥ sthitā yatra tatparam jyotiromiti ||67||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The letter A <strong>(akāraḥ)</strong> and <strong>(ca)</strong> the letter U <strong>(ukāraḥ)</strong> and <strong>(ca)</strong> the letter M <strong>(makāraḥ)</strong> called bindu <strong>(bindusamjñakaḥ)</strong> - in three ways <strong>(tridhā)</strong> the measures <strong>(mātrāḥ)</strong> are established <strong>(sthitāḥ)</strong> where <strong>(yatra)</strong> that <strong>(tat)</strong> is the supreme <strong>(param)</strong> light <strong>(jyotiḥ)</strong> - Om <strong>(om)</strong>, thus <strong>(iti)</strong>.</div><div class="tr cl">That in which the three letters (a, u and ma, which is called bindu) are found, that is the great light, om.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">a-kāraḥ = letter A (nom.)<br/>
+ca = and<br/>
+u-kāraḥ = letter U (nom.)<br/>
+ca = and<br/>
+ma-kāraḥ = letter M (nom.)<br/>
+bindu-samjñakaḥ = called bindu (nom.)<br/>
+tri-dhā = in three ways (adv.)<br/>
+mātrāḥ = measures (nom. pl.)<br/>
+sthitāḥ = established (nom. pl.)<br/>
+yatra = where (rel.)<br/>
+tat = that (nom.)<br/>
+param = supreme (nom.)<br/>
+jyotiḥ = light (nom.)<br/>
+om = Om<br/>
+iti = thus</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>A-U-M with bindu structure</strong><br/>
+[√sthā - to stand, √jñā - to know]<br/>
+Explicit phonetic breakdown of praṇava.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">68</div><div class="row__skt" onclick="t(this)">icchā krīyā tathā jñānā brahmī raudrī ca vaiṣṇavī |<br/>
+tridhā śaktiḥ sthitā yatra tatparam jyotiromiti ||68||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Will <strong>(icchā)</strong>, action <strong>(krīyā)</strong>, and <strong>(tathā)</strong> knowledge <strong>(jñānā)</strong> - Brahmā's <strong>(brahmī)</strong>, Rudra's <strong>(raudrī)</strong>, and <strong>(ca)</strong> Viṣṇu's <strong>(vaiṣṇavī)</strong> - in three ways <strong>(tridhā)</strong> śakti <strong>(śaktiḥ)</strong> is established <strong>(sthitā)</strong> where <strong>(yatra)</strong> that <strong>(tat)</strong> is the supreme <strong>(param)</strong> light <strong>(jyotiḥ)</strong> - Om <strong>(om)</strong>, thus <strong>(iti)</strong>.</div><div class="tr cl">That in which the three-fold goddess (śakti) – will, action and knowledge, Brāhmī, Raudrī and Vaiṣṇavī – is located, that is the great light, om.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">icchā = will/desire (nom.)<br/>
+krīyā = action (nom.)<br/>
+tathā = and<br/>
+jñānā = knowledge (nom.)<br/>
+brahmī = belonging to Brahmā (nom. f.)<br/>
+raudrī = belonging to Rudra (nom. f.)<br/>
+ca = and<br/>
+vaiṣṇavī = belonging to Viṣṇu (nom. f.)<br/>
+tri-dhā = in three ways (adv.)<br/>
+śaktiḥ = power (nom.)<br/>
+sthitā = established (nom. f.)<br/>
+yatra = where (rel.)<br/>
+tat = that (nom.)<br/>
+param = supreme (nom.)<br/>
+jyotiḥ = light (nom.)<br/>
+om = Om<br/>
+iti = thus</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three divine powers in Om</strong><br/>
+[√sthā - to stand]<br/>
+Icchā-kriyā-jñāna corresponding to A-U-M.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">69</div><div class="row__skt" onclick="t(this)">vacasā tajjapedbījaṃ vapuṣā tatsamābhyaset |<br/>
+manasā tatsmarennityaṃ tatparaṃ jyotiromiti ||69||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">With speech <strong>(vacasā)</strong> one should recite <strong>(japet)</strong> that <strong>(tat)</strong> seed <strong>(bījam)</strong>, with body <strong>(vapuṣā)</strong> should practice <strong>(samābhyaset)</strong> that <strong>(tat)</strong>, with mind <strong>(manasā)</strong> should remember <strong>(smaret)</strong> that <strong>(tat)</strong> constantly <strong>(nityam)</strong> - that <strong>(tat)</strong> supreme <strong>(param)</strong> light <strong>(jyotiḥ)</strong> is Om <strong>(om)</strong>, thus <strong>(iti)</strong>.</div><div class="tr cl">One should repeat it vocally, as a light one should exercise it using one's body (?) [and] one should constantly think of it with one's mind, the great light, om.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">vacasā = with speech (inst.)<br/>
+tat = that (acc.)<br/>
+japet = should recite (opt.)<br/>
+bījam = seed (acc.)<br/>
+vapuṣā = with body (inst.)<br/>
+tat = that (acc.)<br/>
+samābhyaset = should practice (opt.)<br/>
+manasā = with mind (inst.)<br/>
+tat = that (acc.)<br/>
+smaret = should remember (opt.)<br/>
+nityam = constantly (adv.)<br/>
+tat = that (nom.)<br/>
+param = supreme (nom.)<br/>
+jyotiḥ = light (nom.)<br/>
+om = Om<br/>
+iti = thus</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Threefold practice: vāk-kāya-manas</strong><br/>
+[√jap - to recite, √abhyas - to practice, √smṛ - to remember]<br/>
+Body-speech-mind integration in Om practice.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">70</div><div class="row__skt" onclick="t(this)">śucirvāpyaśucirvāpi yo japetpraṇavaṃ sadā |<br/>
+na sa lipyeta pāpena padmapatramivāmbhasā ||70||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Pure <strong>(śuciḥ)</strong> or <strong>(vā)</strong> even <strong>(api)</strong> impure <strong>(aśuciḥ)</strong> or <strong>(vā)</strong> even <strong>(api)</strong>, whoever <strong>(yaḥ)</strong> recites <strong>(japet)</strong> praṇava <strong>(praṇavam)</strong> always <strong>(sadā)</strong>, he <strong>(saḥ)</strong> is not <strong>(na)</strong> stained <strong>(lipyeta)</strong> by sin <strong>(pāpena)</strong>, like <strong>(iva)</strong> a lotus leaf <strong>(padmapatram)</strong> by water <strong>(ambhasā)</strong>.</div><div class="tr cl">Pure or impure, sin does not stick to he who constantly repeats the syllable om, just as water does not stick to a lotus leaf.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">śuciḥ = pure (nom.)<br/>
+vā = or<br/>
+api = even<br/>
+aśuciḥ = impure (nom.)<br/>
+vā = or<br/>
+api = even<br/>
+yaḥ = who (nom.)<br/>
+japet = should recite (opt.)<br/>
+praṇavam = praṇava/Om (acc.)<br/>
+sadā = always (adv.)<br/>
+na = not<br/>
+saḥ = he (nom.)<br/>
+lipyeta = is stained (pass. opt.)<br/>
+pāpena = by sin (inst.)<br/>
+padma-patram = lotus leaf (nom.)<br/>
+iva = like<br/>
+ambhasā = by water (inst.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Purifying power of Om recitation</strong><br/>
+[√jap - to recite, √lip - to smear/stain]<br/>
+Om practice purifies regardless of initial state.</div></section></div></div>
+</article>
+
+<article class="sutra" id="sec-pr-y-ma-breath-control" data-short="PRĀṆĀYĀMAḤ - BREAT">
+<div class="sec"><span class="num">5</span><span class="lbl">PRĀṆĀYĀMAḤ - BREATH CONTROL</span><span class="rule"></span></div>
+<div class="row is-mula"><div class="row__num">71</div><div class="row__skt" onclick="t(this)">cale vāte calaṃ sarvam niścale niścalam tathā |<br/>
+yogī sthāṇutvamāpnoti tato vāyuṃ nibandhayet ||71||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">When breath <strong>(vāte)</strong> is moving <strong>(cale)</strong>, all <strong>(sarvam)</strong> is moving <strong>(calam)</strong>; when still <strong>(niścale)</strong>, likewise <strong>(tathā)</strong> all is still <strong>(niścalam)</strong>. The yogi <strong>(yogī)</strong> attains <strong>(āpnoti)</strong> immobility <strong>(sthāṇutvam)</strong>, therefore <strong>(tataḥ)</strong> one should restrain <strong>(nibandhayet)</strong> the breath <strong>(vāyum)</strong>.</div><div class="tr cl">When the breath moves, everything moves, and when it is still, everything is still. Thus the yogi becomes as immovable as Śiva by restraining the breath.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">cale = when moving (loc. abs.)<br/>
+vāte = breath (loc.)<br/>
+calam = moving (nom.)<br/>
+sarvam = all (nom.)<br/>
+niścale = when still (loc. abs.)<br/>
+niścalam = still (nom.)<br/>
+tathā = likewise<br/>
+yogī = yogi (nom.)<br/>
+sthāṇutvam = immobility (acc.)<br/>
+āpnoti = attains (3rd sg.)<br/>
+tataḥ = therefore<br/>
+vāyum = breath (acc.)<br/>
+nibandhayet = should restrain (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Fundamental principle of prāṇāyāma</strong><br/>
+[√cal - to move, √āp - to attain, √bandh - to bind]<br/>
+Mind-breath connection; stillness through breath control.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">72</div><div class="row__skt" onclick="t(this)">yāvadvāyuḥ sthito dehe tāvajjīvitamucyate |<br/>
+maraṇam tasya niṣkrāntau tato vāyuṃ nirodhayet ||72||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">As long as <strong>(yāvat)</strong> breath <strong>(vāyuḥ)</strong> is established <strong>(sthitaḥ)</strong> in the body <strong>(dehe)</strong>, so long <strong>(tāvat)</strong> it is called <strong>(ucyate)</strong> life <strong>(jīvitam)</strong>. Death <strong>(maraṇam)</strong> is in its <strong>(tasya)</strong> departure <strong>(niṣkrāntau)</strong>, therefore <strong>(tataḥ)</strong> one should restrain <strong>(nirodhayet)</strong> breath <strong>(vāyum)</strong>.</div><div class="tr cl">As long as there is breath in the body there is said to be life; death happens when it leaves, so it should be restrained.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yāvat = as long as<br/>
+vāyuḥ = breath (nom.)<br/>
+sthitaḥ = established (nom.)<br/>
+dehe = in body (loc.)<br/>
+tāvat = so long<br/>
+jīvitam = life (nom.)<br/>
+ucyate = is called (pass.)<br/>
+maraṇam = death (nom.)<br/>
+tasya = its (gen.)<br/>
+niṣkrāntau = in departure (loc.)<br/>
+tataḥ = therefore<br/>
+vāyum = breath (acc.)<br/>
+nirodhayet = should restrain (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Breath as life principle</strong><br/>
+[√sthā - to stand, √vac - to speak, √niṣkram - to depart]<br/>
+Life-breath equation; breath retention for longevity.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">73</div><div class="row__skt" onclick="t(this)">yāvadbaddho marūddehe tāvaccittaṃ nirāśrayam |<br/>
+yāvaddṛṣṭirbhruvormadhye tāvatkālabhayaṃ kutaḥ ||73||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">As long as <strong>(yāvat)</strong> breath <strong>(marut)</strong> is bound <strong>(baddhaḥ)</strong> in the body <strong>(dehe)</strong>, so long <strong>(tāvat)</strong> the mind <strong>(cittam)</strong> is without support <strong>(nirāśrayam)</strong>. As long as <strong>(yāvat)</strong> vision <strong>(dṛṣṭiḥ)</strong> is between <strong>(madhye)</strong> the eyebrows <strong>(bhruvoḥ)</strong>, whence <strong>(kutaḥ)</strong> fear of death <strong>(kālabhayam)</strong>?</div><div class="tr cl">As long as the breath is fixed in the body the mind has no support. As long as the gaze is between the eyes, there is no fear of death.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yāvat = as long as<br/>
+baddhaḥ = bound (nom.)<br/>
+marut = wind/breath (nom.)<br/>
+dehe = in body (loc.)<br/>
+tāvat = so long<br/>
+cittam = mind (nom.)<br/>
+nirāśrayam = without support (nom.)<br/>
+yāvat = as long as<br/>
+dṛṣṭiḥ = vision (nom.)<br/>
+bhruvoḥ = of eyebrows (gen. dual)<br/>
+madhye = between (loc.)<br/>
+tāvat = so long<br/>
+kāla-bhayam = fear of time/death (nom.)<br/>
+kutaḥ = whence?</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Breath control and vision focus</strong><br/>
+[√bandh - to bind, √dṛś - to see]<br/>
+Bhrūmadhya-dṛṣṭi eliminates death-fear.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">74</div><div class="row__skt" onclick="t(this)">pūrvakāle'bhavad brahmā prāṇāyāmaparāyaṇaḥ |<br/>
+yogino munayaścaiva tataḥ prāṇaṃ niyantrayeṭ ||74||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">In ancient times <strong>(pūrvakāle)</strong> Brahmā <strong>(brahmā)</strong> became <strong>(abhavat)</strong> devoted to breath control <strong>(prāṇāyāmaparāyaṇaḥ)</strong>, and yogis <strong>(yoginaḥ)</strong> and sages <strong>(munayaḥ)</strong> as well <strong>(caiva)</strong>. Therefore <strong>(tataḥ)</strong> one should control <strong>(niyantrayeṭ)</strong> breath <strong>(prāṇam)</strong>.</div><div class="tr cl">It was out of fear of death that Brahmā devoted himself to breath-control and for that reason yogis and sages should restrain the breath.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">pūrva-kāle = in ancient times (loc.)<br/>
+abhavat = became/was (3rd sg. aor.)<br/>
+brahmā = Brahmā (nom.)<br/>
+prāṇāyāma-parāyaṇaḥ = devoted to breath control (nom.)<br/>
+yoginaḥ = yogis (nom. pl.)<br/>
+munayaḥ = sages (nom. pl.)<br/>
+ca = and<br/>
+eva = indeed<br/>
+tataḥ = therefore<br/>
+prāṇam = breath (acc.)<br/>
+niyantrayeṭ = should control (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Ancient authority for prāṇāyāma</strong><br/>
+[√bhū - to become, √yam - to control]<br/>
+Divine and sage precedent for breath practice.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">75</div><div class="row__skt" onclick="t(this)">ṣaṣtriṃśadaṅgulo haṃsaḥ prayāṇaṃ kurute bahiḥ |<br/>
+vāmadakṣiṇamārgeṇa cañcalatvaṃ na dṛśyate ||75||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Thirty-six <strong>(ṣattriṃśat)</strong> finger-widths <strong>(aṅgulaḥ)</strong> the breath <strong>(haṃsaḥ)</strong> makes <strong>(kurute)</strong> its journey <strong>(prayāṇam)</strong> outside <strong>(bahiḥ)</strong>. By the left-right path <strong>(vāmadakṣiṇamārgeṇa)</strong> restlessness <strong>(cañcalatvam)</strong> is not <strong>(na)</strong> seen <strong>(dṛśyate)</strong>.</div><div class="tr cl">The Goose (haṃsa) that is the out- (baḥ) and in- (sa) breaths extends thirty-six fingers externally. When the flow in the left and right channels is constant and all the clogged channels become pure then the yogi is ready to control the breath.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">ṣat-triṃśat = thirty-six (num.)<br/>
+aṅgulaḥ = finger-widths (nom.)<br/>
+haṃsaḥ = breath/soul (nom.)<br/>
+prayāṇam = journey (acc.)<br/>
+kurute = makes (3rd sg.)<br/>
+bahiḥ = outside (adv.)<br/>
+vāma-dakṣiṇa-mārgeṇa = by left-right path (inst.)<br/>
+cañcalatvam = restlessness (nom.)<br/>
+na = not<br/>
+dṛśyate = is seen (pass.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Breath measurement and balance</strong><br/>
+[√kṛ - to make, √dṛś - to see]<br/>
+36-finger external breath; ida-pingala balance.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">76</div><div class="row__skt" onclick="t(this)">śuddhimeti yadā sarvaṃ nāḍīcakraṃ malākulam |<br/>
+tadaiva jāyate yogī prāṇasaṃgrahaṇe kṣamaḥ ||76||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">When <strong>(yadā)</strong> the whole <strong>(sarvam)</strong> polluted <strong>(malākulam)</strong> nāḍī-wheel <strong>(nāḍīcakram)</strong> attains <strong>(eti)</strong> purification <strong>(śuddhim)</strong>, then <strong>(tadā)</strong> indeed <strong>(eva)</strong> the yogi <strong>(yogī)</strong> becomes <strong>(jāyate)</strong> capable <strong>(kṣamaḥ)</strong> in breath retention <strong>(prāṇasaṃgrahaṇe)</strong>.</div><div class="tr cl">When the flow in the left and right channels is constant (76) and all the clogged channels become pure then the yogi is ready to control the breath.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">śuddhim = purification (acc.)<br/>
+eti = attains (3rd sg.)<br/>
+yadā = when<br/>
+sarvam = all (nom.)<br/>
+nāḍī-cakram = channel-wheel (nom.)<br/>
+malākulam = polluted (nom.)<br/>
+tadā = then<br/>
+eva = indeed<br/>
+jāyate = becomes (3rd sg.)<br/>
+yogī = yogi (nom.)<br/>
+prāṇa-saṃgrahaṇe = in breath retention (loc.)<br/>
+kṣamaḥ = capable (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Nāḍī purification for breath control</strong><br/>
+[√i - to go, √jan - to be born]<br/>
+Channel purification prerequisite for advanced prāṇāyāma.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">77</div><div class="row__skt" onclick="t(this)">baddhapadmāsano yogī prāṇaṃ candreṇa pūrayet |<br/>
+dhārayitvā yathāśakti bhūyaḥ sūryeṇa recayet ||77||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">The yogi <strong>(yogī)</strong> in bound lotus posture <strong>(baddhapadmāsanaḥ)</strong> should fill <strong>(pūrayet)</strong> breath <strong>(prāṇam)</strong> through the moon <strong>(candreṇa)</strong>, having retained <strong>(dhārayitvā)</strong> according to capacity <strong>(yathāśakti)</strong>, again <strong>(bhūyaḥ)</strong> should exhale <strong>(recayet)</strong> through the sun <strong>(sūryeṇa)</strong>.</div><div class="tr cl">Sitting in the lotus position, the yogi should fill himself up with prāṇa using the moon [i.e. the left channel], hold it for as long as he can and exhale through the sun [i.e. the right channel].</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">baddha-padma-āsanaḥ = in bound lotus posture (nom.)<br/>
+yogī = yogi (nom.)<br/>
+prāṇam = breath (acc.)<br/>
+candreṇa = through moon/left nostril (inst.)<br/>
+pūrayet = should fill (opt.)<br/>
+dhārayitvā = having retained (abs.)<br/>
+yathā-śakti = according to capacity (adv.)<br/>
+bhūyaḥ = again<br/>
+sūryeṇa = through sun/right nostril (inst.)<br/>
+recayet = should exhale (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Lunar-solar breathing technique</strong><br/>
+[√pṝ - to fill, √dhṛ - to hold, √ric - to empty]<br/>
+Ida inhalation, retention, pingala exhalation.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">78</div><div class="row__skt" onclick="t(this)">amṛtodadhimadhyasthaṃ kṣīradhavalaprabhām |<br/>
+dhyātvā candramaso bimbaṃ prāṇāyāme sukhī bhavet ||78||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having meditated <strong>(dhyātvā)</strong> on the moon's <strong>(candramasaḥ)</strong> orb <strong>(bimbam)</strong> situated <strong>(stham)</strong> in the center <strong>(madhya)</strong> of the nectar ocean <strong>(amṛtodadhi)</strong>, with milk-white <strong>(kṣīradhavala)</strong> brilliance <strong>(prabhām)</strong>, one becomes <strong>(bhavet)</strong> happy <strong>(sukhī)</strong> in breath control <strong>(prāṇāyāme)</strong>.</div><div class="tr cl">Visualising the disc of the moon as the nectar of immortality, looking like curd, as white as milk, he gets pleasure in controlling the breath.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">amṛta-udadhi-madhya-stham = situated in nectar-ocean center (acc.)<br/>
+kṣīra-dhavala-prabhām = milk-white brilliance (acc.)<br/>
+dhyātvā = having meditated (abs.)<br/>
+candramasaḥ = of moon (gen.)<br/>
+bimbam = orb (acc.)<br/>
+prāṇāyāme = in breath control (loc.)<br/>
+sukhī = happy (nom.)<br/>
+bhavet = becomes (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Lunar visualization in prāṇāyāma</strong><br/>
+[√dhyai - to meditate, √bhū - to become]<br/>
+Cooling lunar imagery for breath practice.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">79</div><div class="row__skt" onclick="t(this)">prāṇaṃ sūryeṇa cākṛṣya pūrayedudaram śanaiḥ |<br/>
+viśiṣṭavatkumbhakaṃ kṛtvā punaścandreṇa recayet ||79||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having drawn <strong>(ākṛṣya)</strong> breath <strong>(prāṇam)</strong> with the sun <strong>(sūryeṇa)</strong> and <strong>(ca)</strong>, one should fill <strong>(pūrayet)</strong> the belly <strong>(udaram)</strong> slowly <strong>(śanaiḥ)</strong>. Having done <strong>(kṛtvā)</strong> retention <strong>(kumbhakam)</strong> in a special way <strong>(viśiṣṭavat)</strong>, again <strong>(punaḥ)</strong> one should exhale <strong>(recayet)</strong> through the moon <strong>(candreṇa)</strong>.</div><div class="tr cl">He should slowly fill up his belly by drawing in prāṇa through the sun. After holding the breath as prescribed he should again exhale through the moon.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prāṇam = breath (acc.)<br/>
+sūryeṇa = with sun/right nostril (inst.)<br/>
+ca = and<br/>
+ākṛṣya = having drawn (abs.)<br/>
+pūrayet = should fill (opt.)<br/>
+udaram = belly (acc.)<br/>
+śanaiḥ = slowly (adv.)<br/>
+viśiṣṭa-vat = in special way (adv.)<br/>
+kumbhakam = retention (acc.)<br/>
+kṛtvā = having done (abs.)<br/>
+punaḥ = again<br/>
+candreṇa = through moon/left nostril (inst.)<br/>
+recayet = should exhale (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Complete breath practice cycle</strong><br/>
+[√kṛṣ - to draw, √pṝ - to fill, √ric - to empty]<br/>
+Solar inhalation, belly breathing, retention, lunar exhalation.</div></section></div></div>
+<div class="row is-mula"><div class="row__num">80</div><div class="row__skt" onclick="t(this)">prajvalajjvalanajvālāpuñcamādityamaṇḍalam |<br/>
+dhyātvā nābhisthitam yogī praṇayāme sukhī bhavet ||80||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Having meditated <strong>(dhyātvā)</strong> on the solar disc <strong>(ādityamaṇḍalam)</strong> with clusters of blazing burning flames <strong>(prajvalajjvalanajvālāpuñca)</strong>, situated at the navel <strong>(nābhisthitam)</strong>, the yogi <strong>(yogī)</strong> becomes <strong>(bhavet)</strong> comfortable <strong>(sukhī)</strong> in breath control <strong>(praṇayāme)</strong>.</div><div class="tr cl">Meditating on the orb of the sun as a mass of blazing flames, he gets pleasure in controlling the breath.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prajvala = blazing/bright (adj.)<br/>
+jjalana = burning/fiery (adj.)<br/>
+jvālā = flame (f.)<br/>
+puñca = bunch/cluster (n.)<br/>
+āditya = sun (m.)<br/>
+maṇḍalam = disc/orb (acc.)<br/>
+dhyātvā = having meditated (abs.)<br/>
+nābhi-sthitam = situated at the navel (acc.)<br/>
+yogī = yogi (nom.)<br/>
+prāṇa-yāme = in breath control (loc.)<br/>
+sukhī = comfortable/happy (nom.)<br/>
+bhavet = becomes (opt.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Solar meditation at navel center</strong><br/>
+[Visualization of fiery solar energy at manipura chakra during prāṇāyāma]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">81</div><div class="row__skt" onclick="t(this)">praṇam cediḍayā pibenniyāmitaṃ bhuyo nyayā recayet |<br/>
+piitvā piṇgalayā samīraṇamalaṃ baddhā tyajedvāmayā ||81||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">One should drink <strong>(pibet)</strong> controlled <strong>(niyāmitaṃ)</strong> breath <strong>(prāṇam)</strong> through iḍā <strong>(iḍayā)</strong> and <strong>(ca)</strong> again <strong>(bhuyo)</strong> exhale <strong>(recayet)</strong> through it; having drunk <strong>(pītvā)</strong> sufficient <strong>(alam)</strong> wind <strong>(samīraṇam)</strong> through piṅgalā <strong>(piṇgalayā)</strong>, having retained <strong>(baddhvā)</strong> it, one should release <strong>(tyajet)</strong> through the left <strong>(vāmayā)</strong>.</div><div class="tr cl">If he performs a controlled inhalation through the left channel (iḍā) and again exhales through the other channel, then inhales through the right channel (piṅgalā), holds it sufficiently long, releases it through the left [channel] and meditates on the two orbs of the sun and moon in this way, all the ascetic's channels are purified after three months.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prāṇam = breath (acc.)<br/>
+ca = and<br/>
+iḍayā = through ida (inst.)<br/>
+pibet = should drink/inhale (opt.)<br/>
+niyāmitam = controlled/regulated (acc.)<br/>
+bhuyas = again<br/>
+tu = but<br/>
+ayā = through this (inst.)<br/>
+recayet = should exhale (opt.)<br/>
+pītvā = having drunk/inhaled (abs.)<br/>
+piṇgalayā = through pingala (inst.)<br/>
+samīraṇam = wind/breath (acc.)<br/>
+alam = enough/sufficient<br/>
+baddhvā = having bound/retained (abs.)<br/>
+tyajet = should release (opt.)<br/>
+vāmayā = through the left (inst.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Alternate nostril breathing sequence</strong><br/>
+[Systematic practice switching between iḍā (left) and piṅgalā (right) channels]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">82</div><div class="row__skt" onclick="t(this)">sūryācandramasoranena vidhinā bimbadvayaṃ dhyāyataṃ |<br/>
+śuddhā nāḍīgaṇā bhavanti yaminaṃ māsatrayāḍūrdhvataḥ ||82||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">By this <strong>(anena)</strong> method <strong>(vidhinā)</strong> one should meditate <strong>(dhyāyataṃ)</strong> on the pair of discs <strong>(bimbadvayaṃ)</strong> of sun and moon <strong>(sūryācandramasoḥ)</strong>. The groups of channels <strong>(nāḍīgaṇā)</strong> become <strong>(bhavanti)</strong> pure <strong>(śuddhā)</strong> for yogis <strong>(yaminaṃ)</strong> after <strong>(ūrdhvataḥ)</strong> three months <strong>(māsatrayāt)</strong>.</div><div class="tr cl">As a result of cleansing the channels, the yogi can hold his breath as long as he wants, his</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">sūrya = sun (m.)<br/>
+candramasoh = of the moon (gen.)<br/>
+anena = by this<br/>
+vidhinā = method/procedure (inst.)<br/>
+bimba-dvayam = pair of discs (acc.)<br/>
+dhyāyatam = should meditate (imp.)<br/>
+śuddhāḥ = pure/clean (nom. pl.)<br/>
+nāḍī-gaṇāḥ = groups of channels (nom. pl.)<br/>
+bhavanti = become (pres.)<br/>
+yaminām = of yogis (gen. pl.)<br/>
+māsa-trayāt = from three months (abl.)<br/>
+ūrdhvataḥ = upward/after</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Timeline for nāḍī purification</strong><br/>
+[Solar-lunar meditation practice yields channel purification in three months]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">83</div><div class="row__skt" onclick="t(this)">yyatheṣṭaṃ dhāraṇā dvāyoranalasya pradīpanam |<br/>
+nādābhivyaktirārogyaṃ jāyate nāḍiśodhanāṭ ||83||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">As desired <strong>(yatheṣṭaṃ)</strong> concentration <strong>(dhāraṇā)</strong> of both <strong>(dvāyoḥ)</strong>, kindling <strong>(pradīpanam)</strong> of fire <strong>(analasya)</strong>, manifestation <strong>(abhivyaktiḥ)</strong> of inner sound <strong>(nāda)</strong> and health <strong>(ārogyaṃ)</strong> arise <strong>(jāyate)</strong> from channel purification <strong>(nāḍiśodhanāt)</strong>.</div><div class="tr cl">inner fire is kindled, the inner sounds are revealed and he is free from disease.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">yatha-iṣṭam = as desired<br/>
+dhāraṇā = concentration (f.)<br/>
+dvayoh = of both (gen. dual)<br/>
+analasya = of fire (gen.)<br/>
+pradīpanam = kindling/illumination (n.)<br/>
+nāda = inner sound (m.)<br/>
+abhivyaktiḥ = manifestation (f.)<br/>
+ārogyam = health (n.)<br/>
+jāyate = arises/is born (pres.)<br/>
+nāḍī-śodhanāt = from channel purification (abl.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Results of nāḍī purification</strong><br/>
+[Multiple benefits: concentration, digestive fire, inner sound, and health]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">84</div><div class="row__skt" onclick="t(this)">prāṇo dehasthito vāyurāyāmaśca nibabdhanam |<br/>
+ekaśvāsamayī mātroddhāṭayedgagane gatim ||84||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Vital breath <strong>(prāṇo)</strong> is the wind <strong>(vāyur)</strong> dwelling in the body <strong>(dehasthito)</strong>, extension <strong>(āyāmaś)</strong> and <strong>(ca)</strong> restraint <strong>(nibabdhanam)</strong>. One unit <strong>(mātrā)</strong> consisting of a single breath <strong>(ekaśvāsamayī)</strong> should lift up <strong>(uddhāṭayet)</strong> the movement <strong>(gatim)</strong> in space <strong>(gagane)</strong>.</div><div class="tr cl">Prāṇa is air in the body; āyāma is [its] restraint. A measure of one breath opens the path to the skull (gagana, lit. "sky").</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">prāṇaḥ = vital breath (nom.)<br/>
+deha-sthitaḥ = body-dwelling (nom.)<br/>
+vāyuḥ = wind/air (nom.)<br/>
+āyāmaḥ = extension/control (nom.)<br/>
+ca = and<br/>
+nibandhanam = restraint/binding (n.)<br/>
+eka = one<br/>
+śvāsa-mayī = breath-consisting (f.)<br/>
+mātrā = measure/unit (f.)<br/>
+uddhāṭayet = should lift up (opt.)<br/>
+gagane = in the sky/space (loc.)<br/>
+gatim = movement/path (acc.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Definition of prāṇāyāma components</strong><br/>
+[Technical breakdown of breath control elements and their spatial effects]</div></section></div></div>
+<div class="row is-mula"><div class="row__num">85</div><div class="row__skt" onclick="t(this)">recakaḥ pūrakaścaiva kumbhakaḥ praṇavātmakaḥ |<br/>
+prāṇāyāmo bhavettredhā mātrādvādaśasaṃyutaḥ ||85||</div><div class="gl"><section><span class="gl__lbl">Translation</span><div class="tr">Exhalation <strong>(recakaḥ)</strong>, inhalation <strong>(pūrakaś)</strong> and indeed <strong>(caiva)</strong> retention <strong>(kumbhakaḥ)</strong> having the nature of OM <strong>(praṇavātmakaḥ)</strong> — breath control <strong>(prāṇāyāmo)</strong> becomes <strong>(bhavet)</strong> threefold <strong>(tredhā)</strong> combined with <strong>(saṃyutaḥ)</strong> twelve <strong>(dvādaśa)</strong> units <strong>(mātrā)</strong>.</div><div class="tr cl">Exhalation, inhalation and restraint have oṃ as their essence. Breath-control (prāṇāyāma) is in units of twelve measures and threefold.</div></section><section><span class="gl__lbl">Словарь</span><div class="lex">recakaḥ = exhalation (nom.)<br/>
+pūrakaḥ = inhalation (nom.)<br/>
+ca eva = and indeed<br/>
+kumbhakaḥ = retention (nom.)<br/>
+praṇava-ātmakaḥ = having the nature of OM (nom.)<br/>
+prāṇāyāmaḥ = breath control (nom.)<br/>
+bhavet = becomes (opt.)<br/>
+tredhā = in three ways<br/>
+mātrā = units/measures (f.)<br/>
+dvādaśa = twelve<br/>
+saṃyutaḥ = combined with (nom.)</div></section><section><span class="gl__lbl">Объяснение</span><div class="note"><strong>Three components of prāṇāyāma with timing</strong><br/>
+[Classical definition with OM-based counting system of 12 units]</div></section></div></div>
+</article>
+</div>
+<script>
+  function t(el) { const gl = el.nextElementSibling; if (gl && gl.classList.contains('gl')) gl.classList.toggle('is-open'); }
+  function setAll(open) { document.querySelectorAll('.gl').forEach(g => g.classList.toggle('is-open', open)); document.getElementById('b-hide').classList.toggle('is-on', !open); document.getElementById('b-show').classList.toggle('is-on', open); }
+  const nav = document.getElementById('nav');
+  document.querySelectorAll('.sutra').forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.textContent = s.dataset.short || s.id; nav.appendChild(a); });
+</script>
+</body>
+</html>
