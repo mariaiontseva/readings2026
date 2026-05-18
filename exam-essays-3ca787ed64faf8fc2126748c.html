@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
+<meta name="referrer" content="no-referrer">
+<title>Exam essays · prep</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23fbfaf6'/%3E%3Cg stroke='%235a0f1f' stroke-width='4' stroke-linecap='round' fill='none'%3E%3Cpath d='M32 13 L32 54'/%3E%3Cpath d='M18 22 L18 13 M18 22 Q18 30 32 30 Q46 30 46 22 L46 13'/%3E%3Cpath d='M32 13 L27 7 M32 13 L37 7 M32 13 L32 5'/%3E%3C/g%3E%3Cpath d='M24 50 H40' stroke='%235a0f1f' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#fbfaf6; --paper:#fff; --ink:#000; --ink-2:#0a0a0a; --ink-3:#3a352b;
+    --line:#c8c2af; --line-2:#e0d9c5; --accent:#5a0f1f; --accent-soft:#f0d9dd;
+    --tx-bg:#f3e3a8; --tx-ck:#5a4406;
+    --qt-bg:#d6ebc6; --qt-ck:#1f4011;
+    --rf-bg:#d3e4f4; --rf-ck:#13385c;
+    --serif:"Iowan Old Style","Charter","Cambria","Georgia",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.62;font-size:17.5px;font-weight:550;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:780px;margin:0 auto;padding:30px 28px 120px}
+  .pgh{margin-bottom:14px}
+  .pgh .q{font-family:var(--sans);font-size:12.5px;color:var(--accent);font-weight:600}
+  .pgh h1{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.2;margin-top:6px}
+  .pgh .meta{font-family:var(--sans);font-size:12.5px;color:var(--ink-3);margin-top:8px;font-weight:500}
+
+  .bar{position:sticky;top:0;z-index:10;background:var(--bg);margin:0 -28px 26px;padding:11px 28px 12px;border-bottom:1px solid var(--line)}
+  .bar__btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .btn{font-family:var(--sans);font-size:12px;background:transparent;border:1px solid var(--line);color:var(--ink-2);padding:5px 11px;border-radius:3px;cursor:pointer}
+  .btn:hover{background:var(--paper)}
+  .btn.is-on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:9px;font-family:var(--sans);font-size:11.5px;color:var(--ink-3)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:13px;height:13px;border-radius:3px;display:inline-block}
+  .sw.tx{background:var(--tx-bg)} .sw.qt{background:var(--qt-bg)} .sw.rf{background:var(--rf-bg)}
+  .nav{display:flex;align-items:center;gap:7px;margin-top:11px}
+  .nav .nbtn{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);width:30px;height:30px;border-radius:6px;cursor:pointer;flex:none}
+  .nav .nbtn:hover:not(:disabled){background:var(--accent);color:#fff;border-color:var(--accent)}
+  .nav .nbtn:disabled{opacity:.35;cursor:default}
+  .nav select{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 10px;max-width:340px;cursor:pointer}
+  .nav .ncount{font-family:var(--mono);font-size:12px;color:var(--ink-3);flex:none}
+
+  .essay{margin:0 0 54px;scroll-margin-top:96px}
+  .essay__q{font-size:19px;font-weight:700;line-height:1.3;color:var(--ink);margin:0 0 16px;padding-bottom:11px;border-bottom:2px solid var(--accent)}
+  .essay__q .en{font-family:var(--sans);font-size:11px;color:var(--accent);font-weight:700;display:block;margin-bottom:5px;letter-spacing:.04em}
+
+  .card{margin:0 0 3px;background:#f6f1e2;border-left:2px solid var(--accent);transition:background .12s}
+  .card:not(.open):hover{background:#f0ead7}
+  .card.open{background:var(--paper)}
+  .card__h{cursor:pointer;display:flex;align-items:baseline;gap:11px;padding:13px 16px 12px}
+  .card__n{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700;min-width:24px}
+  .card__s{font-size:17px;font-weight:600;color:var(--ink);flex:1;letter-spacing:-.005em}
+  .card__x{font-family:var(--mono);font-size:13px;color:var(--ink-3);user-select:none}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 13px 39px}
+  .chip{font-family:var(--serif);font-size:12.5px;font-weight:600;padding:1.5px 9px;border-radius:999px;line-height:1.5}
+  .chip.tx{background:var(--tx-bg);color:var(--tx-ck)}
+  .chip.qt{background:var(--qt-bg);color:var(--qt-ck)}
+  .chip.rf{background:var(--rf-bg);color:var(--rf-ck)}
+  .card__body{display:none;padding:2px 18px 18px 39px}
+  .card.open .card__body{display:block}
+  .card.open .chips{display:none}
+  .para{font-size:17.5px;line-height:1.72;color:var(--ink-2);margin-top:8px}
+  .tx,.qt,.rf{border-radius:3px;padding:0 3px;font-weight:650;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .tx{background:var(--tx-bg);color:var(--tx-ck)}
+  .qt{background:var(--qt-bg);color:var(--qt-ck)}
+  .rf{background:var(--rf-bg);color:var(--rf-ck)}
+
+  .card.flow{border-left-color:#7a7159;margin-top:12px}
+  .card.flow .card__s{color:var(--ink-3);font-style:italic}
+  .flowlist{margin:6px 0 0;padding:0;list-style:none}
+  .flowlist li{font-size:16px;line-height:1.7;color:var(--ink-2);padding:7px 0;border-top:1px solid var(--line-2)}
+  .flowlist li:first-child{border-top:none}
+  .flowlist .step{font-family:var(--mono);font-size:12.5px;color:var(--accent);font-weight:700;margin-right:8px}
+  .flowlist b{color:var(--accent);font-weight:700}
+  .flowlist i{color:var(--ink-3)}
+
+  /* ── self-test system ── */
+  .modes{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+  .modes .btn.is-on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#d3ccb6;align-self:center}
+  .dot.k{background:#3f8f4f}.dot.s{background:#d39a2a}.dot.f{background:#b23b3b}
+  .mode-study .dot{display:none}
+  .qz{display:none;border-top:1px dashed var(--line-2);padding:11px 16px 14px 39px;gap:8px;flex-wrap:wrap;align-items:center}
+  .qz .rv{font-family:var(--sans);font-size:12px;border:1px solid var(--accent);color:var(--accent);background:transparent;padding:5px 13px;border-radius:4px;cursor:pointer}
+  .qz .rv:hover{background:var(--accent);color:#fff}
+  .qz .gl{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);margin:0 2px 0 4px}
+  .qz .g{font-family:var(--sans);font-size:12px;border:1px solid var(--line);background:#fff;padding:5px 11px;border-radius:4px;cursor:pointer;color:var(--ink-2)}
+  .qz .g.k.on{background:#3f8f4f;color:#fff;border-color:#3f8f4f}
+  .qz .g.s.on{background:#d39a2a;color:#fff;border-color:#d39a2a}
+  .qz .g.f.on{background:#b23b3b;color:#fff;border-color:#b23b3b}
+  .prog{font-family:var(--sans);font-size:12.5px;color:var(--ink-3);margin:12px 0 0;padding:10px 14px;background:#f1ecde;border-radius:7px;line-height:1.6}
+  .prog b{color:var(--accent);font-weight:700}
+  .prog .rs{font-size:11.5px;color:var(--accent);cursor:pointer;text-decoration:underline;margin-left:8px}
+  .qz .clbox,.qz .rvbox,.qz .gbox{display:none;gap:7px;align-items:center;flex-wrap:wrap}
+  .mode-cloze .qz .clbox,.mode-cloze .qz .gbox{display:flex}
+  .mode-tags .qz .rvbox,.mode-tags .qz .gbox{display:flex}
+  .qz .cl{font-family:var(--sans);font-size:12px;border:1px solid var(--accent);color:var(--accent);background:transparent;padding:5px 11px;border-radius:4px;cursor:pointer}
+  .qz .cl:hover,.qz .cl.on{background:var(--accent);color:#fff}
+  .qz .lvl{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700;min-width:34px;text-align:center}
+  /* cloze — progressive word masking, original always one click away */
+  .mode-cloze .essay .card:not(.flow) .card__body{display:block!important}
+  .mode-cloze .essay .card:not(.flow) .chips{display:none!important}
+  .mode-cloze .essay .card:not(.flow) .qz{display:flex}
+  .mode-cloze .para .w.mask,.mode-cloze .para .tx.mask,.mode-cloze .para .qt.mask,.mode-cloze .para .rf.mask{color:transparent!important;background:#e7e1ce;box-shadow:inset 0 0 0 1px rgba(40,30,10,.18);border-radius:3px;cursor:pointer}
+  .mode-cloze .para .tx.mask.show{color:var(--tx-ck)!important;background:var(--tx-bg);box-shadow:none}
+  .mode-cloze .para .qt.mask.show{color:var(--qt-ck)!important;background:var(--qt-bg);box-shadow:none}
+  .mode-cloze .para .rf.mask.show{color:var(--rf-ck)!important;background:var(--rf-bg);box-shadow:none}
+  .mode-cloze .para .w.mask.show{color:var(--ink-2)!important;background:#fbeec0;box-shadow:none}
+  .mode-cloze .card.origc .para .mask{color:inherit!important;background:transparent!important;box-shadow:none!important;cursor:default}
+  .mode-cloze .card.origc .para .tx{color:var(--tx-ck)!important;background:var(--tx-bg)!important}
+  .mode-cloze .card.origc .para .qt{color:var(--qt-ck)!important;background:var(--qt-bg)!important}
+  .mode-cloze .card.origc .para .rf{color:var(--rf-ck)!important;background:var(--rf-bg)!important}
+  /* tags — body shown, every tag masked until clicked */
+  .mode-tags .essay .card:not(.flow) .card__body{display:block!important}
+  .mode-tags .essay .card:not(.flow) .chips{display:none!important}
+  .mode-tags .essay .card:not(.flow) .qz{display:flex}
+  .mode-tags .essay .card__body .tx,
+  .mode-tags .essay .card__body .qt,
+  .mode-tags .essay .card__body .rf{color:transparent!important;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(40,30,10,.22);border-radius:3px}
+  .mode-tags .essay .card__body .tx.show{color:var(--tx-ck)!important}
+  .mode-tags .essay .card__body .qt.show{color:var(--qt-ck)!important}
+  .mode-tags .essay .card__body .rf.show{color:var(--rf-ck)!important}
+  @media(max-width:600px){
+    .wrap{padding:20px 14px 80px}
+    .bar{margin:0 -14px 18px;padding:8px 14px 10px}
+    .pgh h1{font-size:19px}
+    .essay__q{font-size:17px}
+    .card__s{font-size:16px}
+    .para{font-size:16px}
+    .chips,.card__body{padding-left:30px}
+    .qz{padding-left:16px}
+  }
+</style>
+</head>
+<body class="mode-study">
+<div class="wrap">
+
+<header class="pgh">
+  <div class="q">Oxford MPhil · Exam 1 · essay prep</div>
+  <h1>Prepared essays — collapsible, with memory tags</h1>
+  <div class="meta">Closed: 3–4-word summary + tags to learn. Click to open the full paragraph with highlights. Russian flow note at the end of each essay.</div>
+</header>
+
+<div class="bar">
+  <div class="bar__btns">
+    <button class="btn is-on" id="b-hide" onclick="setAll(false)">Collapse all</button>
+    <button class="btn" id="b-show" onclick="setAll(true)">Open all</button>
+  </div>
+  <div class="legend">
+    <span><i class="sw tx"></i> text names — learn</span>
+    <span><i class="sw qt"></i> quotes — learn</span>
+    <span><i class="sw rf"></i> scholars — learn</span>
+  </div>
+  <div class="modes">
+    <button class="btn is-on" id="m-study" onclick="setMode('study')">📖 Study</button>
+    <button class="btn" id="m-cloze" onclick="setMode('cloze')">✍️ Cloze drill (hide words)</button>
+    <button class="btn" id="m-tags" onclick="setMode('tags')">🏷️ Test: do I know the tags?</button>
+  </div>
+  <nav class="nav" id="nav"></nav>
+</div>
+
+<article class="essay" id="e1" data-nav="1 · Śiva ≠ peaceful Rudra">
+  <h2 class="essay__q"><span class="en">Essay 1</span>“Tantric/Purāṇic Śiva cannot simply be the peaceful aspect of Vedic Rudra.” Discuss.</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Thesis: the claim is right</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“peaceful aspect of Vedic Rudra”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The claim is right. The phrase <span class="qt">“peaceful aspect of Vedic Rudra”</span> gets both ends wrong — what śiva was in the Veda, and what Tantric Śiva is (I’ll keep the Purāṇic outside).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">Veda: Rudra is a fearsome god</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Ṛgveda</span><span class="chip tx">RV 1.114 · 2.33 · 7.46</span><span class="chip tx">RV 10.92.9</span><span class="chip tx">Taittirīya Saṃhitā</span><span class="chip tx">Śatarudrīya</span><span class="chip tx">TS 5.7.3.3</span><span class="chip tx">TS 4.5.8</span>
+      <span class="chip qt">“the well-disposed, very helpful, self-glorious one”</span><span class="chip qt">“two bodies… ghora- / śiva-”</span><span class="chip qt">namaḥ śivāya ca śivatarāya ca</span>
+      <span class="chip rf">Jamison &amp; Brereton</span><span class="chip rf">Srinivasan</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><span class="tx">Rudra in the Ṛgveda</span> is primarily a fearsome god, cattle-slayer (<i>goghna</i>) and man-slayer (<i>puruṣaghna</i>), to be begged to turn his arrows away (<span class="tx">RV 1.114, 2.33, 7.46</span>). Against this baseline, śiva enters as an adjective, “kindly”, “auspicious”, and the first direct application to Rudra appears only late, in <span class="tx">RV 10.92.9</span>, where <span class="rf">Jamison and Brereton</span> render the relevant phrase as <span class="qt">“the well-disposed, very helpful, self-glorious one.”</span> It begins as a way of speaking to a dangerous god. By the later Vedic period this hardens into a proper aspect. The <span class="tx">Taittirīya Saṃhitā</span> makes the structure explicit: Rudra has <span class="qt">“two bodies, the one fearful (ghora-), the other auspicious (śiva-)”</span>, and the <span class="tx">Śatarudrīya</span> is composed specifically to pacify the fearful body while a separate offering honours the auspicious one (<span class="tx">TS 5.7.3.3</span>; <span class="rf">Srinivasan</span>). The same litany addresses Rudra by the epithet itself in <span class="qt">namaḥ śivāya ca śivatarāya ca</span> (<span class="tx">TS 4.5.8</span>). So a śiva aspect does emerge, but it never detaches. It is one pole of a ritual mechanism for handling a fearsome god, always paired with the fearful body it soothes, never a separable figure in its own right.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Tantras take Rudra whole</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Śaiva Siddhānta</span><span class="chip tx">Trika</span><span class="chip tx">Pratyabhijñā</span><span class="chip tx">Vidyāpīṭha</span><span class="chip tx">Abhinavagupta</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The Tantras then do not select the peaceful side. They take Rudra whole and develop both poles into full theology. The śiva pole becomes Sadāśiva of <span class="tx">Śaiva Siddhānta</span>, Paramaśiva of the <span class="tx">Trika</span>, the absolute consciousness of the <span class="tx">Pratyabhijñā</span>, Śiva as light and self-awareness (<i>prakāśa-vimarśa</i>). The ghora pole becomes Bhairava — the fierce cremation-ground deity of the Bhairava and <span class="tx">Vidyāpīṭha</span> tantras, emulated in the skull-bearing Kāpālika observance. In the great non-dualist syntheses of <span class="tx">Abhinavagupta</span> the two are one god, held together. What was a ritual technology in the Veda becomes a theological vision in the Tantras: not the calming of a fearsome god, but the full elaboration of his double nature.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Fierce pole: pre-Tantric genealogy</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Atharvaveda</span><span class="chip tx">AV 15.1</span>
+      <span class="chip qt">“ox vow”</span>
+      <span class="chip rf">Acharya (2013)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The fierce pole, moreover, has its own pre-Tantric genealogy. The <span class="tx">Atharvaveda</span> records Rudra’s worship among the Vrātyas (<span class="tx">AV 15.1</span>), groups outside mainstream Brahmanical culture who maintained vow-based ritual traditions. <span class="rf">Acharya (2013)</span> traces the Pāśupata godharma back to the Vrātya <span class="qt">“ox vow”</span>, elaborated in more transgressive form, with imitation of bovine behaviour and suspension of dietary and sexual taboos. What the Pāśupata–Kāpālika line inherits is not yet a fully formed fierce Śiva — that theology develops later — but the formal pattern of the antinomian vow, running alongside the mainstream cult from the start.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: double-bodied, not half</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“peaceful Rudra” never existed</span>
+    </div>
+    <div class="card__body">
+      <p class="para">Vedic Rudra is the forerunner of Tantric Śiva, but as a double-bodied god, never as half of one. A <span class="qt">“peaceful Rudra” never existed</span> to be carried through.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span>Тезис. Утверждение верно. Ошибка сидит в самой фразе: она неверна и про Веду, и про тантры. Дальше каждый параграф закрывает одну часть этой ошибки.</li>
+        <li><span class="step">¶1→¶2</span>Берёмся за ведийский конец. Rudra в Веде — страшный бог. Слово <i>śiva</i> приходит поздно и сначала это просто вежливое обращение к опасному богу. В <i>Taittirīya Saṃhitā</i> оно затвердевает в одну из двух телесных сторон — и эта сторона <b>неотделима</b> от грозной.</li>
+        <li><span class="step">¶2→¶3</span>Раз структура уже <b>парная</b>, тантрам нечего «выбирать». Это твои же слова в ¶3: они «do not select the peaceful side; take Rudra whole». Оба полюса вырастают в теологию (śiva → Sadāśiva/Paramaśiva; ghora → Bhairava — грозное божество Bhairava/Vidyāpīṭha-тантр, которого капалики имитируют).</li>
+        <li><span class="step">¶3→¶4</span>Усиливаем: у <b>грозного</b> полюса своя <b>до-тантрическая родословная</b> — он не выдумка тантр. Линия идёт от Vrātya и сохранена в <i>Atharvaveda</i> (через Acharya 2013), и шла рядом с мейнстримным культом с самого начала.</li>
+        <li><span class="step">¶4→¶5</span>Вывод. Rudra — предшественник Tantric Śiva, но как <b>двутелый</b> бог, а не как половина одного. «Мирного Rudra» не существовало вовсе — нечему было «доходить».</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e2" data-nav="2 · IVC ↔ Vedic continuity">
+  <h2 class="essay__q"><span class="en">Essay 2</span>Outline the arguments for and against continuity in religious practice between the Indus Valley and Vedic Civilisations.</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Paśupati seal frames the debate</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Paśupati seal</span><span class="chip tx">Mohenjo-daro</span><span class="chip tx">Indus Valley Civilisation (c. 2600–1900 BCE)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The <span class="tx">Paśupati seal</span> from <span class="tx">Mohenjo-daro</span> — a horned figure seated among animals — has carried the case for religious continuity between the <span class="tx">Indus Valley Civilisation (IVC, c. 2600–1900 BCE)</span> and Vedic India for nearly a century. Whether the seal can carry that weight is another matter.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">For: Marshall’s proto-Śiva</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx"><i>Mohenjo-daro and the Indus Civilization</i> (1931)</span>
+      <span class="chip qt">“Lord of Beasts”</span>
+      <span class="chip rf">John Marshall (1931)</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><b>For continuity.</b> The strongest case was made by <span class="rf">John Marshall</span> in his <span class="tx"><i>Mohenjo-daro and the Indus Civilization</i> (1931)</span>, the foundational excavation report whose interpretation dominated for half a century. A horned, possibly three-faced figure sits in a yogic posture, surrounded by animals. Marshall read this as a <b>proto-Śiva</b>: the horns prefigure the trident, the seated posture prefigures the Mahāyogin, the surrounding animals prefigure Paśupati (<span class="qt">“Lord of Beasts”</span>). He added that conical stones from IVC sites resemble later liṅgas. On this reading, a deity worshipped in the IVC was absorbed into the Brahmanical tradition and resurfaces as Rudra-Śiva.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Against: no link, four-century gap</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">“Unhinging Śiva from the Indus Civilization” (1983)</span>
+      <span class="chip rf">Srinivasan (1983)</span><span class="chip rf">B.B. Lal</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><b>Against continuity.</b> Two problems have made Marshall’s case difficult to sustain, and since the 1980s the consensus has shifted against it. The IVC script is undeciphered, so nothing can be said directly about Indus religion, only about images. <span class="rf">Srinivasan</span> (<span class="tx">“Unhinging Śiva from the Indus Civilization”, 1983</span>) argued that the seal figure is more plausibly a horned god of fertility than a yogin, and that the conical stones are not unambiguously liṅgas. Second, there is a chronological gap. <span class="rf">B.B. Lal</span> places the Harappan decline around <b>1900 BCE</b> and the earliest Indo-Aryan presence around <b>1500 BCE</b> — a four-century interval with no overlap. Direct transmission needs people in contact; the dates do not allow it.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Middle: fragmentation, partial pickup</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Cemetery H (c. 1900–1700 BCE)</span>
+      <span class="chip rf">Allchin &amp; Allchin</span><span class="chip rf">Possehl</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><b>A middle position.</b> <span class="rf">Allchin &amp; Allchin</span> and <span class="rf">Possehl</span> describe the IVC not as collapsing but as breaking up into smaller regional cultures (<span class="tx">Cemetery H, c. 1900–1700 BCE</span>). New pottery and burial customs spread through these regions slowly and peacefully, not by conquest. On this view, scattered elements of late Harappan practice may have been picked up by the incoming Vedic culture — not a whole inherited religion, but bits and pieces. This is a much weaker kind of continuity than Marshall claimed.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: no strong continuity</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“Visual resemblance is not transmission”</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><b>Conclusion.</b> <span class="qt">Visual resemblance is not transmission</span>, and the four-century gap rules out direct succession. There is no positive evidence for continuity in the strong sense, but the fragmentation model leaves room for partial absorption of post-Harappan elements into the Vedic world.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span>Рамка. Печать <i>Paśupati</i> из Mohenjo-daro почти век держит гипотезу преемственности IVC → ведийская Индия. Вопрос всего эссе: выдержит ли печать этот вес.</li>
+        <li><span class="step">¶1→¶2</span>Сначала сильная версия <b>ЗА</b>. Marshall (1931): фигура = <b>прото-Śiva</b> (рога → тришула, поза → Mahāyogin, звери → Paśupati «Lord of Beasts»), конические камни ≈ liṅga. Целое божество IVC якобы перешло в брахманизм как Rudra-Śiva.</li>
+        <li><span class="step">¶2→¶3</span><b>ПРОТИВ</b> — два удара. (1) Письмо IVC не расшифровано → о религии судить нельзя, только об образах; Srinivasan (1983) — это скорее рогатый бог плодородия, камни — не точно liṅga. (2) Хронологический разрыв: упадок Harappa ~<b>1900 BCE</b>, индоарии ~<b>1500 BCE</b> — 400 лет без контакта. Прямая передача невозможна.</li>
+        <li><span class="step">¶3→¶4</span>Средняя позиция. Allchin &amp; Allchin, Possehl: IVC не «рухнула», а распалась на регионы (Cemetery H, ~1900–1700 BCE); обычаи расходились медленно и мирно. Возможен подбор <b>отдельных</b> элементов поздней Harappa, но не целой религии — слабая преемственность.</li>
+        <li><span class="step">¶4→¶5</span>Вывод. Сходство ≠ передача; 400-летний разрыв снимает прямое наследование. Сильной преемственности нет, но модель фрагментации оставляет место частичному впитыванию пост-хараппских элементов.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e3" data-nav="3 · “Hinduism” before 1400?">
+  <h2 class="essay__q"><span class="en">Essay 3</span>Does the term “Hinduism” usefully capture anything before 1400 C.E.?</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Thesis: an outsiders’ label only</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“the Indians who are not Muslim”</span>
+      <span class="chip rf">al-Bīrūnī (10th c.)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The short answer: barely, and only as a word used by outsiders. “Hindu” was never the name the people themselves used. It started as a Persian word for the land beyond the Indus river. From about the <b>tenth century</b>, Muslim writers like <span class="rf">al-Bīrūnī</span> used it as a religious term only to mean <span class="qt">“the Indians who are not Muslim”</span>. So before <b>1400</b> the word is a label put on people from outside; it does not name a religion they felt inside.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">No single religion inside</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">the Veda</span>
+      <span class="chip qt">“deceptive term”</span>
+      <span class="chip rf">von Stietencron</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The people called “Hindu” did not see themselves as one religion. They were Vaiṣṇavas, Śaivas, Śāktas and followers of <span class="tx">the Veda</span> — each with its own gods, texts and teachers, and often opposed to each other. This is why <span class="rf">von Stietencron</span> calls “Hinduism” a <span class="qt">“deceptive term”</span>: it makes one religion out of many. There was no single thing inside for the word to catch.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Lorenzen: a “not Muslim” identity</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">“Who Invented Hinduism?”</span>
+      <span class="chip qt">“we are not Muslim”</span><span class="chip qt">“Sultan among the Hindu kings”</span>
+      <span class="chip rf">Lorenzen (1999)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">But the word is not empty either. <span class="rf">Lorenzen</span> (<span class="tx">“Who Invented Hinduism?”</span>) shows that under Muslim rule a <span class="qt">“we are not Muslim”</span> feeling slowly grew. By about <b>1352</b>, kings in south India gave themselves a title that meant <span class="qt">“Sultan among the Hindu kings”</span> — Indians now using the word of themselves (<span class="rf">Lorenzen 1999</span>). So the word did start to mean something real, but only “we who are not Muslim”, not a shared faith.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Conclusion: a practical outsider word</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“a word for rulers to name and tax other people”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">Does “Hinduism” then catch anything real before 1400? As the name of one religion, no — that idea came later, with the British. As a name for a group of people defined from outside, and, late and weakly, for a feeling of “not Muslim”, yes — but only that. Its real use was always practical: <span class="qt">a word for rulers to name and tax other people</span>, not a description of how those people saw themselves.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span>Короткий ответ: едва ли — и только как слово <b>чужаков</b>. «Hindu» — персидское слово для земли за Индом; с ~X в. мусульманские авторы (al-Bīrūnī) применяют его религиозно = «индийцы-немусульмане». До <b>1400</b> это ярлык извне, не самоназвание.</li>
+        <li><span class="step">¶1→¶2</span>А что <b>внутри</b>? Ничего единого: вайшнавы, шайвы, шакты, ведийцы — свои боги, тексты, учителя, часто во вражде. Поэтому von Stietencron: «Hinduism» — <b>«обманчивый термин»</b>, делает одну религию из многих. Ловить слову нечего.</li>
+        <li><span class="step">¶2→¶3</span>Но слово и <b>не пустое</b>. Lorenzen («Who Invented Hinduism?»): под мусульманским правлением растёт чувство «мы не мусульмане»; ~<b>1352</b> южноиндийские цари титулуют себя «султан среди индусских царей» — индийцы сами употребляют слово. Появляется реальный смысл, но только «мы не мусульмане», не общая вера.</li>
+        <li><span class="step">¶3→¶4</span>Вывод. Как имя <b>одной религии</b> — нет (это позже, с британцами). Как имя группы извне и, поздно и слабо, чувства «не мусульмане» — да, но и только. Реальная функция — <b>практическая</b>: слово правителей, чтобы называть и облагать налогом других, не самоописание.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e4" data-nav="4 · NK & Patañjali (Mṛgendra)">
+  <h2 class="essay__q"><span class="en">Essay 4</span>Doctrinal limits of authority: what Nārāyaṇakaṇṭha could not cite from the Pātañjalayogaśāstra in the Mṛgendra Yogapāda-vṛtti.</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">NK cites Patañjali, but with restraint</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Mṛgendratantra (Yogapāda)</span><span class="chip tx">Yogabhāṣya</span>
+      <span class="chip qt">yujir yoge / yuja samādhau</span><span class="chip qt">“same word, opposite system”</span>
+      <span class="chip rf">Bhaṭṭa Nārāyaṇakaṇṭha (late 10th c.)</span><span class="chip rf">Patañjali</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><span class="rf">Bhaṭṭa Nārāyaṇakaṇṭha</span> (NK, <b>late 10th-c. Kashmir</b>) wrote a vṛtti on the <span class="tx">Yogapāda of the Mṛgendratantra</span>, a Śaiva Siddhānta scripture. In it he cites <span class="rf">Patañjali</span>, a non-Śaiva authority, by name, but with deliberate restraint. NK quotes only three sūtras — plain technical definitions of <i>dhāraṇā</i> and <i>samādhi</i>; he takes the definitions but leaves the Sāṃkhya-Yoga metaphysics behind. He rejects Patañjali on the etymology of “yoga”, deriving it from <span class="qt">yujir yoge</span> (“to join”) not <span class="qt">yuja samādhau</span> (“to be absorbed”). The first line of his vṛtti defines <i>kaivalya</i>, Patañjali’s central term, as what <i>dīkṣā</i> grants, while in the <span class="tx">Yogabhāṣya</span> it is the self-establishment of <i>citi-śakti</i>. <span class="qt">Same word, opposite system.</span> The two frameworks are incompatible in theology, soteriology, and the goal of yoga.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">Theology: creator vs one puruṣa</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Śaiva Siddhānta</span>
+      <span class="chip rf">Patañjali</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The theological gap is the first. <span class="tx">Śaiva Siddhānta</span> makes Śiva the <i>paramakāraṇa</i> of a <b>36-tattva</b> cosmos, performing the five cosmic functions (<i>pañcakṛtya</i>). For <span class="rf">Patañjali</span>, <i>īśvara</i> is a <i>puruṣa-viśeṣa</i>, one liberated being among many in a <b>25-tattva</b> scheme; this īśvara is an object of meditation, not a creator. Citing him would drop Śiva to one puruṣa among many and break pañcakṛtya.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Soteriology: dīkṣā vs knowledge</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip rf">Kauṇḍinya</span><span class="chip rf">Patañjali</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The soteriologies diverge just as sharply. For NK, bondage is <i>mala</i>, a subtle substance covering the soul, removable only by ritual <i>dīkṣā</i>; knowledge does not liberate. For <span class="rf">Patañjali</span>, bondage lies in the <i>kleśas</i> — mental afflictions — and liberation comes through <i>vivekakhyāti</i>, discriminative knowledge. To cite him would name knowledge as the liberator, which the Saiddhāntika tradition since <span class="rf">Kauṇḍinya</span> denies.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Goal: isolation vs lordship</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">the Mṛgendra</span>
+      <span class="chip qt">“not isolation but lordship”</span>
+      <span class="chip rf">Patañjali</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The goal of yoga is incompatible in the same way. <span class="rf">Patañjali</span>’s <i>siddhis</i> arise from <i>saṃyama</i> on any chosen object; NK’s are <i>divya</i>, arising through a graded meditative sequence directed at objects the <span class="tx">Mṛgendra</span> requires the yogin to see as the body of Parameśvara. Patañjali’s <i>kaivalya</i> is a puruṣa alone: no body, no cosmos, no agency. NK’s yogin ascends the <b>36-tattva</b> hierarchy, holds a body that has become divine, and at his chosen moment abandons even that body to dwell in <i>śivatā</i> with the capacity, equal to Parameśvara’s, to act as agent of the five cosmic functions. <span class="qt">The terminal state is not isolation but lordship.</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: restraint is structural</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“structural necessity, not personal preference”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">NK’s restraint is <span class="qt">not personal preference but structural necessity</span>. Patañjali enters the vṛtti only where the doctrine is light enough to carry across. Everywhere else, citing him would have taken the vṛtti apart.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span>NK (Кашмир, к. X в.) пишет <i>vṛtti</i> на Yogapāda <i>Mṛgendratantra</i> (Śaiva Siddhānta). Цитирует Patañjali по имени, но <b>сдержанно</b>: только 3 сутры (определения dhāraṇā/samādhi), без санкхья-йоговской метафизики; спорит об этимологии «yoga»; <i>kaivalya</i> у него = то, что даёт <i>dīkṣā</i>. Одно слово — противоположные системы. Несовместимы в теологии, сотериологии и цели йоги — дальше эти три оси.</li>
+        <li><span class="step">¶1→¶2</span>Ось 1 — <b>теология</b>. У Śaiva Siddhānta Śiva = <i>paramakāraṇa</i> космоса из <b>36 таттв</b>, делает <i>pañcakṛtya</i>. У Patañjali <i>īśvara</i> = <i>puruṣa-viśeṣa</i>, один из многих в <b>25 таттвах</b>, объект медитации, не творец. Цитировать = низвести Śiva и сломать pañcakṛtya.</li>
+        <li><span class="step">¶2→¶3</span>Ось 2 — <b>сотериология</b>. У NK оковы = <i>mala</i>, снимается только ритуальной <i>dīkṣā</i>; знание не освобождает. У Patañjali оковы = <i>kleśas</i>, освобождает <i>vivekakhyāti</i> (знание). Цитировать = назвать знание освободителем — что сиддхантика со времён Kauṇḍinya отрицает.</li>
+        <li><span class="step">¶3→¶4</span>Ось 3 — <b>цель йоги</b>. <i>siddhis</i> Patañjali — из <i>saṃyama</i> на любой объект; у NK — <i>divya</i>, по ступеням, объекты как тело Parameśvara. <i>kaivalya</i> = puruṣa в одиночестве (без тела, космоса, действия); йогин NK восходит по 36 таттвам, обретает божественное тело и <i>śivatā</i> с силой pañcakṛtya. Итог — не изоляция, а <b>владычество</b>.</li>
+        <li><span class="step">¶4→¶5</span>Вывод. Сдержанность NK — не вкус, а <b>структурная необходимость</b>: Patañjali входит только там, где доктрина «лёгкая» для переноса; везде ещё цитирование разобрало бы vṛtti на части.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e5" data-nav="5 · Pratyabhijñā (Recognition)">
+  <h2 class="essay__q"><span class="en">Essay 5</span>Pratyabhijñā: how can lifeless things be Śiva’s acts, and where does the self/other split come from?</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Claim: all is Śiva-consciousness</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Pratyabhijñā</span><span class="chip tx">Śivadṛṣṭi</span><span class="chip tx">Īśvarapratyabhijñākārikā</span>
+      <span class="chip rf">Somānanda (c. 900–950)</span><span class="chip rf">Utpaladeva</span><span class="chip rf">Abhinavagupta</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The <span class="tx">Pratyabhijñā</span> (“Recognition”) school of the non-dual Śaiva-Śākta tradition of Kashmir, founded by <span class="rf">Somānanda</span> (<b>c. 900–950</b>) in his <span class="tx">Śivadṛṣṭi</span>, systematised by his disciple <span class="rf">Utpaladeva</span> in the <span class="tx">Īśvarapratyabhijñākārikā</span>, and brought to its full synthesis by <span class="rf">Abhinavagupta</span>, makes one bold claim: everything that happens — a person’s thought, a stone’s erosion, every event in existence — expresses the agency (<i>kartṛtva</i>) of one Śiva-consciousness — Śiva taken not iconographically but as the universal principle of awareness itself. Two questions follow. How can lifeless things be his acts? And if all is one subject, where does the split between self and other come from?</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">Consciousness: prakāśa–vimarśa, svātantrya</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“whatever acts, acts by Śiva’s freedom”</span>
+      <span class="chip rf">Utpaladeva</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The answer starts with what consciousness is. <span class="rf">Utpaladeva</span> says it has two inseparable sides: <i>prakāśa</i>, the light that makes anything appear, and <i>vimarśa</i>, the self-awareness by which that light knows itself. A light that did not know itself would be as good as unconscious. Because consciousness knows and constitutes its own objects, it depends on nothing outside it. This absolute freedom is <i>svātantrya</i>, and it is the ground of all action. <span class="qt">Whatever acts, acts by Śiva’s freedom.</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">The stone: contraction, ābhāsa</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Ajaḍapramātṛsiddhi</span>
+      <span class="chip rf">Utpaladeva</span><span class="chip rf">Ratié (2009)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">But a stone? Through progressive contraction (<i>saṃkoca</i>), Śiva’s awareness narrows: less knowledge, less freedom, less ‘I’. Matter is this contraction taken to its extreme: awareness manifesting purely as object (<i>prameya</i>), not as a subject capable of self-awareness. Even so, the underlying awareness does not vanish, for without it the stone could not appear at all. <span class="rf">Utpaladeva</span> makes the point sharply in the <span class="tx">Ajaḍapramātṛsiddhi</span>: insentient things (<i>jaḍa</i>) are not self-luminous in their own right and exist only insofar as they are manifested (<i>ābhāsa</i>) within consciousness (<span class="rf">Ratié 2009</span>). The stone is real as appearance, not as an independent centre of awareness.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Self/other: the knowing triad</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“I know this”</span>
+      <span class="chip rf">Ratié (2007)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">And the self/other split? Every cognition takes the form <span class="qt">‘I know this’</span>: <i>pramātṛ</i> (knower), <i>prameya</i> (known), <i>pramāṇa</i> (means of knowing). Pratyabhijñā reads the triad as one <i>svātantrya</i> in three modes: consciousness contracted as finite knower, extended as object, acting as the cognition between. The <i>malas</i> make this divide seem solid, but it cracks. Another person cannot be reduced to <i>prameya</i>, since their appearing carries a freedom resisting being merely known; this recognition of another <i>pramātṛ</i> is an <i>ūha</i>, neither perception nor inference (<span class="rf">Ratié 2007</span>).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: one move, both answered</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“Śiva is consciousness itself”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">One move answers both questions. Śiva is not a being or a thing; <span class="qt">Śiva is consciousness itself</span>, and everything in the world is consciousness appearing in different roles. Pratyabhijñā is the moment of seeing this directly: what looked like an external object is the same consciousness in another form.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span>Школа Pratyabhijñā («узнавание»): основал Somānanda (~900–950) в <i>Śivadṛṣṭi</i> → систематизировал ученик Utpaladeva в <i>Īśvarapratyabhijñākārikā</i> → полный синтез у Abhinavagupta. Делает один смелый тезис: всё, что происходит, — действие (<i>kartṛtva</i>) единого Śiva-сознания (Śiva = принцип осознания, не икона). Отсюда <b>два вопроса</b>: как безжизненное может быть его действием? и откуда раскол «я / другой»?</li>
+        <li><span class="step">¶1→¶2</span>Сначала — что такое сознание. У Utpaladeva две неразделимые стороны: <i>prakāśa</i> (свет явления) и <i>vimarśa</i> (само-осознание). Свет, не знающий себя, = бессознателен. Сознание само конституирует объекты → ни от чего не зависит = <b>svātantrya</b>, основа всякого действия. Всё, что действует, действует свободой Śiva.</li>
+        <li><span class="step">¶2→¶3</span>Первый вопрос — <b>камень</b>. Через сжатие (<i>saṃkoca</i>) осознание сужается; материя = сжатие до предела: чистый объект (<i>prameya</i>). Но осознание не исчезает — иначе камень вообще не явился бы. Utpaladeva в <i>Ajaḍapramātṛsiddhi</i>: бесчувственное (<i>jaḍa</i>) не самосветно, существует лишь как <i>ābhāsa</i> в сознании (Ratié 2009). Камень реален как явление, не как центр осознания.</li>
+        <li><span class="step">¶3→¶4</span>Второй вопрос — раскол <b>я/другой</b>. Всякое познание: «я знаю это» — <i>pramātṛ / prameya / pramāṇa</i>. Pratyabhijñā: триада — одна <i>svātantrya</i> в трёх режимах. <i>Malas</i> делают раскол плотным, но он трескается: другого нельзя свести к <i>prameya</i> (в его явлении есть сопротивляющаяся свобода); узнавание другого <i>pramātṛ</i> — это <i>ūha</i>, не восприятие и не вывод (Ratié 2007).</li>
+        <li><span class="step">¶4→¶5</span>Вывод. <b>Один ход</b> отвечает на оба: Śiva — не вещь и не существо, Śiva = само сознание, а мир — это сознание в разных ролях. Pratyabhijñā — момент прямого видения этого: то, что казалось внешним объектом, есть то же сознание в другой форме.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e6" data-nav="6 · Nala vs Yudhiṣṭhira (dice)">
+  <h2 class="essay__q"><span class="en">Essay 6</span>Nala and Yudhiṣṭhira at dice — why dharmaśāstra condemns one but not the other.</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Same story, opposite verdict</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Mahābhārata</span><span class="chip tx">Śukranīti 1.283</span>
+      <span class="chip qt">“righteous kings” (dharmarāja)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The <span class="tx">Mahābhārata</span> has two famous dice games. Yudhiṣṭhira loses his kingdom at Hastināpura; Nala loses his to his brother. Both are <span class="qt">“righteous kings” (dharmarāja)</span>, both are challenged to a game by their own relatives, both lose everything and go into exile with their wives. So we would expect the law-books to judge them alike. They do not. The <i>nīti</i> texts hold up Nala as a warning against gambling but say nothing against Yudhiṣṭhira. <span class="tx">Śukranīti</span> even names him: gambling is listed among the flaws that ruin kings, and Nala is the example (<span class="tx">Śukranīti 1.283</span>).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">Yudhiṣṭhira: duty, not flaw</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Manusmṛti 7.213</span>
+      <span class="chip rf">Flemming (2021)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The usual explanation is motive. Yudhiṣṭhira did not really choose. A <i>kṣatriya</i> cannot refuse a challenge from his elders, so the game was a duty, not a flaw (<span class="rf">Flemming 2021</span>). Even staking Draupadī fits the rule that a king must save himself first, then his wife, then his wealth (<span class="tx">Manusmṛti 7.213</span>). His act stays inside <i>rāja-dharma</i>.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Nala: the possession is the punishment</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Manusmṛti 2.103</span>
+      <span class="chip qt">“excluded, like a Śūdra, from all that is due to twice-born persons”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">Nala was possessed by the demon Kali, so he too looks not fully responsible. But dharmaśāstra does not weigh intent. The real point is that the possession was itself a punishment, for skipping his morning <i>sandhyā</i> ritual. <span class="tx">Manusmṛti 2.103</span> says one who neglects it is <span class="qt">“excluded, like a Śūdra, from all that is due to twice-born persons.”</span> So Nala lost his twice-born (<i>dvija</i>) status.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Split: who keeps caste status</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“the law judged him as an outsider”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">That is why the texts split them. Yudhiṣṭhira kept his caste and ritual standing, so his gambling could still be debated within dharma. Nala had fallen out of the twice-born order, so the law no longer protected him as a king — <span class="qt">it judged him as an outsider</span>. The two are not treated differently because of any contradiction in the law itself.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: hierarchy, not justice</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“preserve hierarchy, not deliver universal justice”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">So dharmaśāstra here works <span class="qt">to preserve hierarchy, not to deliver universal justice</span>. It excuses the ruler who keeps his status and condemns the one who loses it. This is not surprising: dharmaśāstra was written by brahmins for the twice-born, and the fate of those who fell outside that order was never really its concern.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span><b>Парадокс</b>: в Mahābhārata две игры в кости. Yudhiṣṭhira и Nala — оба <i>dharmarāja</i>, оба вызваны роднёй, оба теряют всё и уходят в изгнание с жёнами. Ждём одинакового суда — а его нет: <i>nīti</i> клеймят Nala как пример (Śukranīti 1.283), о Yudhiṣṭhira молчат.</li>
+        <li><span class="step">¶1→¶2</span>Обычное объяснение — <b>мотив</b>. Yudhiṣṭhira не выбирал: kṣatriya не может отказать вызову старших → игра = долг, не порок (Flemming 2021). Даже ставка Draupadī укладывается в правило «сначала себя, потом жену, потом имущество» (Manusmṛti 7.213). Он остаётся внутри <i>rāja-dharma</i>.</li>
+        <li><span class="step">¶2→¶3</span>Nala тоже «не виноват» — одержим демоном Kali. Но dharmaśāstra <b>не взвешивает намерение</b>. Суть: сама одержимость = наказание за пропуск утренней <i>sandhyā</i>. Manusmṛti 2.103: пренебрёгший ею «исключён, как Śūdra, из всего, что положено дваждырождённым». Nala теряет статус <i>dvija</i>.</li>
+        <li><span class="step">¶3→¶4</span>Вот почему тексты их <b>разводят</b>: Yudhiṣṭhira сохранил касту и ритуальный статус → его игру ещё можно обсуждать внутри dharma; Nala выпал из дваждырождённых → закон судит его как чужака. Разница не от противоречия в самом законе.</li>
+        <li><span class="step">¶4→¶5</span>Вывод. Здесь dharmaśāstra работает на <b>иерархию</b>, не на всеобщую справедливость: оправдывает правителя, сохранившего статус, и клеймит потерявшего его. Неудивительно — её писали брахманы для дваждырождённых, судьба выпавших её не заботила.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<!-- Essays 7–18 будут добавляться сюда такими же блоками <article class="essay" id="eN" data-nav="…">. Навигация и кнопки подхватят их автоматически. -->
+
+</div>
+<script>
+  var MODE='study', LS='essayQuiz:';
+  function gGet(k){try{return localStorage.getItem(LS+k)}catch(e){return null}}
+  function gSet(k,v){try{localStorage.setItem(LS+k,v)}catch(e){}}
+
+  function setAll(o){
+    document.querySelectorAll('.card').forEach(c=>c.classList.toggle('open',o));
+    document.getElementById('b-hide').classList.toggle('is-on',!o);
+    document.getElementById('b-show').classList.toggle('is-on',o);
+    document.querySelectorAll('.card__x').forEach(x=>x.textContent=o?'－':'＋');
+  }
+
+  var ESSAYS=[].slice.call(document.querySelectorAll('.essay'));
+  (function buildNav(){
+    var nav=document.getElementById('nav');
+    nav.innerHTML='<button class="nbtn" id="nprev">◀</button>'+
+      '<select id="nsel"></select>'+
+      '<button class="nbtn" id="nnext">▶</button>'+
+      '<span class="ncount" id="ncount"></span>';
+    var sel=document.getElementById('nsel');
+    ESSAYS.forEach(function(es,k){
+      var o=document.createElement('option');
+      o.value=es.id; o.textContent=es.getAttribute('data-nav')||('Essay '+(k+1));
+      sel.appendChild(o);
+    });
+    function go(id){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+    sel.addEventListener('change',function(){ go(this.value); });
+    function curIdx(){ return Math.max(0,ESSAYS.findIndex(e=>e.id===sel.value)); }
+    document.getElementById('nprev').addEventListener('click',function(){ var i=curIdx(); if(i>0){ sel.value=ESSAYS[i-1].id; go(sel.value); } });
+    document.getElementById('nnext').addEventListener('click',function(){ var i=curIdx(); if(i<ESSAYS.length-1){ sel.value=ESSAYS[i+1].id; go(sel.value); } });
+    var cnt=document.getElementById('ncount');
+    function setCur(id){
+      sel.value=id;
+      var i=curIdx(); cnt.textContent=(i+1)+' / '+ESSAYS.length;
+      document.getElementById('nprev').disabled=(i===0);
+      document.getElementById('nnext').disabled=(i===ESSAYS.length-1);
+    }
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(ents){
+        ents.forEach(function(en){ if(en.isIntersecting) setCur(en.target.id); });
+      },{rootMargin:'-45% 0px -50% 0px'});
+      ESSAYS.forEach(e=>io.observe(e));
+    }
+    setCur(ESSAYS[0]?ESSAYS[0].id:'');
+  })();
+
+  var FRAC=[0.2,0.4,0.6,0.8]; // cloze levels 1..4 — hide more each step
+
+  // wrap prose words so they can be individually masked; keep tag spans atomic
+  function tokenize(para){
+    function deep(node){
+      [].slice.call(node.childNodes).forEach(function(ch){
+        if(ch.nodeType===3){
+          var parts=ch.nodeValue.split(/(\s+)/), frag=document.createDocumentFragment();
+          parts.forEach(function(p){
+            if(p===''){return;}
+            if(/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(p)); }
+            else { var s=document.createElement('span'); s.className='w'; s.textContent=p; frag.appendChild(s); }
+          });
+          node.replaceChild(frag,ch);
+        } else if(ch.nodeType===1){
+          if(ch.classList.contains('tx')||ch.classList.contains('qt')||ch.classList.contains('rf')) return;
+          deep(ch);
+        }
+      });
+    }
+    deep(para);
+    var toks=[].slice.call(para.querySelectorAll('.w,.tx,.qt,.rf'));
+    return toks.filter(function(t){
+      if(t.classList.contains('tx')||t.classList.contains('qt')||t.classList.contains('rf')) return true;
+      var w=t.textContent.replace(/[^A-Za-zĀ-ſ̥-]/g,'');
+      return w.length>=3;
+    });
+  }
+
+  function pct(l){return Math.round(FRAC[l-1]*100);}
+
+  document.querySelectorAll('.essay').forEach(function(es){
+    es.querySelectorAll('.card').forEach(function(c){
+      var h=c.querySelector('.card__h');
+      var x=c.querySelector('.card__x');
+      if(x) h.addEventListener('click',function(){ x.textContent=c.classList.contains('open')?'－':'＋'; });
+      if(c.classList.contains('flow')) return;
+
+      var para=c.querySelector('.para');
+      c._toks = para ? tokenize(para) : [];
+      c._lvl  = 1;
+
+      var qz=document.createElement('div'); qz.className='qz';
+      qz.innerHTML=
+        '<span class="clbox">'+
+          '<button class="cl minus">− меньше</button>'+
+          '<span class="lvl"></span>'+
+          '<button class="cl plus">+ больше</button>'+
+          '<button class="cl shuf">🔀 перетасовать</button>'+
+          '<button class="cl orig">👁 показать оригинал</button>'+
+        '</span>'+
+        '<span class="rvbox"><button class="cl rv">показать все теги</button></span>';
+      c.appendChild(qz);
+
+      var lvlEl=qz.querySelector('.lvl');
+      function setLvlLabel(){ lvlEl.textContent='ур.'+c._lvl+' · '+pct(c._lvl)+'%'; }
+
+      // pick a fresh random set of `target` tokens to mask
+      function reshuffle(){
+        var t=c._toks, target=Math.max(1,Math.round(FRAC[c._lvl-1]*t.length));
+        var idx=t.map(function(_,k){return k;});
+        for(var a=idx.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var tmp=idx[a];idx[a]=idx[b];idx[b]=tmp;}
+        var pick={}; idx.slice(0,target).forEach(function(k){pick[k]=1;});
+        t.forEach(function(el,k){ el.classList.remove('show'); el.classList.toggle('mask',!!pick[k]); });
+        setLvlLabel();
+      }
+      // progressively add/remove masks toward the new level (keep what's already hidden)
+      function retarget(){
+        var t=c._toks, target=Math.max(1,Math.round(FRAC[c._lvl-1]*t.length));
+        var masked=[], free=[];
+        t.forEach(function(el,k){ (el.classList.contains('mask')?masked:free).push(k); });
+        function shuf(arr){for(var a=arr.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var tmp=arr[a];arr[a]=arr[b];arr[b]=tmp;}}
+        if(masked.length<target){ shuf(free); free.slice(0,target-masked.length).forEach(function(k){t[k].classList.add('mask');}); }
+        else if(masked.length>target){ shuf(masked); masked.slice(0,masked.length-target).forEach(function(k){t[k].classList.remove('mask');}); }
+        t.forEach(function(el){ el.classList.remove('show'); });
+        c.classList.remove('origc'); var ob=qz.querySelector('.orig'); ob.classList.remove('on'); ob.textContent='👁 показать оригинал';
+        setLvlLabel();
+      }
+      c._reshuffle=reshuffle;
+
+      qz.querySelector('.shuf').addEventListener('click',function(e){e.stopPropagation();
+        c.classList.remove('origc'); var ob=qz.querySelector('.orig'); ob.classList.remove('on'); ob.textContent='👁 показать оригинал';
+        reshuffle();
+      });
+      qz.querySelector('.plus').addEventListener('click',function(e){e.stopPropagation(); if(c._lvl<4){c._lvl++; retarget();}});
+      qz.querySelector('.minus').addEventListener('click',function(e){e.stopPropagation(); if(c._lvl>1){c._lvl--; retarget();}});
+      qz.querySelector('.orig').addEventListener('click',function(e){
+        e.stopPropagation();
+        var on=c.classList.toggle('origc');
+        this.classList.toggle('on',on);
+        this.textContent=on?'🙈 снова спрятать':'👁 показать оригинал';
+      });
+      var rv=qz.querySelector('.rv');
+      rv.addEventListener('click',function(e){
+        e.stopPropagation();
+        var sp=c.querySelectorAll('.card__body .tx,.card__body .qt,.card__body .rf');
+        var allShown=[].every.call(sp,s=>s.classList.contains('show'));
+        sp.forEach(s=>s.classList.toggle('show',!allShown));
+        rv.textContent=allShown?'показать все теги':'скрыть все теги';
+      });
+    });
+  });
+
+  // click any masked token to reveal just that one (cloze & tags modes)
+  document.querySelectorAll('.para .w,.para .tx,.para .qt,.para .rf,.card__body .tx,.card__body .qt,.card__body .rf').forEach(function(s){
+    s.addEventListener('click',function(){
+      if(MODE==='cloze') s.classList.toggle('show');
+      else if(MODE==='tags') s.classList.toggle('show');
+    });
+  });
+
+  function setMode(m){
+    MODE=m;
+    document.body.className='mode-'+m;
+    ['study','cloze','tags'].forEach(function(k){
+      document.getElementById('m-'+k).classList.toggle('is-on',k===m);
+    });
+    document.querySelectorAll('.essay .card').forEach(function(c){
+      if(c.classList.contains('flow')) return;
+      c.classList.remove('origc');
+      var ob=c.querySelector('.qz .orig'); if(ob){ob.classList.remove('on');ob.textContent='👁 показать оригинал';}
+      c.querySelectorAll('.card__body .tx,.card__body .qt,.card__body .rf,.para .w').forEach(s=>s.classList.remove('show'));
+      if(m==='cloze' && c._reshuffle){ c._reshuffle(); }
+      else { c.querySelectorAll('.para .mask').forEach(s=>s.classList.remove('mask')); }
+      var rv=c.querySelector('.qz .rv'); if(rv) rv.textContent='показать все теги';
+    });
+  }
+</script>
+</body>
+</html>
