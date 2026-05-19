@@ -36,12 +36,24 @@
   .legend span{display:inline-flex;align-items:center;gap:6px}
   .sw{width:13px;height:13px;border-radius:3px;display:inline-block}
   .sw.tx{background:var(--tx-bg)} .sw.qt{background:var(--qt-bg)} .sw.rf{background:var(--rf-bg)}
-  .nav{display:flex;align-items:center;gap:7px;margin-top:11px}
-  .nav .nbtn{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);width:30px;height:30px;border-radius:6px;cursor:pointer;flex:none}
+  .nav{position:relative;display:flex;align-items:center;gap:7px;margin-top:11px}
+  .nav .nbtn{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);width:32px;height:34px;border-radius:6px;cursor:pointer;flex:none}
   .nav .nbtn:hover:not(:disabled){background:var(--accent);color:#fff;border-color:var(--accent)}
-  .nav .nbtn:disabled{opacity:.35;cursor:default}
-  .nav select{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 10px;max-width:340px;cursor:pointer}
-  .nav .ncount{font-family:var(--mono);font-size:12px;color:var(--ink-3);flex:none}
+  .nav .nbtn:disabled{opacity:.32;cursor:default}
+  .nav .nmenu{flex:1;min-width:0;display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:7px 12px;height:34px;cursor:pointer;text-align:left}
+  .nav .nmenu:hover{border-color:var(--accent)}
+  .nav .nmenu .nm-n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);flex:none}
+  .nav .nmenu .nm-t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav .nmenu .nm-c{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);flex:none}
+  .nav .nmenu .nm-x{flex:none;color:var(--ink-3);transition:transform .15s}
+  .nav .nmenu.open .nm-x{transform:rotate(180deg)}
+  .ntoc{position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:30;background:var(--paper);border:1px solid var(--accent);border-radius:8px;box-shadow:0 10px 30px rgba(40,25,10,.18);max-height:62vh;overflow:auto;display:none}
+  .ntoc.open{display:block}
+  .ntoc a{display:flex;gap:10px;align-items:baseline;padding:11px 15px;border-bottom:1px solid var(--line-2);color:var(--ink-2);text-decoration:none;font-family:var(--serif);font-size:14.5px;line-height:1.35}
+  .ntoc a:last-child{border-bottom:none}
+  .ntoc a .tn{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);flex:none;min-width:18px}
+  .ntoc a:hover{background:#faf4e6}
+  .ntoc a.active{background:#fbf1d8;color:var(--accent);font-weight:700}
 
   .essay{margin:0 0 54px;scroll-margin-top:96px}
   .essay__q{font-size:19px;font-weight:700;line-height:1.3;color:var(--ink);margin:0 0 16px;padding-bottom:11px;border-bottom:2px solid var(--accent)}
@@ -648,7 +660,244 @@
   </div>
 </article>
 
-<!-- Essays 7–18 будут добавляться сюда такими же блоками <article class="essay" id="eN" data-nav="…">. Навигация и кнопки подхватят их автоматически. -->
+<article class="essay" id="e7" data-nav="7 · Pāśupata / Siddhānta / Pratyabhijñā & Sāṃkhya">
+  <h2 class="essay__q"><span class="en">Essay 7</span>How similar and how different are the world-views of the Pāśupatas, Siddhānta Śaivas, and the Pratyabhijñā school — and how much are they based on Sāṃkhya tenets?</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Shared Sāṃkhya scaffolding</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">classical Sāṃkhya</span>
+      <span class="chip rf">Īśvarakṛṣṇa (c. 4th–5th c.)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">All three schools build on the dualist scaffolding of <span class="tx">classical Sāṃkhya</span> (<span class="rf">Īśvarakṛṣṇa, c. 4th–5th c. CE</span>) — consciousness (<i>puruṣa</i>) and matter (<i>prakṛti</i>) as utterly distinct, <b>25 tattvas</b>, liberation through discriminative knowledge — but each transforms it in a different direction.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">Pāśupatas: theistic triad, ritual</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Pāśupatas</span>
+      <span class="chip qt">Sāṃkhya path “impure”</span>
+      <span class="chip rf">Kauṇḍinya</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><span class="tx">Pāśupatas</span> (<b>2nd–4th c. CE</b>). They keep Sāṃkhya’s basic dualism but reorganise it around a triad: <i>pati</i> (the Lord Paśupati), <i>paśu</i> (bound souls), <i>pāśa</i> (bonds). Where Sāṃkhya has unconscious prakṛti and many sovereign puruṣas who fall into bondage by mistake, the Pāśupatas have a supreme Lord above subordinate souls, and “bondage” becomes a real ontological category, not a cognitive error. They borrow Sāṃkhya’s <b>23 evolutes</b> as <i>kalā</i> but place them inside the five-part <i>pañcārtha</i> scheme. Liberation is <i>duḥkhānta</i> — the end of suffering, granted by Śiva’s grace through ritual action, not by knowledge. <span class="rf">Kauṇḍinya</span> explicitly rejects the <span class="qt">Sāṃkhya path as “impure”</span>.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Siddhānta: 36 tattvas, ritual grace</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Śaiva Siddhānta</span>
+      <span class="chip qt">śivatulya — equal to Śiva, not identical</span>
+      <span class="chip rf">Sanderson (1988)</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><span class="tx">Śaiva Siddhānta</span> (<b>5th–6th c. CE</b>). Inherits its framework from the Pāśupatas, not directly from Sāṃkhya (<span class="rf">Sanderson 1988</span>). Keeps the <i>pati/paśu/pāśa</i> triad and expands the tattva scheme from <b>25 to 36</b> to fit a theological cosmos. The Lord, now five-faced Sadāśiva, performs five acts (<i>pañcakṛtya</i>): creation, maintenance, destruction, concealment, revelation. Bondage is three real fetters — <i>mala, karma, māyā</i> — removable only by ritual <i>dīkṣā</i> and divine grace (<i>śaktipāta</i>). Liberation is <span class="qt">śivatulya</span>: equality with Śiva in qualities, but not identity. The Pāśupatas’ transgressive practices are domesticated for Brahmanical householders.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Pratyabhijñā: non-dual recognition</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Pratyabhijñā</span>
+      <span class="chip rf">Somānanda</span><span class="chip rf">Utpaladeva</span><span class="chip rf">Abhinavagupta</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><span class="tx">Pratyabhijñā</span> (<b>9th–10th c. CE</b>). <span class="rf">Somānanda</span>, <span class="rf">Utpaladeva</span>, <span class="rf">Abhinavagupta</span>. Collapses dualism entirely. Reality is one Śiva-consciousness, at once light (<i>prakāśa</i>) and self-awareness (<i>vimarśa</i>), inherently dynamic — not Sāṃkhya’s passive witness. The <b>36 tattvas</b> are real manifestations of Śiva’s free will (<i>svātantrya</i>), not an independent material evolution. Bondage is self-contraction (<i>saṃkoca</i>) of universal consciousness into limited individuality through three <i>malas</i>. Liberation is <i>pratyabhijñā</i> — recognition of one’s identity with Śiva. Method remains cognitive recognition, ironically close to Sāṃkhya’s own — but recognising unity, not separation.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: one skeleton, three theologies</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“the Sāṃkhya skeleton is everywhere visible — but covered by a different theology”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">Each school selectively keeps, reworks, or rejects Sāṃkhya. The Pāśupatas reframe its dualism theistically; Siddhānta expands the cosmos and ritualises the path; Pratyabhijñā dissolves the dualism but keeps the cognitive method. <span class="qt">The Sāṃkhya skeleton is everywhere visible — but covered, in each case, by a different theology.</span></p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span><b>Общий каркас</b>: все три школы стоят на дуализме классической Sāṃkhya (Īśvarakṛṣṇa, ~IV–V в.): <i>puruṣa</i> ≠ <i>prakṛti</i>, <b>25 таттв</b>, освобождение через различающее знание. Но каждая поворачивает его по-своему — дальше три школы.</li>
+        <li><span class="step">¶1→¶2</span><b>Pāśupatas</b> (II–IV в.): дуализм сохранён, но перестроен в триаду <i>pati / paśu / pāśa</i>. Вместо многих суверенных puruṣa — верховный Господь над душами; «оковы» = реальная онтология, не ошибка ума. 23 эволюта Sāṃkhya → <i>kalā</i> внутри <i>pañcārtha</i>. Освобождение = <i>duḥkhānta</i> через ритуал и милость, не знание; Kauṇḍinya зовёт путь Sāṃkhya «нечистым».</li>
+        <li><span class="step">¶2→¶3</span><b>Śaiva Siddhānta</b> (V–VI в.): каркас взят <b>у пашупатов</b>, не прямо у Sāṃkhya (Sanderson 1988). Та же триада, но таттв <b>25 → 36</b>; пятиликий Sadāśiva делает <i>pañcakṛtya</i>; оковы — три реальных (<i>mala, karma, māyā</i>), снимаются <i>dīkṣā</i> и <i>śaktipāta</i>. Освобождение = <i>śivatulya</i> (равенство, не тождество). Трансгрессия пашупатов одомашнена для брахманских домохозяев.</li>
+        <li><span class="step">¶3→¶4</span><b>Pratyabhijñā</b> (IX–X в.; Somānanda → Utpaladeva → Abhinavagupta): дуализм <b>снят</b>. Реальность — одно Śiva-сознание (<i>prakāśa + vimarśa</i>), активное, не пассивный свидетель Sāṃkhya. 36 таттв — проявления <i>svātantrya</i>, не независимая материя. Оковы = само-сжатие (<i>saṃkoca</i>) через три <i>mala</i>. Освобождение = узнавание тождества с Śiva. Метод — когнитивный, иронично близок Sāṃkhya, но узнаёт <b>единство</b>, не разделение.</li>
+        <li><span class="step">¶4→¶5</span><b>Вывод</b>. Каждая школа выборочно хранит, переделывает или отвергает Sāṃkhya: пашупаты теизируют дуализм; Siddhānta расширяет космос и ритуализирует путь; Pratyabhijñā растворяет дуализм, но удерживает когнитивный метод. Скелет Sāṃkhya виден везде — но прикрыт всякий раз другой теологией.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e8" data-nav="8 · YS + YB one work? (Maas)">
+  <h2 class="essay__q"><span class="en">Essay 8</span>Were the Yogasūtra and the Yogabhāṣya compiled together? Evidence for and against the unity of the Pātañjalayogaśāstra.</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Maas: one work, not two authors</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Yogasūtra (YS)</span><span class="chip tx">Yogabhāṣya (YB)</span><span class="chip tx">Pātañjalayogaśāstra (PYŚ)</span>
+      <span class="chip rf">Maas (2006, 2019)</span><span class="chip rf">Patañjali / Vyāsa</span>
+    </div>
+    <div class="card__body">
+      <p class="para">Since the early 19th century, scholarship treated the <span class="tx">Yogasūtra (YS)</span> and <span class="tx">Yogabhāṣya (YB)</span> as the work of two authors separated by centuries — <span class="rf">Patañjali</span> and <span class="rf">Vyāsa</span>. <span class="rf">Maas (2006, 2019)</span> has overturned this. He argues that no independent Yogasūtra ever existed: what survives is a single work, the <span class="tx">Pātañjalayogaśāstra (PYŚ)</span>, in which sūtra and bhāṣya were compiled together by one redactor in the <b>late 4th or early 5th century CE</b>.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">For: manuscripts, syntax, colophons</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">pravavṛte (“was composed”)</span>
+      <span class="chip rf">Maas</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><b>The case for joint compilation.</b> Of the <b>82 manuscripts</b> <span class="rf">Maas</span> collated, none transmits the sūtras on their own. Apparent stand-alone YS manuscripts are scribal extractions, and they disagree on where each sūtra ends and the bhāṣya begins. The most important colophons name a single work attributed to a single author. Syntactically the two layers run on as one: the prose grammatically continues the aphorism rather than citing it. Three sūtras are introduced with the verb <span class="qt">pravavṛte (“was composed”)</span>, suggesting older material a redactor incorporated. No sub-commentator before the <b>14th century</b> treats sūtra and bhāṣya as separate works.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Against: genre objection &amp; doctrinal seams</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Nyāya · Mīmāṃsā · Brahma sūtras</span>
+      <span class="chip qt">abhiniveśa: “fear of death” vs “obsessive attachment”</span>
+      <span class="chip rf">Freschi</span><span class="chip rf">Gokhale</span><span class="chip rf">Smith</span>
+    </div>
+    <div class="card__body">
+      <p class="para"><b>The case against.</b> <span class="rf">Freschi</span> raises a simple methodological problem: do other sūtra texts (<span class="tx">Nyāya, Mīmāṃsā, Brahma</span>) also circulate only with their bhāṣyas? If yes, the manuscript pattern is a convention of the genre, not proof of single authorship. No one has done that comparative study. More damaging is the doctrinal evidence. <span class="rf">Gokhale</span> and <span class="rf">Smith</span> show, independently, that the bhāṣya systematically reinterprets the sūtras through a Sāṅkhya framework absent from them. The bhāṣya conflates distinctions the sūtras keep apart, and glosses <span class="qt">abhiniveśa as “fear of death”</span> against the word’s standard meaning (“obsessive attachment”).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Conclusion: compiled, and quietly reshaped</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“partly composed and partly compiled”</span>
+      <span class="chip rf">Maas</span><span class="chip rf">Gokhale &amp; Smith</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The two bodies of evidence do not contradict each other. <span class="rf">Maas</span> himself calls the text <span class="qt">“partly composed and partly compiled”</span>. The redactor gathered older aphoristic material that already carried authority, so he could not rewrite it — he used the bhāṣya as an instrument of control, reframing the sūtras within Sāṅkhya without erasing their earlier sense. The seams <span class="rf">Gokhale and Smith</span> identify are exactly what compilation leaves behind. The right question is therefore not whether the text was compiled together, but how many independent voices it gathered and how many it quietly reshaped.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span><b>Старый консенсус</b> (с нач. XIX в.): YS и YB — два автора (Patañjali и Vyāsa) через века. <b>Maas (2006, 2019)</b> переворачивает: отдельной YS не было; есть один труд <i>Pātañjalayogaśāstra</i>, где сутра и бхашья скомпилированы одним редактором в к. IV — нач. V в.</li>
+        <li><span class="step">¶1→¶2</span><b>Доводы ЗА единство</b>: из 82 рукописей ни одна не даёт сутры отдельно; «отдельные» YS — писцовые извлечения, расходятся в границах; колофоны = один труд, один автор; синтаксис: проза грамматически продолжает афоризм, а не цитирует; три сутры введены <i>pravavṛte</i> («было сочинено») = старый материал, который редактор включил; до XIV в. никто не делит их.</li>
+        <li><span class="step">¶2→¶3</span><b>Доводы ПРОТИВ</b>: Freschi — методологически: а другие сутры (Nyāya, Mīmāṃsā, Brahma) тоже ходят только с бхашьями? Если да — это жанр, не доказательство одного автора (сравнения никто не делал). Сильнее — доктрина: Gokhale и Smith независимо: бхашья переосмысляет сутры через Sāṅkhya, которой в них нет; путает различения, и <i>abhiniveśa</i> толкует как «страх смерти» вместо «навязчивая привязанность».</li>
+        <li><span class="step">¶3→¶4</span><b>Вывод</b>: доводы не противоречат друг другу. Сам Maas: текст «отчасти сочинён, отчасти скомпилирован». Редактор собрал авторитетный старый материал — переписать не мог, поэтому бхашья = инструмент контроля: переобрамил сутры в Sāṅkhya, не стерев их прежний смысл. Швы Gokhale/Smith — именно след компиляции. Правильный вопрос не «вместе ли скомпилировано», а сколько голосов собрано и сколько тихо переформатировано.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<article class="essay" id="e9" data-nav="9 · Liṅga worship &amp; symbolism">
+  <h2 class="essay__q"><span class="en">Essay 9</span>How significant is liṅga worship in Śaivism and popular Hinduism? Explain the myths and symbolism associated with it.</h2>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶1</span><span class="card__s">Liṅga: one focus, two levels</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“serves elaborated theology and everyday devotion through a single material focus”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The liṅga is the central object of Śaiva worship and one of the most widespread icons in Hinduism. Its significance lies in <span class="qt">its capacity to serve both elaborated theology and everyday devotion through a single material focus</span>.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶2</span><span class="card__s">Spread: pūjā, jyotirliṅgas, Liṅgāyats</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Śaiva Siddhānta / Mantramārga</span><span class="chip tx">Vīraśaivas (Liṅgāyats)</span>
+    </div>
+    <div class="card__body">
+      <p class="para">In <span class="tx">Śaiva Siddhānta and the wider Mantramārga</span>, the liṅga is the object of daily pūjā: the worshipper purifies himself, invokes Śiva into the liṅga, and offers the standard sequence of services. At the popular level, every Śaiva temple is built around a liṅga, and the <b>twelve jyotirliṅgas</b> form a pan-Indian network of pilgrimage. The <span class="tx">Vīraśaivas (Liṅgāyats)</span> of Karnataka go further: each initiate carries a small personal <i>iṣṭaliṅga</i> on the body, making Śiva-worship literally portable. The liṅga therefore unites the elite tantric tradition, the temple economy, and lay practice in a way no other Hindu icon does.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶3</span><span class="card__s">Two myths: Liṅgodbhava, Dāruvana</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Liṅgapurāṇa</span><span class="chip tx">Śivapurāṇa</span>
+    </div>
+    <div class="card__body">
+      <p class="para">Two myths anchor its meaning. The <i>Liṅgodbhava</i> story (<span class="tx">Liṅgapurāṇa, Śivapurāṇa</span>) tells how Brahmā and Viṣṇu, disputing supremacy, see a pillar of fire without beginning or end. Brahmā flies up as a goose, Viṣṇu burrows down as a boar; neither finds its limit. Śiva then emerges from the column and is recognised as supreme. The <i>Dāruvana</i> myth tells of Śiva wandering naked through the pine forest of the sages; their wives are entranced, the sages curse him, his phallus falls. Cosmic disorder follows until the sages institute liṅga-worship as expiation.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶4</span><span class="card__s">Symbolism: “sign” vs phallus debate</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip tx">Śvetāśvatara Upaniṣad</span><span class="chip tx">Pāśupatasūtra 1.6</span>
+      <span class="chip qt">liṅga = “sign / mark”</span><span class="chip qt">liṅgadhārī “bearer of the sign”</span>
+      <span class="chip rf">Doniger</span><span class="chip rf">Kramrisch</span>
+    </div>
+    <div class="card__body">
+      <p class="para">The symbolism works on several levels and scholars disagree about which comes first. The word liṅga itself means <span class="qt">“sign” or “mark”</span>, and the <span class="tx">Śvetāśvatara Upaniṣad</span> already uses it for a Śiva who is beyond all attributes, including gender. The <span class="tx">Pāśupatasūtra (1.6)</span> calls its practitioner <span class="qt">liṅgadhārī — “bearer of the sign”</span> — using liṅga as a distinguishing mark, not a fertility symbol. <span class="rf">Doniger</span> reads the liṅga as both phallus and its opposite — a pillar of renounced sexuality. <span class="rf">Kramrisch</span> goes further: the phallic shape stands for <i>ūrdhvaretas</i>, the celibate’s upward retention of seed, not for fertility at all.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">¶5</span><span class="card__s">Conclusion: meanings coexist</span><span class="card__x">＋</span>
+    </div>
+    <div class="chips">
+      <span class="chip qt">“none of these meanings excludes the others”</span>
+    </div>
+    <div class="card__body">
+      <p class="para">What makes the liṅga so important is precisely that <span class="qt">none of these meanings excludes the others</span>. Cosmic pillar, fallen phallus, abstract sign, ascetic’s retained seed — they coexist in one object, which is why both the learned tantric and the village pilgrim can approach it.</p>
+    </div>
+  </div>
+
+  <div class="card flow">
+    <div class="card__h" onclick="this.parentNode.classList.toggle('open')">
+      <span class="card__n">RU</span><span class="card__s">Связь параграфов — как одно вытекает из другого</span><span class="card__x">＋</span>
+    </div>
+    <div class="card__body">
+      <ul class="flowlist">
+        <li><span class="step">¶1</span><b>Тезис</b>: liṅga — центральный объект шиваитского культа и одна из самых распространённых икон индуизма; его сила — в способности служить и сложной теологии, и повседневной набожности через один материальный фокус.</li>
+        <li><span class="step">¶1→¶2</span><b>Насколько распространён</b>: в Śaiva Siddhānta/Mantramārga — объект ежедневной pūjā; на народном уровне любой шиваитский храм построен вокруг liṅga, <b>12 jyotirliṅga</b> = всеиндийская сеть паломничества; Vīraśaivas (Liṅgāyats) носят личный <i>iṣṭaliṅga</i> на теле. Liṅga связывает элитарную тантру, храмовую экономику и мирян как ни одна другая икона.</li>
+        <li><span class="step">¶2→¶3</span><b>Два мифа</b> закрепляют смысл. <i>Liṅgodbhava</i> (Liṅgapurāṇa, Śivapurāṇa): Brahmā и Viṣṇu спорят о первенстве, видят бесконечный огненный столп; гусь вверх, вепрь вниз — предела нет; из столпа выходит Śiva = верховный. <i>Dāruvana</i>: Śiva нагим бродит по сосновому лесу мудрецов, их жёны очарованы, мудрецы проклинают, фаллос падает; хаос — пока мудрецы не вводят культ liṅga как искупление.</li>
+        <li><span class="step">¶3→¶4</span><b>Символика</b> многослойна, и учёные спорят, что первично. Само слово liṅga = «знак/метка»; Śvetāśvatara Upaniṣad уже о Śiva вне всех атрибутов, включая пол. Pāśupatasūtra 1.6: практик = <i>liṅgadhārī</i> «носитель знака» — метка, не символ плодородия. Doniger: liṅga — и фаллос, и его противоположность (столп отречённой сексуальности). Kramrisch дальше: фаллическая форма = <i>ūrdhvaretas</i> (удержание семени аскетом), не плодородие.</li>
+        <li><span class="step">¶4→¶5</span><b>Вывод</b>: важность liṅga именно в том, что ни одно из значений не исключает другие. Космический столп, павший фаллос, абстрактный знак, удержанное семя аскета — сосуществуют в одном объекте; поэтому к нему подходят и учёный тантрик, и деревенский паломник.</li>
+      </ul>
+    </div>
+  </div>
+</article>
+
+<!-- Essays 10–18 будут добавляться сюда такими же блоками <article class="essay" id="eN" data-nav="…">. Навигация и кнопки подхватят их автоматически. -->
 
 </div>
 <script>
@@ -666,27 +915,40 @@
   var ESSAYS=[].slice.call(document.querySelectorAll('.essay'));
   (function buildNav(){
     var nav=document.getElementById('nav');
-    nav.innerHTML='<button class="nbtn" id="nprev">◀</button>'+
-      '<select id="nsel"></select>'+
-      '<button class="nbtn" id="nnext">▶</button>'+
-      '<span class="ncount" id="ncount"></span>';
-    var sel=document.getElementById('nsel');
+    nav.innerHTML=
+      '<button class="nbtn" id="nprev" title="предыдущее">◀</button>'+
+      '<button class="nmenu" id="nmenu" aria-expanded="false">'+
+        '<span class="nm-n" id="nmN"></span>'+
+        '<span class="nm-t" id="nmT"></span>'+
+        '<span class="nm-c" id="nmC"></span>'+
+        '<span class="nm-x">▾</span>'+
+      '</button>'+
+      '<button class="nbtn" id="nnext" title="следующее">▶</button>'+
+      '<div class="ntoc" id="ntoc"></div>';
+    var menu=document.getElementById('nmenu'), toc=document.getElementById('ntoc');
+    var nmN=document.getElementById('nmN'), nmT=document.getElementById('nmT'), nmC=document.getElementById('nmC');
+    function title(es,k){ var d=es.getAttribute('data-nav')||('Essay '+(k+1)); return d.replace(/^\s*\d+\s*·\s*/,''); }
     ESSAYS.forEach(function(es,k){
-      var o=document.createElement('option');
-      o.value=es.id; o.textContent=es.getAttribute('data-nav')||('Essay '+(k+1));
-      sel.appendChild(o);
+      var a=document.createElement('a'); a.href='#'+es.id; a.dataset.id=es.id;
+      a.innerHTML='<span class="tn">'+(k+1)+'</span><span>'+title(es,k)+'</span>';
+      a.addEventListener('click',function(ev){ ev.preventDefault(); go(es.id); close(); });
+      toc.appendChild(a);
     });
+    var cur=0;
+    function open(){ toc.classList.add('open'); menu.classList.add('open'); menu.setAttribute('aria-expanded','true'); var act=toc.querySelector('a.active'); if(act) act.scrollIntoView({block:'nearest'}); }
+    function close(){ toc.classList.remove('open'); menu.classList.remove('open'); menu.setAttribute('aria-expanded','false'); }
     function go(id){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
-    sel.addEventListener('change',function(){ go(this.value); });
-    function curIdx(){ return Math.max(0,ESSAYS.findIndex(e=>e.id===sel.value)); }
-    document.getElementById('nprev').addEventListener('click',function(){ var i=curIdx(); if(i>0){ sel.value=ESSAYS[i-1].id; go(sel.value); } });
-    document.getElementById('nnext').addEventListener('click',function(){ var i=curIdx(); if(i<ESSAYS.length-1){ sel.value=ESSAYS[i+1].id; go(sel.value); } });
-    var cnt=document.getElementById('ncount');
+    menu.addEventListener('click',function(e){ e.stopPropagation(); toc.classList.contains('open')?close():open(); });
+    document.addEventListener('click',function(e){ if(!nav.contains(e.target)) close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+    document.getElementById('nprev').addEventListener('click',function(){ if(cur>0) go(ESSAYS[cur-1].id); });
+    document.getElementById('nnext').addEventListener('click',function(){ if(cur<ESSAYS.length-1) go(ESSAYS[cur+1].id); });
     function setCur(id){
-      sel.value=id;
-      var i=curIdx(); cnt.textContent=(i+1)+' / '+ESSAYS.length;
+      var i=ESSAYS.findIndex(e=>e.id===id); if(i<0) return; cur=i;
+      nmN.textContent=(i+1); nmT.textContent=title(ESSAYS[i],i); nmC.textContent=(i+1)+'/'+ESSAYS.length;
       document.getElementById('nprev').disabled=(i===0);
       document.getElementById('nnext').disabled=(i===ESSAYS.length-1);
+      [].forEach.call(toc.children,function(a){ a.classList.toggle('active',a.dataset.id===id); });
     }
     if('IntersectionObserver' in window){
       var io=new IntersectionObserver(function(ents){
