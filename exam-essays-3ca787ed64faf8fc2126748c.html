@@ -58,6 +58,19 @@
   .essay{margin:0 0 54px;scroll-margin-top:96px}
   .essay__q{font-size:19px;font-weight:700;line-height:1.3;color:var(--ink);margin:0 0 16px;padding-bottom:11px;border-bottom:2px solid var(--accent)}
   .essay__q .en{font-family:var(--sans);font-size:11px;color:var(--accent);font-weight:700;display:block;margin-bottom:5px;letter-spacing:.04em}
+  .essay__q .ecat{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 9px}
+  .ecat .c{font-family:var(--sans);font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;letter-spacing:.02em;line-height:1.5}
+  .c.ex1{background:#ecd7dc;color:#5a0f1f}
+  .c.ex2{background:#d7e3f0;color:#1d3a5c}
+  .c.yr{background:#efe7d2;color:#5a4406}
+  .efilter{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:10px;font-family:var(--sans)}
+  .efilter .grp{display:flex;gap:5px;align-items:center}
+  .efilter .lab{font-size:11px;color:var(--ink-3);margin-right:3px}
+  .efilter button{font-family:var(--sans);font-size:11.5px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);padding:4px 11px;border-radius:999px;cursor:pointer}
+  .efilter button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .essay.f-off{display:none}
+  .ntoc a.f-off{display:none}
+  .ntoc a .tc{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.04em;margin-left:auto;flex:none;white-space:nowrap;color:var(--ink-3)}
 
   .card{margin:0 0 3px;background:#f6f1e2;border-left:2px solid var(--accent);transition:background .12s}
   .card:not(.open):hover{background:#f0ead7}
@@ -171,10 +184,11 @@
     <button class="btn" id="m-cloze" onclick="setMode('cloze')">✍️ Cloze drill (hide words)</button>
     <button class="btn" id="m-tags" onclick="setMode('tags')">🏷️ Test: do I know the tags?</button>
   </div>
+  <div class="efilter" id="efilter"></div>
   <nav class="nav" id="nav"></nav>
 </div>
 
-<article class="essay" id="e1" data-nav="1 · Śiva ≠ peaceful Rudra">
+<article class="essay" id="e1" data-nav="1 · Śiva ≠ peaceful Rudra" data-exam="exam1" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 1</span>“Tantric/Purāṇic Śiva cannot simply be the peaceful aspect of Vedic Rudra.” Discuss.</h2>
 
   <div class="card">
@@ -257,7 +271,7 @@
   </div>
 </article>
 
-<article class="essay" id="e2" data-nav="2 · IVC ↔ Vedic continuity">
+<article class="essay" id="e2" data-nav="2 · IVC ↔ Vedic continuity" data-exam="exam1" data-group="year1">
   <h2 class="essay__q"><span class="en">Essay 2</span>Outline the arguments for and against continuity in religious practice between the Indus Valley and Vedic Civilisations.</h2>
 
   <div class="card">
@@ -340,7 +354,7 @@
   </div>
 </article>
 
-<article class="essay" id="e3" data-nav="3 · “Hinduism” before 1400?">
+<article class="essay" id="e3" data-nav="3 · “Hinduism” before 1400?" data-exam="exam1" data-group="year1">
   <h2 class="essay__q"><span class="en">Essay 3</span>Does the term “Hinduism” usefully capture anything before 1400 C.E.?</h2>
 
   <div class="card">
@@ -411,7 +425,7 @@
   </div>
 </article>
 
-<article class="essay" id="e4" data-nav="4 · NK & Patañjali (Mṛgendra)">
+<article class="essay" id="e4" data-nav="4 · NK & Patañjali (Mṛgendra)" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 4</span>Doctrinal limits of authority: what Nārāyaṇakaṇṭha could not cite from the Pātañjalayogaśāstra in the Mṛgendra Yogapāda-vṛtti.</h2>
 
   <div class="card">
@@ -495,7 +509,7 @@
   </div>
 </article>
 
-<article class="essay" id="e5" data-nav="5 · Pratyabhijñā (Recognition)">
+<article class="essay" id="e5" data-nav="5 · Pratyabhijñā (Recognition)" data-exam="exam1" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 5</span>Pratyabhijñā: how can lifeless things be Śiva’s acts, and where does the self/other split come from?</h2>
 
   <div class="card">
@@ -578,7 +592,7 @@
   </div>
 </article>
 
-<article class="essay" id="e6" data-nav="6 · Nala vs Yudhiṣṭhira (dice)">
+<article class="essay" id="e6" data-nav="6 · Nala vs Yudhiṣṭhira (dice)" data-exam="exam1" data-group="year1">
   <h2 class="essay__q"><span class="en">Essay 6</span>Nala and Yudhiṣṭhira at dice — why dharmaśāstra condemns one but not the other.</h2>
 
   <div class="card">
@@ -660,7 +674,7 @@
   </div>
 </article>
 
-<article class="essay" id="e7" data-nav="7 · Pāśupata / Siddhānta / Pratyabhijñā & Sāṃkhya">
+<article class="essay" id="e7" data-nav="7 · Pāśupata / Siddhānta / Pratyabhijñā & Sāṃkhya" data-exam="exam1" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 7</span>How similar and how different are the world-views of the Pāśupatas, Siddhānta Śaivas, and the Pratyabhijñā school — and how much are they based on Sāṃkhya tenets?</h2>
 
   <div class="card">
@@ -745,7 +759,7 @@
   </div>
 </article>
 
-<article class="essay" id="e8" data-nav="8 · YS + YB one work? (Maas)">
+<article class="essay" id="e8" data-nav="8 · YS + YB one work? (Maas)" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 8</span>Were the Yogasūtra and the Yogabhāṣya compiled together? Evidence for and against the unity of the Pātañjalayogaśāstra.</h2>
 
   <div class="card">
@@ -816,7 +830,7 @@
   </div>
 </article>
 
-<article class="essay" id="e9" data-nav="9 · Liṅga worship &amp; symbolism">
+<article class="essay" id="e9" data-nav="9 · Liṅga worship &amp; symbolism" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 9</span>How significant is liṅga worship in Śaivism and popular Hinduism? Explain the myths and symbolism associated with it.</h2>
 
   <div class="card">
@@ -897,7 +911,7 @@
   </div>
 </article>
 
-<article class="essay" id="e10" data-nav="10 · Ṣaḍaṅga vs Pātañjala Yoga">
+<article class="essay" id="e10" data-nav="10 · Ṣaḍaṅga vs Pātañjala Yoga" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 10</span>History of tantric Ṣaḍaṅga Yoga: its six ancillaries, and how it differs from eightfold Pātañjala Yoga.</h2>
 
   <div class="card">
@@ -967,7 +981,7 @@
   </div>
 </article>
 
-<article class="essay" id="e11" data-nav="11 · 36 tattvas vs pati/paśu/pāśa">
+<article class="essay" id="e11" data-nav="11 · 36 tattvas vs pati/paśu/pāśa" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 11</span>How is the scheme of thirty-six tattvas in Śaivism not in conflict with the three principles pati, paśu, and pāśa?</h2>
 
   <div class="card">
@@ -1049,7 +1063,7 @@
   </div>
 </article>
 
-<article class="essay" id="e12" data-nav="12 · Yoga = cittavṛttinirodha">
+<article class="essay" id="e12" data-nav="12 · Yoga = cittavṛttinirodha" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 12</span>“Yoga is the cessation of the operations of the mind.” Discuss the principles underlying this definition.</h2>
 
   <div class="card">
@@ -1130,7 +1144,7 @@
   </div>
 </article>
 
-<article class="essay" id="e13" data-nav="13 · Vijñānabhairava meditations">
+<article class="essay" id="e13" data-nav="13 · Vijñānabhairava meditations" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 13</span>The Vijñānabhairavatantra’s meditation techniques.</h2>
 
   <div class="card">
@@ -1198,7 +1212,7 @@
   </div>
 </article>
 
-<article class="essay" id="e14" data-nav="14 · Amṛtasiddhi — Buddhist?">
+<article class="essay" id="e14" data-nav="14 · Amṛtasiddhi — Buddhist?" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 14</span>To what extent is the Amṛtasiddhi Buddhist? How useful is it to classify it as such?</h2>
 
   <div class="card">
@@ -1254,7 +1268,7 @@
   </div>
 </article>
 
-<article class="essay" id="e15" data-nav="15 · Tantric mode of worship">
+<article class="essay" id="e15" data-nav="15 · Tantric mode of worship" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 15</span>What is special about the tantric mode of worship? How far is it internal/external, for oneself/for others?</h2>
 
   <div class="card">
@@ -1322,7 +1336,7 @@
   </div>
 </article>
 
-<article class="essay" id="e16" data-nav="16 · MVT vs Vivekamārtaṇḍa (ṣaḍaṅga)">
+<article class="essay" id="e16" data-nav="16 · MVT vs Vivekamārtaṇḍa (ṣaḍaṅga)" data-exam="exam2" data-group="year2">
   <h2 class="essay__q"><span class="en">Essay 16</span>Compare the ṣaḍaṅga yogas of the Mālinīvijayottaratantra and the Vivekamārtaṇḍa, and comment on their differences.</h2>
 
   <div class="card">
@@ -1422,7 +1436,19 @@
   }
 
   var ESSAYS=[].slice.call(document.querySelectorAll('.essay'));
+  var EXLBL={exam1:'Exam 1',exam2:'Exam 2'}, GRLBL={year1:'Year 1',year2:'Year 2',extra:'Extra'};
+  var EXSHORT={exam1:'EX1',exam2:'EX2'}, GRSHORT={year1:'Y1',year2:'Y2',extra:'EX'};
   (function buildNav(){
+    // compact category chips on every essay heading
+    ESSAYS.forEach(function(es){
+      var ex=es.getAttribute('data-exam'), gr=es.getAttribute('data-group');
+      var q=es.querySelector('.essay__q'); if(!q) return;
+      var box=document.createElement('span'); box.className='ecat';
+      if(ex) box.innerHTML+='<span class="c '+(ex==='exam1'?'ex1':'ex2')+'">'+(EXLBL[ex]||ex)+'</span>';
+      if(gr) box.innerHTML+='<span class="c yr">'+(GRLBL[gr]||gr)+'</span>';
+      var en=q.querySelector('.en'); if(en&&en.nextSibling) q.insertBefore(box,en.nextSibling); else q.insertBefore(box,q.firstChild);
+    });
+
     var nav=document.getElementById('nav');
     nav.innerHTML=
       '<button class="nbtn" id="nprev" title="предыдущее">◀</button>'+
@@ -1438,30 +1464,58 @@
     var nmN=document.getElementById('nmN'), nmT=document.getElementById('nmT'), nmC=document.getElementById('nmC');
     function title(es,k){ var d=es.getAttribute('data-nav')||('Essay '+(k+1)); return d.replace(/^\s*\d+\s*·\s*/,''); }
     ESSAYS.forEach(function(es,k){
+      var ex=es.getAttribute('data-exam'), gr=es.getAttribute('data-group');
+      var tag=[EXSHORT[ex]||'',GRSHORT[gr]||''].filter(Boolean).join(' ');
       var a=document.createElement('a'); a.href='#'+es.id; a.dataset.id=es.id;
-      a.innerHTML='<span class="tn">'+(k+1)+'</span><span>'+title(es,k)+'</span>';
+      a.innerHTML='<span class="tn">'+(k+1)+'</span><span>'+title(es,k)+'</span><span class="tc">'+tag+'</span>';
       a.addEventListener('click',function(ev){ ev.preventDefault(); go(es.id); close(); });
       toc.appendChild(a);
     });
-    var cur=0;
+    var FX={exam:'',group:''};
+    function pass(es){ return (!FX.exam||es.getAttribute('data-exam')===FX.exam) && (!FX.group||es.getAttribute('data-group')===FX.group); }
+    function visible(){ return ESSAYS.filter(pass); }
     function open(){ toc.classList.add('open'); menu.classList.add('open'); menu.setAttribute('aria-expanded','true'); var act=toc.querySelector('a.active'); if(act) act.scrollIntoView({block:'nearest'}); }
     function close(){ toc.classList.remove('open'); menu.classList.remove('open'); menu.setAttribute('aria-expanded','false'); }
     function go(id){ var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
     menu.addEventListener('click',function(e){ e.stopPropagation(); toc.classList.contains('open')?close():open(); });
     document.addEventListener('click',function(e){ if(!nav.contains(e.target)) close(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-    document.getElementById('nprev').addEventListener('click',function(){ if(cur>0) go(ESSAYS[cur-1].id); });
-    document.getElementById('nnext').addEventListener('click',function(){ if(cur<ESSAYS.length-1) go(ESSAYS[cur+1].id); });
+    document.getElementById('nprev').addEventListener('click',function(){ var v=visible(),i=v.findIndex(e=>e.id===CURID); if(i>0) go(v[i-1].id); });
+    document.getElementById('nnext').addEventListener('click',function(){ var v=visible(),i=v.findIndex(e=>e.id===CURID); if(i>=0&&i<v.length-1) go(v[i+1].id); });
+    var CURID=null;
     function setCur(id){
-      var i=ESSAYS.findIndex(e=>e.id===id); if(i<0) return; cur=i;
-      nmN.textContent=(i+1); nmT.textContent=title(ESSAYS[i],i); nmC.textContent=(i+1)+'/'+ESSAYS.length;
-      document.getElementById('nprev').disabled=(i===0);
-      document.getElementById('nnext').disabled=(i===ESSAYS.length-1);
+      var es=document.getElementById(id); if(!es) return; CURID=id;
+      var v=visible(), i=v.findIndex(e=>e.id===id), k=ESSAYS.findIndex(e=>e.id===id);
+      nmN.textContent=(k+1); nmT.textContent=title(es,k);
+      nmC.textContent=(i>=0?(i+1):'–')+'/'+v.length;
+      document.getElementById('nprev').disabled=(i<=0);
+      document.getElementById('nnext').disabled=(i<0||i>=v.length-1);
       [].forEach.call(toc.children,function(a){ a.classList.toggle('active',a.dataset.id===id); });
     }
+    function applyFilter(){
+      ESSAYS.forEach(function(es){ es.classList.toggle('f-off',!pass(es)); });
+      [].forEach.call(toc.children,function(a){ var es=document.getElementById(a.dataset.id); a.classList.toggle('f-off',!pass(es)); });
+      var v=visible();
+      if(v.length){ var still=v.some(e=>e.id===CURID); setCur(still?CURID:v[0].id); if(!still) go(v[0].id); }
+    }
+    // filter UI
+    var ef=document.getElementById('efilter');
+    function grp(label,key,opts){
+      var s='<span class="grp"><span class="lab">'+label+'</span><button data-k="'+key+'" data-v="" class="on">Все</button>';
+      opts.forEach(function(o){ s+='<button data-k="'+key+'" data-v="'+o[0]+'">'+o[1]+'</button>'; });
+      return s+'</span>';
+    }
+    ef.innerHTML=grp('Экзамен:','exam',[['exam1','Exam 1'],['exam2','Exam 2']])+
+                 grp('Группа:','group',[['year1','Year 1'],['year2','Year 2'],['extra','Extra']]);
+    ef.addEventListener('click',function(e){
+      var b=e.target.closest('button'); if(!b) return;
+      var k=b.dataset.k; FX[k]=b.dataset.v;
+      [].forEach.call(ef.querySelectorAll('button[data-k="'+k+'"]'),function(x){ x.classList.toggle('on',x===b); });
+      applyFilter();
+    });
     if('IntersectionObserver' in window){
       var io=new IntersectionObserver(function(ents){
-        ents.forEach(function(en){ if(en.isIntersecting) setCur(en.target.id); });
+        ents.forEach(function(en){ if(en.isIntersecting && !en.target.classList.contains('f-off')) setCur(en.target.id); });
       },{rootMargin:'-45% 0px -50% 0px'});
       ESSAYS.forEach(e=>io.observe(e));
     }
