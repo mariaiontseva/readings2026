@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
+<meta name="referrer" content="no-referrer">
+<title>MPhil — Sanskrit Unseen Translation (Section A drill)</title>
+<style>
+  :root{--ink:#1a1712;--mut:#463f37;--line:#ddd6c8;--hl:#6a4610;--bg:#fff;--soft:#faf8f3;
+        --rep:#9c2a2a;--skip:#8a8378;--core:#fff1c2;--coreln:#c79a3a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);
+    font:18px/1.6 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;padding:0 0 90px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 26px}
+  header{padding:34px 0 6px}
+  h1{font-size:24px;font-weight:700}
+  .sub{color:var(--mut);font-size:15px;margin-top:7px}
+  .note{margin:20px 0 6px;border:1px solid var(--line);border-radius:8px;background:var(--soft);padding:16px 20px;font-size:15.5px;line-height:1.6}
+  .note b{color:var(--ink)} .note ul{margin:8px 0 0 20px}
+  .core-box{margin:18px 0 4px;border:1px solid var(--coreln);border-left:5px solid var(--coreln);
+     border-radius:8px;background:#fffaf0;padding:16px 20px}
+  .core-box h4{font-size:13px;letter-spacing:1.2px;text-transform:uppercase;color:var(--hl);margin-bottom:10px}
+  .core-box p{font-size:16px;line-height:1.85}
+  .core-box .cw{background:var(--core);box-shadow:0 0 0 1px var(--coreln) inset;border-radius:3px;padding:1px 6px;font-weight:600;white-space:nowrap}
+  .tabs{display:flex;gap:7px;margin:24px 0 0;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+  .tab{padding:12px 18px;cursor:pointer;font-size:17px;font-weight:700;color:var(--mut);border:2px solid transparent;border-bottom:none;border-radius:8px 8px 0 0}
+  .tab.active{color:var(--ink);background:#f3efe7;border-color:var(--line);border-bottom:2px solid #f3efe7;margin-bottom:-2px}
+  .bar{margin:18px 0 6px}
+  .bar input{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:6px;font:16px inherit}
+  .bar input:focus{outline:none;border-color:var(--ink)}
+  .cnt{font-size:14px;color:var(--mut);margin:8px 0 16px}
+  .pool{display:none} .pool.active{display:block}
+  .grp{font-size:13px;letter-spacing:1.3px;text-transform:uppercase;color:var(--hl);font-weight:700;margin:26px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .p{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden;background:#fff}
+  .p .h{display:flex;flex-wrap:wrap;gap:9px;align-items:baseline;padding:15px 18px;cursor:pointer}
+  .p .h:hover{background:var(--soft)}
+  .p.done{opacity:.6}
+  .p.done .src::after{content:" ✓ read";color:#1f6b3a;font-size:12.5px;font-weight:700}
+  .ck{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mut);cursor:pointer;user-select:none;padding:2px 6px;border:1px solid var(--line);border-radius:6px}
+  .ck:hover{background:#eef3ea}
+  .ck input{width:17px;height:17px;accent-color:#1f6b3a;cursor:pointer;margin:0}
+  .p .src{font-size:18px;font-weight:700;flex:1;min-width:220px;color:var(--ink)}
+  .p .yrs{font-size:13.5px;color:var(--mut);font-style:italic}
+  .badge{font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:999px}
+  .b-rep{background:#f6e0e0;color:var(--rep)} .b-skip{background:#e7e4dd;color:var(--skip)}
+  .b-th{background:#ece6d6;color:#5a5346;text-transform:none;letter-spacing:0;font-weight:600;font-size:13px}
+  .body{display:none;padding:2px 22px 22px;border-top:1px solid var(--line)}
+  .p.open .body{display:block}
+  .lbl{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--hl);font-weight:700;margin:18px 0 8px}
+  .skt{font-family:"Gentium Plus","Iowan Old Style",Charter,Georgia,"Times New Roman",serif;
+       font-size:21px;line-height:2.05;color:#161310;white-space:pre-wrap;
+       background:#fffdf7;border:1px solid var(--line);border-radius:6px;padding:18px 22px;
+       letter-spacing:.15px}
+  .keyd{margin-top:16px;border:1px solid var(--coreln);border-radius:7px;background:#fffaf0}
+  .keyd summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--hl);padding:11px 16px;list-style:none}
+  .keyd summary::-webkit-details-marker{display:none}
+  .keyd summary:before{content:"▸ ";}
+  .keyd[open] summary:before{content:"▾ ";}
+  .keyc{padding:6px 18px 18px;font-size:16.5px;line-height:1.72;color:#15120e}
+  .keyc .sp{font-family:"Gentium Plus",Charter,Georgia,serif;font-weight:700;color:#000;display:block;margin-top:12px}
+  .keyc .gl{display:block;color:#15120e;margin:2px 0 0}
+  .keyc .se{display:block;color:#0a3a20;font-style:italic;font-weight:600;margin:3px 0 6px;border-bottom:1px dotted var(--line);padding-bottom:6px}
+  .keyc p{margin:0 0 11px}
+  .keyc .k{background:var(--core);box-shadow:0 0 0 1px var(--coreln) inset;border-radius:3px;padding:0 5px;font-family:"Gentium Plus",Charter,Georgia,serif;font-weight:600;color:#15120e}
+  .voc{font-size:16.5px;line-height:1.95;color:#1b1812}
+  .voc .e{display:block;padding:3px 0;border-bottom:1px dotted var(--line)}
+  .voc .e:last-child{border-bottom:none}
+  .voc .w{font-weight:700;font-family:"Gentium Plus",Charter,Georgia,serif;font-size:17.5px}
+  .voc .w.core{background:var(--core);box-shadow:0 0 0 1px var(--coreln) inset;border-radius:3px;padding:1px 6px}
+  .voc .none{color:var(--mut);font-style:italic;font-size:15px}
+  .pred{font-size:16.5px;line-height:1.7}
+  .pred h3{font-size:19px;color:var(--hl);margin:22px 0 8px}
+  .pred table{border-collapse:collapse;width:100%;margin:10px 0;font-size:15px}
+  .pred td,.pred th{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .pred th{background:var(--soft)}
+  @media(max-width:720px){body{font-size:17px}.skt{font-size:19px;line-height:1.95;padding:14px 16px}.p .src{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Sanskrit Unseen-Translation — Section A drill</h1>
+  <p class="sub">Paper A11114 (older 6362) · every past Section-A passage 2008–2024, with the exam’s own vocabulary · click a card to open</p>
+</header>
+
+<div class="note">
+  <b>Format.</b> Section A = two unseen passages: <b>(1) one verse</b> (10/14 = Mahābhārata, Śāntiparvan) and <b>(2) one prose</b> commentary. Section B (prepared) is not here.
+  <ul>
+   <li><b>No Dharmaśāstra this year</b> → Yājñavalkyasmṛti verse + Mitākṣarā prose = <span class="badge b-skip">skip</span>. The “legal text” = Arthaśāstra = <span class="badge b-skip">skip</span>.</li>
+   <li><span class="badge b-rep">repeat ×2</span> = set in two different years.</li>
+   <li>In the vocabularies, <span class="cw">highlighted</span> words are the high-frequency ones that recur across passages — learn these first.</li>
+  </ul>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-p="verse" onclick="setT('verse')">① Verse — epic / Purāṇa / kāvya</div>
+  <div class="tab" data-p="prose" onclick="setT('prose')">② Prose — commentary</div>
+  <div class="tab" data-p="words" onclick="setT('words')">★ Recurring words</div>
+  <div class="tab" data-p="pred" onclick="setT('pred')">Predictions &amp; repeats</div>
+</div>
+
+<div id="corewrap"></div>
+<div class="pool" id="pool-words"></div>
+<div class="bar" id="searchbar"><input id="q" placeholder="Search source / theme / year / word…" oninput="render()"></div>
+<div class="cnt" id="cnt"></div>
+
+<div class="pool active" id="pool-verse"></div>
+<div class="pool" id="pool-prose"></div>
+<div class="pool" id="pool-pred"></div>
+</div>
+<script>
+// Core recurring words to learn (highlighted everywhere). key = lowercase headword w/o diacritic-insensitive trailing marks
+const CORE_VERSE={
+ "kṣetrajña":"the ‘field-knower’ = the soul (constant in the Śāntiparvan passages)",
+ "manaḥṣaṣṭha":"with the manas as the sixth (sense)",
+ "kāṣṭhā":"the final goal",
+ "ṛch":"to go (ṛchati / ’rchaty)",
+ "mahābhūta":"the material element(s) (the five)",
+ "apyaya":"dissolution (↔ prabhava)",
+ "bhūtātman":"the Self of creatures",
+ "avyakta":"the unmanifest",
+ "mahat":"the ‘great’ (buddhi-principle)",
+ "guṇa":"sattva / rajas / tamas",
+ "saṃsāra":"transmigration",
+ "moha":"delusion","lobha":"greed","kāma":"desire","rāga":"passion",
+ "brahma(n)":"the universal truth / the Absolute",
+ "dhyāna":"meditation","amṛta":"the immortal / deathless",
+ "vipluta":"overwhelmed"};
+const CORE_PROSE={
+ "pravṛtti":"engagement in the world (↔ nivṛtti)",
+ "nivṛtti":"disengagement / withdrawal",
+ "codanā":"Vedic injunction (defines dharma)",
+ "abhyudaya":"worldly prosperity (↔ niḥśreyasa)",
+ "niḥśreyasa":"the highest good / liberation",
+ "jijñāsā":"the desire to know / inquiry",
+ "adhikāra":"qualification, entitlement (adhikārin = the entitled one)",
+ "dharma":"here: the moral/ritual order; codanā-defined",
+ "svabhāva":"intrinsic nature (Madhyamaka target)",
+ "paramārthataḥ":"in ultimate reality",
+ "mumukṣutva":"the desire for liberation",
+ "viveka":"discernment (e.g. nitya/anitya)",
+ "upapatti":"(logical) establishment / arising",
+ "iti…ucyate":"‘…’ is what is said — commentary formula"};
+
+const DATA=[
+// ---- VERSE ----
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata, Śāntiparvan 326.20–24",yrs:"TT2008",theme:"the supreme puruṣa / Vāsudeva; Sāṃkhya (the 25th, beyond the 24 tattvas)",
+text:`20 na dṛśyaś cakṣuṣā yo 'sau na spṛśyaḥ sparśanena ca |
+na ghreyaś caiva gandhena rasena ca vivarjitaḥ ||
+21 sattvaṃ rajas tamaś caiva na guṇā yaṃ bhajanti vai |
+yaś ca sarvagataḥ sākṣī lokasyātmeti kathyate ||
+22 bhūtagrāmaśarīreṣu naśyatsu na vinaśyati |
+ajo nityaḥ śāśvataś ca nirguṇo niṣkalas tathā ||
+23 dvirdvādaśebhyas tattvebhyaḥ khyāto yaḥ pañcaviṃśakaḥ |
+puruṣo niṣkriyaś caiva jñānadṛśyaś ca kathyate ||
+24 yaṃ praviśya bhavantīha muktā vai dvijasattama |
+sa vāsudevo vijñeyaḥ paramātmā sanātanaḥ ||`,
+voc:"(no vocabulary was given for this passage in the 2008 paper — the printed glossary served the prose passage)"},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata, Śāntiparvan 267.3–8",yrs:"TT2011",theme:"cosmogony — the five mahābhūtas + Time (kāla) as the sixth",
+text:`3 kutaḥ sṛṣṭam idaṃ viśvaṃ brahman sthāvarajaṅgamam
+pralaye ca kam abhyeti tad bhavān prabravītu me
+asita uvāca:
+4 yebhyaḥ sṛjati bhūtāni kālo bhāvapracoditaḥ
+mahābhūtāni pañceti tāny āhur bhūtacintakāḥ
+5 tebhyaḥ sṛjati bhūtāni kāla ātmapracoditaḥ
+etebhyaḥ yaḥ paraṃ brūyād asad brūyād asaṃśayam
+6 viddhi nārada pañcaitān śāśvatān acalān dhruvān
+mahatas tejaso rāśīn kālaṣaṣṭhān svabhāvataḥ
+7 āpaś caivāntarikṣaṃ ca pṛthivī vāyupāvakau
+asiddhiḥ param etebhyo bhūtebhyo muktasaṃśayam
+8 nopapattyā na vā yuktyā tv asad brūyād asaṃśayam
+vettha tān abhinirvṛttān ṣaḍ ete yasya rāśayaḥ`,
+voc:"brahman = a vocative; sthāvara-jaṅgama = fixed and moving; cintaka = reflecter about X; nārada = a proper name; ṣaṣṭha = sixth (ordinal); vettha = 2 sg. active perfect of vid; ṣaṣ = six (cardinal)",
+key:`<span class='sp'>kutaḥ sṛṣṭam idaṃ viśvaṃ, brahman, sthāvarajaṅgamam? pralaye ca kam abhyeti? tad bhavān prabravītu me |</span><span class='gl'>kutaḥ = from what · sṛṣṭam = created · idaṃ viśvaṃ = this universe · brahman (voc) = O brahmin · sthāvarajaṅgamam = fixed & moving · pralaye = at the dissolution (loc) · kam abhyeti = what does it go to · tad = that · bhavān prabravītu me = may you tell me</span><span class='se'>From what is this universe of moving and unmoving things created, O brahmin, and into what does it go at the dissolution? Please tell me that.</span>
+<span class='sp'>(asita uvāca) yebhyaḥ sṛjati bhūtāni kālaḥ bhāvapracoditaḥ — mahābhūtāni pañca iti tāni āhuḥ bhūtacintakāḥ ||</span><span class='gl'>yebhyaḥ = from which (abl. pl) · sṛjati bhūtāni = creates beings · kālaḥ = Time · bhāvapracoditaḥ = impelled by [its] nature · mahābhūtāni pañca iti = ‘the five great elements’ · tāni āhuḥ = them they call · bhūtacintakāḥ = the cosmologists</span><span class='se'>(Asita said:) That from which Time, driven by its nature, creates beings — those the cosmologists call ‘the five great elements’.</span>
+<span class='sp'>tebhyaḥ sṛjati bhūtāni kālaḥ ātmapracoditaḥ; etebhyaḥ yaḥ paraṃ brūyāt, asat brūyāt asaṃśayam ||</span><span class='gl'>tebhyaḥ = from them · kālaḥ ātmapracoditaḥ = Time, self-impelled · etebhyaḥ paraṃ = beyond these · yaḥ brūyāt = whoever should assert [something] · asat brūyāt = speaks of the unreal · asaṃśayam = without doubt</span><span class='se'>From them Time, self-driven, creates beings; whoever asserts anything beyond these speaks, beyond doubt, of what is not.</span>
+<span class='sp'>viddhi, nārada, pañca etān śāśvatān acalān dhruvān — mahataḥ tejasaḥ rāśīn, kālaṣaṣṭhān svabhāvataḥ ||</span><span class='gl'>viddhi = know! (impv. of vid) · nārada (voc) · pañca etān = these five · śāśvatān acalān dhruvān = eternal, unmoving, fixed · mahataḥ tejasaḥ rāśīn = great masses of energy · kālaṣaṣṭhān = with Time as the sixth · svabhāvataḥ = by [their own] nature</span><span class='se'>Know, Nārada, these five as eternal, unmoving, fixed — great masses of energy, with Time a sixth, by their very nature.</span>
+<span class='sp'>āpaḥ ca eva antarikṣaṃ ca pṛthivī vāyupāvakau; asiddhiḥ param etebhyaḥ bhūtebhyaḥ, muktasaṃśayam ||</span><span class='gl'>āpaḥ = water · antarikṣaṃ = space · pṛthivī = earth · vāyupāvakau = wind & fire (dual) · asiddhiḥ = it cannot be established · param etebhyaḥ bhūtebhyaḥ = [anything] beyond these elements · muktasaṃśayam = free of doubt</span><span class='se'>Water, space, earth, wind and fire — beyond these elements nothing can be established, doubtless.</span>
+<span class='sp'>na upapattyā na vā yuktyā tu asat brūyāt asaṃśayam; vettha tān abhinirvṛttān, ṣaṭ ete yasya rāśayaḥ ||</span><span class='gl'>na upapattyā na vā yuktyā = neither by demonstration nor by reasoning · asat brūyāt = one would [only] assert the unreal · asaṃśayam = certainly · vettha = you know (perf. of vid) · tān abhinirvṛttān = them as fully produced · ṣaṭ ete yasya rāśayaḥ = these six whose masses [they are]</span><span class='se'>Neither by proof nor by argument [can one go beyond them]: one would only assert the unreal. Know them as the produced reality — these six whose masses make up all.</span>`},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata, Śāntiparvan 188.1–9",yrs:"TT2015",theme:"dhyānayoga — the fourfold meditation; sense-withdrawal",
+text:`bhīṣma uvāca
+hanta vakṣyāmi te pārtha dhyānayogaṃ caturvidham |
+yaṃ jñātvā śāśvatīṃ siddhiṃ gacchanti paramarṣayaḥ || 1
+yathā svanuṣṭhitaṃ dhyānaṃ tathā kurvanti yoginaḥ |
+maharṣayo jñānatṛptā nirvāṇagatamānasāḥ || 2
+nāvartante punaḥ pārtha muktāḥ saṃsāradoṣataḥ |
+janmadoṣaparikṣīṇāḥ svabhāve paryavasthitāḥ || 3
+nirdvandvā nityasattvasthā vimuktā nityam āśritāḥ |
+asaṅgīny avivādīni manaḥśāntikarāṇi ca || 4
+tatra svādhyāyasaṃśliṣṭam ekāgraṃ dhārayen manaḥ |
+piṇḍīkṛtyendriyagrāmam āsīnaḥ kāṣṭhavan muniḥ || 5
+śabdaṃ na vindec chrotreṇa sparśaṃ tvacā na vedayet |
+rūpaṃ na cakṣuṣā vidyāj jihvayā na rasāṃs tathā || 6
+ghreyāṇy api ca sarvāṇi jahyād dhyānena yogavit |
+pañcavargapramāthīni necchec caitāni vīryavān || 7
+tato manasi saṃsajya pañcavargaṃ vicakṣaṇaḥ |
+samādadhyān mano bhrāntam indriyaiḥ saha pañcabhiḥ || 8
+visaṃcāri nirālambaṃ pañcadvāraṃ calācalam |
+pūrve dhyānapathe dhīraḥ samādadhyān mano 'ntaram || 9`,
+voc:"parikṣīṇa = lost, destroyed; avivādin = not quarreling; saṃśliṣṭa = clinging, here perhaps focused; kāṣṭha = a block of wood; visaṃcārin = wandering",
+key:`<span class='sp'>hanta vakṣyāmi te, pārtha, dhyānayogaṃ caturvidham |</span><span class='gl'>hanta = well then · vakṣyāmi = I shall tell (1sg fut) · te = to you · dhyānayogaṃ caturvidham = the fourfold yoga of meditation</span><span class='se'>Well then, Pārtha, I shall tell you the fourfold yoga of meditation,</span>
+<span class='sp'>yaṃ jñātvā śāśvatīṃ siddhiṃ gacchanti paramarṣayaḥ ||</span><span class='gl'>yaṃ jñātvā = knowing which · śāśvatīṃ siddhiṃ = eternal perfection · gacchanti = they reach · paramarṣayaḥ = the supreme seers</span><span class='se'>knowing which the supreme seers reach eternal perfection.</span>
+<span class='sp'>yathā svanuṣṭhitaṃ dhyānaṃ tathā kurvanti yoginaḥ |</span><span class='gl'>yathā … tathā = as … so · svanuṣṭhitaṃ dhyānaṃ = well-performed meditation · kurvanti = practise · yoginaḥ = the yogins</span><span class='se'>The yogins practise meditation just as it is rightly done —</span>
+<span class='sp'>maharṣayaḥ jñānatṛptāḥ nirvāṇagatamānasāḥ ||</span><span class='gl'>maharṣayaḥ = great seers · jñānatṛptāḥ = content in knowledge · nirvāṇagatamānasāḥ = minds set on nirvāṇa</span><span class='se'>great seers, content in knowledge, their minds gone toward liberation.</span>
+<span class='sp'>na āvartante punaḥ, pārtha, muktāḥ saṃsāradoṣataḥ |</span><span class='gl'>na āvartante = they do not return · punaḥ = again · muktāḥ = freed · saṃsāradoṣataḥ = from the evil of saṃsāra (abl)</span><span class='se'>They do not return again, Pārtha — freed from the evil of saṃsāra,</span>
+<span class='sp'>janmadoṣaparikṣīṇāḥ svabhāve paryavasthitāḥ ||</span><span class='gl'>janmadoṣaparikṣīṇāḥ = the fault of birth destroyed · svabhāve paryavasthitāḥ = established in [their] true nature</span><span class='se'>the flaw of birth destroyed, settled in their own nature.</span>
+<span class='sp'>nirdvandvāḥ nityasattvasthāḥ vimuktāḥ nityam āśritāḥ |</span><span class='gl'>nirdvandvāḥ = beyond the pairs of opposites · nityasattvasthāḥ = ever fixed in sattva · vimuktāḥ = liberated · nityam āśritāḥ = ever relying [on the eternal]</span><span class='se'>Beyond opposites, ever fixed in purity, liberated, ever reliant —</span>
+<span class='sp'>asaṅgīni avivādīni manaḥśāntikarāṇi ca ||</span><span class='gl'>asaṅgīni = unattached · avivādīni = unquarrelsome · manaḥśāntikarāṇi = mind-calming (these states, nt. pl.)</span><span class='se'>[their states are] unattached, unquarrelsome, and bringers of peace of mind.</span>
+<span class='sp'>tatra svādhyāyasaṃśliṣṭam ekāgraṃ dhārayet manaḥ |</span><span class='gl'>tatra = therein · svādhyāyasaṃśliṣṭam = joined to recitation/study · ekāgraṃ = one-pointed · dhārayet manaḥ = let him hold the mind</span><span class='se'>There let him hold the mind one-pointed, fixed on study,</span>
+<span class='sp'>piṇḍīkṛtya indriyagrāmam āsīnaḥ kāṣṭhavat muniḥ ||</span><span class='gl'>piṇḍīkṛtya = having concentrated (abs.) · indriyagrāmam = the host of senses · āsīnaḥ = seated · kāṣṭhavat = like a log · muniḥ = the sage</span><span class='se'>having gathered in the senses, the sage seated motionless like a block of wood.</span>
+<span class='sp'>śabdaṃ na vindet śrotreṇa, sparśaṃ tvacā na vedayet |</span><span class='gl'>śabdaṃ = sound · na vindet = let him not catch · śrotreṇa = with the ear · sparśaṃ = touch · tvacā = with the skin · na vedayet = let him not feel</span><span class='se'>Let him not catch sound with the ear, nor feel touch with the skin,</span>
+<span class='sp'>rūpaṃ na cakṣuṣā vidyāt, jihvayā na rasān tathā ||</span><span class='gl'>rūpaṃ = form · na vidyāt = let him not perceive · cakṣuṣā = with the eye · jihvayā = with the tongue · rasān = tastes</span><span class='se'>nor perceive form with the eye, nor tastes with the tongue.</span>
+<span class='sp'>ghreyāṇi api ca sarvāṇi jahyāt dhyānena yogavit |</span><span class='gl'>ghreyāṇi sarvāṇi = all smellable things · jahyāt = let him give up · dhyānena = by meditation · yogavit = the knower of yoga</span><span class='se'>All smells too let the knower of yoga abandon by meditation;</span>
+<span class='sp'>pañcavargapramāthīni na icchet ca etāni vīryavān ||</span><span class='gl'>pañcavargapramāthīni = these that churn up the five-group (senses) · na icchet = let him not desire · etāni = them · vīryavān = the resolute one</span><span class='se'>the resolute one should not crave these, which agitate the five [senses].</span>
+<span class='sp'>tataḥ manasi saṃsajya pañcavargaṃ vicakṣaṇaḥ |</span><span class='gl'>tataḥ = then · manasi = in the mind (loc) · saṃsajya = having gathered (abs.) · pañcavargaṃ = the five-group · vicakṣaṇaḥ = the wise one</span><span class='se'>Then, having gathered the five [senses] into the mind, the wise one</span>
+<span class='sp'>samādadhyāt manaḥ bhrāntam indriyaiḥ saha pañcabhiḥ ||</span><span class='gl'>samādadhyāt = let him steady · manaḥ bhrāntam = the wandering mind · indriyaiḥ saha pañcabhiḥ = together with the five senses</span><span class='se'>should steady the wandering mind together with the five senses.</span>
+<span class='sp'>visaṃcāri nirālambaṃ pañcadvāraṃ calācalam |</span><span class='gl'>visaṃcāri = roaming · nirālambaṃ = supportless · pañcadvāraṃ = five-gated · calācalam = unsteady (the mind)</span><span class='se'>[The mind is] roaming, supportless, five-gated, restless;</span>
+<span class='sp'>pūrve dhyānapathe dhīraḥ samādadhyāt manaḥ antaram ||</span><span class='gl'>pūrve dhyānapathe = on the first path of meditation (loc) · dhīraḥ = the steadfast one · samādadhyāt = let him concentrate · manaḥ antaram = the inner mind</span><span class='se'>on the first path of meditation let the steadfast one concentrate the inner mind.</span>`},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata, Śāntiparvan 238.1–9",yrs:"LV2015",theme:"kṣetrajña & the hidden ātman; the ladder indriya→manas→buddhi→ātman",
+text:`vyāsa uvāca
+prakṛtes tu vikārā ye kṣetrajñas taiḥ pariśritaḥ |
+te cainaṃ na prajānanti sa tu jānāti tān api || 1
+taiś caiṣa kurute kāryaṃ manaḥṣaṣṭhair ihendriyaiḥ |
+sudāntair iva saṃyantā dṛḍhaiḥ paramavājibhiḥ || 2
+indriyebhyaḥ parā hy arthā arthebhyaḥ paramaṃ manaḥ |
+manasas tu parā buddhir buddher ātmā mahān paraḥ || 3
+mahataḥ param avyaktam avyaktāt parato 'mṛtam |
+amṛtān na paraṃ kiṃ cit sā kāṣṭhā sā parā gatiḥ || 4
+evaṃ sarveṣu bhūteṣu gūḍho 'tmā na prakāśate |
+dṛśyate tv agryayā buddhyā sūkṣmayā tattvadarśibhiḥ || 5
+antar ātmani saṃlīya manaḥṣaṣṭhāni medhayā |
+indriyāṇīndriyārthāṃś ca bahu cintyam acintayan || 6
+dhyānoparamaṇaṃ kṛtvā vidyāsaṃpāditaṃ manaḥ |
+anīśvaraḥ praśāntātmā tato 'rchaty amṛtaṃ padam || 7
+indriyāṇāṃ tu sarveṣāṃ vaśyātmā calitasmṛtiḥ |
+ātmanaḥ sampradānena martyo mṛtyum upāśnute || 8
+hitvā tu sarvasaṃkalpān sattve cittaṃ niveśayet |
+sattve cittaṃ samāveśya tataḥ kālaṃjaro bhavet || 9`,
+voc:"kṣetrajña = ‘field-knower’, the soul; pari+śri = to surround; manaḥṣaṣṭha = with the manas as the sixth; saṃyantṛ = charioteer; kāṣṭhā = goal; gūḍho ’tmā = irregular epic sandhi; ṛch = to go; kālaṃjara = ‘time-ager’, immortal",
+key:`<span class='sp'>prakṛteḥ tu vikārāḥ ye, kṣetrajñaḥ taiḥ pariśritaḥ |</span><span class='gl'>prakṛteḥ = of prakṛti (gen) · vikārāḥ ye = which modifications · kṣetrajñaḥ = the soul · taiḥ = by them · pariśritaḥ = surrounded</span><span class='se'>The soul is hemmed in by the modifications of prakṛti;</span>
+<span class='sp'>te ca enam na prajānanti, saḥ tu jānāti tān api ||</span><span class='gl'>te = they · enam = it (the soul) · na prajānanti = do not know · saḥ tu jānāti = but it knows · tān api = them too</span><span class='se'>they do not know it, but it knows them.</span>
+<span class='sp'>taiḥ ca eṣaḥ kurute kāryam, manaḥṣaṣṭhaiḥ iha indriyaiḥ |</span><span class='gl'>taiḥ = with them · eṣaḥ = this (soul) · kurute kāryam = does its work · manaḥṣaṣṭhaiḥ indriyaiḥ = with the senses, manas the sixth</span><span class='se'>With those senses (manas the sixth) it does its work,</span>
+<span class='sp'>sudāntaiḥ iva saṃyantā dṛḍhaiḥ paramavājibhiḥ ||</span><span class='gl'>sudāntaiḥ = well-tamed · iva = like · saṃyantā = a charioteer · dṛḍhaiḥ paramavājibhiḥ = with strong, superb horses</span><span class='se'>like a charioteer with strong, well-tamed, superb horses.</span>
+<span class='sp'>indriyebhyaḥ parāḥ hi arthāḥ, arthebhyaḥ paramaṃ manaḥ |</span><span class='gl'>indriyebhyaḥ = than the senses (abl) · parāḥ arthāḥ = the objects are higher · arthebhyaḥ = than objects · paramaṃ manaḥ = mind is higher</span><span class='se'>Higher than the senses are their objects; higher than objects, the mind;</span>
+<span class='sp'>manasaḥ tu parā buddhiḥ, buddheḥ ātmā mahān paraḥ ||</span><span class='gl'>manasaḥ = than mind · parā buddhiḥ = intellect higher · buddheḥ = than intellect · ātmā mahān paraḥ = the great Self is higher</span><span class='se'>higher than mind, the intellect; higher than intellect, the great Self.</span>
+<span class='sp'>mahataḥ param avyaktam, avyaktāt parataḥ amṛtam |</span><span class='gl'>mahataḥ = than the Great (abl) · param avyaktam = the Unmanifest higher · avyaktāt = than the Unmanifest · parataḥ amṛtam = beyond, the Immortal</span><span class='se'>Beyond the Great is the Unmanifest; beyond the Unmanifest, the Immortal.</span>
+<span class='sp'>amṛtāt na paraṃ kiṃ cit, sā kāṣṭhā sā parā gatiḥ ||</span><span class='gl'>amṛtāt = than the Immortal · na paraṃ kiṃ cit = nothing higher · sā kāṣṭhā = that is the limit · sā parā gatiḥ = that the supreme goal</span><span class='se'>Beyond the Immortal there is nothing: that is the end, the supreme goal.</span>
+<span class='sp'>evaṃ sarveṣu bhūteṣu gūḍhaḥ ātmā na prakāśate |</span><span class='gl'>(gūḍho ’tmā, epic sandhi) sarveṣu bhūteṣu = in all beings · gūḍhaḥ ātmā = the hidden Self · na prakāśate = is not manifest</span><span class='se'>Thus in all beings the hidden Self does not show itself,</span>
+<span class='sp'>dṛśyate tu agryayā buddhyā sūkṣmayā tattvadarśibhiḥ ||</span><span class='gl'>dṛśyate = it is seen · agryayā sūkṣmayā buddhyā = by a keen, subtle intellect · tattvadarśibhiḥ = by those who see reality</span><span class='se'>but it is seen, by a keen and subtle intellect, by those who perceive the truth.</span>
+<span class='sp'>antar ātmani saṃlīya manaḥṣaṣṭhāni medhayā |</span><span class='gl'>antar ātmani = within the self (loc) · saṃlīya = having dissolved (abs.) · manaḥṣaṣṭhāni = the (senses) with manas as sixth · medhayā = by wisdom</span><span class='se'>Having by wisdom dissolved the senses (with the mind) into the inner self,</span>
+<span class='sp'>indriyāṇi indriyārthān ca bahu cintyam acintayan ||</span><span class='gl'>indriyāṇi = senses · indriyārthān = sense-objects · bahu cintyam = the much that could be pondered · acintayan = not thinking of</span><span class='se'>not dwelling on the senses, their objects, or all that could be pondered —</span>
+<span class='sp'>dhyāna-uparamaṇaṃ kṛtvā vidyāsaṃpāditaṃ manaḥ |</span><span class='gl'>dhyānoparamaṇaṃ kṛtvā = having brought [the mind] to rest in meditation · vidyāsaṃpāditaṃ manaḥ = the mind perfected by knowledge</span><span class='se'>having stilled [the mind] in meditation, the mind made ready by knowledge,</span>
+<span class='sp'>anīśvaraḥ praśāntātmā tataḥ ’rchaty amṛtaṃ padam ||</span><span class='gl'>anīśvaraḥ = owning/lording nothing · praśāntātmā = of tranquil self · tataḥ = then · ’rchati (ṛchati) = goes to · amṛtaṃ padam = the immortal state</span><span class='se'>owning nothing, serene, he then reaches the immortal state.</span>
+<span class='sp'>indriyāṇāṃ tu sarveṣāṃ vaśyātmā calitasmṛtiḥ |</span><span class='gl'>indriyāṇāṃ sarveṣāṃ = of all the senses (gen) · vaśyātmā = whose self is in their power · calitasmṛtiḥ = whose awareness is shaken</span><span class='se'>But he whose self is enslaved to all the senses, his awareness unsettled,</span>
+<span class='sp'>ātmanaḥ sampradānena martyaḥ mṛtyum upāśnute ||</span><span class='gl'>ātmanaḥ sampradānena = by handing the self over (instr) · martyaḥ = the mortal · mṛtyum upāśnute = meets death</span><span class='se'>by surrendering the self [to them], the mortal attains only death.</span>
+<span class='sp'>hitvā tu sarvasaṃkalpān sattve cittaṃ niveśayet |</span><span class='gl'>hitvā = having abandoned · sarvasaṃkalpān = all volitions · sattve = in sattva (loc) · cittaṃ niveśayet = let him fix the mind</span><span class='se'>Abandoning all intentions, let him fix the mind on sattva;</span>
+<span class='sp'>sattve cittaṃ samāveśya tataḥ kālaṃjaraḥ bhavet ||</span><span class='gl'>sattve cittaṃ samāveśya = having absorbed the mind in sattva · tataḥ = then · kālaṃjaraḥ bhavet = he becomes ‘outlaster of time’ (immortal)</span><span class='se'>having absorbed the mind in sattva, he then becomes one who outlasts time.</span>`},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata, Śāntiparvan 260.12–20",yrs:"TT2016",theme:"Kapila & Syūmaraśmi — the four āśrama-paths; ahiṃsā vs Vedic sacrifice",
+text:`kapila uvāca
+nāhaṃ vedān vinindāmi na vivakṣāmi karhi cit
+pṛthagāśramiṇāṃ karmāṇy ekārthānīti naḥ śrutaṃ 12
+gacchaty eva parityāgī vānaprasthaś ca gacchati
+gṛhastho brahmacārī ca ubhau tāv api gacchataḥ 13
+devayānā hi panthānaś catvāraḥ śāśvatā matāḥ
+teṣāṃ jyāyaḥkanīyastvam phaleṣūktaṃ balābalam 14
+evaṃ viditvā sarvārthān ārabhed iti vaidikam
+nārabhed iti cānyatra naiṣṭhikī śrūyate śrutiḥ 15
+anārambhe hy adoṣaḥ syād ārambhe 'doṣa uttamaḥ
+evaṃ sthitasya śāstrasya durvijñeyaṃ balābalam 16
+yad yatra kiṃ cit pratyakṣam ahiṃsāyāḥ paraṃ matam
+ṛte tv āgamaśāstrebhyo brūhi tad yadi paśyasi 17
+syūmaraśmir uvāca
+svargakāmo yajeteti satataṃ śrūyate śrutiḥ
+phalaṃ prakalpya pūrvaṃ hi tato yajño pratāyate 18
+ajaś cāśvaś ca meṣaś ca gauś ca pakṣigaṇāś ca ye
+grāmyāraṇyā oṣadhayaḥ prāṇasyānnam iti śrutiḥ 19
+tathaivānnaṃ hy ahar ahar sāyaṃ prātar nirūpyate
+paśavaś cātha dhānyaṃ ca yajñasyāṅgam iti śrutiḥ 20`,
+voc:"Kapila, Syūmaraśmi = proper names; naiṣṭhikī = highest; aja = goat; meṣa = ram"},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata, Śāntiparva 59.13–21  (≈ 59.14–21)",yrs:"LV2017 + LV2024",repeat:true,theme:"origin of kingship & the decline of dharma (kṛtayuga → moha → lobha → kāma → rāga)",
+text:`niyatas tvaṃ naraśreṣṭha! śṛṇu sarvam aśeṣataḥ |
+yathā rājyaṃ samutpannam ādau kṛtayuge 'bhavat ||
+naiva rājyaṃ na rājāsīn na daṇḍo na ca dāṇḍikaḥ |
+dharmeṇaiva prajāḥ sarvā rakṣanti ca parasparam ||
+pālayānās tathānyonyaṃ narā dharmeṇa bhārata! |
+khedaṃ paramam ājagmus tatas tān moha āviśat ||
+te mohavaśam āpannā mānavā manujarṣabha! |
+pratipattivimohāc ca dharmas teṣām anīnaśat ||
+naṣṭāyāṃ pratipattau tu mohavaśyā narās tadā |
+lobhasya vaśam āpannāḥ sarve bhāratasattama! ||
+aprāptasyābhimarśaṃ tu kurvanto manujās tataḥ |
+kāmo nāmāparas tatra samapadyata vai prabho! ||
+tāṃs tu kāmavaśaṃ prāptān rāgo nāma samaspṛśat |
+raktāś ca nābhyajānanta kāryākāryaṃ yudhiṣṭhira! ||
+agamyāgamanaṃ caiva vācyāvācyaṃ tathaiva ca |
+bhakṣyābhakṣyaṃ ca rājendra doṣādoṣaṃ ca nātyajan ||
+viplute naraloke 'smiṃs tato brahma nanāśa ha |
+nāśāc ca brahmaṇo rājan dharmo nāśam athāgamat ||`,
+voc:"dāṇḍika = punisher; pālayāna = protecting (adj. pl.); pratipatti-vimoha = confusion in terms of understanding; abhimarśa = longing; vipluta = overwhelmed; brahma = the universal truth; dharma = the moral social order",
+key:`<span class='sp'>niyataḥ tvam, naraśreṣṭha! śṛṇu sarvam aśeṣataḥ |</span><span class='gl'>niyataḥ = attentive · tvam = you · naraśreṣṭha (voc) = O best of men · śṛṇu = hear! · sarvam = everything · aśeṣataḥ = completely</span><span class='se'>Attentive, O best of men, hear it all in full —</span>
+<span class='sp'>yathā rājyam samutpannam ādau kṛtayuge abhavat ||</span><span class='gl'>(’bhavat = abhavat) yathā = how · rājyam = kingship · samutpannam = arose · ādau = in the beginning (loc) · kṛtayuge = in the Kṛta age (loc) · abhavat = came to be</span><span class='se'>…how kingship came to be in the beginning, in the Kṛta age.</span>
+<span class='sp'>na eva rājyam, na rājā āsīt, na daṇḍaḥ, na ca dāṇḍikaḥ |</span><span class='gl'>(rājāsīn = rājā + āsīt) na eva = not at all · āsīt = there was · daṇḍaḥ = punishment · dāṇḍikaḥ = punisher</span><span class='se'>There was no kingship, no king, no punishment, no punisher.</span>
+<span class='sp'>dharmeṇa eva prajāḥ sarvāḥ rakṣanti ca parasparam ||</span><span class='gl'>dharmeṇa = by dharma (instr) · prajāḥ sarvāḥ = all creatures · rakṣanti = protect · parasparam = one another</span><span class='se'>By dharma alone all creatures protected one another.</span>
+<span class='sp'>pālayānāḥ tathā anyonyam narāḥ dharmeṇa, bhārata! |</span><span class='gl'>pālayānāḥ = protecting (pres. part.) · anyonyam = each other · narāḥ = men</span><span class='se'>Men protecting one another thus by dharma, O Bhārata —</span>
+<span class='sp'>khedam paramam ājagmuḥ; tataḥ tān mohaḥ āviśat ||</span><span class='gl'>khedam paramam = great weariness · ājagmuḥ = they came to · tān = them · mohaḥ = delusion · āviśat = entered</span><span class='se'>they fell into great weariness; then delusion entered them.</span>
+<span class='sp'>te mohavaśam āpannāḥ mānavāḥ, manujarṣabha! |</span><span class='gl'>mohavaśam āpannāḥ = fallen under delusion’s power · mānavāḥ = men · manujarṣabha (voc) = O bull among men</span><span class='se'>Those men, fallen under the power of delusion, O bull among men,</span>
+<span class='sp'>pratipattivimohāt ca dharmaḥ teṣām anīnaśat ||</span><span class='gl'>pratipattivimohāt = from confusion of understanding (abl) · dharmaḥ = (their) dharma · teṣām = of them · anīnaśat = perished</span><span class='se'>…and through that confusion of understanding their dharma perished.</span>
+<span class='sp'>naṣṭāyām pratipattau tu, mohavaśyāḥ narāḥ tadā |</span><span class='gl'>naṣṭāyām pratipattau = understanding being destroyed (loc. absolute) · mohavaśyāḥ = ruled by delusion · tadā = then</span><span class='se'>With understanding destroyed, the men, ruled by delusion, then</span>
+<span class='sp'>lobhasya vaśam āpannāḥ sarve, bhāratasattama! ||</span><span class='gl'>lobhasya vaśam = greed’s power · āpannāḥ = came under · sarve = all</span><span class='se'>all came under the power of greed, O best of the Bhāratas.</span>
+<span class='sp'>aprāptasya abhimarśam tu kurvantaḥ manujāḥ tataḥ |</span><span class='gl'>aprāptasya = of the not-attained (gen) · abhimarśam = longing, grasping · kurvantaḥ = doing (part.) · manujāḥ = men</span><span class='se'>Then the men, grasping for what was not theirs,</span>
+<span class='sp'>kāmaḥ nāma aparaḥ tatra samapadyata vai, prabho! ||</span><span class='gl'>kāmaḥ = desire · nāma = so-called · aparaḥ = another · samapadyata = arose · vai = indeed</span><span class='se'>there arose yet another thing, called desire (kāma), O lord.</span>
+<span class='sp'>tān tu kāmavaśam prāptān rāgaḥ nāma samaspṛśat |</span><span class='gl'>tān = them · kāmavaśam prāptān = fallen under desire’s power · rāgaḥ = passion · samaspṛśat = touched, seized</span><span class='se'>Them, now in desire’s power, a thing called passion (rāga) seized.</span>
+<span class='sp'>raktāḥ ca na abhyajānanta kāryākāryam, yudhiṣṭhira! ||</span><span class='gl'>raktāḥ = the impassioned · na abhyajānanta = did not recognise · kārya-akāryam = to-be-done and not-to-be-done</span><span class='se'>And, impassioned, they no longer knew right from wrong, O Yudhiṣṭhira.</span>
+<span class='sp'>agamya-āgamanam ca eva, vācya-avācyam tathā eva ca |</span><span class='gl'>agamyāgamanam = approaching the forbidden · vācyāvācyam = the speakable & unspeakable</span><span class='se'>Approaching the forbidden, [confusing] speakable and unspeakable,</span>
+<span class='sp'>bhakṣya-abhakṣyam ca, rājendra, doṣa-adoṣam ca na atyajan ||</span><span class='gl'>bhakṣyābhakṣyam = edible/inedible · doṣādoṣam = fault/no-fault · na atyajan = they did not give up (= no longer shunned)</span><span class='se'>edible and inedible, fault and no-fault — they spared none of it, O king of kings.</span>
+<span class='sp'>viplute naraloke asmin, tataḥ brahma nanāśa ha |</span><span class='gl'>viplute naraloke asmin = this world of men being overwhelmed (loc. abs.) · brahma = the sacred truth / Veda · nanāśa = perished · ha = (emphatic)</span><span class='se'>When this human world was overwhelmed, the sacred truth then perished;</span>
+<span class='sp'>nāśāt ca brahmaṇaḥ, rājan, dharmaḥ nāśam atha agamat ||</span><span class='gl'>nāśāt = from the destruction (abl) · brahmaṇaḥ = of brahma (gen) · dharmaḥ = dharma · nāśam agamat = went to ruin · atha = then</span><span class='se'>and from the destruction of brahma, O king, dharma too went to ruin.</span>`},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata 12.187.1–6",yrs:"TT2018",theme:"adhyātma — the five mahābhūtas; emission & reabsorption; the tortoise simile",
+text:`Yudhiṣṭhira uvāca:
+adhyātmaṃ nāma yad idaṃ puruṣasyeha cintyate |
+yad adhyātmam yataś caitat tan me brūhi pitāmaha || 1
+Bhīṣma uvāca
+adhyātmam iti māṃ pārtha yad etad anupṛcchasi |
+tad vyākhyāsyāmi te tāta śreyaskarataraṃ sukham || 2
+yaj jñātvā puruṣo loke prītiṃ saukhyaṃ ca vindati |
+phalalābhaś ca sadyaḥ syāt sarvabhūtahitaṃ ca tat || 3
+pṛthivī vāyur ākāśam āpo jyotiś ca pañcakam |
+mahābhūtāni bhūtānāṃ sarveṣāṃ prabhavāpyayau || 4
+tataḥ sṛṣṭāni tatraiva tāni yānti punaḥ punaḥ |
+mahābhūtāni bhūteṣu sāgarasyormayo yathā || 5
+prasārya ca yathāṅgāni kūrmaḥ saṃharate punaḥ |
+tadvad bhūtāni bhūtātmā sṛṣṭvā saṃharate punaḥ || 6`,
+voc:"adhyātmam = the spiritual aspect; pitāmahaḥ = epithet of Bhīṣma, the grandsire; vi+ā+√khyā = to explain; tāta = ‘my son’; jyotiḥ = light, here fire; pañcaka = the fifth; mahābhūtaṃ = material element; apyayaḥ = dissolution; √yā = to go; ūrmayaḥ = pl. of ūrmiḥ, wave; prasārya = abs. of caus. of pra+√sṛ, extend; kūrmaḥ = tortoise; bhūtātman = the Self of creatures",
+key:`<span class='sp'>adhyātmaṃ nāma yad idaṃ puruṣasya iha cintyate |</span><span class='gl'>adhyātmaṃ nāma = that which is called ‘adhyātma’ · yad idaṃ = which here · puruṣasya = of the person (gen) · iha = here · cintyate = is reflected on</span><span class='se'>This thing called ‘the spiritual’ (adhyātma) that is pondered here about the person —</span>
+<span class='sp'>yad adhyātmam yataḥ ca etat, tan me brūhi pitāmaha ||</span><span class='gl'>yad adhyātmam = what adhyātma [is] · yataḥ ca etat = and whence this · tan me brūhi = tell me that · pitāmaha = O grandsire</span><span class='se'>what adhyātma is, and whence it arises — tell me that, O grandsire.</span>
+<span class='sp'>adhyātmam iti māṃ, pārtha, yad etad anupṛcchasi |</span><span class='gl'>adhyātmam iti = as ‘adhyātma’ · māṃ = me · yad etad anupṛcchasi = this which you ask</span><span class='se'>This which you ask me about as ‘adhyātma’, Pārtha —</span>
+<span class='sp'>tad vyākhyāsyāmi te tāta śreyaskarataraṃ sukham ||</span><span class='gl'>tad vyākhyāsyāmi = that I shall explain (1sg fut) · te = to you · tāta = my son · śreyaskarataraṃ sukham = a most blessing-giving happiness</span><span class='se'>that I shall explain to you, my son — a happiness most conducive to the good,</span>
+<span class='sp'>yad jñātvā puruṣaḥ loke prītiṃ saukhyaṃ ca vindati |</span><span class='gl'>yad jñātvā = knowing which · puruṣaḥ = a person · loke = in the world · prītiṃ saukhyaṃ ca vindati = finds joy and ease</span><span class='se'>knowing which a person finds joy and ease in the world,</span>
+<span class='sp'>phalalābhaḥ ca sadyaḥ syāt, sarvabhūtahitaṃ ca tat ||</span><span class='gl'>phalalābhaḥ = the gaining of the fruit · sadyaḥ = at once · syāt = may be · sarvabhūtahitaṃ ca tat = and it is a good for all beings</span><span class='se'>and the fruit comes at once; and it is a good for all beings.</span>
+<span class='sp'>pṛthivī vāyuḥ ākāśam āpaḥ jyotiḥ ca pañcakam |</span><span class='gl'>pṛthivī = earth · vāyuḥ = wind · ākāśam = ether · āpaḥ = water · jyotiḥ = fire · ca pañcakam = the set of five</span><span class='se'>Earth, wind, ether, water and fire — these five —</span>
+<span class='sp'>mahābhūtāni bhūtānāṃ sarveṣāṃ prabhava-apyayau ||</span><span class='gl'>mahābhūtāni = the great elements · bhūtānāṃ sarveṣāṃ = of all beings (gen) · prabhava-apyayau = the origin and dissolution (dual)</span><span class='se'>the great elements are the origin and the dissolution of all beings.</span>
+<span class='sp'>tataḥ sṛṣṭāni tatra eva tāni yānti punaḥ punaḥ |</span><span class='gl'>tataḥ = from that · sṛṣṭāni = emitted · tatra eva = into that very [source] · tāni = they · yānti punaḥ punaḥ = go again and again</span><span class='se'>Emitted from it, they return into that very source again and again,</span>
+<span class='sp'>mahābhūtāni bhūteṣu sāgarasya ūrmayaḥ yathā ||</span><span class='gl'>mahābhūtāni = the great elements · bhūteṣu = in beings · sāgarasya ūrmayaḥ yathā = as the waves of the ocean</span><span class='se'>the great elements [appearing] in beings as the waves of the sea.</span>
+<span class='sp'>prasārya ca yathā aṅgāni kūrmaḥ saṃharate punaḥ |</span><span class='gl'>prasārya = having stretched out (abs.) · aṅgāni = its limbs · kūrmaḥ = a tortoise · saṃharate punaḥ = draws [them] in again</span><span class='se'>And as a tortoise, having stretched out its limbs, draws them in again,</span>
+<span class='sp'>tadvat bhūtāni bhūtātmā sṛṣṭvā saṃharate punaḥ ||</span><span class='gl'>tadvat = just so · bhūtāni = beings · bhūtātmā = the Self of beings · sṛṣṭvā = having created · saṃharate punaḥ = withdraws [them] again</span><span class='se'>just so the Self of beings, having created beings, withdraws them again.</span>`},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata 12.270.13–20",yrs:"TT2019",theme:"Vṛtra’s equanimity in defeat; saṃsāra, kāla, ‘as the deed so the gain’",
+text:`asminn arthe purā gītaṃ śṛṇuṣvaikamanā nṛpa |
+yathā daityena vṛtreṇa bhraṣṭaiśvaryeṇa ceṣṭitam ||
+nirjitenāsahāyena hṛtarājyena bhārata |
+aśocatā śatrumadhye buddhim āsthāya kevalām ||
+bhraṣṭaiśvaryaṃ purā vṛtram uśanā vākyam abravīt |
+kaccit parājitasyādya na vyathā te 'sti dānava ||
+vṛtra uvāca
+satyena tapasā caiva viditvā saṃkṣayaṃ hy aham |
+na śocāmi na hṛṣyāmi bhūtānām āgatiṃ gatim ||
+kālasaṃcoditā jīvā majjanti narake 'vaśāḥ |
+… [lacuna in the exam text]
+kṣapayitvā tu taṃ kālaṃ gaṇitaṃ kālacoditāḥ |
+sāvaśeṣeṇa kālena saṃbhavanti punaḥ punaḥ ||
+tiryagyonisahasrāṇi gatvā narakam eva ca |
+nirgacchanty avaśā jīvāḥ kālabandhanabandhanāḥ ||
+evaṃ saṃsaramāṇāni jīvāny aham adṛṣṭavān |
+yathā karma tathā lābha iti śāstranidarśanam ||`,
+voc:"ekamanas = single-minded; bhraṣṭaiśvarya = one who has lost power; ceṣṭita = acted/behaved; asahāya = without an assistant; aśocant- = one not grieving; ā+sthā = rely on; uśanas = Śukra, teacher of the Asuras; kaccit = ‘I hope’; saṃkṣaya = dissolution of the world; saṃcodita = impelled; majj- = to plunge; kṣap- = to spend; sāvaśeṣa = remaining; adṛṣṭavān = irregular for apaśyam"},
+
+{slot:"verse",grp:"Mahābhārata — Śāntiparvan (10 of 14 papers)",src:"Mahābhārata (Śāntiparvan; no verse-numbers given)",yrs:"TT2021",theme:"manas as charioteer; the ‘chariot made of brahman’; the brahmavana",
+text:`bhūtānām atha pañcānāṃ yathaiṣām īśvaraṃ manaḥ |
+niyame ca visarge ca bhūtātmā mana eva ca ||
+adhiṣṭhātā mano nityaṃ bhūtānāṃ mahatāṃ tathā |
+buddhir aiśvaryam ācaṣṭe kṣetrajñaḥ sarva ucyate ||
+indriyāṇi mano yuṅkte sadaśvān iva sārathiḥ |
+indriyāṇi mano buddhiṃ kṣetrajño yuñjate sadā ||
+mahābhūtasamāyuktaṃ buddhisaṃyamanaṃ ratham |
+tam āruhya sa bhūtātmā samantāt paridhāvati ||
+indriyagrāmasaṃyukto manaḥsārathir eva ca |
+buddhisaṃyamano nityaṃ mahān brahmamayo rathaḥ ||
+evaṃ yo vetti vidvān vai sadā brahmamayaṃ ratham |
+sa dhīraḥ sarvalokeṣu na moham adhigacchati ||
+avyaktādi viśeṣāntaṃ trasasthāvarasaṃkulam |
+candrasūryaprabhālokaṃ grahanakṣatramaṇḍitam ||
+nadīparvatajālaiś ca sarvataḥ paribhūṣitam |
+vividhābhis tathādbhiś ca satataṃ samalaṃkṛtam ||
+ājīvaḥ sarvabhūtānāṃ sarvaprāṇabhṛtāṃ gatiḥ |
+etad brahmavanaṃ nityaṃ yasmiṃś carati kṣetravit ||`,
+voc:"(no vocabulary was printed for this passage in the 2021 paper)"},
+
+{slot:"verse",grp:"Purāṇa & kāvya (the other verse sources)",src:"Devībhāgavata Purāṇa VII.31.3–10",yrs:"TT2023",theme:"Śiva’s grief after Satī; the world drained of śakti; the demon Tāraka",
+text:`dhanyo 'si kṛtakṛtyo 'si śikṣito 'si mahātmabhiḥ |
+bhāgyavān asi yad devyāṃ nirvyājā bhaktir asti te ||
+śṛṇu rājan purāvṛttaṃ satīdehe 'gnibharjite |
+bhrāntaḥ śivas tu babhrāma kvacid deśe sthiro 'bhavat ||
+prapañcabhānarahitaḥ samādhigatamānasaḥ |
+dhyāyan devīsvarūpaṃ tu kālaṃ ninye sa ātmavān ||
+saubhāgyarahitaṃ jātaṃ trailokyaṃ sacarācaram |
+śaktihīnaṃ jagat sarvaṃ sābdhidvīpaṃ saparvatam ||
+ānandaḥ śuṣkatāṃ yātaḥ sarveṣāṃ hṛdayāntare |
+udāsīnāḥ sarvalokāś cintājarjaracetasaḥ ||
+sadā duḥkhodadhau magnā rogagrastās tadābhavan |
+grahāṇāṃ devatānāṃ ca vaiparītyena vartanam || …
+athāsminn eva kāle tu tārakākhyo mahāsuraḥ ||
+brahmadattavaro daityo 'bhavat trailokyanāyakaḥ |
+śivaurasas tu yaḥ putraḥ sa te hantā bhaviṣyati ||
+iti kalpitamṛtyuḥ sa devadevair mahāsuraḥ |
+śivaurasasutābhāvāj jagarja ca nananda ca ||
+tena copadrutāḥ sarve svasthānāt pracyutāḥ surāḥ |
+śivaurasasutābhāvāc cintām āpur duratyayām ||`,
+voc:"nirvyājā = not pretended, genuine; agnibharjite = when roasted in fire; babhrāma = roamed; ninye = spent; śuṣkatāṃ yātaḥ = dried up; vaiparītyena = adversely; śivaurasaḥ putraḥ = Śiva’s biological son; kalpitamṛtyuḥ = whose death was decided; jagarja = roared; nananda = enjoyed; duratyayām = unsurmountable (acc.)"},
+
+{slot:"verse",grp:"Purāṇa & kāvya (the other verse sources)",src:"Kālidāsa, Kumārasambhava II.3–10",yrs:"TT2022",theme:"kāvya — the gods’ hymn to Brahmā / the trimūrti; creation, dissolution, the Self",
+text:`atha sarvasya dhātāraṃ te sarve sarvatomukham |
+vāgīśaṃ vāgbhir arthyābhiḥ praṇipatyopatasthire ||
+namas trimūrtaye tubhyaṃ prāk sṛṣṭeḥ kevalātmane |
+guṇatrayavibhāgāya paścād bhedam upeyuṣe ||
+yad amogham apām antar uptaṃ bījam aja tvayā |
+ataś carācaraṃ viśvaṃ prabhavas tasya gīyase ||
+tisṛbhis tvam avasthābhir mahimānam udīrayan |
+pralayasthitisargāṇām ekaḥ kāraṇatāṃ gataḥ ||
+strīpuṃsāv ātmabhāgau te bhinnamūrteḥ sisṛkṣayā |
+prasūtibhājaḥ sargasya tāv eva pitarau smṛtau ||
+svakālaparimāṇena vyastarātriṃdivasya te |
+yau tu svapnāvabodhau tau bhūtānāṃ pralayodayau ||
+jagadyonir ayonis tvaṃ jagadanto nirantakaḥ |
+jagadādir anādis tvaṃ jagadīśo nirīśvaraḥ ||
+ātmānam ātmanā vetsi sṛjasy ātmānam ātmanā |
+ātmanā kṛtinā ca tvam ātmany eva pralīyase ||`,
+voc:"arthya = meaningful; upatasthire (upa+√sthā) = attended; kevalātman = of absolute unity; upeyuṣ- = one who has reached; amogha = unfailing; upta (√vap) = sown; udīrayant = uttering; sisṛkṣā = desire to create; prasūtibhāj- = that which was created; svakālaparimāṇa = measure of one’s own time; vyastarātriṃdiva = who has separated day and night; kṛti = action; pra+√lī = to become dissolved"},
+
+{slot:"verse",grp:"Dharmaśāstra verse — EXCLUDED this year",src:"Yājñavalkyasmṛti 3.61–68 / 3.69–76",yrs:"TT2020 + TT2024",skip:true,theme:"dhyānayoga & the soul / embryology — Dharmaśāstra; you said it won’t come",
+text:`(3.61–68) saṃnirudhyendriyagrāmaṃ rāgadveṣau prahāya ca | bhayaṃ hitvā ca bhūtānām amṛtībhavati dvijaḥ || … niḥsaranti yathā lohapiṇḍāt taptāt sphuliṅgakāḥ | sakāśād ātmanas tadvad ātmānaḥ prabhavanti hi ||
+(3.69–76) nimittam akṣaraḥ kartā boddhā brahma guṇī vaśī | ajaḥ śarīragrahaṇāt sa jāta iti kīrtyate || … (then embryology: the months of gestation and the elements’ qualities)`,
+voc:"(3.69–76) ekottaraguṇa- (pl.) = the five possessing an additional quality by order of appearance; āpyāyate = swells/becomes full; ṣaṣṭhaḥ = the sixth (ātman); saṃkleda = jelly; -vimūrcchitaḥ = coagulated; arbuda = a longish round mass; vyūhana = the act of carrying and arranging; raukṣya = roughness — but SKIP (Dharmaśāstra)"},
+
+// ---- PROSE ----
+{slot:"prose",grp:"Vedānta commentary — most frequent prose family (Śaṅkara)",src:"Śāṅkarabhāṣya on the Bhagavadgītā — Prologue",yrs:"LV2017 + TT2019",repeat:true,theme:"two-fold Vedic dharma (pravṛtti / nivṛtti); the descent of Nārāyaṇa-Kṛṣṇa to protect brahman",
+text:`sa bhagavān sṛṣṭvedaṃ jagat, tasya ca sthitiṃ cikīrṣuḥ marīcyādīn agre sṛṣṭvā prajāpatīn, pravṛttilakṣaṇaṃ dharmaṃ grāhayāmāsa vedoktaṃ, tato 'nyāṃś ca sanaka-sanandanādīn utpādya nivṛttilakṣaṇaṃ dharmaṃ jñāna-vairāgya-lakṣaṇaṃ grāhayāmāsa. dvividho hi vedokto dharmaḥ – pravṛttilakṣaṇo nivṛttilakṣaṇaś ca – jagataḥ sthitikāraṇam. prāṇināṃ sākṣād abhyudaya-niḥśreyasa-hetur yaḥ sa dharmo brāhmaṇādyair varṇibhir āśramibhir śreyorthibhir anuṣṭhīyamānaḥ. dīrgheṇa kālena anuṣṭhātṝṇāṃ kāmodbhavād dhīyamāna-viveka-vijñāna-hetukena adharmeṇa abhibhūyamāne dharme, pravardhamāne ca adharme, jagataḥ sthitiṃ paripipālayiṣuḥ sa ādikartā nārāyaṇākhyo viṣṇur bhaumasya brahmaṇo brāhmaṇatvasya rakṣaṇārthaṃ devakyāṃ vasudevāt kṛṣṇaḥ kila sambabhūva.`,
+voc:"cikīrṣu = one desirous of doing; marīcyādi = Marīci and others; pravṛtti = engagement in the world; nivṛtti = disengagement; abhyudaya = prosperity in this world; niḥśreyasa = the highest good; varṇin = one in the hierarchy of classes; āśramin = one in a life-stage; śreyorthin = one seeking well-being; kāmodbhava = the advent of passion; hīyamāna = depleting; paripipālayiṣu = desirous of managing; bhauma-brahman = the universal truth on earth; sambabhūva = was born",
+key:`<span class='sp'>sa bhagavān idaṃ jagat sṛṣṭvā</span><span class='gl'>(sṛṣṭvedaṃ = sṛṣṭvā + idam) saḥ = that · bhagavān = Lord · idaṃ jagat = this world · sṛṣṭvā = having created (absolutive)</span><span class='se'>That Lord, having created this world,</span>
+<span class='sp'>tasya ca sthitiṃ cikīrṣuḥ,</span><span class='gl'>tasya = of it (gen) · sthitiṃ = the maintenance (acc) · cikīrṣuḥ = wishing to make (desiderative of √kṛ, nom.)</span><span class='se'>and wishing to maintain it,</span>
+<span class='sp'>marīci-ādīn prajāpatīn agre sṛṣṭvā</span><span class='gl'>marīcyādīn = Marīci and the rest (acc. pl.) · prajāpatīn = the Prajāpatis · agre = first · sṛṣṭvā = having created</span><span class='se'>having first created the Prajāpatis — Marīci and the others —</span>
+<span class='sp'>vedoktaṃ pravṛtti-lakṣaṇaṃ dharmaṃ grāhayām āsa.</span><span class='gl'>vedoktam = Veda-taught · pravṛttilakṣaṇam = characterised by engagement · dharmam = dharma · grāhayām āsa = caused (them) to take up (periphrastic perf. causative of √grah)</span><span class='se'>he caused them to take up the Veda-taught dharma of engagement (pravṛtti).</span>
+<span class='sp'>tataḥ anyān ca sanaka-sanandana-ādīn utpādya</span><span class='gl'>tataḥ = then · anyān = others (acc.) · sanakasanandanādīn = Sanaka, Sananda etc. · utpādya = having produced (abs.)</span><span class='se'>Then, having produced others — Sanaka, Sananda and the rest —</span>
+<span class='sp'>nivṛtti-lakṣaṇaṃ jñāna-vairāgya-lakṣaṇaṃ dharmaṃ grāhayām āsa.</span><span class='gl'>nivṛttilakṣaṇam = characterised by withdrawal · jñānavairāgyalakṣaṇam = marked by knowledge and dispassion</span><span class='se'>he caused them to take up the dharma of withdrawal (nivṛtti), marked by knowledge and dispassion.</span>
+<span class='sp'>dvividhaḥ hi vedoktaḥ dharmaḥ — pravṛtti-lakṣaṇaḥ nivṛtti-lakṣaṇaḥ ca —</span><span class='gl'>dvividhaḥ = two-fold · hi = for · vedoktaḥ dharmaḥ = the Veda-taught dharma</span><span class='se'>For the Veda-taught dharma is two-fold — that of engagement and that of withdrawal —</span>
+<span class='sp'>jagataḥ sthiti-kāraṇam, prāṇinām sākṣād abhyudaya-niḥśreyasa-hetuḥ.</span><span class='gl'>jagataḥ = of the world (gen) · sthitikāraṇam = the cause of continuance · prāṇinām = of beings (gen) · sākṣāt = directly · abhyudaya-niḥśreyasa-hetuḥ = the cause of prosperity and the highest good</span><span class='se'>the cause of the world’s continuance, the direct cause of beings’ worldly prosperity and highest good.</span>
+<span class='sp'>sa dharmaḥ brāhmaṇa-ādyaiḥ varṇibhiḥ āśramibhiḥ śreyaḥ-arthibhiḥ anuṣṭhīyamānaḥ,</span><span class='gl'>brāhmaṇādyaiḥ varṇibhiḥ = by the class-members beginning with brahmins (instr.) · āśramibhiḥ = by those in the life-stages · śreyorthibhiḥ = who seek the good · anuṣṭhīyamānaḥ = being practised (pres. passive part.)</span><span class='se'>That dharma, being practised by the classes (brahmins etc.) and the life-stages, by those seeking the good —</span>
+<span class='sp'>dīrgheṇa kālena anuṣṭhātṝṇāṃ kāma-udbhavāt,</span><span class='gl'>dīrgheṇa kālena = over a long time (instr.) · anuṣṭhātṝṇām = of the practitioners (gen) · kāmodbhavāt = because of the arising of desire (abl.)</span><span class='se'>over a long time, because desire arose in the practitioners,</span>
+<span class='sp'>hīyamāna-viveka-vijñāna-hetukena adharmeṇa abhibhūyamāne dharme,</span><span class='gl'>hīyamāna-viveka-vijñāna-hetukena = caused by their dwindling discernment and knowledge · adharmeṇa = by unrighteousness (instr.) · abhibhūyamāne dharme = dharma being overpowered (loc. absolute)</span><span class='se'>when dharma was being overpowered by unrighteousness — itself born of their fading discernment —</span>
+<span class='sp'>pravardhamāne ca adharme,</span><span class='gl'>pravardhamāne = increasing (loc. abs.) · adharme = unrighteousness</span><span class='se'>and when unrighteousness was on the rise,</span>
+<span class='sp'>jagataḥ sthitiṃ paripipālayiṣuḥ sa ādi-kartā nārāyaṇa-ākhyaḥ viṣṇuḥ</span><span class='gl'>jagataḥ sthitiṃ = the world’s order · paripipālayiṣuḥ = desiring to preserve (desiderative) · sa ādikartā = that primal Maker · nārāyaṇākhyaḥ = called Nārāyaṇa · viṣṇuḥ = Viṣṇu</span><span class='se'>that primal Maker, Viṣṇu called Nārāyaṇa, desiring to preserve the world’s order,</span>
+<span class='sp'>devakyāṃ vasudevāt aṃśena kṛṣṇaḥ kila sambabhūva.</span><span class='gl'>devakyāṃ = in Devakī (loc.) · vasudevāt = from Vasudeva (abl.) · aṃśena = in part (instr.) · kṛṣṇaḥ = as Kṛṣṇa · kila = so it is said · sambabhūva = was born (perf.)</span><span class='se'>was born, so it is said, from Vasudeva in Devakī, in part, as Kṛṣṇa.</span>`},
+
+{slot:"prose",grp:"Vedānta commentary — most frequent prose family (Śaṅkara)",src:"Śāṅkarabhāṣya on the Brahmasūtra I.1.1",yrs:"TT2023",theme:"why brahman-inquiry differs from dharma-inquiry; the four prerequisites (sādhana-catuṣṭaya)",
+text:`abhyudayaphalaṃ dharmajñānam, tac cānuṣṭhānāpekṣam | niḥśreyasaphalaṃ tu brahmajñānam, na cānuṣṭhānāntarāpekṣam | bhavyaś ca dharmo jijñāsyo na jñānakāle 'sti, puruṣavyāpāratantratvāt | iha tu bhūtaṃ brahma jijñāsyaṃ nityatvān na puruṣavyāpāratantram, codanāpravṛttibhedāc ca | yā hi codanā dharmasya lakṣaṇam, sā svaviṣaye niyuñjānaiva puruṣam avabodhayati | brahmacodanā tu puruṣam avabodhayaty eva kevalam, avabodhasya codanājanyatvāt, na puruṣo 'vabodhe niyujyate — yathā akṣārthasannikarṣeṇārthāvabodhe tadvat | tasmāt kim api vaktavyaṃ yadanantaraṃ brahmajijñāsopadiśyata iti | ucyate — nityānityavastuvivekaḥ, ihāmutrārthabhogavirāgaḥ, śamadamādisādhanasampat, mumukṣutvaṃ ca | teṣu hi satsu, prāg api dharmajijñāsāyā ūrdhvaṃ ca śakyate brahma jijñāsituṃ jñātuṃ ca, na viparyaye |`,
+voc:"abhyudaya = prosperity; anuṣṭhānāpekṣam = dependent on undertaking; niḥśreyasa = ultimate wellbeing; bhavya = not yet existent, to come into being; puruṣavyāpāratantra = dependent on human activity; bhūta = already existent; codanā = scriptural injunction; -pravṛtti = application; niyuñjānaiva = only when it makes one engaged; codanājanya = generated by injunction; akṣārthasannikarṣa = contact of sense-faculty and object; brahmajijñāsā = inquiry about brahman; viveka = distinction; ihāmutrārtha = objects of this & the other world; śamadamādi = calm of mind, restraint of senses, etc.; mumukṣutva = desire for liberation"},
+
+{slot:"prose",grp:"Vedānta commentary — most frequent prose family (Śaṅkara)",src:"Śāṅkarabhāṣya on Bṛhadāraṇyaka Upaniṣad (‘neti neti’)",yrs:"(B-section 2020 — Śaṅkara prose worth drilling)",theme:"why brahman can only be indicated by ‘neti neti’ — removal of all upādhi",
+text:`nanu kathaṃ ābhyāṃ ‘neti neti’ iti śabdābhyāṃ satyasya satyaṃ nirdidikṣitam iti? ucyate – sarvopādhiviśeṣāpohena. yasmin na kaścid viśeṣo 'sti, nāma vā rūpaṃ vā karma vā bhedo vā jātir vā guṇo vā – taddvāreṇa hi śabdapravṛttir bhavati, na caiṣāṃ kaścid viśeṣo brahmaṇy asti, ato nirdeṣṭuṃ na śakyate ‘idaṃ tad’ iti … yadā punaḥ svarūpam eva nirdidikṣitaṃ bhavati nirastasarvopādhiviśeṣam, tadā na śakyate kenacid api prakāreṇa nirdeṣṭum, tadāyam evābhyupāyaḥ – ‘neti neti’ iti nirdeśaḥ.`,
+voc:"(no separate glossary — standard Śaṅkara vocabulary: upādhi = limiting adjunct; apoha = exclusion/removal; nirdiś = to indicate; svarūpa = own nature)"},
+
+{slot:"prose",grp:"Mīmāṃsā commentary (recurs; recent)",src:"Śābarabhāṣya on Mīmāṃsāsūtra I.1.1",yrs:"TT2024 (A) + TT2022 (B)",repeat:true,theme:"why dharma must be inquired into; ‘ataḥ’; dharma defined by Vedic injunction (codanā)",
+text:`ataḥśabdo vṛttasyāpadeśako hetvarthena, yathā kṣemasubhikṣo 'yaṃ deśaḥ, ato 'ham asmin deśe prativasāmīti. evam adhīto vedo dharmajijñāsāyāṃ hetur jñātaḥ, anantaraṃ dharmo jijñāsitavyaḥ ity ataḥśabdasya sāmarthyam. dharmāya hi vedavākyāni vicārayitum anadhītavedo na śaknuyāt. ataḥ, etasmāt kāraṇāt, anantaraṃ dharmaṃ jijñāsitum icched ity ataḥśabdasyārthaḥ. dharmāya jijñāsā dharmajijñāsā. sā hi tasya jñātum icchā. sa punaḥ kathaṃ jijñāsitavyaḥ? ko dharmaḥ, kathaṃlakṣaṇaḥ, kāny asya sādhanāni, kāni sādhanābhāsāni, kiṃparaś ceti. tatra ko dharmaḥ, kathaṃlakṣaṇa ity ekenaiva sūtreṇa vyākhyātaṃ codanālakṣaṇo 'rtho dharma iti. kāny asya sādhanāni, kāni sādhanābhāsāni, kiṃparaś ceti śeṣalakṣaṇena vyākhyātam. kva puruṣaparatvaṃ kva vā puruṣo guṇabhūta ity etāsāṃ pratijñānāṃ piṇḍasya etat sūtram athāto dharmajijñāseti. dharmaḥ prasiddho vā syād aprasiddho vā? sa cet prasiddhaḥ, na jijñāsyaḥ. athāprasiddhaḥ, natarām. tad etad anarthakaṃ dharmajijñāsāprakaraṇam, athavārthavat. dharmaṃ prati hi vipratipannā bahuvidaḥ—kecid anyaṃ dharmam āhuḥ, kecid anyaṃ so 'yam avicārya pravartamānaḥ kaṃcid evopādadāno vihanyetānarthaṃ ca ṛcchet. tasmād dharmo jijñāsitavyaḥ.`,
+voc:"ataḥ = ‘therefore’ (the sūtra word being glossed); apadeśaka = indicator; hetvartha = serving as a reason; sādhanābhāsa = pseudo-means; codanā = Vedic injunction; śeṣalakṣaṇa = the rest of the sūtras; x-para = intent on/referring to x; guṇabhūta = subordinated; pratijñā = proposition; piṇḍa = lump, aggregate; natarām = much less; vipratipanna = one who disagrees; upādadāna = one holding to x; ṛcchet = would arrive at x",
+key:`<p>The desire to know dharma is called dharma-jijñāsā (<span class='k'>dharmāya jijñāsā dharma-jijñāsā</span>); it is indeed the desire to know it (<span class='k'>sā hi tasya jñātum icchā</span>). But how is it to be investigated (<span class='k'>sa punaḥ kathaṃ jijñāsitavyaḥ</span>)? [Through five questions:] what is dharma, what are its characteristics, what are its means [of knowing], what are pseudo-means, and what is its final aim (<span class='k'>ko dharmaḥ, kathaṃ-lakṣaṇaḥ, kāny asya sādhanāni, kāni sādhanābhāsāni, kiṃ-paraś ca</span>)?</p>
+<p>Of these, [the first two] — “what is dharma” and “what are its characteristics” — are explained by a single sūtra (<span class='k'>ekenaiva sūtreṇa vyākhyātam</span>), namely: <span class='k'>codanā-lakṣaṇo ’rtho dharmaḥ</span> — “dharma is that purpose which has Vedic injunction as its defining mark.”</p>
+<p>[The remaining three] — what are its means, what are pseudo-means, and what is its final aim — are explained by the rest of the text (<span class='k'>śeṣa-lakṣaṇena vyākhyātam</span>).</p>
+<p>Where [dharma is] dependent on man, and where man is subordinate [to dharma as] a secondary element (<span class='k'>kva puruṣa-paratvaṃ kva vā puruṣo guṇa-bhūtaḥ</span>) — the totality of these propositions (<span class='k'>etāsāṃ pratijñānāṃ piṇḍasya</span>) is [covered by] this sūtra: <span class='k'>athāto dharma-jijñāsā</span> — “now, therefore, the inquiry into dharma.”</p>
+<p>[Objection:] Is dharma known or unknown (<span class='k'>dharmaḥ prasiddho vā syād aprasiddho vā</span>)? If known, it need not be investigated (<span class='k'>sa cet prasiddhaḥ, na jijñāsyaḥ</span>); if unknown, all the more so [investigation is impossible] (<span class='k'>athāprasiddhaḥ, natarām</span>). Therefore this whole topic of dharma-jijñāsā is pointless (<span class='k'>tad etad anarthakaṃ dharma-jijñāsā-prakaraṇam</span>).</p>
+<p>[Answer:] Or rather it is meaningful (<span class='k'>athavārthavat</span>). For regarding dharma, the learned are in disagreement (<span class='k'>dharmaṃ prati hi vipratipannā bahu-vidaḥ</span>) — some declare one [thing to be] dharma, others another (<span class='k'>kecid anyaṃ dharmam āhuḥ, kecid anyam</span>). And one who, without examining, proceeds to act, taking up just anything at random (<span class='k'>so ’yam avicārya pravartamānaḥ kaṃcid evopādadānaḥ</span>), would be ruined and meet with misfortune (<span class='k'>vihanyetānarthaṃ ca ṛcchet</span>). Therefore dharma must be investigated (<span class='k'>tasmād dharmo jijñāsitavyaḥ</span>).</p>`},
+
+{slot:"prose",grp:"Madhyamaka / Buddhist commentary",src:"Candrakīrti, Prasannapadā on Mūlamadhyamakakārikā 16.1",yrs:"TT2016",theme:"is there svabhāva because there is saṃsāra? — neither permanent nor impermanent saṃskāras transmigrate",
+text:`atrāha - vidyata eva bhāvānāṃ svabhāvaḥ, saṃsārasadbhāvāt. iha saṃsaraṇaṃ saṃsṛtir gater gatyantaragamanaṃ saṃsāra ity ucyate. yadi bhāvānāṃ svabhāvo na syāt, kasya gater gatyantaragamanaṃ saṃsāraḥ syāt? na hy avidyamānānāṃ vandhyāsūnusaṃskārāṇāṃ saṃsaraṇaṃ dṛṣṭam. tasmāt saṃsārasadbhāvāt vidyata eva bhāvānāṃ svabhāva iti. ucyate. syād bhāvānāṃ svabhāvaḥ, yadi saṃsāra eva bhavet. na tv asti. iha yadi saṃsāraḥ syāt, sa niyataṃ saṃskārāṇāṃ vā bhavet sattvasya vā? kiṃ cātaḥ? ubhayathā ca doṣa ity āha—
+saṃskārāḥ saṃsaranti cen na nityāḥ saṃsaranti te |
+saṃsaranti ca nānityāḥ sattve 'py eṣa samaḥ kramaḥ || 1 ||
+tatra yadi saṃskārāḥ saṃsarantīti parikalpyate, kiṃ te nityāḥ saṃsaranti uta anityāḥ? tatra na nityāḥ saṃsaranti niṣkriyatvāt, anityānāṃ ca ghaṭādīnāṃ sakriyatvopalambhāt. atha anityāḥ, ye hi anityās, ta utpādasamanantaram eva vinaṣṭāḥ. ye ca vinaṣṭāḥ, kutas teṣām avidyamānatvād vandhyāsūnusaṃskārāṇām iva kvacid gamanam? ity evam anityānām api nāsti saṃsāraḥ.`,
+voc:"gati = state; vandhyā-sūnu = the son of a childless woman; sattva = living being; parikalp = to suppose; niṣkriyatva = being without activity; upalambha = common experience"},
+
+{slot:"prose",grp:"Madhyamaka / Buddhist commentary",src:"Abhidharmasamuccayabhāṣya 1.1",yrs:"LV2015",theme:"why this śāstra is begun — the two benefits (manaskāra & sāṃkathyaviniścaya); śamatha / vipaśyanā",
+text:`oṃ namo ratnatrayāya / kim artham idaṃ śāstram ārabdham? skandhādīn ārabhya kati kasmād ityevamādiṣu cintāsthāneṣu kauśalyakaraṇārtham. tathā hy anena kauśalyena dvividho 'nuśaṃso labhyate - manaskārānuśaṃsaḥ sāṃkathyaviniścayānuśaṃsaś ca. tatra manaskārānuśaṃsaḥ śamathānukūlyād vipaśyanāvṛddhyānukūlyāc ca veditavyaḥ. śamathānukūlyaṃ punar eṣu sthāneṣu kṛtakauśalasya niḥsaṃdehatayā yatheṣṭam ālaṃbane aikāgryayogena sukhaṃ cittasamādhānataḥ. vipaśyanāvṛddhyānukūlyaṃ bahubhiḥ prakāraiḥ jñeyaparīkṣayā prajñāprakarṣagamanataḥ. sāṃkathyaviniścayānuśaṃsa eṣu sthāneṣu kuśalasya sarvapraśnavyākaraṇaśaktiyogād vaiśāradyapratilaṃbhato draṣṭavyaḥ. 'pañcākārātmavastūdbhāvanatām upādāy'ety atra caturākāram ātmano vastv ity ātmavastu / pañcamaṃ tv ātmalakṣaṇam eva vastv ity ātmavastv iti veditavyam /`,
+voc:"cintāsthāna = points of uncertainty; kauśalya = (here) familiarity; anuśaṃsa = confidence, comfort; manaskāra = mental attention; sāṃkathya = discussion; śamatha, vipaśyanā = the two types of meditation; ānukūlya = being suitable; niḥsaṃdehatā = certainty; aikāgrya = one-pointedness; samādhāna = (here) concentration; jñeya-parīkṣā = examination of knowables; prakarṣa = excellence; vyākaraṇa = (here) explanation; vaiśāradya = expertise; udbhāvanatā = createdness"},
+
+{slot:"prose",grp:"Śaiva commentary (overlaps your Śaivism revision)",src:"Bhojadeva, Siddhāntasāra — Dīkṣāsvarūpanirūpaṇam",yrs:"TT2011",theme:"Śaiva Siddhānta: the definition of dīkṣā; the three bound souls; types of dīkṣā",
+text:`atha dīkṣāsvarūpanirūpaṇam. tatra bandhahetumalakarmamāyādipāśaviśleṣo jñānaṃ cānugrāhyasya yayā kriyayā janyate sā dīkṣā. tatrānugrāhyas trividhaḥ vijñānakalaḥ pralayākalaḥ sakalaś ceti. tatra malamātrayukto vijñānakalaḥ, malakarmayuktaḥ pralayākalaḥ, kalādipṛthivyāntatattvayuktaḥ sakalaḥ. dīkṣāpi dvividhā niradhikaraṇā sādhikaraṇā ca … sā punaḥ sabījā nirbījā sādhikārā niradhikārā ceti …`,
+voc:"adhikaraṇam = substrate; adhikāraḥ = office; adhikārī = qualified, entitled; nirapekṣaḥ = without reliance on; pralayakalaḥ = one freed from Kalā by a periodic withdrawal of the universe; vijñānakalaḥ = one freed from Kalā by insight; viśleṣaḥ = dissolution; śaktinipātaḥ = the liberating descent of Śiva’s power; sakalaḥ = one subject to Kalā, an incarnate bound soul"},
+
+{slot:"prose",grp:"Śaiva commentary (overlaps your Śaivism revision)",src:"Jayaratha, Vivekavyākhyā (Viveka) on Tantrāloka 1.131–32",yrs:"TT2015",theme:"non-dual Śaiva: even worshippers of ‘other’ deities reach ‘me’ if they sink into the consciousness-state; ‘mām’ = pure awareness",
+text:`nanu yady evaṃ, kathaṃ ‘anyadevatābhaktā api yajanti’ ity uktam? ityāśaṅkyāha,
+nimajjya vedyatāṃ ye tu tatra saṃvinmayīṃ sthitim |
+vidus te hy anavacchinnaṃ tadbhaktā api yānti mām || 132
+‘tatra’ iti svātmavyatiriktāyāṃ devatāyāṃ. ‘tadbhaktāḥ’ svātmavyatiriktadevatāyājina ity arthaḥ. ‘mām’ iti parabodhaikasvabhāvam ātmānam. asmin paramādvayamaye saṃvinmayatayāvasthānam eva yāgaḥ, tatsamāpattir eva ca phalam. 132. nanu bhagavadvāsudevena uktasya ‘mām’ iti asmacchabdasya tadekavācakatvāt kathaṃ bodhamātrābhidhāyakatvam ucyate? ity āśaṅkyāha,
+sarvatrātra hy ahaṃśabdo bodhamātraikavācakaḥ |
+sa bhoktṛprabhuśabdābhyāṃ yājyayaṣṭṛtayoditaḥ || 132
+‘atra’ iti gītāgranthe, anavachinnasyaiva bodhamātrasya pratipipādayiṣitatvāt, ata eva kevalasyaiva bodhasya vācakaḥ parāmraṣṭā ity uktam. … nanu yadi bodha eva apratipakṣa eko 'sti, tat kathaṃ ‘māṃ yajanti’ ityādau yājyayaṣṭṛtayā bhedaḥ pāramārthikaḥ syāt? ity āśaṅkyāha, ‘sa bhoktṛ’ ityādi. bodha eva ubhayātmā sphuritaḥ iti bhāvaḥ.`,
+voc:"vedyatā = what is knowable; anavachinna = unconditioned; vyatirikta = different to; samāpatti = absorption in; ekavācaka = expressing only; yājya = one to be worshipped; yaṣṭṛ = worshipper; pratipādayiṣitatva = being what is intended to be communicated; parāmraṣṭṛ = causing to discern; apratipakṣa = beyond duality; pāramārthika = ultimately real; sphurita = flashed forth"},
+
+{slot:"prose",grp:"Nyāya commentary",src:"Nyāyabhāṣya on Nyāyasūtra I.1.1 (opening)",yrs:"TT2020",theme:"the means of knowledge (pramāṇa) is purposeful; pramātṛ / pramāṇa / prameya / pramiti",
+text:`pramāṇato 'rthapratipattau pravṛttisāmarthyād arthavat pramāṇam | pramāṇam antareṇa nārthapratipattiḥ | nārthapratipattim antareṇa pravṛttisāmarthyam | pramāṇena khalv ayaṃ jñātā 'rtham upalabhya tam īpsati jihāsati vā | tasyepsājihāsāprayuktasya samīhā pravṛttir ity ucyate | … arthavati ca pramāṇe pramātā prameyaṃ pramitir ity arthavanti bhavanti | … sa pramātā | sa yenārtha pramiṇoti vijānāti tat pramāṇam | yo 'rthaḥ pramīyate jñāyate tat prameyam |`,
+voc:"(no glossary printed) — pramāṇa = means of knowledge; arthapratipatti = cognition of an object; pravṛttisāmarthya = capacity to act; īpsati / jihāsati = desires to get / to avoid; samīhā = effort; pramātṛ / prameya / pramiti = knower / known / knowing"},
+
+{slot:"prose",grp:"Other śāstra prose (rare anomalies)",src:"Carakasaṃhitā — sambhāṣāvidhi (the protocol of debate)",yrs:"TT2021",theme:"the rules & benefits of scholarly debate (tadvidyasambhāṣā)",
+text:`sambhāṣāvidhim ata ūrdhvaṃ vyākhyāsyāmaḥ. bhiṣag bhiṣajā saha sambhāṣeta. tadvidyasambhāṣā hi jñānābhiyogasaṃharṣakarī bhavati, vaiśāradyam api cābhinirvartayati, vacanaśaktim api cādhatte, yaśaś cābhidīpayati, pūrvaśrute ca saṃdehavataḥ punaḥśravaṇāc chrutasaṃśayam apakarṣati, śrute cāsaṃdehavato bhūyo 'dhyavasāyam abhinirvartayati, aśrutam api ca kaṃcid arthaṃ śrotraviṣayam āpādayati. yac cācāryaḥ śiṣyāya śuśrūṣave prasannaḥ krameṇopadiśati guhyābhimatam arthajātaṃ tat paraspareṇa saha jalpan piṇḍena vijigīṣur āha saṃharṣāt. tasmāt tadvidyasambhāṣām abhipraśaṃsanti kuśalāḥ.`,
+voc:"(no glossary printed) — bhiṣaj = physician; tadvidya = an expert in the same field; saṃharṣakara = exhilarating; vaiśāradya = expertise; adhyavasāya = resolve; abhipraśaṃsanti = praise"},
+
+{slot:"prose",grp:"Tantric verse set as the ‘prose’ passage (anomaly)",src:"Vijñānabhairava Tantra vv. 145–150",yrs:"TT2018",theme:"japa, dhyāna, pūjā, homa, yāga redefined as inner states — verse, not prose",
+text:`bhūyo bhūyaḥ pare bhāve bhāvanā bhāvyate hi yā |
+japaḥ so 'tra svayaṃ nādo mantrātmā japya īdṛśaḥ || 145
+dhyānaṃ hi niścalā buddhir nirākārā nirāśrayā |
+na tu dhyānaṃ śarīrākṣimukhahastādikalpanā || 146
+pūjā nāma na puṣpādyair yā matiḥ kriyate dṛḍhā |
+nirvikalpe mahāvyomni sā pūjā hy ādarāl layaḥ || 147
+atraikatamayuktisthe yotpadyeta dinād dinam |
+bharitākāratā sātra tṛptir atyantapūrṇatā || 148
+mahāśūnyālaye vahnau bhūtākṣaviṣayādikam |
+hūyate manasā sārdhaṃ sa homaś cetanāsrucā || 149
+yāgo 'tra parameśāni tuṣṭir ānandalakṣaṇā |
+kṣapaṇāt sarvapāpānāṃ trāṇāt sarvasya pārvati || 150`,
+voc:"nirvikalpe mahāvyomni = in the great non-conceptual space; bharitākāratā = the state of fullness; ekatamayuktisthe = while following one of the techniques; mahāśūnyālaye vahnau = in the fire in the house of the great emptiness; cetanāsrucā = by the ladle of awareness; tuṣṭiḥ = satisfaction; kṣapaṇāt = because of dispelling; trāṇāt = because of protection"},
+
+{slot:"prose",grp:"Legal / political śāstra — SKIP",src:"Kauṭilya, Arthaśāstra I.4.1–16 (≈ I.4.3–16)",yrs:"TT2022 + LV2024",repeat:true,skip:true,theme:"daṇḍanīti — the science of punishment; mātsyanyāya. You may skip this.",
+text:`ānvīkṣikī-trayī-vārttānāṃ yogakṣemasādhano daṇḍaḥ, tasya nītir daṇḍa-nītiḥ … ‘tasmāl lokayātrārthī nityam udyatadaṇḍaḥ syāt | na hy evaṃvidhaṃ vaśopanayanam asti bhūtānāṃ yathā daṇḍaḥ’ ity ācāryāḥ | neti kauṭilyaḥ | tīkṣṇadaṇḍo hi bhūtānām udvejanīyo bhavati, mṛdudaṇḍaḥ paribhūyate, yathārhadaṇḍaḥ pūjyate … apraṇītas tu mātsyanyāyam udbhāvayati | balīyān abalaṃ hi grasate daṇḍadharābhāve | sa tena guptaḥ prabhavatīti |`,
+voc:"kupya = metals other than gold/silver; viṣṭi = free labour; ānvīkṣikī-trayī-vārttā = critical inquiry, the triple learning, professional undertaking; yogakṣema = acquisition & retention; daṇḍa = punishment/sceptre; lokayātrā = the operation of the world; udyata = ready to impose; udvejanīya = frightening; yathārha = appropriate; mātsyanyāya = the law of the fish; gupta = protected — but SKIP (legal text)"},
+
+{slot:"prose",grp:"Dharmaśāstra commentary — EXCLUDED this year",src:"Vijñāneśvara, Mitākṣarā on Yājñavalkya, Prāyaścittādhyāya (on āśauca)",yrs:"TT2008",skip:true,theme:"argues ‘impurity’ (āśauca) is a real entity, not a figure for loss of ritual qualification — Dharmaśāstra",
+text:`āśaucaśabdena ca kālasnānādyapanodyaḥ piṇḍodakadānādividher adhyayanādiparyudāsasya ca nimittabhūtaḥ puruṣagataḥ kaścanātiśayaḥ kathyate na punaḥ karmaṇy anadhikāramātram … ity upekṣaṇīyo 'yaṃ pakṣaḥ.`,
+voc:"paryudāsaḥ = prohibition (= niṣedhaḥ); atiśayaḥ = an added positive entity; adhikāraḥ = qualification, entitlement to rites; abhidhānam = referring to; prayogaḥ = use; vṛddhavyavahāraḥ = the usage of elders; vyutpattiḥ = acquisition of knowledge; nibandhanam = a cause; yogyaḥ = fit for; upekṣaṇīyaḥ = to be discarded — but SKIP (Dharmaśāstra)"}
+];
+
+// Highlight finite/verbal forms in the Sanskrit (heuristic study aid, tuned to this corpus)
+function coreFor(slot){return slot==='verse'?CORE_VERSE:CORE_PROSE;}
+function hlVoc(str,slot){
+  if(!str)return '';
+  const core=Object.keys(coreFor(slot));
+  return str.split(';').map(seg=>{
+    const t=seg.trim(); if(!t)return '';
+    let head=t.split(/=|–|—|:/)[0].trim();
+    let isCore=core.some(c=>{const cc=c.replace(/\(.*\)/,'').replace(/[-]/g,'').toLowerCase();
+      const hh=head.replace(/[-(].*$/,'').replace(/[ ]/g,'').toLowerCase();
+      return cc&&hh&&(hh.startsWith(cc)||cc.startsWith(hh));});
+    const m=t.match(/^([^=–—:]+)([=–—:].*)$/);
+    if(m){const w=m[1].trim(),rest=m[2];
+      return `<span class="e"><span class="w${isCore?' core':''}">${w}</span> ${rest.replace(/^[=–—:]\s*/,'= ')}</span>`;}
+    return `<span class="e">${t}</span>`;
+  }).join('');
+}
+function coreBox(slot){
+  const c=coreFor(slot);
+  return `<div class="core-box"><h4>Core recurring words — learn these first (${slot==='verse'?'verse / Mahābhārata corpus':'prose / commentary corpus'})</h4>
+  <p>${Object.entries(c).map(([w,g])=>`<span class="cw">${w}</span> — ${g}`).join('&nbsp;&nbsp;·&nbsp;&nbsp; ')}</p></div>`;
+}
+let tab="verse";
+function setT(t){tab=t;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.p===t));
+  document.querySelectorAll('.pool').forEach(x=>x.classList.toggle('active',x.id==='pool-'+t));
+  document.getElementById('searchbar').style.display=(t==='pred'||t==='words')?'none':'block';
+  render();
+}
+function render(){
+  const cw=document.getElementById('corewrap');
+  if(tab==='pred'){cw.innerHTML='';renderPred();return;}
+  if(tab==='words'){cw.innerHTML='';renderWords();return;}
+  cw.innerHTML=coreBox(tab);
+  const term=(document.getElementById('q').value||'').toLowerCase();
+  const done=loadDone();
+  const list=DATA.filter(d=>d.slot===tab).filter(d=>!term||(d.src+' '+d.theme+' '+d.yrs+' '+d.grp+' '+(d.voc||'')).toLowerCase().includes(term));
+  const el=document.getElementById('pool-'+tab);
+  let html='',lastG='';
+  list.forEach(d=>{
+    const di=DATA.indexOf(d), isDone=!!done[d.src];
+    if(d.grp!==lastG){html+=`<div class="grp">${d.grp}</div>`;lastG=d.grp;}
+    html+=`<div class="p${isDone?' done':''}">
+      <div class="h" onclick="this.parentNode.classList.toggle('open')">
+        <span class="src">${d.src}</span><span class="yrs">${d.yrs}</span>
+        ${d.repeat?'<span class="badge b-rep">repeat ×2</span>':''}
+        ${d.skip?'<span class="badge b-skip">skip</span>':''}
+        <label class="ck" onclick="event.stopPropagation()"><input type="checkbox" ${isDone?'checked':''} onchange="toggleDone(${di},this)">read</label>
+      </div>
+      <div class="body">
+        <span class="badge b-th">${d.theme}</span>
+        <div class="lbl">Sanskrit</div>
+        <div class="skt">${d.text}</div>
+        <div class="lbl">Vocabulary (as given in the exam) — highlighted = recurring, learn it</div>
+        <div class="voc">${d.voc&&d.voc[0]==='('?`<span class="none">${d.voc}</span>`:hlVoc(d.voc,d.slot)}</div>
+        ${d.key?`<details class="keyd"><summary>Gentle key — sandhi-split + literal (try first, then open)</summary><div class="keyc">${d.key}</div></details>`:''}
+      </div></div>`;
+  });
+  el.innerHTML=html||'<p style="color:var(--mut);padding:30px 0">No match.</p>';
+  const tot=DATA.filter(d=>d.slot===tab).length, dn=DATA.filter(d=>d.slot===tab&&done[d.src]).length;
+  document.getElementById('cnt').textContent=`${list.length} ${tab} passages shown · ✓ ${dn}/${tot} marked read · click the title to open, tick “read” when done`;
+}
+function loadDone(){try{return JSON.parse(localStorage.getItem('sktDone')||'{}')}catch(e){return{}}}
+function toggleDone(i,el){const o=loadDone();const k=DATA[i].src;if(el.checked)o[k]=1;else delete o[k];
+  localStorage.setItem('sktDone',JSON.stringify(o));
+  const card=el.closest('.p');if(card)card.classList.toggle('done',el.checked);
+  const tot=DATA.filter(d=>d.slot===tab).length, dn=DATA.filter(d=>d.slot===tab&&o[d.src]).length;
+  document.getElementById('cnt').textContent=`${document.querySelectorAll('#pool-'+tab+' .p').length} ${tab} passages shown · ✓ ${dn}/${tot} marked read · click the title to open, tick “read” when done`;
+}
+function renderMethod(){
+  document.getElementById('cnt').textContent='A repeatable routine for cracking an unseen passage — practise it on every card';
+  document.getElementById('pool-method').innerHTML=`<div class="pred">
+  <h3>The real problem: sandhi, not vocabulary</h3>
+  <p>“namoparas” does not exist. It is <b>nāma + aparaḥ</b> fused by sandhi. 90% of “I can’t even start” is two or three ordinary words glued together. So the skill to drill is <b>cutting words apart</b>, not memorising more glossary.</p>
+
+  <h3>Sandhi cheat-sheet (the joins that actually block you)</h3>
+  <table><tr><th>You see…</th><th>It is probably…</th></tr>
+  <tr><td>a long <b>ā</b> inside a word</td><td>a + a  (e.g. nāma·aparaḥ → nāmāparaḥ; na·ārabhet → nārabhet)</td></tr>
+  <tr><td><b>e</b> inside / between words</td><td>a + i / ī  (ca·iva → caiva; te·iha → te ’ha)</td></tr>
+  <tr><td><b>o</b> inside / between words</td><td>a + u  OR  a visarga: -aḥ + voiced → -o  (rāmaḥ·gacchati → rāmo gacchati)</td></tr>
+  <tr><td><b>’</b> (avagraha)</td><td>-aḥ + a-  → -o ’  (the a- was eaten: so ’bravīt = saḥ abravīt)</td></tr>
+  <tr><td>word ends <b>-as / -aś / -aṣ / -ar</b></td><td>= a noun in -aḥ before t- / c- / ṣ- / a vowel (puruṣas tu = puruṣaḥ tu)</td></tr>
+  <tr><td><b>y / v</b> between vowels</td><td>i+vowel → y ; u+vowel → v  (iti·ārabhet → ity ārabhet)</td></tr>
+  <tr><td>final <b>t</b> turns to d / c / l / ṃ</td><td>t + voiced → d ; t+ś → c ch ; t+l → l ; m# → ṃ before a consonant</td></tr>
+  <tr><td><b>ar</b> inside a word</td><td>a + ṛ  (ca·ṛṣiḥ → carṣiḥ)</td></tr></table>
+
+  <h3>Verse routine — crack a śloka in ~60 seconds</h3>
+  <ol style="margin-left:20px;line-height:1.8">
+  <li><b>Cut by daṇḍa.</b> | splits the half-verse, || ends the śloka. You now have 4 quarter-lines (pādas) of 8 syllables — translate quarter by quarter, not “the whole sentence”.</li>
+  <li><b>Who speaks?</b> The <i>X uvāca</i> tag. Vocatives (pārtha, rājan, bhārata, prabho, dvijasattama, yudhiṣṭhira) = “O X” — carry no meaning, they just confirm it is address.</li>
+  <li><b>Find the finite verb first.</b> Look for 3rd-person endings, usually at a pāda/line end: -ti, -te, -nti, -et, -sva, -īt, -at, and the favourites <b>ucyate, kathyate, bhavati, syāt, gacchati, abravīt, smṛtaḥ</b>. Then the <b>subject</b> = a nominative (-aḥ, -ā, -aṃ, -āḥ, -e).</li>
+  <li><b>Hang the cases off the verb:</b> -ena/-aiḥ = “by/with”; -āt/-ebhyaḥ = “from”; -asya/-ānāṃ = “of”; -e/-eṣu = “in/when”; -aṃ/-ān = object.</li>
+  <li><b>Stuck word → split it.</b> Try a break at <b>ā · e · o · -as · -aḥ · y · v</b>. It is almost always 2 words or a known compound (manaḥṣaṣṭha, bhūtagrāma, indriyagrāma, dhyānayoga) — see ★ Recurring words.</li>
+  <li><b>Use the frame.</b> It is the Śāntiparvan: it is saying one of a few things — soul vs elements/senses · the ladder indriya→manas→buddhi→ātman · creation/dissolution · meditation · liberation. Choose the doctrine that fits the words you do know; that predicts the rest.</li></ol>
+  <p><b>Worked example.</b> <i>kāmo nāmāparas tatra samapadyata vai prabho</i> → cut: kāmo · nāma · aparas · tatra · samapadyata · vai · prabho. Verb = <b>samapadyata</b> (“arose”, impf.). Subject = <b>kāmaḥ</b> (“desire”, nom., kāmo by visarga). nāma = “so-called”; aparaḥ = “another” (agrees with kāmaḥ); tatra = “then”; vai = emphatic; prabho = “O lord”. ⇒ “Then there arose another thing, called <i>kāma</i>, O lord.”</p>
+
+  <h3>Prose routine</h3>
+  <ol style="margin-left:20px;line-height:1.8">
+  <li>It is a commentary: it <b>quotes a word, then explains it</b>. Hunt the markers: <b>iti</b> (closes a quoted word/idea), <b>ity arthaḥ</b> (“that is the meaning”), <b>ucyate</b> (“we answer / it is said”), <b>nanu … ity āśaṅkya</b> (“objection: … — anticipating this, [he] says”).</li>
+  <li>Split at every daṇḍa and every <b>iti</b>. Each chunk = one logical move; translate chunk by chunk.</li>
+  <li>Main verb at the clause end (often ucyate, bhavati, draṣṭavyaḥ, syāt).</li>
+  <li>Connective signposts: <b>tatra</b> “in this / there”, <b>tasmāt / ataḥ</b> “therefore”, <b>hi</b> “for, because”, <b>tu</b> “but”, <b>kiṃ ca</b> “moreover”, <b>yadi … tarhi</b> “if … then”, <b>na … na</b> “neither … nor”.</li></ol>
+  <p><b>Worked example.</b> <i>nanu yady evaṃ, kathaṃ ‘anyadevatābhaktā api yajanti’ ity uktam? ity āśaṅkyāha</i> → <i>nanu</i> = “but surely”; <i>yady evaṃ</i> = “if [it is] so”; the bit in ‘…’ is the <b>quoted objection</b> (“how is it said that ‘even devotees of other deities sacrifice’?”); <i>ity āśaṅkya āha</i> = “anticipating this doubt, he says”. The structure, not the words, tells you it is an objection-and-reply — every commentary does this.</p>
+
+  <h3>A 3-week drill plan (using this portal)</h3>
+  <ol style="margin-left:20px;line-height:1.8">
+  <li><b>Days 1–3:</b> learn the sandhi cheat-sheet by reversing it — take any open passage, find every ā/e/o/avagraha/-as and say what two words it joins. No translating yet, just <i>cutting</i>.</li>
+  <li><b>Days 4–10:</b> one passage a day from ① Verse (start with the two repeats — MBh Śāntiparva 59 &amp; the easiest adhyātma ones). For each: do the 6-step routine out loud, write a rough translation, then check the exam glossary on the card. Re-read it next day cold.</li>
+  <li><b>Days 11–16:</b> ② Prose, one a day, Śaṅkara first (highest-yield, the repeat). Mark every iti / ucyate / nanu before translating.</li>
+  <li><b>Days 17–21:</b> timed — 30 min per passage, no notes, then check. Re-do the two verbatim repeats until they are automatic.</li>
+  <li><b>Every day:</b> 10 min on ★ Recurring words column A + B until rājya, niyata, samutpanna, kṣetrajña, manas, etc. are instant.</li></ol>
+  <p style="margin-top:10px;color:var(--mut);font-size:15px">Want me to add a collapsible English crib (answer key) to each passage so you can attempt → check? Say so — I’ll start with the two verbatim repeats (MBh Śāntiparva 59 &amp; Śaṅkara’s Gītā prologue).</p>
+  </div>`;
+}
+function wtab(rows){return `<table><tr><th>Word</th><th>Meaning</th><th>Where it recurs</th></tr>`+
+  rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')+`</table>`;}
+function renderWords(){
+  document.getElementById('cnt').textContent='Words that recur across the unseen passages — learn these and most of each passage decodes itself';
+  document.getElementById('pool-words').innerHTML=`<div class="pred">
+  <h3>A. Verse corpus — common narrative & grammar words you flagged</h3>
+  ${wtab([
+   ["rājya","kingdom","Śp 59 (rājyaṃ samutpannam); kingship passages"],
+   ["rājan / rāja-","king","Śp 59 (na rājāsīt; rājendra; rājan); very common"],
+   ["niyata-","restrained, fixed, settled","niyatas Śp 59; niyame 267 & 2021; cf. saṃnirudhya 188/Yājñ."],
+   ["samutpanna / utpanna / sṛṣṭa","arisen, produced, created","samutpannam Śp 59; sṛṣṭāni 187; sṛjati 267; utpadyate (prose)"],
+   ["prabhava-","origin, source","187 (prabhavāpyayau); Kumāra (prabhavas); 59 (prabho voc.)"],
+   ["apyaya / pralaya / saṃhāra","dissolution, reabsorption","187, 267, Kumāra (pralayasthitisarga), Devībh."],
+   ["nara / manuja / manujarṣabha","man / men / ‘bull among men’ (voc.)","Śp 59 (narāḥ, manujāḥ, manujarṣabha)"],
+   ["prajā-","subjects, creatures","Śp 59 (prajāḥ rakṣanti); Kumāra"],
+   ["√śru: śṛṇu / śrūyate / śruti","hear (impv.) / is heard / scripture","Śp 59 (śṛṇu); 267 (śṛṇuṣva); 260 (śrūyate śrutiḥ)"],
+   ["√naś: naśyati / naṣṭa / anīnaśat / nanāśa","perish, destroy","Śp 59 (nanāśa, anīnaśat, nāśam); 326 (vinaśyati)"],
+   ["āviśati / vaśam āpanna","enters / fallen under the power of","Śp 59 (moha āviśat; mohavaśam āpannāḥ)"],
+   ["uvāca / abravīt / āha","said","every passage (speaker tags: bhīṣma uvāca, etc.)"]])}
+
+  <h3>B. Verse corpus — the philosophical vocabulary (recurs almost every year)</h3>
+  ${wtab([
+   ["kṣetrajña-","the ‘field-knower’ = the soul","238, 2021; the standard Śāntiparvan term"],
+   ["ātman / bhūtātman / paramātman","the Self","326, 187, 238, 2021, Kumāra"],
+   ["bhūta / mahābhūta / bhūtagrāma","being / element / mass of beings","267, 187, 238, 326, 2021"],
+   ["pañca- / pañcaka-","five / the fifth","187, 267, 188, 2021"],
+   ["manas (manaḥṣaṣṭha) / buddhi / indriya","mind (manas as 6th) / intellect / sense","238, 188, 2021"],
+   ["avyakta / mahat","the unmanifest / the ‘great’ (=buddhi)","238, 2021"],
+   ["guṇa; sattva, rajas, tamas; nirguṇa","strand; the three; without guṇas","326, 188, 238, Kumāra"],
+   ["kāla-","time","267, 270, Devībh. (kālaṃ ninye)"],
+   ["nitya / śāśvata / sanātana / dhruva / aja","eternal / everlasting / unborn","326, 267, 188, Kumāra (anādi)"],
+   ["saṃsāra / saṃsṛti / jīva","transmigration / embodied soul","188, 270 (saṃsaramāṇāni; jīvāḥ)"],
+   ["mokṣa / mukta / amṛta / nirvāṇa / kāṣṭhā / parā gati","liberation / the goal","326, 188, 238 (amṛtaṃ padam), 270"],
+   ["dhyāna / yoga / samādhāna","meditation / yoga / concentration","188, 238, Devībh. (dhyāyan)"],
+   ["jñāna / vidyā / vijñāna","knowledge","188, 238, 326"],
+   ["moha / lobha / kāma / rāga","delusion / greed / desire / passion","Śp 59 (the decline chain); 2021 (moha)"]])}
+
+  <h3>C. Prose corpus — recurring commentary vocabulary & formulae</h3>
+  ${wtab([
+   ["pravṛtti / nivṛtti","engagement in the world / withdrawal","Śaṅkara (Gītā prologue, Brahmasūtra)"],
+   ["codanā / codanālakṣaṇa","Vedic injunction / defined by injunction","Śābara, Śaṅkara Brahmasūtra"],
+   ["jijñāsā / jijñāsitavya","the desire to know / to be inquired into","Śābara, Śaṅkara Brahmasūtra"],
+   ["dharma / adharma","the moral-ritual order","Śaṅkara, Śābara, Mitākṣarā"],
+   ["abhyudaya / niḥśreyasa","worldly prosperity / the highest good","Śaṅkara (both bhāṣyas)"],
+   ["adhikāra / adhikārin / anadhikāra","entitlement / the entitled / non-entitlement","Mitākṣarā, Bhojadeva"],
+   ["svabhāva-","intrinsic nature (the Madhyamaka target)","Prasannapadā 16.1"],
+   ["paramārthataḥ / pāramārthika","in ultimate reality / ultimately real","Jayaratha, Prasannapadā"],
+   ["upapatti / upapadyate","(logical) establishment / is established","Prasannapadā, Nyāyabhāṣya"],
+   ["mumukṣutva / virāga / viveka","desire for liberation / dispassion / discernment","Śaṅkara Brahmasūtra"],
+   ["kāraṇa / hetu / nimitta","cause","Nyāyabhāṣya, Śābara, Prasannapadā"],
+   ["nanu … ity āśaṅkya / iti cet","‘objection: …’ — anticipating a doubt","Jayaratha, Prasannapadā (commentary formula)"],
+   ["iti … ucyate / ity arthaḥ","‘…’ is what is said / that is the meaning","every commentary (the basic gloss formula)"],
+   ["vyākhyāsyāmaḥ / nirūpaṇam","‘we shall explain’ / exposition","Bhojadeva, Caraka, Pāśupata (opening formula)"]])}
+  <p style="margin-top:12px;font-size:15px;color:var(--mut)">Tip: drill column A first (the everyday words that block you, e.g. <b>rājya, niyata, samutpanna</b>), then B (philosophy — almost guaranteed in the verse), then C for the prose.</p>
+  </div>`;
+}
+function renderPred(){
+  document.getElementById('cnt').textContent='Analysis of all past Section-A passages';
+  document.getElementById('pool-pred').innerHTML=`<div class="pred">
+  <h3>1. Verse — what to expect</h3>
+  <p><b>Almost certainly the Mahābhārata, Śāntiparvan</b> (10 of 14 papers). Content = Sāṃkhya / “adhyātma”: the mahābhūtas, the indriya→manas→buddhi→ātman ladder, the hidden kṣetrajña, dhyānayoga, sṛṣṭi/saṃhāra, liberation. Others used: Devībhāgavata Purāṇa (2023), Kumārasambhava kāvya (2022), Yājñavalkyasmṛti (2020/24 — excluded).</p>
+  <h3>2. Prose — what to expect</h3>
+  <p>A philosophical commentary. By frequency: <b>Śaṅkara-bhāṣya</b> (Gītā prologue ×2, Brahmasūtra 2023, ‘neti neti’) → <b>Śābara on Mīmāṃsāsūtra 1.1.1</b> (2024 + set text) → Prasannapadā/MMK (2016) → Nyāyabhāṣya (2020) → Abhidharmasamuccayabhāṣya (LV2015). Śaiva prose when it comes: Bhojadeva Siddhāntasāra (2011), Jayaratha on the Tantrāloka (2015) — overlaps your Śaivism revision.</p>
+  <h3>3. Verbatim repeats — drill first</h3>
+  <table><tr><th>Passage</th><th>Years</th></tr>
+  <tr><td>MBh Śāntiparva 59 — origin of kingship / decline of dharma</td><td><b>LV 2017 + LV 2024</b></td></tr>
+  <tr><td>Śāṅkarabhāṣya on the Gītā, Prologue</td><td><b>LV 2017 + TT 2019</b></td></tr>
+  <tr><td>Kauṭilya Arthaśāstra I.4 (daṇḍanīti) — skip-text</td><td>TT 2022 + LV 2024</td></tr>
+  <tr><td>Śābarabhāṣya on Mīmāṃsāsūtra 1.1.1</td><td>TT 2024 (A) + TT 2022 (B)</td></tr></table>
+  <p style="margin-top:10px"><b>Note:</b> Long Vacation 2017 is the key paper — <i>both</i> its unseen passages later recurred (in LV2024 and TT2019). Work LV2017 in full.</p>
+  <h3>4. Strategy</h3>
+  <p>Verse: master the Mahābhārata Śāntiparvan adhyātma/Sāṃkhya idiom (the highlighted core words). Prose: be fluent in Śaṅkara’s bhāṣya prose + the Śābara dharma-jijñāsā passage. Start with the two verbatim repeats.</p>
+  </div>`;
+}
+render();
+</script>
+</body>
+</html>
