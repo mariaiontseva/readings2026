@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
+<meta name="referrer" content="no-referrer">
+<title>Śaṅkara — обороты комментаторской прозы</title>
+<style>
+  :root{--ink:#1a1712;--mut:#463f37;--line:#ddd6c8;--hl:#6a4610;--bg:#fff;--soft:#faf8f3;
+        --ok:#1f6b3a;--again:#9c2a2a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font:18px/1.6 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;padding:0 0 60px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  header{padding:28px 0 4px}
+  h1{font-size:22px;font-weight:700}
+  .sub{color:var(--mut);font-size:14.5px;margin-top:6px}
+  .tabs{display:flex;gap:7px;margin:20px 0 0;border-bottom:2px solid var(--ink)}
+  .tab{padding:10px 16px;cursor:pointer;font-size:16px;font-weight:700;color:var(--mut);
+       border:2px solid transparent;border-bottom:none;border-radius:8px 8px 0 0}
+  .tab.active{color:var(--ink);background:#f3efe7;border-color:var(--line);border-bottom:2px solid #f3efe7;margin-bottom:-2px}
+  .pane{display:none}.pane.active{display:block}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 4px}
+  .chip{font-size:13.5px;padding:5px 12px;border:1px solid var(--line);border-radius:16px;cursor:pointer;color:var(--mut);user-select:none}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .prog{font-size:13.5px;color:var(--mut);margin:12px 0 10px}
+  .prog a{color:var(--mut)}
+  .card{border:1px solid var(--line);border-radius:12px;background:var(--soft);min-height:300px;
+        display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+        padding:30px 24px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+  .card .cat{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--hl);margin-bottom:16px}
+  .card .front{font-size:27px;font-weight:700;line-height:1.4;font-style:italic}
+  .card .hint{font-size:13px;color:var(--mut);margin-top:22px}
+  .card .meaning{font-size:19px;font-weight:700;line-height:1.5;margin-bottom:14px}
+  .card .ex{font-size:15.5px;line-height:1.65;color:var(--mut);border-top:1px solid var(--line);padding-top:14px;margin-top:4px;max-width:540px}
+  .card .ex i{color:var(--ink)}
+  .btns{display:flex;gap:10px;margin-top:14px}
+  .btns button{flex:1;padding:14px 0;font:16px inherit;font-weight:700;border-radius:10px;cursor:pointer;border:1.5px solid var(--line);background:#fff}
+  .btns .again{color:var(--again);border-color:#d8b8b8}
+  .btns .know{color:var(--ok);border-color:#b9d3c2}
+  .btns button:active{transform:scale(.98)}
+  .doneMsg{text-align:center;padding:60px 20px;color:var(--mut);font-size:17px}
+  .doneMsg b{color:var(--ink)}
+  .doneMsg button{margin-top:18px;padding:12px 26px;font:16px inherit;font-weight:700;border-radius:10px;border:1.5px solid var(--line);background:#fff;cursor:pointer}
+  .grp{font-size:13px;letter-spacing:1.3px;text-transform:uppercase;color:var(--hl);font-weight:700;margin:26px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .li{border:1px solid var(--line);border-radius:8px;margin-bottom:10px;padding:13px 16px;background:#fff}
+  .li .f{font-weight:700;font-style:italic;font-size:17px}
+  .li .m{font-size:15.5px;margin-top:3px}
+  .li .e{font-size:14px;color:var(--mut);margin-top:6px;line-height:1.6}
+  .li .e i{color:var(--ink)}
+  @media (max-width:480px){.card .front{font-size:23px}.wrap{padding:0 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Śaṅkara — обороты комментаторской прозы</h1>
+  <div class="sub">Для чтения bhāṣya с листа · примеры из Īśopaniṣad-bhāṣya · тап по карточке — ответ</div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-pane="drill">Карточки</div>
+  <div class="tab" data-pane="list">Список</div>
+</div>
+
+<div class="pane active" id="drill">
+  <div class="chips" id="chips"></div>
+  <div class="prog" id="prog"></div>
+  <div id="cardArea"></div>
+</div>
+
+<div class="pane" id="list"></div>
+</div>
+
+<script>
+const CATS = {
+  dia:"Диалектика", abl:"Аблатив причины", gl:"Глосса", pt:"Частицы",
+  ref:"Отсылки", vb:"Глаголы", lex:"Лексика", sn:"Сандхи-ловушки"
+};
+// f=front, m=meaning, e=example (HTML, <i> = IAST)
+const CARDS = [
+// — Диалектика —
+{c:"dia",f:"nanu",m:"«но ведь…» — вводит возражение оппонента",e:"<i>nanūktāyāḥ paramātmavidyāyāḥ karmaṇaś ca virodhāt samuccayānupapattiḥ</i> — «Но ведь из-за противоречия знания Атмана и ритуала их совмещение невозможно»"},
+{c:"dia",f:"iti cet, na",m:"«если возразишь, что…, — нет». Дальше аблатив = почему нет",e:"<i>samuccayavidhānād avirodha eveti cet, na; sahasambhavānupapatteḥ</i>"},
+{c:"dia",f:"syād etat",m:"«допустим, так» — уступка перед опровержением",e:"частый зачин возражения в Brahmasūtra-bhāṣya"},
+{c:"dia",f:"ucyate / atrocyate",m:"«на это отвечаем» — голос сиддханты",e:"<i>tatra tāvat kiṃnimittaḥ saṃśaya iti, ucyate</i> — «Здесь сначала [спросим]: в чём повод сомнения? Отвечаем…»"},
+{c:"dia",f:"satyam … tu",m:"«верно, [но]…» — частичная уступка, после неё контраргумент с tu",e:"<i>satyam | virodhas tu nāvagamyate</i> — «Верно. Но противоречия не усматривается»"},
+{c:"dia",f:"kasmāt? kathaṃ? kim?",m:"вопрос самому себе — дальше следует ответ",e:"<i>vidyāśabdena mukhyā paramātmavidyaiva kasmān na gṛhyate?</i> — «Почему словом vidyā не понимается именно знание Параматмана?»"},
+{c:"dia",f:"tarhi",m:"«тогда, в таком случае»",e:"вводит следствие из допущения оппонента"},
+{c:"dia",f:"api ca / kiṃ ca / itaś ca",m:"«и более того» — добавление ещё одного аргумента",e:"маркер: аргументы перечисляются, тезис прежний"},
+{c:"dia",f:"tasmāt / ataḥ / tena",m:"«поэтому» — вывод, конец рассуждения",e:"<i>tasmād yathāvyākhyāta eva mantrāṇām arthaḥ</i> — «Поэтому смысл мантр — именно как было истолковано»"},
+{c:"dia",f:"iti hy āhuḥ / iti vadanti",m:"«ибо так говорят [знатоки]» — апелляция к авторитетам",e:"<i>iti hy adhikāravido vadanti</i> — «так говорят знатоки адхикары»"},
+{c:"dia",f:"ity uparamyate",m:"«на этом останавливаемся» — формула закрытия темы",e:"<i>…artha ity uparamyate</i> — финальная фраза Īśā-bhāṣya"},
+{c:"dia",f:"evaṃ prāpte (ucyate)",m:"«когда так получено [предварительное мнение], — отвечаем»: стиль мимансы",e:"частотно в Brahmasūtra-bhāṣya: pūrvapakṣa изложен — поворот к сиддханте"},
+{c:"dia",f:"na ca … iti vācyam",m:"«и нельзя сказать, что…» — отвод возражения заранее",e:"чаще в поздних тиках (Ānandagiri и далее)"},
+// — Аблатив причины —
+{c:"abl",f:"-tvāt",m:"«потому что Х есть / обладает…» — аблатив абстракта = аргумент",e:"<i>yāthātmyaprakāśakatvāt</i> — «потому что [мантры] раскрывают истинную природу [Атмана]»"},
+{c:"abl",f:"anupapatteḥ",m:"«из-за несостоятельности, невозможности» — самый частый финал аргумента",e:"<i>sahasambhavānupapatteḥ</i> — «потому что одновременное существование несостоятельно»"},
+{c:"abl",f:"asambhavāt",m:"«из-за невозможности»",e:"<i>vikalpāsambhavāt</i> — «потому что альтернатива невозможна»"},
+{c:"abl",f:"virodhāt",m:"«из-за противоречия»",e:"<i>hetusvarūpaphalavirodhāt</i> — «из-за противоречия в основании, сущности и плоде»"},
+{c:"abl",f:"śravaṇāt / darśanāt",m:"«поскольку слышится (в шрути) / наблюдается»",e:"<i>pṛthak phalaśravaṇāt</i> — «поскольку [в шрути] слышится об отдельном плоде»"},
+{c:"abl",f:"prasaṅgāt",m:"«из-за [нежелательного] следствия» — reductio ad absurdum",e:"prasaṅga = абсурдное следствие, к которому ведёт тезис оппонента"},
+{c:"abl",f:"iti śruteḥ / iti smṛteḥ / iti vacanāt",m:"«согласно шрути / смрити / изречению: „…“» — цитата + iti + аблатив",e:"<i>iti śokamohādyasambhavaśruteḥ</i> — «согласно шрути о невозможности скорби, заблуждения и т.д.»"},
+{c:"abl",f:"upakṣayāt",m:"«потому что исчерпывается [в этом]»",e:"<i>sarvāsām upaniṣadām ātmayāthātmyanirūpaṇenaivopakṣayāt</i> — «все упанишады исчерпываются определением истинной природы Атмана»"},
+// — Глосса —
+{c:"gl",f:"слово + синоним рядом",m:"глосса аппозицией: слово мантры → его прозаический синоним",e:"<i>vāsyam ācchādanīyam</i> — «vāsyam [значит] „должно быть покрыто“»"},
+{c:"gl",f:"X iti Y",m:"этимологическая глосса: «X — [потому что] Y»",e:"<i>īśā īṣṭe iti īṭ, tena īśā</i> — «īśā: [тот, кто] правит (īṣṭe) — īṭ; этим [правителем]»"},
+{c:"gl",f:"ity arthaḥ",m:"«вот смысл» — закрывает парафразу. 15× в одном Īśā-bhāṣya",e:"<i>tena tyaktena tyāgenety arthaḥ</i> — «„оставленным“ — то есть „оставлением“»"},
+{c:"gl",f:"ity abhiprāyaḥ",m:"«таково подразумеваемое / намерение [автора]»",e:"вариант ity arthaḥ, чуть субъективнее"},
+{c:"gl",f:"iti bhāvaḥ",m:"«такова суть» — закрытие парафразы, частотно в тиках",e:"маркер субкомментария (Ānandagiri)"},
+{c:"gl",f:"kim? kaḥ? kena?",m:"комментатор сам спрашивает, чтобы ввести следующий член предложения",e:"<i>vāsyam ācchādanīyam | kim? idaṃ sarvam…</i> — «должно быть покрыто. Что? — всё это…»"},
+{c:"gl",f:"X-śabdena",m:"«словом Х [имеется в виду]…»",e:"<i>vidyāśabdena mukhyā paramātmavidyaiva kasmān na gṛhyate</i>"},
+{c:"gl",f:"upalakṣaṇa",m:"синекдоха: слово текста — лишь «указание» на более широкий класс",e:"<i>jagatyām ity upalakṣaṇārthatvāt</i> — «„на земле“ сказано как upalakṣaṇa [всего сущего]»"},
+{c:"gl",f:"mukhya / gauṇa",m:"прямое / переносное значение слова",e:"<i>mukhyā paramātmavidyā</i> — «vidyā в прямом значении = знание Параматмана»"},
+{c:"gl",f:"adhyāhāra",m:"подразумеваемое слово, которое нужно мысленно добавить",e:"«здесь следует adhyāhāra слова Х» — восполнение эллипсиса"},
+{c:"gl",f:"-ākhya / -mātra",m:"«называемый Х» / «только лишь Х»",e:"<i>nāmarūpakarmākhyam</i> — «называемое имя-форма-действие»"},
+{c:"gl",f:"yathāvyākhyāta",m:"«как было истолковано [выше]»",e:"<i>yathāvyākhyāta eva mantrāṇām arthaḥ</i>"},
+{c:"gl",f:"anvayaḥ / sambandhaḥ",m:"синтаксическая связь слов / связь с предыдущим (стихом, темой)",e:"anvaya = в каком порядке строить слова мантры в прозу"},
+// — Частицы —
+{c:"pt",f:"hi / na hi",m:"«ибо, ведь» / «ведь не…» — обоснование",e:"<i>na hi agnir uṣṇaḥ prakāśaś ca iti vijñānotpattau…</i> — «ведь когда возникло знание „огонь горяч и светел“…»"},
+{c:"pt",f:"eva",m:"«именно, только» — ограничение; в сандхи сливается",e:"<i>paramātmavidyaiva</i> = paramātmavidyā + eva"},
+{c:"pt",f:"tāvat",m:"«прежде всего, для начала, пока что»",e:"<i>tatra tāvat kiṃnimittaḥ saṃśayaḥ</i> — «здесь сначала: в чём повод сомнения?»"},
+{c:"pt",f:"atha",m:"«теперь» — переход к новой теме",e:"классический зачин раздела"},
+{c:"pt",f:"atra / iha · tatra",m:"«здесь» (в этом тексте / случае) · «там; в том случае»",e:"iha часто = «в этой [упанишаде]»"},
+{c:"pt",f:"punar",m:"«а, же; снова» — лёгкое противопоставление",e:"<i>kathaṃ punar…</i> — «а как же…»"},
+{c:"pt",f:"khalu / nāma / kila",m:"усилители: «ведь, поистине; мол»",e:"kila часто с оттенком «как известно / якобы»"},
+{c:"pt",f:"yathā … tathā / tadvat (eva)",m:"«как…, так и» — дрштанта (пример) и его приложение",e:"<i>yathā candanāgarvāder… tadvad eva hi…</i> — пример с сандалом: запах скрыт чужим запахом, как Атман — наложенным"},
+{c:"pt",f:"ityādi",m:"«и так далее; начинающийся с…»",e:"<i>«īśā vāsyam» ityādayo mantrāḥ</i> — «мантры, начинающиеся с īśā vāsyam»"},
+{c:"pt",f:"api / tu / vā",m:"«даже, тоже» / «но, же» / «или»",e:"tu после satyam = поворот к контраргументу"},
+// — Отсылки —
+{c:"ref",f:"ukta / uktatvāt",m:"«(уже) сказанное» / «потому что уже сказано»",e:"<i>evam ukta-adhikāry-abhidheya-sambandha-prayojanān mantrān…</i>"},
+{c:"ref",f:"vakṣyamāṇa / vakṣyati",m:"«о чём будет сказано ниже» / «[текст] скажет»",e:"<i>yāthātmyaṃ ca ātmanaḥ… vakṣyamāṇam</i> — «истинная природа Атмана… о которой будет сказано»"},
+{c:"ref",f:"āha / tathā cāha",m:"«говорит» — вводит цитату из текста или автора",e:"<i>cāha</i> = ca + āha"},
+{c:"ref",f:"prakṛta / prastuta",m:"«текущая тема обсуждения, то, о чём идёт речь»",e:"prakṛtam anusarāmaḥ — «вернёмся к теме»"},
+{c:"ref",f:"pūrva / uttara",m:"«предыдущее / последующее» (стих, раздел, мнение)",e:"pūrvapakṣa — «предыдущая (= оппонентская) позиция»"},
+// — Глаголы —
+{c:"vb",f:"ucyate / abhidhīyate",m:"«говорится» — пассив 3 ед., каркас всей прозы",e:"также <i>gṛhyate</i> «понимается», <i>avagamyate</i> «постигается»"},
+{c:"vb",f:"syāt",m:"«было бы» — оптатив для гипотетических следствий",e:"<i>yena karmaśeṣatā syāt</i> — «из-за чего [Атман] был бы подчинён ритуалу»"},
+{c:"vb",f:"-tavya / -anīya / -ya",m:"герундивы: «должно быть сделано»",e:"<i>ācchādanīya</i> «должно быть покрыто», <i>jñātavya, kartavya, vācya</i>"},
+{c:"vb",f:"vyākhyāsyāmaḥ / kariṣyāmaḥ",m:"авторское «мы»: «истолкуем / сделаем»",e:"<i>saṅkṣepato vyākhyāsyāmaḥ</i> — «вкратце истолкуем»"},
+{c:"vb",f:"-artham / -arthaṃ",m:"«ради, с целью» (в конце композита)",e:"<i>tannirdhāraṇārtham</i> — «ради установления этого»"},
+{c:"vb",f:"-pūrvaka",m:"«с предшествующим Х, сопровождаемый Х»",e:"jñānapūrvaka — «предварённый знанием»"},
+// — Лексика —
+{c:"lex",f:"yāthātmya",m:"«истинная природа, подлинное состояние» (yathā + ātman + ya)",e:"<i>ātmano yāthātmyam</i> — ключевое слово вступления к Īśā-bhāṣya"},
+{c:"lex",f:"pratyagātman",m:"«внутренний Атман» (pratyañc — обращённый внутрь)",e:"<i>sarvajantūnām ātmā san pratyagātmatayā</i>"},
+{c:"lex",f:"samuccaya",m:"«совмещение» — техн.: совмещение знания и ритуала (jñānakarmasamuccaya)",e:"главная мишень Шанкары: <i>samuccayānupapattiḥ</i>"},
+{c:"lex",f:"viniyoga / viniyukta",m:"«ритуальное применение / применённый [в ритуале]» (миманса)",e:"<i>mantrāḥ karmasv aviniyuktāḥ</i> — «мантры не применены в ритуалах»"},
+{c:"lex",f:"adhikāra / adhikārin / adhikriyate",m:"«право на ритуал / управомоченный / управомочивается»",e:"<i>so 'dhikriyate karmasu</i> — «он управомочен на ритуалы»"},
+{c:"lex",f:"karmaśeṣa",m:"«подчинённое ритуалу, вспомогательное к ритуалу» (śeṣa — миманс. термин)",e:"<i>akarmaśeṣasya ātmanaḥ</i> — «Атмана, не подчинённого ритуалу»"},
+{c:"lex",f:"utpādya · vikārya · āpya · saṃskārya",m:"четвёрка объектов действия: производимое · изменяемое · достигаемое · очищаемое. Выучить как формулу",e:"<i>na… utpādyaṃ vikāryam āpyaṃ saṃskāryaṃ vā</i> — Атман не является ни одним из четырёх"},
+{c:"lex",f:"kartṛtva / bhoktṛtva",m:"«делательство / вкусительство» — свойства, ложно приписанные Атману",e:"<i>kartṛtvabhoktṛtvādilakṣaṇam</i>"},
+{c:"lex",f:"adhyāsa / adhyasta",m:"«наложение / наложенное» — центральное понятие адвайты",e:"<i>svātmany adhyastaṃ svābhāvikaṃ… jagaddvaitarūpam</i>"},
+{c:"lex",f:"aupādhika",m:"«обусловленное упадхи», привходящее, не собственное",e:"<i>aupādhikaṃ daurgandhyam</i> — «привходящий дурной запах» (пример с сандалом)"},
+{c:"lex",f:"paramārtha / vyavahāra",m:"«абсолютное / эмпирическое» (два уровня истины)",e:"<i>paramārthasatyarūpeṇa</i> — «в форме абсолютной истины»"},
+{c:"lex",f:"carācara",m:"«движущееся и неподвижное» = всё сущее",e:"<i>anṛtam idaṃ sarvaṃ carācaram</i>"},
+{c:"lex",f:"eṣaṇā(-traya)",m:"«(три) желания»: сын, богатство, миры — то, от чего отрекается санньясин",e:"<i>putrādy-eṣaṇā-traya-saṃnyāse evādhikāraḥ</i>"},
+{c:"lex",f:"saṃśaya · nirdhāraṇa · vicāraṇā",m:"«сомнение · установление · разбор» — лексика процедуры исследования",e:"<i>kecit saṃśayaṃ kurvanti | atas tannirdhāraṇārthaṃ… vicāraṇāṃ kariṣyāmaḥ</i>"},
+{c:"lex",f:"kiṃnimitta",m:"«по какой причине, в чём повод?»",e:"<i>kiṃnimittaḥ saṃśayaḥ</i> — «в чём повод сомнения?»"},
+{c:"lex",f:"śāstrapramāṇaka",m:"«имеющее шастру своим источником/основанием»",e:"<i>vidyopāsanaṃ ca śāstrapramāṇakam</i>"},
+// — Сандхи-ловушки —
+{c:"sn",f:"nanūktāyāḥ",m:"= nanu + uktāyāḥ — возражение прячется в сандхи!",e:"если предложение странно начинается с nanū-, отрежь nanu"},
+{c:"sn",f:"eveti",m:"= eva + iti",e:"<i>avirodha eveti cet</i> = avirodhaḥ eva iti cet"},
+{c:"sn",f:"so 'dhikriyate",m:"= saḥ adhikriyate (аваграха ′ = выпавший a-)",e:"<i>so 'dhikriyate karmasu</i>"},
+{c:"sn",f:"nāvagamyate",m:"= na + avagamyate — отрицание сливается с глаголом",e:"<i>virodhas tu nāvagamyate</i> — «но противоречия НЕ усматривается»"},
+{c:"sn",f:"cāha / cet, na",m:"cāha = ca + āha · после iti cet запятая и na — это уже ответ сиддхантина",e:"граница реплик проходит внутри сандхи — размечай голоса до перевода"}
+];
+
+// ---------- state ----------
+const LS="shankaraDrillKnown";
+let known=new Set(JSON.parse(localStorage.getItem(LS)||"[]"));
+let filter=null, queue=[], idx=0, flipped=false;
+
+const $=s=>document.querySelector(s);
+function save(){localStorage.setItem(LS,JSON.stringify([...known]))}
+function pool(){return CARDS.map((c,i)=>i).filter(i=>(!filter||CARDS[i].c===filter))}
+function build(){
+  queue=pool().filter(i=>!known.has(i));
+  // shuffle (deterministic enough: sort by sin hash of index+seed)
+  let seed=Date.now()%97;
+  queue.sort((a,b)=>Math.sin(a*7.13+seed)-Math.sin(b*7.13+seed));
+  idx=0; flipped=false; render();
+}
+function render(){
+  const all=pool(), done=all.filter(i=>known.has(i)).length;
+  $("#prog").innerHTML=`знаю ${done} / ${all.length}${done?` · <a href="#" id="reset">сбросить</a>`:""}`;
+  const r=$("#reset"); if(r)r.onclick=e=>{e.preventDefault();pool().forEach(i=>known.delete(i));save();build()};
+  const area=$("#cardArea");
+  if(!queue.length){
+    area.innerHTML=`<div class="doneMsg"><b>Все карточки${filter?` раздела «${CATS[filter]}»`:""} отмечены как «знаю».</b><br>Можно сбросить и пройти ещё раз.<br><button id="rst2">Пройти заново</button></div>`;
+    $("#rst2").onclick=()=>{pool().forEach(i=>known.delete(i));save();build()};
+    return;
+  }
+  if(idx>=queue.length)idx=0;
+  const c=CARDS[queue[idx]];
+  area.innerHTML=`
+    <div class="card" id="theCard">
+      <div class="cat">${CATS[c.c]} · ${idx+1}/${queue.length}</div>
+      ${flipped
+        ?`<div class="meaning">${c.m}</div><div class="ex">${c.e}</div>`
+        :`<div class="front">${c.f}</div><div class="hint">тап — показать значение</div>`}
+    </div>
+    <div class="btns" ${flipped?"":'style="visibility:hidden"'}>
+      <button class="again">Ещё раз</button>
+      <button class="know">Знаю ✓</button>
+    </div>`;
+  $("#theCard").onclick=()=>{flipped=!flipped;render()};
+  area.querySelector(".again").onclick=e=>{e.stopPropagation();
+    const cur=queue.splice(idx,1)[0];
+    queue.splice(Math.min(idx+3,queue.length),0,cur);
+    flipped=false;render()};
+  area.querySelector(".know").onclick=e=>{e.stopPropagation();
+    known.add(queue[idx]);save();
+    queue.splice(idx,1);flipped=false;render()};
+}
+// chips
+(function(){
+  const box=$("#chips");
+  const mk=(key,label)=>{
+    const d=document.createElement("div");
+    d.className="chip"+(filter===key?" on":"");d.textContent=label;
+    d.onclick=()=>{filter=key===filter?null:(key||null);
+      [...box.children].forEach(x=>x.classList.remove("on"));
+      if(filter)d.classList.add("on");else box.firstChild.classList.add("on");
+      build()};
+    box.appendChild(d);return d};
+  mk(null,"Все").classList.add("on");
+  Object.entries(CATS).forEach(([k,v])=>mk(k,v));
+})();
+// list pane
+(function(){
+  const p=$("#list");
+  Object.entries(CATS).forEach(([k,v])=>{
+    p.insertAdjacentHTML("beforeend",`<div class="grp">${v}</div>`);
+    CARDS.filter(c=>c.c===k).forEach(c=>{
+      p.insertAdjacentHTML("beforeend",
+        `<div class="li"><div class="f">${c.f}</div><div class="m">${c.m}</div><div class="e">${c.e}</div></div>`)});
+  });
+})();
+// tabs
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".pane").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active");$("#"+t.dataset.pane).classList.add("active")});
+build();
+</script>
+</body>
+</html>
