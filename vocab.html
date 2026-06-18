@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sanskrit vocab — verbs · nouns · indeclinables</title>
+<style>
+  :root{--ink:#1c1a17;--mut:#8a857c;--rule:#e4dfd4;--accent:#7a3b2e;--bg:#fdfcf9;--hl:#f5f1e8;--vbg:#f3eee2;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"EB Garamond","Charis SIL",Georgia,serif;font-size:17px;line-height:1.45;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:880px;margin:0 auto;padding:18px 16px 120px;}
+  h1{font-size:21px;font-weight:600;margin:2px 0;}
+  .sub{color:var(--mut);font-size:13px;border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:10px;}
+  .modesw{display:flex;gap:6px;margin:10px 0;}
+  .modesw button{flex:1;font-family:inherit;font-size:15px;padding:11px 6px;border:1px solid var(--rule);border-radius:9px;background:#fff;color:var(--mut);cursor:pointer;}
+  .modesw button.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600;}
+  .bar{position:sticky;top:0;background:var(--bg);z-index:9;padding:8px 0;border-bottom:1px solid var(--rule);}
+  #q{width:100%;font-family:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--rule);border-radius:9px;background:#fff;color:var(--ink);}
+  #q:focus{outline:none;border-color:var(--accent);}
+  .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;}
+  .chip{font-family:inherit;font-size:12.5px;padding:6px 11px;border:1px solid var(--rule);border-radius:999px;background:#fff;color:var(--mut);cursor:pointer;}
+  .chip.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .chip .n{opacity:.7;font-size:11px;margin-left:3px;}
+  .opts{margin-top:9px;}
+  .opts button{font-family:inherit;font-size:12.5px;border:1px solid var(--rule);background:#fff;color:var(--ink);padding:6px 12px;border-radius:6px;cursor:pointer;}
+  .opts button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .count{float:right;font-size:12.5px;color:var(--mut);padding-top:7px;}
+  table{border-collapse:collapse;width:100%;margin-top:8px;}
+  tr{border-bottom:1px solid var(--rule);}
+  td{padding:8px;vertical-align:top;}
+  .form{font-style:italic;font-weight:600;color:var(--accent);white-space:nowrap;font-size:16.5px;}
+  .note{color:#555;white-space:nowrap;font-size:13px;}
+  .tag{font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:#fff;border-radius:4px;padding:2px 7px;white-space:nowrap;}
+  .mean{font-size:15px;color:#2a2620;}
+  .hide-m .mean{color:transparent;background:var(--hl);border-radius:4px;cursor:pointer;}
+  .hide-m .mean.show{color:#2a2620;background:transparent;cursor:default;}
+  .grouphdr td{background:var(--vbg);font-weight:600;color:var(--accent);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;padding:9px 8px;}
+  .t0{background:#3a7d43;}.t1{background:#2f6f9e;}.t2{background:#9a6a2e;}.t3{background:#8a3b8a;}
+  .t4{background:#7a3b2e;}.t5{background:#9a3b52;}.t6{background:#1f7e8c;}.t7{background:#566b2e;}
+  .t8{background:#5a4a8a;}.t9{background:#b06a1f;}
+  @media(max-width:560px){.note{display:none;}td{padding:7px 5px;}.form{font-size:15.5px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Sanskrit vocab — A11114 corpus</h1>
+<div class="sub">Verbs · nouns · indeclinables drawn from the past papers (2007–2024), with English meanings. Search, filter, and tap “self-test” to hide meanings (tap a hidden cell to reveal).</div>
+
+<div class="modesw">
+  <button id="m-v" class="on">Verbs</button>
+  <button id="m-n">Nouns</button>
+  <button id="m-i">Indeclinables</button>
+</div>
+
+<div class="bar">
+  <input id="q" placeholder="search…">
+  <div class="chips" id="chips"></div>
+  <div class="opts"><button id="stoggle">🙈 self-test (hide meanings)</button><span class="count" id="count"></span></div>
+</div>
+
+<table><tbody id="tb"></tbody></table>
+
+<script>
+const VCAT={pres:'Present active',midp:'Middle / Passive',opt:'Optative (“should / would”)',impv:'Imperative',
+ fut:'Future',past:'Past (perfect / imperfect / aorist)',abs:'Absolutive (“having …-ed”)',
+ inf:'Infinitive (“to …”)',ger:'Gerundive (“to be …-ed”)',ptcp:'Participle'};
+const NCAT={phil:'Philosophy / epistemology',veda:'Vedānta / Upaniṣad',cosmo:'Cosmos / elements',
+ ritual:'Ritual / Yoga / Veda-practice',soc:'Dharma / society / polity',body:'Body / embryo / faculties',
+ pers:'Persons / gods / agents',gen:'General / abstract'};
+const ICAT={conn:'Connective / dialectic',part:'Particle / emphatic / quotative',neg:'Negation',
+ adv:'Adverb (time / place / manner)',prep:'With a case (preposition-like)'};
+const VORD=['pres','midp','opt','impv','fut','past','abs','inf','ger','ptcp'];
+const NORD=['phil','veda','cosmo','ritual','soc','body','pers','gen'];
+const IORD=['conn','part','neg','adv','prep'];
+const TAGI={pres:'t0',midp:'t1',opt:'t2',impv:'t3',fut:'t6',past:'t4',abs:'t9',inf:'t7',ger:'t8',ptcp:'t5',
+ phil:'t0',veda:'t1',cosmo:'t6',ritual:'t2',soc:'t4',body:'t5',pers:'t3',gen:'t7',
+ conn:'t0',part:'t2',neg:'t4',adv:'t6',prep:'t1'};
+
+const VERBS=[
+["bhavati / bhavanti","pres","√bhū","is, becomes / they are"],["asti / santi / nāsti","pres","√as","is / they are / is not"],
+["āpnoti, avāpnoti","pres","(ava)√āp","obtains, reaches"],["gacchati, adhigacchati","pres","√gam","goes / attains"],
+["abhyeti","pres","abhi√i","approaches, comes to"],["upadiśati","pres","upa√diś","teaches, instructs"],
+["karoti","pres","√kṛ","does, makes"],["vaśīkaroti","pres","vaśī√kṛ","brings under control"],
+["kopayati","pres","√kup (caus)","angers, provokes"],["yacchati","pres","√yam","gives, holds out"],
+["yamayati, niyamayati","pres","√yam (caus)","restrains"],["yojayati","pres","√yuj (caus)","joins, engages"],
+["dahati","pres","√dah","burns"],["dalayati","pres","√dal (caus)","splits"],["darśayati","pres","√dṛś (caus)","shows"],
+["dhārayati","pres","√dhṛ (caus)","holds, sustains"],["avadharayati","pres","ava√dhṛ (caus)","determines, ascertains"],
+["avabodhayati","pres","√budh (caus)","awakens, makes understand"],["nirvartayati","pres","nir√vṛt (caus)","produces, brings about"],
+["āpādayati","pres","ā√pad (caus)","brings about, causes"],["dīpayati","pres","√dīp (caus)","illumines, kindles"],
+["pravartayati","pres","pra√vṛt (caus)","impels, sets in motion"],["ghnanti","pres","√han","they strike, kill"],
+["grasate","pres","√gras","devours, swallows"],["jahāti","pres","√hā","abandons"],["jihāsati","pres","√hā (desid.)","wishes to abandon"],
+["īpsati","pres","√āp (desid.)","wishes to obtain"],["jānāti, vijānāti","pres","√jñā","knows"],["vetti","pres","√vid","knows"],
+["vindati, vindanti","pres","√vid","finds, obtains"],["tapati","pres","√tap","burns, glows"],["tiṣṭhati","pres","√sthā","stands, remains"],
+["tṛpyati","pres","√tṛp","is satisfied"],["carati","pres","√car","moves, practises"],["ativartate, vartate","pres","√vṛt","transgresses; occurs"],
+["vasati","pres","√vas","dwells"],["cyavate","pres","√cyu","falls away, deviates"],["phalati","pres","√phal","bears fruit"],
+["prabhavati, prabhavanti","pres","pra√bhū","arises, prevails"],["sambhavanti","pres","sam√bhū","arise; are possible"],
+["pracakṣate","pres","pra√cakṣ","they declare, call"],["prakāśate","pres","pra√kāś","shines forth"],
+["pramiṇoti","pres","pra√mā","cognises (as valid), measures"],["prāṇiti","pres","pra√an","breathes"],
+["pratibhānti","pres","prati√bhā","appear (to the mind)"],["pratilabhante","pres","prati√labh","they obtain"],
+["prīyante","pres","√prī","are pleased"],["abhimanyante","pres","abhi√man","they regard, consider"],
+["bhajate, bhajante","pres","√bhaj","partakes, worships"],["cetayanti","pres","√cit (caus)","they are conscious of"],
+["vicinvanti","pres","vi√ci","they discern, sift"],["krandanti","pres","√krand","cry out"],["majjanti","pres","√majj","sink"],
+["nimiṣati / unmiṣati","pres","ni / ud√miṣ","contracts / expands (eyes close / open)"],
+["paridhāvati, abhidhāvanti","pres","(abhi)√dhāv","runs about; run after"],["udbhāvayati","pres","ud√bhū (caus)","brings about, gives rise to"],
+["āviśati","pres","ā√viś","enters"],["spandate","pres","√spand","throbs, quivers"],["svedate","pres","√svid","sweats"],
+["ādatte, tathādatte","pres","ā√dā","takes on, assumes"],["ādhatte","pres","ā√dhā","places, assumes"],
+["āpyāyate","pres","ā√pyāy","swells, is nourished"],["amṛtībhavati","pres","amṛtī√bhū","becomes immortal"],
+["śaknoti","pres","√śak","is able"],["śocati, śocāmi","pres","√śuc","grieves / I grieve"],
+["aśnute, samaśnute","pres","√aś (V)","attains, fully enjoys"],["bhuṅkte","pres","√bhuj","enjoys, experiences"],
+["yuñjate, yuṅkte","pres","√yuj","engage / yokes"],["varṣati","pres","√vṛṣ","rains"],["yāti, yānti","pres","√yā","goes / they go"],
+["samāyāti","pres","sam-ā√yā","comes together, attains"],["saranti, niḥsaranti","pres","√sṛ","issue forth, flow out"],
+["harate, saṃharate","pres","√hṛ","takes / withdraws, reabsorbs"],["bravīmi","pres","√brū","I say"],
+["vivakṣāmi","pres","√vac (desid.)","I wish to say"],["vinindāmi","pres","√nind","I revile"],
+["ucyate, ucyante","midp","√vac (pass.)","is said / are said"],["kriyate","midp","√kṛ (pass.)","is done"],
+["jāyate, jāyante, abhijāyate","midp","√jan (pass.)","is born, arises"],["jñāyate","midp","√jñā (pass.)","is known"],
+["pratīyate","midp","prati√i (pass.)","is cognised"],["nirdiśyate","midp","nir√diś (pass.)","is indicated, designated"],
+["abhidhīyate","midp","abhi√dhā (pass.)","is denoted"],["utpadyate","midp","ud√pad","arises"],
+["gṛhyate","midp","√grah (pass.)","is grasped"],["labhyate, upalabhyate","midp","(upa)√labh (pass.)","is obtained / apprehended"],
+["labhate","midp","√labh","obtains"],["kathyate","midp","√kath (pass.)","is called, told"],["kīrtyate","midp","√kīrt (pass.)","is proclaimed"],
+["lakṣyate","midp","√lakṣ (pass.)","is defined, characterised"],["lipyate","midp","√lip (pass.)","is tainted, smeared"],
+["badhyate","midp","√bandh (pass.)","is bound"],["mucyate, vimucyate","midp","√muc (pass.)","is freed"],
+["niyamyate","midp","ni√yam (pass.)","is restrained"],["niyujyate","midp","ni√yuj (pass.)","is enjoined, appointed"],
+["nirudhyante","midp","ni√rudh (pass.)","are suppressed"],["vidyate","midp","√vid (pass.)","exists, is found"],
+["vidhīyate","midp","vi√dhā (pass.)","is enjoined, prescribed"],["viśiṣyate","midp","vi√śiṣ (pass.)","is distinguished, excels"],
+["vyajyate","midp","vi√añj (pass.)","is manifested"],["praśasyate","midp","pra√śaṃs (pass.)","is praised"],
+["pūjyate","midp","√pūj (pass.)","is honoured"],["pramīyate","midp","pra√mā (pass.)","is validly known, measured"],
+["parilambyate","midp","pari√lamb (pass.)","hangs on, depends"],["pratāyate","midp","pra√tan (pass.)","is extended"],
+["kalpyate, parikalpyate","midp","√kḷp (pass.)","is conceived, assumed"],["śrūyate","midp","√śru (pass.)","is heard"],
+["dṛśyate, dṛśyante","midp","√dṛś (pass.)","is seen / are seen"],["hūyate","midp","√hu (pass.)","is offered (as oblation)"],
+["bhāvyate","midp","√bhū (caus.-pass.)","is brought into being, cultivated"],["vibhāvyate","midp","vi√bhū (pass.)","is contemplated"],
+["vicintyate","midp","vi√cint (pass.)","is reflected upon"],["yujyate","midp","√yuj (pass.)","is joined; is fitting"],
+["jīyate","midp","√ji (pass.)","is conquered"],["kurute","midp","√kṛ","does (mid.)"],["brūte","midp","√brū","says (mid.)"],
+["vyavatiṣṭhate","midp","vi-ava√sthā","stands firm, persists"],
+["syāt","opt","√as","would be"],["kuryāt, kurvīta","opt","√kṛ","should do"],["dadyāt","opt","√dā","should give"],
+["śaknuyāt","opt","√śak","could, would be able"],["paśyet","opt","√dṛś","should see"],["(na)avekṣet","opt","ava√īkṣ","should (not) look at"],
+["(na)abhibhāṣet","opt","abhi√bhāṣ","should (not) converse with"],["spṛśet","opt","√spṛś","should touch"],
+["pūjayet","opt","√pūj (caus)","should worship"],["prājvalayet","opt","pra√jval (caus)","should kindle"],
+["nirūpayet","opt","nir√rūp (caus)","should ascertain"],["(na)uccārayet","opt","ud√car (caus)","should (not) utter"],
+["vibhāvayet","opt","vi√bhū (caus)","should contemplate"],["icched","opt","√iṣ","should wish"],
+["ācaret","opt","√car","should practise, do"],["japet","opt","√jap","should mutter (the prayer)"],
+["adhīyīta","opt","adhi√i","should study, recite"],["abhidhyāyīta","opt","abhi√dhyai","should meditate upon"],
+["bhuñjīta","opt","√bhuj","should eat / enjoy"],["aśnīyāt","opt","√aś (IX)","should eat"],["snāyīta","opt","√snā","should bathe"],
+["śayīta","opt","√śī","should lie down"],["niviśeta","opt","ni√viś","should settle, enter"],["śikṣeran","opt","√śikṣ","they should learn"],
+["hṛṣyet","opt","√hṛṣ","should rejoice"],["jāyeta","opt","√jan","would arise / be born"],
+["brūhi","impv","√brū","tell! speak!"],["śṛṇu, śṛṇuṣva","impv","√śru","listen! hear!"],
+["ucyatām","impv","√vac (pass.)","let it be said"],["pramīyatām","impv","pra√mā (pass.)","let it be known"],
+["vyākhyāsyāmi","fut","vi-ā√khyā","I shall explain"],["vakṣyāmi","fut","√vac","I shall say"],
+["mokṣayiṣyāmi","fut","√muc (caus)","I shall liberate"],["gamiṣyati","fut","√gam","will go"],["bhaviṣyati","fut","√bhū","will be"],
+["neṣyate","fut","√nī (fut. pass.)","will be led"],["vijñāsyasi","fut","vi√jñā","you will know"],
+["abravīt","past","√brū (impf.)","said"],["āha, āhuḥ","past","√ah","says / they say"],["āsīt, āsa","past","√as","was"],
+["aikṣata, aikṣanta","past","√īkṣ (aor.)","thought, considered"],["asṛjata, sṛjati","past","√sṛj","created / creates"],
+["vyākarot","past","vi√kṛ (impf.)","differentiated, manifested"],["nanāśa","past","√naś (perf.)","perished"],
+["babhūva, sambabhūva","past","√bhū (perf.)","became / was born"],["provāca","past","pra√vac (perf.)","declared"],
+["śuśrāva","past","√śru (perf.)","heard"],["ājagmuḥ","past","√gam (perf.)","they came"],["upatasthire","past","upa√sthā (perf.)","they attended"],
+["vivāsayāmāsa","past","vi√vas (caus. periph.)","banished"],["grāhayāmāsa","past","√grah (caus. periph.)","caused to grasp, taught"],
+["kṛtvā","abs","√kṛ","having done"],["jñātvā","abs","√jñā","having known"],["viditvā","abs","√vid","having known"],
+["hitvā","abs","√hā","having abandoned"],["gṛhītvā","abs","√grah","having taken"],["gatvā","abs","√gam","having gone"],
+["muktvā","abs","√muc","having released"],["tyaktvā","abs","√tyaj","having abandoned"],["chittvā","abs","√chid","having cut off"],
+["bhaṅktvā","abs","√bhañj","having broken"],["sthāpayitvā","abs","√sthā (caus)","having established"],
+["kṣapayitvā","abs","√kṣap (caus)","having destroyed / spent"],["prasārya","abs","pra√sṛ (caus)","having extended"],
+["utpādya","abs","ud√pad (caus)","having produced"],["ārabhya","abs","ā√rabh","having begun; from"],
+["anupraviśya","abs","anu-pra√viś","having entered"],["prahāya","abs","pra√hā","having given up"],
+["adhikṛtya","abs","adhi√kṛ","with reference to"],["pretya","abs","pra√i","having departed (died)"],
+["abhipretya","abs","abhi-pra√i","having in mind, intending"],["nirhṛtya","abs","nir√hṛ","having taken out"],
+["āśaṅkya","abs","ā√śaṅk","having raised a doubt"],
+["jñātum","inf","√jñā","to know"],["jijñāsitum","inf","√jñā (desid.)","to wish to know"],
+["vicārayitum","inf","vi√car (caus)","to investigate"],["bhettum","inf","√bhid","to split, break"],
+["proddhartum","inf","pra-ud√hṛ","to rescue, lift up"],["īkṣitum","inf","√īkṣ","to see"],["yoktum","inf","√yuj","to join"],
+["jijñāsitavya","ger","√jñā (desid.)","to be inquired into"],["vijñātavya","ger","vi√jñā","to be known"],
+["jijñāsya / jñāsya","ger","√jñā","to be known"],["parikalpayitavya","ger","pari√kḷp (caus)","to be assumed"],
+["draṣṭavya","ger","√dṛś","to be seen"],["śrotavya","ger","√śru","to be heard"],["mantavya","ger","√man","to be pondered"],
+["nididhyāsitavya","ger","ni√dhyai (desid.)","to be meditated upon"],
+["cintayan","ptcp","√cint (pres. act.)","thinking"],["kurvan, kurvanto","ptcp","√kṛ (pres. act.)","doing"],
+["bhavan","ptcp","√bhū (pres. act.)","being, becoming"],["yatamāna","ptcp","√yat (pres. mid.)","striving"],
+["pālayāna","ptcp","√pāl (pres. mid.)","protecting"],["pratīyamāna","ptcp","prati√i (pres. pass.)","being cognised"],
+["samupajāyamāna","ptcp","sam-upa√jan","arising"],["jñāyamāna","ptcp","√jñā (pres. pass.)","being known"],
+["jñāta","ptcp","√jñā (ppp)","known"],["gata","ptcp","√gam (ppp)","gone"],["sṛṣṭa / sṛṣṭāni","ptcp","√sṛj (ppp)","created, emitted"],
+["baddha","ptcp","√bandh (ppp)","bound"],["mukta","ptcp","√muc (ppp)","freed"],["ukta","ptcp","√vac (ppp)","said"],
+["jāta","ptcp","√jan (ppp)","born"],["naṣṭa","ptcp","√naś (ppp)","perished, lost"],["prāpta","ptcp","√āp (ppp)","obtained, reached"],
+["āpanna","ptcp","ā√pad (ppp)","fallen into"],["pratipanna","ptcp","prati√pad (ppp)","admitted, cognised"],
+["saṃsṛṣṭa","ptcp","sam√sṛj (ppp)","connected, conjoined"],["siddha","ptcp","√sidh (ppp)","established, accomplished"],
+["sthita","ptcp","√sthā (ppp)","standing, situated"],["nirmita","ptcp","nir√mā (ppp)","made, fashioned"],
+["adhīta","ptcp","adhi√i (ppp)","studied, recited"],["upapanna","ptcp","upa√pad (ppp)","arrived; fitting"],
+["vipluta","ptcp","vi√plu (ppp)","overwhelmed, swept away"],["rakta","ptcp","√rañj (ppp)","impassioned, coloured"],
+["vimūrcchita","ptcp","vi√mūrch (ppp)","congealed, coalesced"],["vyākhyāta","ptcp","vi-ā√khyā (ppp)","explained"],
+["prasiddha","ptcp","pra√sidh (ppp)","well-known, established"],["avasthita","ptcp","ava√sthā (ppp)","situated, fixed"],
+["yantrita","ptcp","√yantr (ppp)","controlled, restrained"],
+];
+
+const NOUNS=[
+["dharma","phil","m.","duty, moral law; (Mīmāṃsā) the enjoined good"],["adharma","phil","m.","unrighteousness, demerit"],
+["karma(n)","phil","n.","action; ritual act; its result"],["jñāna","phil","n.","knowledge, cognition"],
+["pramāṇa","phil","n.","means of valid knowledge"],["codanā","phil","f.","Vedic injunction"],["vidhi","phil","m.","injunction, rule"],
+["niyoga","phil","m.","enjoinment, obligation (Prābhākara)"],["bhāvanā","phil","f.","productive operation (Bhāṭṭa)"],
+["vākyārtha","phil","m.","sentence-meaning"],["padārtha","phil","m.","word-meaning; category, entity"],
+["śabda","phil","m.","word; sound; verbal testimony"],["artha","phil","m.","meaning; object; goal; wealth"],
+["abhidheya","phil","n.","the denoted, denotatum"],["jāti","phil","f.","universal, class, genus"],["vyakti","phil","f.","individual, particular"],
+["ākṛti","phil","f.","form, shape (of a class)"],["sāmānya","phil","n.","the general, universal"],["viśeṣa","phil","m.","particular, distinction"],
+["dravya","phil","n.","substance"],["guṇa","phil","m.","quality, attribute"],["kriyā","phil","f.","action"],
+["abhāva","phil","m.","absence, non-existence"],["pratyakṣa","phil","n.","perception"],["anumāna","phil","n.","inference"],
+["viṣaya","phil","m.","object, sphere"],["pratibhā","phil","f.","intuition, flash of insight"],
+["vikalpa","phil","m.","conceptual construction, option"],["saṃsarga","phil","m.","connection, relation"],
+["vāsanā","phil","f.","latent disposition, mental trace"],["vijñapti","phil","f.","representation, cognition (Yogācāra)"],
+["vijñāna","phil","n.","consciousness, cognition"],["kalpanā","phil","f.","imagination, mental construction"],
+["paramārtha","phil","m.","highest reality"],["prāmāṇya","phil","n.","validity, authoritativeness"],
+["lakṣaṇa","phil","n.","defining mark, definition"],["sādhana","phil","n.","means, instrument"],["phala","phil","n.","result, fruit"],
+["prayojana","phil","n.","purpose, motive"],["tātparya","phil","n.","intended import"],["apoha","phil","m.","exclusion of the other (Buddhist)"],
+["viveka","phil","m.","discrimination, discernment"],["avidyā","phil","f.","ignorance, nescience"],["jijñāsā","phil","f.","desire to know, inquiry"],
+["sādhanābhāsa","phil","m.","pseudo-means"],
+["brahman","veda","n.","the Absolute, universal truth, the Veda"],["ātman","veda","m.","self, soul"],["anātman","veda","m.","the non-self"],
+["sat / asat","veda","n.","being / non-being"],["ānanda","veda","m.","bliss"],["nāmarūpa","veda","n.","name-and-form"],
+["mokṣa / mukti","veda","m./f.","liberation"],["kaivalya","veda","n.","isolation (Yoga's goal)"],["bandha","veda","m.","bondage"],
+["mala","veda","m.","impurity, the binding stain (Śaiva)"],["saṃsāra","veda","m.","cycle of rebirth"],["māyā","veda","f.","illusion; creative power"],
+["mahābhūta","cosmo","n.","gross element"],["bhūta","cosmo","n.","being; element"],["bhūtātman","cosmo","m.","the Self of beings"],
+["tattva","cosmo","n.","principle, reality-level"],["pṛthivī","cosmo","f.","earth"],["ap / jala","cosmo","f./n.","water"],
+["tejas / agni / jyotis","cosmo","n./m.","fire, light"],["vāyu","cosmo","m.","wind, air"],["ākāśa","cosmo","n.","space, ether"],
+["sarga","cosmo","m.","creation, emission"],["pralaya","cosmo","m.","dissolution"],["prabhava","cosmo","m.","origin, source"],
+["apyaya","cosmo","m.","dissolution, reabsorption"],["kalpa","cosmo","m.","cosmic aeon"],["ūrmi","cosmo","f.","wave"],
+["sāgara","cosmo","m.","ocean"],["kūrma","cosmo","m.","tortoise"],
+["veda","ritual","m.","the Veda"],["yajña / yāga","ritual","m.","sacrifice"],["homa","ritual","m.","fire-oblation"],
+["āhuti","ritual","f.","oblation"],["mantra","ritual","m.","sacred formula"],["gāyatrī","ritual","f.","the Gāyatrī verse/mantra"],
+["vrata","ritual","n.","vow, observance"],["dīkṣā","ritual","f.","ritual initiation"],["liṅga","ritual","n.","mark, sign; Śiva-emblem"],
+["bhasman","ritual","n.","sacred ash"],["āśrama","ritual","m.","life-stage; hermitage"],["brahmacarya","ritual","n.","chaste studentship, celibacy"],
+["adhyayana / svādhyāya","ritual","n.","(self-)study, recitation"],["pūjā","ritual","f.","worship"],["dhyāna","ritual","n.","meditation"],
+["samādhi","ritual","m.","meditative absorption"],["dhāraṇā","ritual","f.","fixation, concentration"],["yoga","ritual","m.","discipline, union"],
+["siddhi","ritual","f.","attainment, supernatural power"],
+["daṇḍa","soc","m.","the rod, punishment, force"],["daṇḍanīti","soc","f.","statecraft, science of punishment"],["rājan","soc","m.","king"],
+["rājya","soc","n.","kingship, kingdom"],["prajā","soc","f.","subjects, people, offspring"],["varṇa","soc","m.","social class; colour"],
+["brāhmaṇa","soc","m.","Brahmin (priest-class)"],["kṣatriya","soc","m.","warrior-class"],["vaiśya / viś","soc","m.","commoner / the folk"],
+["śūdra","soc","m.","servant-class"],["gṛhastha","soc","m.","householder"],["vānaprastha","soc","m.","forest-hermit"],
+["parivrājaka","soc","m.","wandering ascetic"],["bhikṣu / yati / muni","soc","m.","mendicant / ascetic / sage"],["vārtā","soc","f.","economics, husbandry"],
+["ānvīkṣikī","soc","f.","philosophy, critical inquiry"],["trayī","soc","f.","the triple Veda"],["yogakṣema","soc","m.","acquisition and preservation"],
+["lokayātrā","soc","f.","the running of the world"],["mātsyanyāya","soc","m.","‘law of the fishes’ (anarchy)"],["puruṣārtha","soc","m.","human aim"],
+["kāma","soc","m.","desire, pleasure"],["krodha","soc","m.","anger"],["lobha","soc","m.","greed"],["moha","soc","m.","delusion"],
+["rāga / dveṣa","soc","m.","passion / aversion"],["kheda","soc","m.","weariness, distress"],["ācārya","soc","m.","teacher, authority"],["kośa","soc","m.","treasury"],
+["śarīra / deha / kāya","body","n./m.","body"],["garbha","body","m.","womb, embryo"],["śukra / śoṇita","body","n.","semen / uterine blood"],
+["dhātu","body","m.","bodily constituent, element"],["arbuda","body","n.","embryonic lump (2nd month)"],["indriya","body","n.","sense-faculty"],
+["prāṇa","body","m.","vital breath"],["manas","body","n.","mind"],["buddhi","body","f.","intellect"],["citta","body","n.","mind, awareness"],
+["ahaṃkāra","body","m.","ego, I-maker"],["sukha / duḥkha","body","n.","pleasure / pain"],["icchā / prayatna","body","f./m.","desire / effort"],
+["āyus","body","n.","lifespan"],["bala / vīrya","body","n.","strength / vigour"],["rūpa","body","n.","form, colour, appearance"],
+["śiva","pers","m.","Śiva"],["rudra","pers","m.","Rudra"],["viṣṇu / nārāyaṇa","pers","m.","Viṣṇu / Nārāyaṇa"],["kṛṣṇa","pers","m.","Kṛṣṇa"],
+["brahmā","pers","m.","the god Brahmā (creator)"],["īśvara / maheśvara","pers","m.","God, the Lord"],["paśupati","pers","m.","Śiva as ‘Lord of beasts’"],
+["bhairava","pers","m.","Bhairava (fierce Śiva)"],["devī","pers","f.","the Goddess"],["prabhu","pers","m.","lord, master"],
+["kartṛ / bhoktṛ","pers","m.","agent / experiencer"],["jīva","pers","m.","the living self"],["paśu","pers","m.","bound soul; beast"],
+["daitya / asura","pers","m.","demon, anti-god"],["deva / sura","pers","m.","god"],["ṛṣi","pers","m.","seer, sage"],
+["bhīṣma","pers","m.","Bhīṣma (the ‘grandsire’)"],["yudhiṣṭhira / pārtha","pers","m.","Yudhiṣṭhira / Arjuna (epithet)"],
+["sūtrakāra / kauṭilya","pers","m.","the sūtra-author / Kauṭilya"],["vyāsa / kapila","pers","m.","Vyāsa / Kapila"],
+["kāla","gen","m.","time"],["deśa","gen","m.","place, region"],["loka","gen","m.","world; people"],["jagat","gen","n.","the world, universe"],
+["vastu","gen","n.","(real) thing"],["nāman","gen","n.","name"],["hetu / kāraṇa","gen","m./n.","cause, reason"],
+["kārya","gen","n.","effect; what is to be done"],["sāmarthya / śakti","gen","n./f.","capacity, power"],["gati","gen","f.","course; recourse"],
+["sthiti","gen","f.","persistence, maintenance"],["utpatti / nāśa","gen","f./m.","origination / destruction"],["bhāva / abhāva","gen","m.","being / non-being"],
+["svabhāva","gen","m.","inherent nature"],["ākāra","gen","m.","form, aspect"],["aṃśa","gen","m.","part, portion"],
+["viśeṣaṇa","gen","n.","qualifier, attribute"],["pratipatti","gen","f.","understanding, ascertainment"],
+];
+
+const INDECL=[
+["nanu","conn","obj.","but surely…? — [opens an objection]"],["satyam","conn","—","true [conceded] — yields before a counter"],
+["tarhi","conn","—","then, in that case"],["… iti cet","conn","cond.","‘if [you say] that …’"],
+["tasmāt / tasmād","conn","—","therefore [conclusion]"],["ataḥ / atas","conn","—","hence, for this reason"],
+["tataḥ / tato","conn","—","thereupon, then; from that"],["yataḥ / yato","conn","—","because, since; from which"],
+["atha","conn","—","now, then; (or)"],["atha vā","conn","—","or rather, alternatively"],["evam","conn","—","thus, so"],
+["tathā","conn","—","so, likewise; and"],["yathā","conn","—","as, just as"],["kim","conn","—","what? — often rhetorical ‘surely not?’"],
+["kiṃ ca","conn","—","moreover, furthermore"],["katham","conn","—","how? in what way?"],["kutaḥ","conn","—","whence? why?"],
+["nāma","conn","—","namely; indeed (concessive ‘let it be’)"],["kila","conn","—","so they say; supposedly"],
+["tāvat","conn","—","for now; to begin with; indeed"],["hi","conn","—","for, because [gives a reason]"],
+["ca","part","—","and"],["vā","part","—","or"],["tu","part","—","but, however"],["eva","part","—","just, only, the very [emphasis]"],
+["api","part","—","also, even, too"],["iti","part","quot.","‘…’ — closes a quote, thought, or reason"],["khalu","part","—","indeed, surely"],
+["vai","part","—","verily, indeed"],["ha","part","—","indeed [esp. in narrative]"],["sma","part","—","[with present tense → past sense]"],
+["iva","part","—","like, as if"],["nūnam","part","—","surely, certainly"],["aṅga","part","—","pray! (kim aṅga punaḥ = how much more)"],
+["uta","part","—","or; indeed"],["cana / cid","part","—","[indefinite: ‘-ever, any’]"],["are","part","voc.","hey! O! [familiar address]"],
+["aho","part","—","oh! [exclamation]"],["vata","part","—","alas!"],
+["na","neg","—","not"],["mā","neg","proh.","do not [prohibition, + aorist/imperative]"],["no","neg","—","not (na + u)"],
+["na hi / nahi","neg","—","for not; certainly not"],
+["iha","adv","place","here, in this world"],["atra","adv","place","here, in this"],["tatra","adv","place","there, in that"],
+["yatra","adv","place","where"],["adya","adv","time","today, now"],["sadā / nityam","adv","time","always, eternally"],
+["sadyaḥ","adv","time","at once, immediately"],["purā","adv","time","formerly, of old"],["agre","adv","time/place","in front; first"],
+["prāk","adv","time","before, earlier"],["ūrdhvam","adv","time/place","above; afterwards"],["punaḥ / punar","adv","—","again; further"],
+["punaḥ punaḥ","adv","—","again and again"],["yathākālam","adv","time","in due time"],["yathāśakti","adv","manner","according to ability"],
+["anupūrvaśaḥ","adv","manner","in order, successively"],["sarvathā","adv","manner","in every way, altogether"],
+["sākṣāt","adv","manner","directly, in person, manifestly"],["svayam","adv","—","oneself; of its own accord"],
+["vinā","prep","+instr/acc","without"],["saha","prep","+instr","(together) with"],["prati","prep","+acc","towards, with regard to; each"],
+["yadi … (cet)","prep","cond.","if"],["yāvat … tāvat","prep","corr.","as long / much as … so long / much"],
+];
+
+const MODES={v:{cat:VCAT,ord:VORD,data:VERBS,ph:'search… (e.g. bhū, attain, -tvā, should)'},
+ n:{cat:NCAT,ord:NORD,data:NOUNS,ph:'search… (e.g. dharma, soul, body)'},
+ i:{cat:ICAT,ord:IORD,data:INDECL,ph:'search… (e.g. therefore, hi, if)'}};
+
+const tb=document.getElementById('tb'),chips=document.getElementById('chips'),
+      q=document.getElementById('q'),count=document.getElementById('count');
+let mode='v',cat='all',hide=false;
+function M(){return MODES[mode];}
+function buildChips(){
+  chips.innerHTML='';const C=M().cat,counts={};M().data.forEach(v=>counts[v[1]]=(counts[v[1]]||0)+1);
+  ['all',...M().ord].forEach(c=>{
+    const b=document.createElement('button');b.className='chip'+(c===cat?' on':'');b.dataset.c=c;
+    b.innerHTML=(c==='all'?'All':C[c].replace(/ \(.*/,''))+`<span class="n">${c==='all'?M().data.length:counts[c]||0}</span>`;
+    b.onclick=()=>{cat=c;[...chips.children].forEach(x=>x.classList.toggle('on',x.dataset.c===c));render();};
+    chips.appendChild(b);
+  });
+}
+function render(){
+  const s=q.value.trim().toLowerCase(),C=M().cat;tb.innerHTML='';let n=0,last=null;
+  M().data.forEach(([form,c,note,mean])=>{
+    if(cat!=='all'&&c!==cat)return;
+    if(s&&!(form.toLowerCase().includes(s)||note.toLowerCase().includes(s)||mean.toLowerCase().includes(s)))return;
+    if(c!==last){const h=document.createElement('tr');h.className='grouphdr';h.innerHTML=`<td colspan="4">${C[c]}</td>`;tb.appendChild(h);last=c;}
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="form">${form}</td><td><span class="tag ${TAGI[c]}">${c}</span></td><td class="note">${note}</td><td class="mean">${mean}</td>`;
+    tb.appendChild(tr);n++;
+  });
+  count.textContent=n+' entries';document.body.classList.toggle('hide-m',hide);
+}
+function setMode(m){
+  mode=m;cat='all';
+  ['v','n','i'].forEach(k=>document.getElementById('m-'+k).classList.toggle('on',k===m));
+  q.placeholder=M().ph;buildChips();render();
+}
+['v','n','i'].forEach(k=>document.getElementById('m-'+k).onclick=()=>setMode(k));
+q.addEventListener('input',render);
+document.getElementById('stoggle').onclick=function(){hide=!hide;this.classList.toggle('on',hide);
+  this.textContent=hide?'👁 show meanings':'🙈 self-test (hide meanings)';render();};
+tb.addEventListener('click',e=>{if(hide&&e.target.classList.contains('mean'))e.target.classList.toggle('show');});
+setMode('v');
+</script>
+</body>
+</html>
